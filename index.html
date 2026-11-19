@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>SpringBoard Marketplace</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="theme-color" content="#EDE3DD" id="tc">
@@ -1499,6 +1500,33 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .aj-rate span{color:var(--ink2);font-size:0.875rem;letter-spacing:0;margin-left:4px}
 #ajp{min-width:0}
 #ajp td.nw,#ajp th{white-space:nowrap}
+
+/* admin verify: tax ID check card */
+.txc{border:1px solid var(--line);border-radius:16px;background:#fff;padding:16px;display:grid;gap:12px}
+.txc-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.txc-l{font-size:0.75rem;color:var(--muted)}
+.txc-n{font-family:"Poppins";font-size:1.125rem;font-weight:600;letter-spacing:.04em}
+.txc-copy{flex:none;border:1px solid var(--line2);background:#fff}
+.txc-st{display:flex;gap:8px;align-items:center;font-size:0.875rem;font-weight:500;border-radius:8px;padding:8px 12px}
+.txc-st .ic{width:16px;height:16px;flex:none}
+.txc-st.ok{background:#D4E6BD;color:#1A1A1A}
+.txc-st.bad{background:#FFF0EA;color:#712319}
+.txc-q{font-size:0.875rem;font-weight:500;color:var(--ink2)}
+.txc-links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.txc-a{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:56px;padding:8px 12px;border:1.5px solid var(--line2);border-radius:12px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:0 2px 0 #EADDD6;transition:transform .12s,box-shadow .12s}
+.txc-a span{display:grid;min-width:0}
+.txc-a b{font-size:0.875rem;font-weight:600}
+.txc-a small{font-size:0.75rem;color:var(--muted)}
+.txc-a .ic{width:16px;height:16px;flex:none;color:#712319}
+.txc-a:hover{border-color:#FAD0C2}
+.txc-a:active{transform:translateY(2px);box-shadow:none}
+.txc-a:focus-visible{outline:2px solid #F37449;outline-offset:2px}
+.txc-h{display:flex;gap:6px;align-items:center;font-size:0.75rem;color:var(--muted)}
+.txc-h .ic{width:14px;height:14px;flex:none}
+/* destructive outline button */
+.btn-danger{color:#712319;border-color:#FAD0C2;box-shadow:0 2px 0 #FAD0C2}
+.btn-danger:hover{background:#FFF0EA}
+.btn-danger:active{transform:translateY(2px);box-shadow:none}
 </style>
 
 <div class="studio">
@@ -1579,7 +1607,7 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
 <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
 <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
-<symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol><symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
 <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></symbol>
 <symbol id="i-bar" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16v-5M12 16V8M17 16v-8"/></symbol>
 <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M4 2v20l3-2 3 2 2-2 2 2 3-2 3 2V2l-3 2-3-2-2 2-2-2-3 2z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
@@ -2227,6 +2255,7 @@ vp.addEventListener("click",e=>{
     case "ajob": S.adm.job=+v; S.adm.jtab="apps"; go("ajob"); break;
     case "ajtab": S.adm.jtab=v; rerenderKeep(); $("#ajt-"+v,scr)?.focus(); break;
     case "ajstu": stuSheet(el.dataset.id, el.dataset.k); break;
+    case "taxcopy": { try{ navigator.clipboard&&navigator.clipboard.writeText(v).catch(()=>{}); }catch(_){} toast(el.tagName==="A"?"คัดลอกเลขผู้เสียภาษีแล้ว · วางในช่องค้นหาของเว็บไซต์":"คัดลอกเลขผู้เสียภาษีแล้ว"); break; }
     case "vocd": vocSheet(el.dataset.n, el.dataset.k, el.dataset.s); break;
     case "vocreply": closeSheet(); toast("ส่งคำตอบแล้ว · สถานะเป็นกำลังดำเนินการ"); break;
     case "vocclose": closeSheet(); toast("ปิดเรื่องแล้ว",false); break;
@@ -2367,12 +2396,23 @@ function askSheet(id){ const a=APPLICANTS.find(x=>x.id===id)||APPLICANTS[0];
    <div><label class="lbl" for="ask-m">ข้อความ <span style="color:var(--muted);font-weight:400">(ไม่บังคับ)</span></label><textarea class="inp" id="ask-m" placeholder="เช่น ขอดูโพสต์ที่เคยทำให้ชมรม 2–3 ชิ้น"></textarea></div>
    <p class="priv">${ic("info")}นักศึกษามีเวลาตอบ 2 วัน ระหว่างนี้ใบสมัครยังอยู่ในรายการ</p></div>
   <div class="sh-f"><button type="button" class="btn btn-g btn-blk" data-a="asksend">ส่งคำขอ</button></div>`);}
+
+/* admin: tax ID check — validates the check digit here, confirms on the official sites */
+const TAX_LINKS=[["กรมสรรพากร","https://www.rd.go.th/63834.html","ค้นหาผู้ประกอบการจดทะเบียน VAT"],["DBD DataWarehouse+","https://datawarehouse.dbd.go.th/","ข้อมูลนิติบุคคล กรมพัฒนาธุรกิจการค้า"]];
+function taxValid(d){ if(!/^\d{13}$/.test(d)) return false; let s=0; for(let i=0;i<12;i++) s+=+d[i]*(13-i); return (11-s%11)%10===+d[12]; }
+const taxFmt=d=>[d.slice(0,1),d.slice(1,5),d.slice(5,10),d.slice(10,12),d.slice(12)].join("-");
+function taxCheckCard(d){ const ok=taxValid(d);
+  return `<section class="txc" aria-labelledby="txc-h"><div class="txc-top"><div><p class="txc-l" id="txc-h">เลขประจำตัวผู้เสียภาษี</p><b class="txc-n">${taxFmt(d)}</b></div><button type="button" class="ib txc-copy" data-a="taxcopy" data-v="${d}" aria-label="คัดลอกเลขผู้เสียภาษี">${ic("copy")}</button></div>
+  <p class="txc-st ${ok?"ok":"bad"}">${ic(ok?"check":"alert")}<span>${ok?"เลข 13 หลักถูกต้องตามหลักตรวจสอบ":"เลขไม่ถูกต้องตามหลักตรวจสอบ · ขอให้ร้านแก้ไข"}</span></p>
+  <p class="txc-q">ยืนยันว่ากิจการมีอยู่จริงบนเว็บไซต์ทางการ</p>
+  <div class="txc-links">${TAX_LINKS.map(([n,u,sub])=>`<a class="txc-a" href="${u}" target="_blank" rel="noopener noreferrer" data-a="taxcopy" data-v="${d}"><span><b>${n}</b><small>${sub}</small></span>${ic("ext")}</a>`).join("")}</div>
+  <p class="txc-h">${ic("info")}กดแล้วระบบคัดลอกเลขให้ วางในช่องค้นหาของเว็บไซต์ได้เลย</p></section>`; }
 function verifySheet(i,n,t){
   sheet(`<div class="sh-h"><div><h2 id="shh">ตรวจสอบ ${esc(n)}</h2><p>${esc(t)} · ลงทะเบียนเมื่อ 9 พ.ย. 2569</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
-  <div class="sh-b"><div class="share"><div><span>เลขผู้เสียภาษี</span><b style="font-weight:500">0505565012347</b></div><div><span>ผู้ประสานงาน</span><b style="font-weight:500">คุณวรรณา · เจ้าของกิจการ</b></div><div><span>เบอร์</span><b style="font-weight:500">084-xxx-031</b></div></div>
+  <div class="sh-b">${taxCheckCard("0505565012347")}<div class="share"><div><span>ผู้ประสานงาน</span><b style="font-weight:500">คุณวรรณา · เจ้าของกิจการ</b></div><div><span>เบอร์</span><b style="font-weight:500">084-xxx-031</b></div></div>
    <div><p class="lbl">เอกสาร</p><div class="docs">${["หนังสือรับรอง / ทะเบียนพาณิชย์","ภาพหน้าร้าน 3 ภาพ","สำเนาบัตรผู้ประสานงาน"].map(d=>`<button type="button" class="doc" data-a="toast" data-m="เปิด ${d} (PDF)">${ic("file")}<span>${d}</span>${ic("chev-r")}</button>`).join("")}</div></div>
    <div><label class="lbl" for="vr">หมายเหตุถึงร้าน <span style="color:var(--muted);font-weight:400">(จำเป็นถ้าขอแก้ไขหรือปฏิเสธ)</span></label><textarea class="inp" id="vr" aria-describedby="vr-e"></textarea><p class="ferr" id="vr-e" hidden></p></div></div>
-  <div class="sh-f"><button type="button" class="btn btn-g btn-blk" data-a="verify" data-v="${i}">อนุมัติร้านนี้</button><div class="row2"><button type="button" class="btn btn-o" data-a="vfix">ขอแก้ไข</button><button type="button" class="btn btn-ghost" data-a="vrej">ปฏิเสธ</button></div></div>`);}
+  <div class="sh-f"><button type="button" class="btn btn-g btn-blk" data-a="verify" data-v="${i}">อนุมัติร้านนี้</button><div class="row2"><button type="button" class="btn btn-o" data-a="vfix">ขอแก้ไข</button><button type="button" class="btn btn-o btn-danger" data-a="vrej">ปฏิเสธ</button></div></div>`);}
 function vocSheet(n,k,s){
   sheet(`<div class="sh-h"><div><h2 id="shh">${esc(k)} · ${esc(n)}</h2><p>VOC-2569-0139 · 3 ชม. ที่แล้ว</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
   <div class="sh-b"><div class="share"><div><span>สถานประกอบการ</span><b style="font-weight:500">${esc(s)}</b></div><div><span>สถานะการทำงาน</span><b style="font-weight:500">ทำงานอยู่ · สัปดาห์ที่ 3</b></div><div><span>ชั่วโมงการทำงาน</span><b style="font-weight:500">18 ชม.</b></div><div><span>Token</span><b class="tkv" style="font-weight:500">${tok(16,"tki")}2,100 (รอจ่าย 350)</b></div><div><span>Mentor</span><b style="font-weight:500">เฟสถัดไป</b></div></div>
