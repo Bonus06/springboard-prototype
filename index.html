@@ -610,6 +610,44 @@ tr.clk:hover td{background:#FFF7F3}
 .pf-top h1{font-size:1.25rem}
 .pf-top p{font-size:0.875rem;color:var(--muted)}
 .pf-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pf-grid.one{grid-template-columns:1fr}
+.hcal{display:grid;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.hc-top{display:flex;justify-content:space-between;align-items:center}
+.hc-l{display:flex;gap:4px;align-items:center;font-size:0.875rem;font-weight:500;color:var(--muted)}
+.hc-l .ic{width:15px;height:15px}
+.hc-nav{display:flex;align-items:center;gap:0}
+.hc-nav b{font-size:0.875rem;font-weight:600;min-width:72px;text-align:center}
+.hc-nav .ib{width:40px;height:40px}
+.hc-nav .ib:disabled{opacity:.3;cursor:not-allowed}
+.hc-sum{display:grid;gap:4px}
+.hc-sum>div:first-child{display:flex;align-items:baseline;gap:8px}
+.hc-sum>div:first-child b{font-family:"Poppins";font-size:1.5rem;font-weight:700;color:var(--ink);line-height:1.1}
+.hc-sum>div:first-child span{font-size:0.875rem;color:var(--ink2)}
+.hc-bar{height:8px;border-radius:999px;background:#F3EBE6;overflow:hidden}
+.hc-bar i{display:block;height:100%;border-radius:999px;background:#F37449}
+.hc-sum small{font-size:0.75rem;color:var(--muted)}
+.hc-g{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.hc-w{font-size:0.75rem;font-weight:600;text-align:center;color:var(--muted);padding-bottom:4px}
+.hc-d{aspect-ratio:1/1.1;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;font-size:0.75rem;color:var(--ink2);background:#FFFAF7;border:0;padding:0;font-family:"Poppins","Kanit",sans-serif;position:relative}
+.hc-d.empty{background:transparent}
+.hc-d.fut{color:#B8A9A2}
+.hc-d.has{cursor:pointer;transition:transform .3s var(--spring)}
+.hc-d.has:active{transform:scale(.92)}
+.hc-d.has>span{font-size:0.625rem;opacity:.8;line-height:1}
+.hc-d.has b{font-size:0.875rem;font-weight:700;line-height:1.1}
+.hc-d.has b small{font-size:0.5625rem;font-weight:500;margin-left:1px}
+.hc-d.ok.lv1,.hc-d.ok.lv2{background:#FAD0C2;color:#712319}
+.hc-d.ok.lv3{background:#FA9746;color:#fff}
+.hc-d.ok.lv4{background:#F37449;color:#fff}
+.hc-d.wait{background:#fff;color:#712319;box-shadow:inset 0 0 0 1.5px #F37449;background-image:repeating-linear-gradient(45deg,transparent 0 5px,rgba(243,116,73,.12) 5px 8px)}
+.hc-d.today{box-shadow:inset 0 0 0 2px #712319}
+.hc-d.today.wait{box-shadow:inset 0 0 0 2px #712319}
+.hc-lg{display:flex;gap:16px;flex-wrap:wrap;font-size:0.75rem;color:var(--ink2)}
+.hc-lg span{display:inline-flex;gap:8px;align-items:center}
+.hc-lg i{width:14px;height:14px;border-radius:4px;display:inline-block}
+.hc-lg i.ok{background:#F37449}
+.hc-lg i.wait{background:#fff;box-shadow:inset 0 0 0 1.5px #F37449}
+.hc-lg i.td{background:#fff;box-shadow:inset 0 0 0 2px #712319}
 .stat{border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden}
 .stat.work{background:var(--g-soft);color:var(--g-ink)}
 .stat.hours{background:var(--peach-soft);color:var(--maroon)}
@@ -1862,6 +1900,17 @@ R.ob3=()=>`${topbar("สมัครสมาชิก",true)}${obSteps(3)}<div 
   <div class="card" style="padding:16px"><b style="font-weight:500">สรุปที่คุณกรอก</b><div class="chips" style="margin-top:12px">${[...S.ob.skills].map(k=>`<span class="tag t-grey">${SK[k]}</span>`).join("")}<span class="tag t-peach">${ic("target")}${esc(S.ob.dream)}</span></div></div>
  </div><div class="foot-act pt-foot">${S.ob.test?`<button type="button" class="btn btn-g" data-a="obdone">สมัครและดูผลวิเคราะห์ ${ic("spark")}</button>`
   :`<button type="button" class="btn btn-g" data-a="ptest">${S.ptStep?`ทำต่อ · ข้อ ${S.ptStep+1} จาก ${QZ.length}`:"เริ่มทำแบบทดสอบ"} ${ic("chev-r")}</button><button type="button" class="linkb pt-skip" data-a="obskip">ข้ามไปก่อน · ทำทีหลังได้</button>`}</div>`;
+const HLOG={2:[3,"ok"],4:[3,"ok"],6:[4,"ok"],8:[1,"wait"],9:[2,"wait"]};
+function hoursCal(){ const first=6, days=30, today=10, cells=[];
+  for(let i=0;i<first;i++) cells.push(`<span class="hc-d empty" aria-hidden="true"></span>`);
+  for(let d=1;d<=days;d++){ const l=HLOG[d], h=l?l[0]:0, st=l?l[1]:"";
+    cells.push(l?`<button type="button" class="hc-d has ${st} lv${Math.min(h,4)}${d===today?" today":""}" data-a="toast" data-m="${d} พ.ย. · ${h} ชม. · ${st==="ok"?"ร้านอนุมัติแล้ว":"รอร้านอนุมัติ"}" aria-label="${d} พฤศจิกายน ทำงาน ${h} ชั่วโมง ${st==="ok"?"อนุมัติแล้ว":"รออนุมัติ"}"><span>${d}</span><b>${h}<small>ชม.</small></b></button>`
+      :`<span class="hc-d${d===today?" today":""}${d>today?" fut":""}"${d===today?' aria-current="date"':""}><span>${d}</span></span>`); }
+  const mo=Object.values(HLOG).reduce((a,x)=>a+x[0],0), ok=Object.values(HLOG).filter(x=>x[1]==="ok").reduce((a,x)=>a+x[0],0);
+  return `<section class="hcal" aria-labelledby="hc-h"><div class="hc-top"><p class="hc-l" id="hc-h">${ic("cal")}Credit / Hours</p><div class="hc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><b>พ.ย. 2569</b><button type="button" class="ib" disabled aria-label="เดือนถัดไป">${ic("chev-r")}</button></div></div>
+   <div class="hc-sum"><div><b>42</b><span>/ 60 ชม. ภาคการศึกษานี้</span></div><div class="hc-bar"><i style="width:70%"></i></div><small>เดือนนี้ ${mo} ชม. · อนุมัติแล้ว ${ok} · รออนุมัติ ${mo-ok}</small></div>
+   <div class="hc-g" role="grid" aria-label="ชั่วโมงทำงานเดือนพฤศจิกายน 2569">${["จ","อ","พ","พฤ","ศ","ส","อา"].map(x=>`<span class="hc-w">${x}</span>`).join("")}${cells.join("")}</div>
+   <div class="hc-lg"><span><i class="ok"></i>อนุมัติแล้ว</span><span><i class="wait"></i>รอร้านอนุมัติ</span><span><i class="td"></i>วันนี้</span></div></section>`; }
 const NEED=[["สร้างคอนเทนต์",90,72],["วิเคราะห์ข้อมูล",80,35],["การสื่อสาร",75,82],["สร้างแบรนด์",65,40],["SEO & โฆษณา",60,15]];
 R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div class="orb-w"><div class="orb"></div><img src="${MARK}" alt=""></div><h1 id="h1" tabindex="-1" style="font-size:1.25rem">AI กำลังวิเคราะห์โปรไฟล์ของคุณ</h1>
   <ol class="ai-steps" id="aisteps">${["อ่านทักษะและความสนใจ","รวมผล Personality Test","เทียบกับอาชีพในฝัน","จับคู่งานและคอร์ส"].map(s=>`<li><i>${ic("check")}</i>${s}</li>`).join("")}</ol></div>`;
@@ -1951,10 +2000,10 @@ R.wish=()=>{const list=JOBS.filter(j=>S.saved.has(j.id)); const cats=new Set(lis
   ${sugg.length?`<section class="sec"><div class="sec-h"><h2>งานคล้ายกับที่คุณสนใจ</h2><button type="button" data-a="viewall" data-v="fit">ดูทั้งหมด ${ic("chev-r")}</button></div><div class="rail-x">${sugg.map(card).join("")}</div></section>`:""}`);};
 R.profile=()=>wrapApp(`<div class="pf-head"><div style="display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1"><h1 id="h1" tabindex="-1" style="font-size:1.125rem">Profile</h1></div></div>
  <div class="pf-card"><div class="pf-top"><span class="av">${ME.ini}</span><div><h2 style="font-size:1.25rem">${ME.name}</h2><p>อายุ ${ME.age} · ${ME.fac} · ${ME.major} ${ME.year}</p></div></div>
-  <div class="pf-grid">
-   <div class="stat work"><small>${ic("brief")}สถานะทำงาน</small><b>ผู้ช่วยทำคอนเทนต์<br>${esc(SHOPS.lc.n)}</b><small style="font-weight:400">ทำมาแล้ว 3 สัปดาห์</small></div>
-   <div class="stat hours"><small>${ic("clock")}Credit / Hours</small><div class="ringw"><span class="pring" data-p="70" data-l="42 ชม."></span><span style="font-size:0.875rem;color:var(--ink2)">จาก 60 ชม.<br>ภาคการศึกษานี้</span></div></div>
+  <div class="pf-grid one">
+   <div class="stat work"><small>${ic("brief")}สถานะทำงาน</small><b>ผู้ช่วยทำคอนเทนต์ · ${esc(SHOPS.lc.n)}</b><small style="font-weight:400">ทำมาแล้ว 3 สัปดาห์</small></div>
   </div>
+  ${hoursCal()}
   <div class="stat" style="background:transparent;flex-direction:row;align-items:center;justify-content:space-between"><div><small style="color:var(--muted)">${ic("wallet")}ค่าตอบแทนเดือนนี้</small><b class="tkv" style="font-family:Poppins;font-size:1.5rem">${tok(24,"tki")}<span data-count="4860">0</span></b></div><button type="button" class="btn btn-g btn-sm" data-a="payout">ถอน Token</button></div>
   <button type="button" class="cvbtn ${S.cv==="gen"?"gen":S.cv==="ok"?"ok":""}" data-a="cv"><span class="fi">${S.cv==="gen"?'<span class="spin" style="color:var(--act-ink)"></span>':ic(S.cv==="ok"?"check":"file")}</span><span><b>${S.cv==="ok"?"CV.pdf พร้อมแล้ว":S.cv==="gen"?"AI กำลังเขียน CV…":"สร้าง CV.pdf ด้วย AI"}</b><small>${S.cv==="ok"?"ดึงจากงาน ชั่วโมง และคอร์สที่เรียน · กดเพื่อดาวน์โหลด":"รวมประสบการณ์ทำงานและทักษะเป็น CV ให้อัตโนมัติ"}</small></span></button>
  </div>
