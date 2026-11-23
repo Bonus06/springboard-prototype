@@ -2303,10 +2303,10 @@ function confetti(){ if(RM) return; const c=document.createElement("canvas"); c.
   const cols=["#F37449","#FA9746","#D16F8A","#88C887","#FAD0C2","#712319"]; const P=Array.from({length:110},()=>({x:r.width/2,y:r.height*.55,vx:(Math.random()-.5)*11,vy:-Math.random()*13-5,s:Math.random()*7+4,c:cols[Math.random()*cols.length|0],a:Math.random()*6,va:(Math.random()-.5)*.4}));
   const t0=performance.now(); const f=t=>{x.clearRect(0,0,r.width,r.height); P.forEach(p=>{p.vy+=.38;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore();}); if(t-t0<2200) requestAnimationFrame(f); else c.remove();}; requestAnimationFrame(f);}
 function sheet(html){S.sheet=true; ov.innerHTML=`<div class="scrim" data-a="close"></div><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="shh"><div class="grip" aria-hidden="true"></div>${html}</div>`; const f=$("#shh",ov); if(f){f.setAttribute("tabindex","-1"); f.focus({preventScroll:true});}}
-function startSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">เริ่มต้นแบบไหนดี</h2><p>เลือกได้ตอนนี้ หรือกลับมาสร้างทีหลังก็ได้</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
+function startSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">จะเริ่มจากอะไรก่อน</h2><p>เลือก 1 ทาง · เปลี่ยนใจทีหลังได้</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
   <div class="sh-b"><div class="stc">
-   <button type="button" class="stc-o main" data-a="estart" data-v="create"><span class="stc-ic">${ic("brief")}</span><span class="stc-t"><b>สร้างโปรไฟล์ร้านและประกาศงาน</b><small>ใช้เวลาประมาณ 3 นาที · นักศึกษาเห็นประกาศหลังวิทยาลัยฯ ตรวจสอบ 1–2 วันทำการ</small></span>${ic("chev-r")}</button>
-   <button type="button" class="stc-o" data-a="estart" data-v="skip"><span class="stc-ic">${ic("eye")}</span><span class="stc-t"><b>ข้ามไปดูหน้าแรกก่อน</b><small>ดูว่าระบบทำอะไรได้บ้าง แล้วค่อยสร้างประกาศทีหลัง</small></span>${ic("chev-r")}</button>
+   <button type="button" class="stc-o main" data-a="estart" data-v="create"><span class="stc-ic">${ic("brief")}</span><span class="stc-t"><b>ประกาศหานักศึกษาเลย</b><small>กรอกข้อมูลร้านและงานที่ต้องการ ใช้เวลาประมาณ 3 นาที · ประกาศจะขึ้นหลังวิทยาลัยฯ ตรวจ 1–2 วันทำการ</small></span>${ic("chev-r")}</button>
+   <button type="button" class="stc-o" data-a="estart" data-v="skip"><span class="stc-ic">${ic("eye")}</span><span class="stc-t"><b>ดูระบบก่อน ยังไม่ประกาศ</b><small>เข้าไปดูหน้าแรกของร้านได้เลย · กลับมาประกาศงานได้ทุกเมื่อที่ปุ่ม «+ เพิ่ม»</small></span>${ic("chev-r")}</button>
   </div></div>`); }
 function closeSheet(){ov.innerHTML=""; S.sheet=null;}
 
