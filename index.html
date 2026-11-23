@@ -762,7 +762,7 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 .skpick.dev .lbl{color:var(--pink-ink)}
 .chip.dev[aria-pressed="true"]{background:var(--pink-ink);border-color:var(--pink-ink)}
 .payrow{display:flex;gap:8px;align-items:center;position:relative}
-.payrow .inp{flex:1;min-width:0;padding-left:32px;font-family:"Poppins";font-weight:600}
+.payrow .inp{flex:1;min-width:0;padding-left:48px;font-family:"Poppins";font-weight:600}
 .payrow .baht{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-weight:600;color:var(--act-ink);font-family:"Poppins"}
 .payrow .seg{flex:none}
 .payrow .seg button{padding:8px 12px}
@@ -2034,7 +2034,7 @@ R.feedback=()=>{ if(S.fbDone) return wrapApp(`<div class="ok-screen"><span class
 /* employer */
 const SKOPT=["comm","canva","caption","service","team","photo","english","sheets"], DEVOPT=["plan","insight","brand","present","eventops","problem","lead","dash"];
 const BTYPES=[["food","ร้านอาหาร","coffee"],["craft","หัตถกรรม","pen"],["edu","การศึกษา","book"],["event","อีเวนต์","ticket"],["tech","เทคโนโลยี","code"],["other","อื่น ๆ","grid"]];
-R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟต์ สตูดิโอ",type:"craft",pos:"ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย",pay:"3500",u:"โปรเจกต์",hasTax:true,pin:false,req:new Set(["canva","caption"]),dev:new Set(["plan","insight"])});
+R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟต์ สตูดิโอ",type:"craft",pos:"ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย",pay:"3,500",u:"โปรเจกต์",hasTax:true,pin:false,req:new Set(["canva","caption"]),dev:new Set(["plan","insight"])});
  const st=e.step, ttl=["ข้อมูลร้าน","ประกาศงานแรก","ตรวจก่อนส่ง"][st-1], sub=["นักศึกษาจะเห็นชื่อ ประเภท และย่านของร้าน ส่วนเลขผู้เสียภาษีใช้ตรวจสอบเท่านั้น","บอกให้ชัดว่างานต้องใช้อะไร และนักศึกษาจะได้อะไรกลับไป","นี่คือการ์ดที่นักศึกษาจะเห็นในหน้า Home"][st-1];
  const head=`<header class="topbar"><button type="button" class="ib" data-a="eback" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1">สร้างโปรไฟล์ร้าน</h1><span class="sp"></span></header>${obSteps(st)}<div class="ob-h"><small>ขั้นที่ ${st} จาก 3</small><h2 style="font-size:1.5rem;margin-top:2px">${ttl}</h2><p>${sub}</p></div>`;
  const chip=(g,k)=>`<button type="button" class="chip${g==="dev"?" dev":""}" data-a="echip" data-g="${g}" data-v="${k}" aria-pressed="${e[g].has(k)}">${SK[k]}</button>`;
