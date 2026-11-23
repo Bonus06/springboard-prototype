@@ -1737,7 +1737,7 @@ const SCREENS={
  wish:{g:"stu",n:"Wishlist",role:"student",nav:"wish"}, profile:{g:"stu",n:"Profile",role:"student",nav:"profile"}, sapps:{g:"stu",n:"ใบสมัครของฉัน (ใหม่)",role:"student",nav:"profile"}, swork:{g:"stu",n:"งานที่กำลังทำ + ชั่วโมง (ใหม่)",role:"student",nav:"profile"},
  voc:{g:"stu",n:"VOC · ช่วยเหลือ",role:"any",nav:"voc"}, feedback:{g:"stu",n:"Feedback รายเดือน",role:"student",nav:"feedback"},
  eob:{g:"emp",n:"สมัคร + สร้างประกาศ",role:"employer"}, ehome:{g:"emp",n:"Home ผู้ประกอบการ",role:"employer",nav:"home"}, eapps:{g:"emp",n:"ผู้สมัคร",role:"employer",nav:"home"},
- estu:{g:"emp",n:"Profile นศ. (มุมผู้ประกอบการ)",role:"employer",nav:"home"}, ework:{g:"emp",n:"Work · นศ. ที่ทำงาน",role:"employer",nav:"work"}, efeedback:{g:"emp",n:"Feedback ถึงนักศึกษา (ใหม่)",role:"employer",nav:"feedback"}, eprofile:{g:"emp",n:"โปรไฟล์ร้าน (ใหม่)",role:"employer",nav:"profile"},
+ estu:{g:"emp",n:"Profile นศ. (มุมผู้ประกอบการ)",role:"employer",nav:"home"}, ework:{g:"emp",n:"Work · นศ. ที่ทำงาน",role:"employer",nav:"work"}, efeedback:{g:"emp",n:"Feedback ถึง Mentor",role:"employer",nav:"feedback"}, eprofile:{g:"emp",n:"โปรไฟล์ร้าน (ใหม่)",role:"employer",nav:"profile"},
  adash:{g:"adm",n:"Dashboard",role:"admin"}, ausers:{g:"adm",n:"User & Account",role:"admin"}, afin:{g:"adm",n:"Financial & Tax Receipt",role:"admin"}, ajobs:{g:"adm",n:"Job Post & Matching",role:"admin"}, ajob:{g:"adm",n:"รายละเอียดประกาศ (ใหม่)",role:"admin"}, avoc:{g:"adm",n:"VOC & Dispute",role:"admin"},
  mentor:{g:"men",n:"Mentor (เฟสถัดไป)",role:"mentor",off:true}};
 const GROUPS=[["start","เริ่มต้น","#F37449"],["stu","นักศึกษา","#D16F8A"],["emp","ผู้ประกอบการ","#88C887"],["adm","แอดมิน","#712319"],["men","Mentor","#B8A9A2"]];
@@ -2316,7 +2316,7 @@ vp.addEventListener("click",e=>{
     case "hstep": { const w=S.work; w.h=Math.max(0.5,Math.min(12,w.h+(+v))); const o=$("#hval",scr); if(o) o.textContent=`${w.h} ชม.`; break; }
     case "wsave": { const w=S.work; w.saved=true; w.log.unshift({d:"10 พ.ย.",h:w.h,st:"wait"}); rerenderKeep(); toast(`บันทึก ${w.h} ชม. แล้ว · จะแจ้งเตือนเมื่อร้านอนุมัติ`); break; }
     case "estar": { const i=el.dataset.w; S.efs[i]=+v; $$(`[data-a="estar"][data-w="${i}"]`,scr).forEach((b,k)=>{b.classList.toggle("on",k<+v); b.setAttribute("aria-checked",k+1===+v);}); break; }
-    case "efsend": { const i=v; if(!S.efs[i]){ toast("ให้คะแนนดาวก่อนส่ง",false); break; } S.efb[i]=true; rerenderKeep(); toast("ส่ง Feedback แล้ว"); break; }
+    case "efsend": { const i=v; if(!S.efs[i]){ toast("ให้คะแนนดาวก่อนส่ง",false); break; } S.efb[i]=true; rerenderKeep(); toast("ส่ง Feedback ให้ Mentor แล้ว"); break; }
     case "job": S.jobId=+el.dataset.id; S.openPos=0; go("job"); break;
     case "pos": { const i=+el.dataset.i; S.openPos=S.openPos===i?-1:i; rerenderKeep(); const b=$$(".pos-h",scr)[i]; if(b) b.focus({preventScroll:true}); break; }
     case "heart": { const id=+el.dataset.id, on=!S.saved.has(id); on?S.saved.add(id):S.saved.delete(id);
@@ -2425,12 +2425,11 @@ R.swork=()=>{const w=S.work||(S.work={h:4,saved:false,log:[{d:"9 พ.ย.",h:2,s
   </section>
   <section aria-labelledby="hh"><div class="sec-h" style="padding:0"><h2 id="hh">${ic("clock")}ประวัติชั่วโมง</h2></div><div class="hist">${w.log.map(l=>`<div class="hrow"><span>${l.d}</span><span class="num">${l.h} ชม.</span>${l.st==="ok"?'<span class="tag t-ok">อนุมัติแล้ว</span>':'<span class="tag t-warn">รออนุมัติ</span>'}</div>`).join("")}</div></section>
  </div>`);};
-R.efeedback=()=>wrapApp(`${topbar("Feedback ถึงนักศึกษา",false)}<div class="pad" style="display:grid;gap:12px;padding-bottom:16px"><div class="remind">${ic("bell")}<span>ทุกสิ้นเดือน · ให้ Feedback นักศึกษาที่ทำงานกับร้าน</span></div>${WORKERS.map((w,i)=>{const done=S.efb[i], sv=S.efs[i]||0;
-  return `<div class="worker"><div class="t"><span class="av" style="background:${AVC[w.c]}">${w.ini}</span><div><b>${w.n}</b><small>${w.pos}</small></div>${done?`<span class="tag t-ok" style="margin-left:auto">${ic("check")}ส่งแล้ว</span>`:""}</div>
+R.efeedback=()=>wrapApp(`${topbar("Feedback ถึง Mentor",false)}<div class="pad" style="display:grid;gap:12px;padding-bottom:16px"><div class="remind">${ic("bell")}<span>ทุกสิ้นเดือน · ประเมินนักศึกษาที่ทำงานกับร้าน ส่งถึง Mentor ผู้ดูแล</span></div><p class="priv">${ic("lock")}นักศึกษาไม่เห็นความเห็นนี้โดยตรง · Mentor จะสรุปและคุยกับนักศึกษาเอง</p>${WORKERS.map((w,i)=>{const done=S.efb[i], sv=S.efs[i]||0;
+  return `<div class="worker"><div class="t"><span class="av" style="background:${AVC[w.c]}">${w.ini}</span><div><b>${w.n}</b><small>${w.pos}</small></div>${done?`<span class="tag t-ok" style="margin-left:auto">${ic("check")}ส่งถึง Mentor แล้ว</span>`:""}</div>
   ${done?"":`<div class="stars sm" role="radiogroup" aria-label="คะแนนของ ${w.n}">${[1,2,3,4,5].map(k=>`<button type="button" role="radio" aria-checked="${sv===k}" aria-label="${k} ดาว" data-a="estar" data-w="${i}" data-v="${k}" class="${k<=sv?"on":""}">${ic("star")}</button>`).join("")}</div>
-  <div><label class="lbl" for="ef-${i}">ความเห็น</label><textarea class="inp" id="ef-${i}" placeholder="จุดที่ทำได้ดี และสิ่งที่อยากให้พัฒนา"></textarea></div>
-  <label class="chk-line" for="efp-${i}"><input type="checkbox" id="efp-${i}" checked>ให้นักศึกษาเห็นความเห็นนี้ในโปรไฟล์</label>
-  <button type="button" class="btn btn-p btn-blk" data-a="efsend" data-v="${i}">ส่ง Feedback</button>`}</div>`;}).join("")}</div>`);
+  <div><label class="lbl" for="ef-${i}">ความเห็นถึง Mentor</label><textarea class="inp" id="ef-${i}" placeholder="จุดที่ทำได้ดี และสิ่งที่อยากให้พัฒนา"></textarea></div>
+  <button type="button" class="btn btn-p btn-blk" data-a="efsend" data-v="${i}">${ic("send")}ส่งให้ Mentor</button>`}</div>`;}).join("")}</div>`);
 R.eprofile=()=>wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">โปรไฟล์ร้าน</h1><div class="pad" style="display:grid;gap:16px;margin-top:-48px;position:relative;z-index:3;padding-bottom:16px">
   <div class="sum" style="box-shadow:var(--sh1)"><div class="sum-h"><b>ข้อมูลร้าน</b><button type="button" class="linkb" data-a="go" data-to="eob">${ic("edit")}แก้ไข</button></div>
    <div class="r"><span>ที่อยู่</span><b>${esc(SHOPS.lc.addr)}</b></div><div class="r"><span>โลเคชั่น</span><b><a class="linkb maplink" href="https://www.google.com/maps?q=18.7786,98.9986" target="_blank" rel="noopener noreferrer">${ic("pin")}เปิดแผนที่</a></b></div><div class="r"><span>เบอร์</span><b>${SHOPS.lc.tel}</b></div><div class="r"><span>ประเภทธุรกิจ</span><b>${esc(SHOPS.lc.type)}</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>0505565•••347</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div></div>
