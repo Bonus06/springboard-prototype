@@ -890,10 +890,6 @@ tr.flash td{animation:flash 1.2s ease}
 .wk-c.c,.wk-lg i.c{background:#F0ECEA}
 .wk-c.w,.wk-lg i.w{background:#FAD0C2;background-image:repeating-linear-gradient(45deg,transparent 0 4px,rgba(113,35,25,.18) 4px 6px)}
 .wk-c.out{opacity:.4}
-.wk-sum{margin-top:4px;padding-top:8px;border-top:1px dashed var(--line2)}
-.wk-h{text-align:center;font-family:"Poppins","Kanit",sans-serif;font-weight:600;font-size:0.875rem;color:#1A1A1A;line-height:1.1;font-variant-numeric:tabular-nums}
-.wk-h small{display:block;font-size:0.625rem;font-weight:500;color:var(--muted)}
-.wk-h.z{color:var(--muted);font-weight:500}
 .wk-c.jw{box-shadow:inset 0 0 0 2px #F37449}
 .wk-lg i.jw{background:#fff;box-shadow:inset 0 0 0 2px #F37449}
 .fit{display:inline-flex;gap:4px;align-items:center;font-size:0.875rem;font-weight:500;border-radius:999px;padding:2px 8px 2px 6px;white-space:nowrap}
@@ -1768,7 +1764,7 @@ function fitTag(a){ const m=matchH(a), n=JWIN.need;
   return m>=n?`<span class="fit ok">${ic("check")}ว่างพอ · ${m} ชม. ในช่วงงาน</span>`:m>0?`<span class="fit part">${ic("alert")}ว่างไม่พอ · ${m} จาก ${n} ชม.</span>`:`<span class="fit no">${ic("x")}ไม่ว่างช่วงงาน</span>`; }
 function calGrid(cal){ const lab={c:"มีเรียน",w:"ทำงานอื่น",f:"ว่าง"};
   return `<div class="wkcal" role="table" aria-label="ตารางเวลาประจำสัปดาห์"><div role="row" class="wk-r"><span role="columnheader" class="wk-t"></span>${WDAYS.map(d=>`<span role="columnheader" class="wk-d">${d}</span>`).join("")}</div>
-   ${WSLOT.map((t,si)=>`<div role="row" class="wk-r"><span role="rowheader" class="wk-t">${t}</span>${cal.map((day,di)=>`<span role="cell" class="wk-c ${day[si]}${inWin(di,si)?" jw":" out"}" aria-label="${WDAYS[di]} ${t} ${lab[day[si]]}${inWin(di,si)?" · ช่วงที่ร้านต้องการ":""}"></span>`).join("")}</div>`).join("")}<div role="row" class="wk-r wk-sum"><span role="rowheader" class="wk-t">ว่าง</span>${cal.map((day,di)=>{const h=day.split("").filter(x=>x==="f").length*2; return `<span role="cell" class="wk-h${h?"":" z"}" aria-label="${WDAYS[di]} ว่าง ${h} ชั่วโมง">${h?h+"<small>ชม.</small>":"–"}</span>`;}).join("")}</div></div>
+   ${WSLOT.map((t,si)=>`<div role="row" class="wk-r"><span role="rowheader" class="wk-t">${t}</span>${cal.map((day,di)=>`<span role="cell" class="wk-c ${day[si]}${inWin(di,si)?" jw":" out"}" aria-label="${WDAYS[di]} ${t} ${lab[day[si]]}${inWin(di,si)?" · ช่วงที่ร้านต้องการ":""}"></span>`).join("")}</div>`).join("")}</div>
    <div class="wk-lg"><span><i class="f"></i>ว่าง</span><span><i class="c"></i>มีเรียน</span><span><i class="w"></i>ทำงานอื่น</span><span><i class="jw"></i>ช่วงที่ร้านต้องการ</span></div>`; }
 const WORKERS=[
  {n:"กมลชนก ปัญญา",ini:"ก",pos:"ผู้ช่วยทำคอนเทนต์",h:18,max:32,c:4,pend:3},
