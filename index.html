@@ -152,11 +152,6 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .bnav button[aria-current="page"]{color:var(--act-ink);font-weight:500}
 .bnav button .ic{transition:transform .4s var(--spring)}
 .bnav button[aria-current="page"] .ic{transform:translateY(-2px) scale(1.1)}
-.bnav .home{margin-top:-24px}
-.bnav .home .disc{width:56px;height:56px;border-radius:50%;background:var(--act);color:#fff;display:grid;place-items:center;box-shadow:0 10px 22px -8px rgba(168,70,111,.75);border:4px solid #fff;transition:transform .45s var(--spring)}
-.bnav .home[aria-current="page"] .disc{transform:translateY(-3px) rotate(-8deg)}
-.bnav .home .ic{width:24px;height:24px}
-.bnav .home[aria-current="page"] .ic{transform:none}
 .badge{position:absolute;top:2px;left:calc(50% + 8px);min-width:16px;height:16px;border-radius:999px;background:var(--act);color:#fff;font-size:0.75rem;font-weight:600;display:grid;place-items:center;padding:0 4px;border:2px solid #fff}
 .badge.bump{animation:bump .5s var(--spring)}
 @keyframes bump{40%{transform:scale(1.45)}}
@@ -1732,11 +1727,10 @@ function bnav(){
   const n=SCREENS[S.scr].nav, emp=S.role==="employer";
   const it=(k,to,i,l,b="")=>`<button type="button" data-a="go" data-to="${to}" ${n===k?'aria-current="page"':""}>${ic(i)}<span>${l}</span>${b}</button>`;
   const wb=S.saved.size?`<span class="badge" id="wbadge">${S.saved.size}</span>`:"";
-  const home=`<button type="button" class="home" data-a="go" data-to="${emp?"ehome":"home"}" ${n==="home"?'aria-current="page"':""}><span class="disc">${ic("home")}</span><span>หน้าหลัก</span></button>`;
   const mid = emp ? it("work","ework","brief","ผู้ทำงาน") : it("wish","wish","heart","ที่บันทึก",wb);
-  const bottom=`<nav class="bnav" aria-label="เมนูหลัก">${it("voc","voc","help","ช่วยเหลือ")}${it("feedback",emp?"efeedback":"feedback","smile","Feedback")}${home}${mid}${it("profile",emp?"eprofile":"profile","user","โปรไฟล์")}</nav>`;
+  const bottom=`<nav class="bnav" aria-label="เมนูหลัก">${it("home",emp?"ehome":"home","home","หน้าแรก")}${mid}${it("feedback",emp?"efeedback":"feedback","smile","Feedback")}${it("voc","voc","help","ช่วยเหลือ")}${it("profile",emp?"eprofile":"profile","user","โปรไฟล์")}</nav>`;
   const tl=(k,to,l,b="")=>`<button type="button" data-a="go" data-to="${to}" ${n===k?'aria-current="page"':""}>${l}${b}</button>`;
-  const top=`<header class="tnav"><button type="button" class="brand" data-a="go" data-to="${emp?"ehome":"home"}"><img src="${MARK}" alt="">Spring Board</button><nav aria-label="เมนูหลัก">${tl("home",emp?"ehome":"home","หน้าหลัก")}${emp?tl("work","ework","ผู้ทำงาน"):tl("wish","wish","ที่บันทึก",wb)}${tl("feedback",emp?"efeedback":"feedback","Feedback")}${tl("voc","voc","ช่วยเหลือ")}</nav><button type="button" class="ib" data-a="notif" aria-label="การแจ้งเตือน 3 รายการใหม่">${ic("bell")}</button><button type="button" class="ib" data-a="go" data-to="${emp?"eprofile":"profile"}" aria-label="โปรไฟล์">${ic("user")}</button></header>`;
+  const top=`<header class="tnav"><button type="button" class="brand" data-a="go" data-to="${emp?"ehome":"home"}"><img src="${MARK}" alt="">Spring Board</button><nav aria-label="เมนูหลัก">${tl("home",emp?"ehome":"home","หน้าแรก")}${emp?tl("work","ework","ผู้ทำงาน"):tl("wish","wish","ที่บันทึก",wb)}${tl("feedback",emp?"efeedback":"feedback","Feedback")}${tl("voc","voc","ช่วยเหลือ")}</nav><button type="button" class="ib" data-a="notif" aria-label="การแจ้งเตือน 3 รายการใหม่">${ic("bell")}</button><button type="button" class="ib" data-a="go" data-to="${emp?"eprofile":"profile"}" aria-label="โปรไฟล์">${ic("user")}</button></header>`;
   return {top,bottom};
 }
 function topbar(title,back=true,right=""){return `<header class="topbar">${back?`<button type="button" class="ib" data-a="back" aria-label="ย้อนกลับ">${ic("chev-l")}</button>`:'<span class="sp"></span>'}${title?`<h1 id="h1" tabindex="-1">${title}</h1>`:'<span style="flex:1"></span>'}${right||'<span class="sp"></span>'}</header>`;}
