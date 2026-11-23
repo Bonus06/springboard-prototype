@@ -842,16 +842,18 @@ tr.flash td{animation:flash 1.2s ease}
 .stc-t small{display:block;font-size:0.875rem;color:var(--muted);margin-top:2px;line-height:1.45}
 .stc-o>.ic:last-child{color:var(--muted)}
 .req{color:#712319;margin-left:4px;font-weight:600}
-.taxseg{display:flex;width:100%}.taxseg button{flex:1}
+.taxopt{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.taxopt .btype{flex-direction:row;justify-content:center;min-height:48px;padding:8px 12px}
+.taxopt .btype .ic{width:20px;height:20px}
 .locc{display:grid;gap:8px}
-.lmap{position:relative;height:132px;border-radius:16px;border:1.5px dashed var(--line2);background:#FFFAF7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:0.875rem;color:var(--muted);overflow:hidden}
-.lmap.on{border-style:solid;border-color:var(--line);background:linear-gradient(90deg,transparent 47%,#fff 47% 53%,transparent 53%) 0 0/88px 100%,linear-gradient(0deg,transparent 46%,#fff 46% 54%,transparent 54%) 0 0/100% 56px,linear-gradient(160deg,transparent 58%,#D4E6BD 58% 70%,transparent 70%),#FAD0C2}
+.lmap{position:relative;height:124px;border-radius:16px;border:2px dashed #FAD0C2;background:linear-gradient(135deg,#FFF1EB,#FDEBF1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:0.875rem;font-weight:500;color:var(--maroon);overflow:hidden}
+.lmap.on{border:2px solid var(--line);background:linear-gradient(90deg,transparent 47%,#fff 47% 53%,transparent 53%) 0 0/88px 100%,linear-gradient(0deg,transparent 46%,#fff 46% 54%,transparent 54%) 0 0/100% 56px,linear-gradient(160deg,transparent 58%,#D4E6BD 58% 70%,transparent 70%),#FAD0C2}
 .lmap.busy{border-style:solid}
 .lpin{width:40px;height:40px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#F37449;color:#fff;display:grid;place-items:center;box-shadow:0 8px 16px -6px rgba(113,35,25,.6)}
 .lpin .ic{transform:rotate(45deg);width:20px;height:20px}
 .lmap.on .lpin{animation:pinDrop .6s var(--spring) both}
 @keyframes pinDrop{from{transform:translateY(-40px) rotate(-45deg);opacity:0}}
-.lpin.off{background:#fff;color:var(--muted);border:1.5px solid var(--line2);box-shadow:none}
+.lpin.off{background:#fff;color:var(--maroon);box-shadow:none}
 .lmeta{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:0.875rem;color:var(--ink2)}
 .lmeta span{display:inline-flex;gap:4px;align-items:center}
 .lmeta .ic{width:16px;height:16px;color:#1A1A1A}
@@ -1977,7 +1979,7 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
    <div><p class="lbl" id="loc-l">โลเคชั่นร้าน</p><div class="locc" id="locc" aria-labelledby="loc-l">${locCard(e.pin)}</div><p class="fhint">${ic("info")}นักศึกษาใช้ดูระยะทางและนำทางไปร้าน</p></div>
    <div><label class="lbl" for="e-t">เบอร์โทรร้าน</label><input class="inp" id="e-t" inputmode="tel" value="081-xxx-239"></div>
    <div><p class="lbl" id="tax-l">เลขประจำตัวผู้เสียภาษี<span class="req" id="tax-req" aria-hidden="true" ${e.hasTax?"":"hidden"}>*</span></p>
-    <div class="seg taxseg" role="group" aria-labelledby="tax-l"><button type="button" data-a="etax" data-v="1" aria-pressed="${e.hasTax}">ระบุเลข</button><button type="button" data-a="etax" data-v="0" aria-pressed="${!e.hasTax}">ไม่ระบุ</button></div>
+    <div class="taxopt" role="group" aria-labelledby="tax-l"><button type="button" class="btype" data-a="etax" data-v="1" aria-pressed="${e.hasTax}">${ic("receipt")}ระบุเลข</button><button type="button" class="btype" data-a="etax" data-v="0" aria-pressed="${!e.hasTax}">${ic("clock")}ไว้ทีหลัง</button></div>
     <div id="tax-in" ${e.hasTax?"":"hidden"} style="margin-top:8px"><label class="sr" for="e-tax">เลขประจำตัวผู้เสียภาษี 13 หลัก (จำเป็น)</label><input class="inp" id="e-tax" inputmode="numeric" maxlength="13" value="0505565012347" aria-required="true" aria-describedby="e-tax-e"><p class="ferr" id="e-tax-e" hidden></p><p class="fhint">${ic("lock")}13 หลัก ใช้ตรวจสอบกิจการ นักศึกษาไม่เห็น</p></div>
     <p class="fhint" id="tax-no" ${e.hasTax?"hidden":""}>${ic("info")}ไม่บังคับ · เพิ่มภายหลังได้จากโปรไฟล์ร้าน</p></div>
    <div class="row2"><div><label class="lbl" for="e-c">ผู้ประสานงาน</label><input class="inp" id="e-c" value="คุณอรุณี"></div><div><label class="lbl" for="e-cp">ตำแหน่ง</label><input class="inp" id="e-cp" value="เจ้าของแบรนด์"></div></div>`;
