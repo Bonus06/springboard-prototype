@@ -889,6 +889,16 @@ tr.flash td{animation:flash 1.2s ease}
 .wk-c.f,.wk-lg i.f{background:#D4E6BD}
 .wk-c.c,.wk-lg i.c{background:#F0ECEA}
 .wk-c.w,.wk-lg i.w{background:#FAD0C2;background-image:repeating-linear-gradient(45deg,transparent 0 4px,rgba(113,35,25,.18) 4px 6px)}
+.wk-c.out{opacity:.4}
+.wk-c.jw{box-shadow:inset 0 0 0 2px #F37449}
+.wk-lg i.jw{background:#fff;box-shadow:inset 0 0 0 2px #F37449}
+.fit{display:inline-flex;gap:4px;align-items:center;font-size:0.875rem;font-weight:500;border-radius:999px;padding:2px 8px 2px 6px;white-space:nowrap}
+.fit .ic{width:14px;height:14px}
+.fit.ok{background:#D4E6BD;color:#1A1A1A}
+.fit.part{background:#FAD0C2;color:#712319}
+.fit.no{background:#F0ECEA;color:#5E5551}
+.fitrow{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.fitrow small{font-size:0.75rem;color:var(--muted)}
 .wk-lg{display:flex;gap:16px;font-size:0.75rem;color:var(--ink2);flex-wrap:wrap}
 .wk-lg span{display:inline-flex;gap:8px;align-items:center}
 .wk-lg i{width:14px;height:14px;border-radius:4px;display:inline-block}
@@ -1742,15 +1752,20 @@ const COURSES=[
 const AVC=["#712319","#AF5577","#1A1A1A","#AF5577","#712319","#712319"];
 const APPLICANTS=[
  {id:"a1",n:"ปภาวรินทร์ ใจดี",ini:"ป",fac:"บริหารธุรกิจ · การตลาด ปี 3",match:92,sk:["canva","caption","comm"],c:0,cal:["ccffff","ffccff","ccffwf","ffccff","ccffff","ffffff","ffffff"]},
- {id:"a2",n:"ธนกฤต วงศ์ใหญ่",ini:"ธ",fac:"การสื่อสารมวลชน ปี 2",match:84,sk:["caption","photo","comm"],c:1,cal:["ccwwff","wwccff","ccwwff","wwccff","ccffff","wwwwff","ffffff"],clash:"เพิ่งรับงานอื่นที่เวลาทับช่วงบ่าย จ.–พฤ. · เหลือเวลาว่างน้อยกว่าที่งานนี้ต้องการ"},
+ {id:"a2",n:"ธนกฤต วงศ์ใหญ่",ini:"ธ",fac:"การสื่อสารมวลชน ปี 2",match:84,sk:["caption","photo","comm"],c:1,cal:["ccwwww","wwccww","ccwwff","wwccww","cwwwff","wwwwff","ffffff"],clash:"เพิ่งรับงานอื่นที่เวลาทับช่วงบ่าย จ.–พฤ. · เหลือเวลาว่างน้อยกว่าที่งานนี้ต้องการ"},
  {id:"a3",n:"ณัฐธิดา แก้วมา",ini:"ณ",fac:"วิจิตรศิลป์ ปี 4",match:80,sk:["canva","photo"],c:2,cal:["ffccff","ccffff","ffccff","ccffff","ffffff","ffffcc","ffffff"]},
  {id:"a4",n:"ภูมิ ศรีสุข",ini:"ภ",fac:"มนุษยศาสตร์ ปี 1",match:61,sk:["comm","english"],c:3,cal:["ccccff","ccccff","ccwwff","ccccff","ccffff","ffffff","ffffff"],wd:{r:"ได้งานอื่นที่เวลาซ้ำกัน",m:"ได้งานสอนพิเศษ จ. และ พ. เย็น ขอบคุณที่พิจารณาครับ",d:"9 พ.ย."}}];
 const WDAYS=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."], WSLOT=["08–10","10–12","13–15","15–17","17–19","19–21"];
 const freeH=a=>a.cal.join("").split("").filter(x=>x==="f").length*2;
+const JWIN={days:[0,1,2,3,4,5],slots:[1,2,3,4],need:8,label:"จ.–ส. 10:00–19:00"};
+const inWin=(di,si)=>JWIN.days.includes(di)&&JWIN.slots.includes(si);
+const matchH=a=>a.cal.reduce((n,day,di)=>n+day.split("").filter((x,si)=>x==="f"&&inWin(di,si)).length*2,0);
+function fitTag(a){ const m=matchH(a), n=JWIN.need;
+  return m>=n?`<span class="fit ok">${ic("check")}ว่างพอ · ${m} ชม. ในช่วงงาน</span>`:m>0?`<span class="fit part">${ic("alert")}ว่างไม่พอ · ${m} จาก ${n} ชม.</span>`:`<span class="fit no">${ic("x")}ไม่ว่างช่วงงาน</span>`; }
 function calGrid(cal){ const lab={c:"มีเรียน",w:"ทำงานอื่น",f:"ว่าง"};
   return `<div class="wkcal" role="table" aria-label="ตารางเวลาประจำสัปดาห์"><div role="row" class="wk-r"><span role="columnheader" class="wk-t"></span>${WDAYS.map(d=>`<span role="columnheader" class="wk-d">${d}</span>`).join("")}</div>
-   ${WSLOT.map((t,si)=>`<div role="row" class="wk-r"><span role="rowheader" class="wk-t">${t}</span>${cal.map((day,di)=>`<span role="cell" class="wk-c ${day[si]}" aria-label="${WDAYS[di]} ${t} ${lab[day[si]]}"></span>`).join("")}</div>`).join("")}</div>
-   <div class="wk-lg"><span><i class="f"></i>ว่าง</span><span><i class="c"></i>มีเรียน</span><span><i class="w"></i>ทำงานอื่น</span></div>`; }
+   ${WSLOT.map((t,si)=>`<div role="row" class="wk-r"><span role="rowheader" class="wk-t">${t}</span>${cal.map((day,di)=>`<span role="cell" class="wk-c ${day[si]}${inWin(di,si)?" jw":" out"}" aria-label="${WDAYS[di]} ${t} ${lab[day[si]]}${inWin(di,si)?" · ช่วงที่ร้านต้องการ":""}"></span>`).join("")}</div>`).join("")}</div>
+   <div class="wk-lg"><span><i class="f"></i>ว่าง</span><span><i class="c"></i>มีเรียน</span><span><i class="w"></i>ทำงานอื่น</span><span><i class="jw"></i>ช่วงที่ร้านต้องการ</span></div>`; }
 const WORKERS=[
  {n:"กมลชนก ปัญญา",ini:"ก",pos:"ผู้ช่วยทำคอนเทนต์",h:18,max:32,c:4,pend:3},
  {n:"ศุภวิชญ์ ทองดี",ini:"ศ",pos:"ช่างภาพสินค้า",h:26,max:32,c:5,pend:0}];
@@ -2070,14 +2085,14 @@ R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a
   <p class="fhint">${ic("info")}1 Token = ฿1 · ชำระผ่าน QR Payment (รอ LE ยืนยัน)</p></section>`);};
 R.eapps=()=>wrapApp(`${topbar("ผู้สมัคร · ผู้ช่วยทำคอนเทนต์",true)}<p class="pad" style="color:var(--muted);font-size:0.875rem;margin-bottom:12px">เรียงตามทักษะที่ตรงกับประกาศ · เห็นเฉพาะข้อมูลที่จำเป็นต่อการคัดเลือก</p>
  <div class="pad" style="display:grid;gap:12px">${APPLICANTS.map(a=>{const st=a.wd?`<span class="tag t-grey">${ic("x")}ยกเลิกใบสมัคร</span>`:S.emp.accepted.has(a.id)?`<span class="tag t-ok">${ic("check")}รับแล้ว</span>`:S.emp.declined.has(a.id)?`<span class="tag t-grey">ไม่ผ่าน</span>`:`<span class="match"><span class="ring" style="--m:${a.match}"></span>${a.match}%</span>`;
-  const sub=a.wd?`<small class="wd-r">${ic("info")}เหตุผล: ${esc(a.wd.r)}</small>`:`<small class="fh">${ic("clock")}ว่าง ${freeH(a)} ชม./สัปดาห์${a.clash&&!S.emp.declined.has(a.id)?` · <em>${ic("alert")}เวลาทับซ้อน</em>`:""}</small>`;
+  const sub=a.wd?`<small class="wd-r">${ic("info")}เหตุผล: ${esc(a.wd.r)}</small>`:`<small class="fh">${fitTag(a)}</small>`;
   return `<div class="app-card${a.wd?" is-wd":""}"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div style="min-width:0"><b>${a.n}</b><small>${a.fac}</small>${sub}</div><div class="r">${st}<button type="button" class="btn btn-o btn-sm" data-a="estu" data-v="${a.id}">ดูรายละเอียด</button></div></div>`;}).join("")}</div>`);
 R.estu=()=>{const a=APPLICANTS.find(x=>x.id===S.stuId)||APPLICANTS[0], acc=S.emp.accepted.has(a.id), dec=S.emp.declined.has(a.id);
  return wrapApp(`<div class="pf-head"><div style="display:flex;align-items:center;gap:4px;position:relative;z-index:1"><button type="button" class="ib" style="color:#fff" data-a="back" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1" style="font-size:1.125rem">Profile นักศึกษา</h1></div></div>
  <div class="pf-card"><div class="pf-top"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div><h2 style="font-size:1.25rem">${a.n}</h2><p>${a.fac}</p><p style="font-size:0.875rem;color:var(--muted)">สมัคร: ผู้ช่วยทำคอนเทนต์ · ตรงทักษะ ${a.match}%</p></div></div>
   <div class="pf-grid"><div class="stat work"><small>${ic("brief")}ประสบการณ์ในระบบ</small><b>2 งาน · 64 ชม.</b></div><div class="stat hours"><small>${ic("award")}Certificate</small><b>Digital Marketing Fundamentals</b></div></div>
   <button type="button" class="cvbtn ok" data-a="toast" data-m="เปิด CV.pdf ของนักศึกษา"><span class="fi">${ic("file")}</span><span><b>CV.pdf</b><small>สร้างโดย AI จากงานและคอร์สในระบบ</small></span></button>
-  <section class="wk-sec" aria-labelledby="wk-h"><div class="wk-hd"><p class="lbl" id="wk-h" style="margin:0">${ic("cal")}ตารางเวลาประจำสัปดาห์</p><small>ว่าง ${freeH(a)} ชม./สัปดาห์ · อัปเดต 9 พ.ย.</small></div>${calGrid(a.cal)}<p class="fhint">${ic("info")}งานนี้ต้องการ ~8 ชม./สัปดาห์ เลือกช่วงเวลาที่นักศึกษาว่างได้</p></section>
+  <section class="wk-sec" aria-labelledby="wk-h"><div class="wk-hd"><p class="lbl" id="wk-h" style="margin:0">${ic("cal")}ตารางเวลาประจำสัปดาห์</p><small>อัปเดต 9 พ.ย.</small></div><div class="fitrow">${fitTag(a)}<small>ว่างทั้งหมด ${freeH(a)} ชม./สัปดาห์</small></div>${calGrid(a.cal)}<p class="fhint">${ic("info")}ร้านต้องการ ~${JWIN.need} ชม./สัปดาห์ ในช่วง ${JWIN.label}</p></section>
   ${a.clash&&!dec&&!acc?`<div class="clash">${ic("alert")}<div><b>เวลาทับซ้อนกับงานอื่น</b><small>${esc(a.clash)}</small></div></div>`:""}
   <div><p class="lbl">Skills ที่เกี่ยวข้องกับงานนี้</p><div class="chips">${a.sk.map(k=>`<span class="sk have">${ic("check")}${SK[k]}</span>`).join("")}</div></div>
   <p class="priv">${ic("lock")}ไม่แสดงที่อยู่ละเอียด เบอร์ผู้ปกครอง และเรื่องที่นักศึกษาแจ้ง VOC · เบอร์ติดต่อจะแสดงหลังกด «รับ»</p>
