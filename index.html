@@ -640,6 +640,7 @@ tr.clk:hover td{background:#FFF7F3}
 .hc-d.ok.lv3{background:#FA9746;color:#fff}
 .hc-d.ok.lv4{background:#F37449;color:#fff}
 .hc-d.wait{background:#fff;color:#712319;box-shadow:inset 0 0 0 1.5px #F37449;background-image:repeating-linear-gradient(45deg,transparent 0 5px,rgba(243,116,73,.12) 5px 8px)}
+.hc-wt{font-style:normal;font-size:0.625rem;font-weight:600;line-height:1;background:#712319;color:#fff;border-radius:999px;padding:1px 5px;margin-top:1px}
 .hc-d.today{box-shadow:inset 0 0 0 2px #712319}
 .hc-d.today.wait{box-shadow:inset 0 0 0 2px #712319}
 .hc-lg{display:flex;gap:16px;flex-wrap:wrap;font-size:0.75rem;color:var(--ink2)}
@@ -1904,7 +1905,7 @@ const HLOG={2:[3,"ok"],4:[3,"ok"],6:[4,"ok"],8:[1,"wait"],9:[2,"wait"]};
 function hoursCal(){ const first=6, days=30, today=10, cells=[];
   for(let i=0;i<first;i++) cells.push(`<span class="hc-d empty" aria-hidden="true"></span>`);
   for(let d=1;d<=days;d++){ const l=HLOG[d], h=l?l[0]:0, st=l?l[1]:"";
-    cells.push(l?`<button type="button" class="hc-d has ${st} lv${Math.min(h,4)}${d===today?" today":""}" data-a="toast" data-m="${d} พ.ย. · ${h} ชม. · ${st==="ok"?"ร้านอนุมัติแล้ว":"รอร้านอนุมัติ"}" aria-label="${d} พฤศจิกายน ทำงาน ${h} ชั่วโมง ${st==="ok"?"อนุมัติแล้ว":"รออนุมัติ"}"><span>${d}</span><b>${h}<small>ชม.</small></b></button>`
+    cells.push(l?`<button type="button" class="hc-d has ${st} lv${Math.min(h,4)}${d===today?" today":""}" data-a="toast" data-m="${d} พ.ย. · ${h} ชม. · ${st==="ok"?"ร้านอนุมัติแล้ว":"รอร้านอนุมัติ"}" aria-label="${d} พฤศจิกายน ทำงาน ${h} ชั่วโมง ${st==="ok"?"อนุมัติแล้ว":"รออนุมัติ"}"><span>${d}</span><b>${h}<small>ชม.</small></b>${st==="wait"?`<em class="hc-wt" aria-hidden="true">รอ</em>`:""}</button>`
       :`<span class="hc-d${d===today?" today":""}${d>today?" fut":""}"${d===today?' aria-current="date"':""}><span>${d}</span></span>`); }
   const mo=Object.values(HLOG).reduce((a,x)=>a+x[0],0), ok=Object.values(HLOG).filter(x=>x[1]==="ok").reduce((a,x)=>a+x[0],0);
   return `<section class="hcal" aria-labelledby="hc-h"><div class="hc-top"><p class="hc-l" id="hc-h">${ic("cal")}Credit / Hours</p><div class="hc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><b>พ.ย. 2569</b><button type="button" class="ib" disabled aria-label="เดือนถัดไป">${ic("chev-r")}</button></div></div>
