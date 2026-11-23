@@ -151,15 +151,15 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .bnav button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:0.75rem;color:var(--muted);padding:8px 0;min-height:48px;position:relative;transition:color .15s}
 .bnav button[aria-current="page"]{color:var(--act-ink);font-weight:500}
 .bnav button .ic{transition:transform .4s var(--spring)}
-.bnav button[aria-current="page"] .ic{transform:translateY(-2px) scale(1.1)}
-.bnav .ind{position:absolute;top:8px;left:8px;width:calc((100% - 16px)/5);height:36px;display:grid;place-items:center;pointer-events:none;transform:translateX(calc(var(--i)*100%));z-index:0}
-.bnav .ind::before{content:"";width:56px;height:32px;border-radius:999px;background:#FAD0C2}
+.bnav button[aria-current="page"] .ic{transform:scale(1.1)}
+.bnav .ind{position:absolute;top:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));left:8px;width:calc((100% - 16px)/5);display:grid;place-items:stretch;padding:0 4px;pointer-events:none;transform:translateX(calc(var(--i)*100%));z-index:0}
+.bnav .ind::before{content:"";border-radius:16px;background:#FAD0C2}
 .bnav.moved .ind{animation:navSlide .55s var(--spring) both}
 @keyframes navSlide{from{transform:translateX(calc(var(--p)*100%))}}
 .bnav.moved .ind::before{animation:navSquish .55s var(--out)}
-@keyframes navSquish{35%{width:72px;height:26px}}
+@keyframes navSquish{35%{transform:scaleX(1.12) scaleY(.9)}}
 .bnav.moved button[aria-current="page"] .ic{animation:navPop .6s var(--spring) .12s both}
-@keyframes navPop{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-6px) scale(1.2) rotate(-8deg)}100%{transform:translateY(-2px) scale(1.1)}}
+@keyframes navPop{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-6px) scale(1.2) rotate(-8deg)}100%{transform:scale(1.1)}}
 .bnav button:active .ic{transform:scale(.82)}
 .bnav button>*{position:relative;z-index:1}
 .bnav button .badge{position:absolute;z-index:2}
