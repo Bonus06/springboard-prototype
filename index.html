@@ -874,6 +874,25 @@ canvas.confetti{position:absolute;inset:0;width:100%;height:100%;z-index:70;poin
 .qz{display:grid;gap:8px}
 .qz button{text-align:left;padding:16px;border-radius:16px;border:2px solid var(--line);background:#fff;font-size:1rem;transition:all .3s var(--spring)}
 .qz button:hover{border-color:var(--pink)}
+.qz button{display:flex;gap:12px;align-items:center;min-height:56px;color:var(--ink)}
+.qz button i{width:22px;height:22px;border-radius:50%;border:2px solid var(--line2);flex:none;display:grid;place-items:center;transition:border-color .15s}
+.qz button[aria-checked="true"]{border-color:var(--act);background:var(--peach-soft);font-weight:500}
+.qz button[aria-checked="true"] i{border-color:var(--act)}
+.qz button[aria-checked="true"] i::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--act);animation:pop .35s var(--spring)}
+.pt-n{font-size:0.875rem;color:var(--act-ink);font-weight:500}
+.pt-hint{display:flex;gap:8px;align-items:center;font-size:0.875rem;color:var(--muted)}
+.pt-nav{flex-direction:row}
+.pt-nav .btn{flex:1}
+.pt-nav .btn-o{flex:0 0 auto}
+.pt-meta{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:0.875rem;position:relative;z-index:1}
+.pt-meta li{display:flex;gap:8px;align-items:center}
+.pt-meta .ic{width:16px;height:16px;flex:none}
+.pt-prog{display:grid;gap:4px;position:relative;z-index:1}
+.pt-prog .qprog{background:rgba(255,255,255,.25)}
+.pt-prog .qprog i{background:#fff}
+.pt-prog small{font-size:0.75rem;opacity:.9}
+.pt-foot{flex-direction:column;align-items:stretch;gap:4px}
+.pt-skip{align-self:center;color:var(--ink2)}
 .qz button:active{transform:scale(.97)}
 .qprog{height:6px;border-radius:8px;background:var(--line);overflow:hidden}
 .qprog i{display:block;height:100%;background:var(--grad);transition:width .5s var(--out)}
@@ -1839,9 +1858,10 @@ R.ob2=()=>{const chip=(g,k,l)=>`<button type="button" class="chip" data-a="obtog
 R.ob3=()=>`${topbar("สมัครสมาชิก",true)}${obSteps(3)}<div class="ob-h"><small>ขั้นที่ 3 จาก 3</small><h1>Personality Test</h1><p>ทำแบบทดสอบบนเว็บ LE แล้วระบบพากลับมาที่นี่</p></div>
  <div class="form">
   ${S.ob.test?`<div class="ptest done"><h3>${ic("check")} ทำแบบทดสอบแล้ว</h3><p>ผลจากเว็บ LE ส่งกลับมาเรียบร้อย</p><div class="mbti"><span>ช่างสื่อสาร</span><span>ชอบทำงานเป็นทีม</span><span>สร้างสรรค์</span></div></div>`
-  :`<div class="ptest"><h3>รู้จักตัวเองใน 10 นาที</h3><p>ผลจะช่วยให้ AI แนะนำงานและคอร์สที่เข้ากับนิสัยการทำงานของคุณ</p><button type="button" class="btn btn-sm" data-a="ptest">${ic("ext")} เริ่มทำบนเว็บ LE</button></div>`}
+  :`<div class="ptest"><h3>รู้จักตัวเองใน 10 นาที</h3><p>ผลจะช่วยให้ AI แนะนำงานและคอร์สที่เข้ากับนิสัยการทำงานของคุณ</p><ul class="pt-meta"><li>${ic("listcheck")}${QZ.length} ข้อ · ตอบได้ทีละข้อ</li><li>${ic("clock")}ประมาณ 10 นาที · ปิดแล้วทำต่อได้</li><li>${ic("globe")}ทำบนเว็บ LE แล้วผลส่งกลับมาอัตโนมัติ</li></ul>${S.ptStep?`<div class="pt-prog"><div class="qprog"><i style="width:${S.ptStep/QZ.length*100}%"></i></div><small>ทำไปแล้ว ${S.ptStep} จาก ${QZ.length} ข้อ</small></div>`:""}</div>`}
   <div class="card" style="padding:16px"><b style="font-weight:500">สรุปที่คุณกรอก</b><div class="chips" style="margin-top:12px">${[...S.ob.skills].map(k=>`<span class="tag t-grey">${SK[k]}</span>`).join("")}<span class="tag t-peach">${ic("target")}${esc(S.ob.dream)}</span></div></div>
- </div><div class="foot-act">${S.ob.test?"":`<button type="button" class="btn btn-o" data-a="obskip">ทำทีหลัง</button>`}<button type="button" class="btn btn-g" data-a="obdone" ${S.ob.test?"":'aria-disabled="true"'}>สมัคร ${ic("spark")}</button></div>`;
+ </div><div class="foot-act pt-foot">${S.ob.test?`<button type="button" class="btn btn-g" data-a="obdone">สมัครและดูผลวิเคราะห์ ${ic("spark")}</button>`
+  :`<button type="button" class="btn btn-g" data-a="ptest">${S.ptStep?`ทำต่อ · ข้อ ${S.ptStep+1} จาก ${QZ.length}`:"เริ่มทำแบบทดสอบ"} ${ic("chev-r")}</button><button type="button" class="linkb pt-skip" data-a="obskip">ข้ามไปก่อน · ทำทีหลังได้</button>`}</div>`;
 const NEED=[["สร้างคอนเทนต์",90,72],["วิเคราะห์ข้อมูล",80,35],["การสื่อสาร",75,82],["สร้างแบรนด์",65,40],["SEO & โฆษณา",60,15]];
 R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div class="orb-w"><div class="orb"></div><img src="${MARK}" alt=""></div><h1 id="h1" tabindex="-1" style="font-size:1.25rem">AI กำลังวิเคราะห์โปรไฟล์ของคุณ</h1>
   <ol class="ai-steps" id="aisteps">${["อ่านทักษะและความสนใจ","รวมผล Personality Test","เทียบกับอาชีพในฝัน","จับคู่งานและคอร์ส"].map(s=>`<li><i>${ic("check")}</i>${s}</li>`).join("")}</ol></div>`;
@@ -2278,7 +2298,7 @@ vp.addEventListener("click",e=>{
     case "go": go(el.dataset.to); break;
     case "back": back(); break;
     case "toast": toast(el.dataset.m,false); break;
-    case "close": closeSheet(); break;
+    case "close": closeSheet(); if(S.scr==="ob3"&&!S.ob.test) rerenderKeep(); break;
     case "logout": sheet(`<div class="lo-sh"><span class="lo-big">${ic("logout")}</span><h2 id="shh">ออกจากระบบใช่ไหม?</h2><p>งานที่บันทึกไว้และใบสมัครยังอยู่ครบ กลับมาเข้าสู่ระบบด้วย CMU Account ได้ทุกเมื่อ</p><div class="lo-acts"><button type="button" class="btn btn-o" data-a="close">ยกเลิก</button><button type="button" class="btn lo-go" data-a="logoutok">ออกจากระบบ</button></div></div>`); break;
     case "logoutok": closeSheet(); go("welcome"); break;
     case "sso": S.hist=[]; go("home"); toast("เข้าสู่ระบบด้วยบัญชีแล้ว (จำลอง)"); break;
@@ -2291,6 +2311,8 @@ vp.addEventListener("click",e=>{
     case "ptest": ptestSheet(S.ptStep||0); break;
     case "obskip": S.hist=[]; go("home"); toast("ทำ Personality Test ได้ภายหลังที่หน้าสมัครขั้นที่ 3"); break;
     case "pans": ptestSheet(+v); break;
+    case "psel": { (S.pta||(S.pta={}))[S.ptStep]=+v; $$('[data-a="psel"]',ov).forEach(b=>b.setAttribute("aria-checked",b===el)); $("#pnext",ov).disabled=false; break; }
+    case "pnext": if(S.pta&&S.pta[S.ptStep]!=null) ptestSheet(S.ptStep+1); break;
     case "obdone": S.aiDone=false; go("ai"); break;
     case "replayai": S.aiDone=false; go("ai",false); break;
     case "cat": { if(S.scr!=="search") S.view=null; if(S.scr==="search"){ S.cat=v||null; $$('[data-a="cat"]',scr).forEach(b=>b.setAttribute("aria-pressed",(b.dataset.v||null)===S.cat)); refreshResults(); } else { S.cat=v; S.q=""; go("search"); refreshResults(500);} break; }
@@ -2396,10 +2418,14 @@ function sendApply(id,btn){btn.setAttribute("aria-disabled","true"); btn.innerHT
     $("#shh",ov).focus({preventScroll:true}); confetti(); rerenderBehind();},900);}
 function rerenderBehind(){const y=scr.scrollTop; scr.className="scr"; scr.innerHTML=R[S.scr](); scr.scrollTop=y; afterRender();}
 const QZ=[["เวลาทำงานกลุ่ม คุณมักจะ…",["เป็นคนเริ่มพูดและเสนอไอเดีย","ฟังก่อนแล้วสรุปให้ทีม","ลงมือทำส่วนของตัวเองให้เสร็จ"]],["เจอปัญหาที่ไม่เคยเจอ คุณจะ…",["ลองหลายวิธีจนกว่าจะได้","หาข้อมูลก่อนลงมือ","ถามคนที่เคยทำ"]],["งานแบบไหนที่ทำแล้วมีพลัง",["งานที่ได้คุยกับคน","งานที่ได้สร้างของใหม่","งานที่มีขั้นตอนชัดเจน"]]];
-function ptestSheet(step){ if(step>=QZ.length){ S.ptStep=0; closeSheet(); S.ob.test=true; rerenderKeep(); toast("ผลแบบทดสอบส่งกลับมาจากเว็บ LE แล้ว"); return; }
-  S.ptStep=step; const [q,ops]=QZ[step];
-  const html=`<div class="grip" aria-hidden="true"></div><div class="sh-h"><div><h2 id="shh" tabindex="-1">${q}</h2><p>ข้อ ${step+1} จาก ${QZ.length}${step>0?" · ทำต่อจากที่ค้างไว้ได้":""}</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด (คำตอบที่ทำแล้วยังอยู่)">${ic("x")}</button></div>
-   <div class="sh-b"><p class="le-bar">${ic("globe")}lifelong.cmu.ac.th/personality · จำลองหน้าเว็บ LE</p><div class="qprog"><i style="width:${(step+1)/QZ.length*100}%"></i></div><div class="qz">${ops.map(o=>`<button type="button" data-a="pans" data-v="${step+1}">${o}</button>`).join("")}</div>${step>0?`<button type="button" class="linkb" data-a="pans" data-v="${step-1}">${ic("chev-l")} ข้อก่อนหน้า</button>`:""}</div>`;
+function ptestSheet(step){ const A=S.pta||(S.pta={});
+  if(step>=QZ.length){ S.ptStep=0; closeSheet(); S.ob.test=true; rerenderKeep(); toast("ผลแบบทดสอบส่งกลับมาจากเว็บ LE แล้ว"); return; }
+  S.ptStep=step; const [q,ops]=QZ[step], sel=A[step], last=step===QZ.length-1;
+  const html=`<div class="grip" aria-hidden="true"></div><div class="sh-h"><div><p class="pt-n">ข้อ ${step+1} จาก ${QZ.length}</p><h2 id="shh" tabindex="-1">${q}</h2></div><button type="button" class="ib" data-a="close" aria-label="ปิด คำตอบที่ทำแล้วยังอยู่">${ic("x")}</button></div>
+   <div class="sh-b"><p class="le-bar">${ic("globe")}lifelong.cmu.ac.th/personality · จำลองหน้าเว็บ LE</p><div class="qprog" role="progressbar" aria-valuemin="0" aria-valuemax="${QZ.length}" aria-valuenow="${step}"><i style="width:${step/QZ.length*100}%"></i></div>
+   <div class="qz" role="radiogroup" aria-labelledby="shh">${ops.map((o,k)=>`<button type="button" role="radio" aria-checked="${sel===k}" data-a="psel" data-v="${k}"><i aria-hidden="true"></i><span>${o}</span></button>`).join("")}</div>
+   <p class="pt-hint">${ic("info")}ไม่มีคำตอบถูกหรือผิด เลือกข้อที่ใกล้ตัวคุณที่สุด</p></div>
+   <div class="sh-f pt-nav">${step>0?`<button type="button" class="btn btn-o" data-a="pans" data-v="${step-1}">${ic("chev-l")}ย้อนกลับ</button>`:""}<button type="button" class="btn btn-g" id="pnext" data-a="pnext" ${sel==null?"disabled":""}>${last?`ส่งคำตอบ ${ic("check")}`:`ถัดไป ${ic("chev-r")}`}</button></div>`;
   if(!S.sheet||!$(".sheet",ov)) sheet(html.replace('<div class="grip" aria-hidden="true"></div>','')); else { $(".sheet",ov).innerHTML=html; $("#shh",ov).focus({preventScroll:true}); }
 }
 /* new pages */
