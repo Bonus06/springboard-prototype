@@ -152,6 +152,19 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .bnav button[aria-current="page"]{color:var(--act-ink);font-weight:500}
 .bnav button .ic{transition:transform .4s var(--spring)}
 .bnav button[aria-current="page"] .ic{transform:translateY(-2px) scale(1.1)}
+.bnav .ind{position:absolute;top:8px;left:8px;width:calc((100% - 16px)/5);height:36px;display:grid;place-items:center;pointer-events:none;transform:translateX(calc(var(--i)*100%));z-index:0}
+.bnav .ind::before{content:"";width:56px;height:32px;border-radius:999px;background:#FAD0C2}
+.bnav.moved .ind{animation:navSlide .55s var(--spring) both}
+@keyframes navSlide{from{transform:translateX(calc(var(--p)*100%))}}
+.bnav.moved .ind::before{animation:navSquish .55s var(--out)}
+@keyframes navSquish{35%{width:72px;height:26px}}
+.bnav.moved button[aria-current="page"] .ic{animation:navPop .6s var(--spring) .12s both}
+@keyframes navPop{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-6px) scale(1.2) rotate(-8deg)}100%{transform:translateY(-2px) scale(1.1)}}
+.bnav button:active .ic{transform:scale(.82)}
+.bnav button>*{position:relative;z-index:1}
+.bnav button .badge{position:absolute;z-index:2}
+.bnav.hide-ind .ind{display:none}
+@media (prefers-reduced-motion:reduce){.bnav.moved .ind,.bnav.moved .ind::before,.bnav.moved button[aria-current="page"] .ic{animation:none}}
 .badge{position:absolute;top:2px;left:calc(50% + 8px);min-width:16px;height:16px;border-radius:999px;background:var(--act);color:#fff;font-size:0.75rem;font-weight:600;display:grid;place-items:center;padding:0 4px;border:2px solid #fff}
 .badge.bump{animation:bump .5s var(--spring)}
 @keyframes bump{40%{transform:scale(1.45)}}
@@ -1723,12 +1736,14 @@ function rowCard(j){
     <p style="font-size:0.875rem;color:var(--muted);display:flex;gap:4px;align-items:center">${ic("clock","")}${esc(j.time)}</p>
     <span class="price" style="font-size:1rem">${tok(16,"tki")}${fmt(j.pay)}<small> /${j.u}</small></span></div>${heartBtn(j)}</article>`;
 }
+let navLast=-1;
 function bnav(){
   const n=SCREENS[S.scr].nav, emp=S.role==="employer";
   const it=(k,to,i,l,b="")=>`<button type="button" data-a="go" data-to="${to}" ${n===k?'aria-current="page"':""}>${ic(i)}<span>${l}</span>${b}</button>`;
   const wb=S.saved.size?`<span class="badge" id="wbadge">${S.saved.size}</span>`:"";
   const mid = emp ? it("work","ework","brief","ผู้ทำงาน") : it("wish","wish","heart","ที่บันทึก",wb);
-  const bottom=`<nav class="bnav" aria-label="เมนูหลัก">${it("home",emp?"ehome":"home","home","หน้าแรก")}${mid}${it("feedback",emp?"efeedback":"feedback","smile","Feedback")}${it("voc","voc","help","ช่วยเหลือ")}${it("profile",emp?"eprofile":"profile","user","โปรไฟล์")}</nav>`;
+  const keys=["home",emp?"work":"wish","feedback","voc","profile"], ni=keys.indexOf(n), np=(navLast<0||ni<0)?ni:navLast; navLast=ni;
+  const bottom=`<nav class="bnav${ni<0?" hide-ind":""}${np!==ni?" moved":""}" aria-label="เมนูหลัก" style="--i:${Math.max(ni,0)};--p:${Math.max(np,0)}"><span class="ind" aria-hidden="true"></span>${it("home",emp?"ehome":"home","home","หน้าแรก")}${mid}${it("feedback",emp?"efeedback":"feedback","smile","Feedback")}${it("voc","voc","help","ช่วยเหลือ")}${it("profile",emp?"eprofile":"profile","user","โปรไฟล์")}</nav>`;
   const tl=(k,to,l,b="")=>`<button type="button" data-a="go" data-to="${to}" ${n===k?'aria-current="page"':""}>${l}${b}</button>`;
   const top=`<header class="tnav"><button type="button" class="brand" data-a="go" data-to="${emp?"ehome":"home"}"><img src="${MARK}" alt="">Spring Board</button><nav aria-label="เมนูหลัก">${tl("home",emp?"ehome":"home","หน้าแรก")}${emp?tl("work","ework","ผู้ทำงาน"):tl("wish","wish","ที่บันทึก",wb)}${tl("feedback",emp?"efeedback":"feedback","Feedback")}${tl("voc","voc","ช่วยเหลือ")}</nav><button type="button" class="ib" data-a="notif" aria-label="การแจ้งเตือน 3 รายการใหม่">${ic("bell")}</button><button type="button" class="ib" data-a="go" data-to="${emp?"eprofile":"profile"}" aria-label="โปรไฟล์">${ic("user")}</button></header>`;
   return {top,bottom};
