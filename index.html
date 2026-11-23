@@ -903,9 +903,6 @@ tr.flash td{animation:flash 1.2s ease}
 .fit.no{background:#F0ECEA;color:#5E5551}
 .fitrow{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 .fitrow small{font-size:0.75rem;color:var(--muted)}
-.blk{display:grid;gap:8px}
-.blk-n{display:flex;gap:8px;align-items:flex-start;font-size:0.875rem;color:#712319}
-.blk-n .ic{width:16px;height:16px;margin-top:3px;flex:none}
 .wk-lg{display:flex;gap:16px;font-size:0.75rem;color:var(--ink2);flex-wrap:wrap}
 .wk-lg span{display:inline-flex;gap:8px;align-items:center}
 .wk-lg i{width:14px;height:14px;border-radius:4px;display:inline-block}
@@ -1769,10 +1766,10 @@ const inWin=(di,si)=>JWIN.days.includes(di)&&JWIN.slots.includes(si);
 const matchH=a=>a.cal.reduce((n,day,di)=>n+day.split("").filter((x,si)=>x==="f"&&inWin(di,si)).length*2,0);
 function fitTag(a){ const m=matchH(a), n=JWIN.need;
   return m>=n?`<span class="fit ok">${ic("check")}ว่างพอ · ${m} ชม. ในช่วงงาน</span>`:m>0?`<span class="fit part">${ic("alert")}ว่างไม่พอ · ${m} จาก ${n} ชม.</span>`:`<span class="fit no">${ic("x")}ไม่ว่างช่วงงาน</span>`; }
-function calGrid(cal){ const lab={c:"มีเรียน",w:"รับงานแล้ว จองไม่ได้",f:"ว่าง"};
+function calGrid(cal){ const lab={c:"มีเรียน",w:"ทำงานอื่น",f:"ว่าง"};
   return `<div class="wkcal" role="table" aria-label="ตารางเวลาประจำสัปดาห์"><div role="row" class="wk-r"><span role="columnheader" class="wk-t"></span>${WDAYS.map(d=>`<span role="columnheader" class="wk-d">${d}</span>`).join("")}</div>
    ${WSLOT.map((t,si)=>`<div role="row" class="wk-r"><span role="rowheader" class="wk-t">${t}</span>${cal.map((day,di)=>`<span role="cell" class="wk-c ${day[si]}${inWin(di,si)?" jw":" out"}" aria-label="${WDAYS[di]} ${t} ${lab[day[si]]}${inWin(di,si)?" · ช่วงที่ร้านต้องการ":""}"></span>`).join("")}</div>`).join("")}<div role="row" class="wk-r wk-sum"><span role="rowheader" class="wk-t">ว่าง</span>${cal.map((day,di)=>{const h=day.split("").filter(x=>x==="f").length*2; return `<span role="cell" class="wk-h${h?"":" z"}" aria-label="${WDAYS[di]} ว่าง ${h} ชั่วโมง">${h?h+"<small>ชม.</small>":"–"}</span>`;}).join("")}</div></div>
-   <div class="wk-lg"><span><i class="f"></i>ว่าง</span><span><i class="c"></i>มีเรียน</span><span><i class="w"></i>รับงานแล้ว · จองไม่ได้</span><span><i class="jw"></i>ช่วงที่ร้านต้องการ</span></div>`; }
+   <div class="wk-lg"><span><i class="f"></i>ว่าง</span><span><i class="c"></i>มีเรียน</span><span><i class="w"></i>ทำงานอื่น</span><span><i class="jw"></i>ช่วงที่ร้านต้องการ</span></div>`; }
 const WORKERS=[
  {n:"กมลชนก ปัญญา",ini:"ก",pos:"ผู้ช่วยทำคอนเทนต์",h:18,max:32,c:4,pend:3},
  {n:"ศุภวิชญ์ ทองดี",ini:"ศ",pos:"ช่างภาพสินค้า",h:26,max:32,c:5,pend:0}];
@@ -1972,7 +1969,7 @@ R.job=()=>{const j=JOB(S.jobId), s=SHOPS[j.shop], c=CAT(j.cat);
   <h2 style="font-size:1.125rem;margin-top:4px">ตำแหน่งที่รับสมัคร</h2>${posHTML}
  </div></div>
  <aside class="jd-side"><div class="jd-bar"><div class="l"><small>${esc(cur.t)}</small><span class="price">${tok(16,"tki")}${fmt(cur.pay)}<small> /${cur.u}</small></span></div>
-  ${S.applied.has(cur.id)?`<button type="button" class="btn btn-o" data-a="go" data-to="sapps">${ic("check")}สมัครแล้ว</button>`:CLASH[cur.id]?`<div class="blk"><p class="blk-n">${ic("alert")}<span>ช่วง ${CLASH[cur.id].t} คุณรับงาน «${esc(JOB(CLASH[cur.id].job).t)}» แล้ว</span></p><button type="button" class="btn btn-g" disabled>${ic("lock")}รับงานซ้อนเวลาไม่ได้</button></div>`:`<button type="button" class="btn btn-g" data-a="apply" data-id="${cur.id}">สมัครงาน</button>`}</div></aside></div>`;};
+  ${S.applied.has(cur.id)?`<button type="button" class="btn btn-o" data-a="go" data-to="sapps">${ic("check")}สมัครแล้ว</button>`:`<button type="button" class="btn btn-g" data-a="apply" data-id="${cur.id}">สมัครงาน</button>`}</div></aside></div>`;};
 R.wish=()=>{const list=JOBS.filter(j=>S.saved.has(j.id)); const cats=new Set(list.map(j=>j.cat));
  const sugg=JOBS.filter(j=>!S.saved.has(j.id)&&(cats.has(j.cat)||j.match>=75)).sort((x,y)=>y.match-x.match).slice(0,6);
  const item=j=>{const c=CAT(j.cat), sh=SHOPS[j.shop], ap=S.applied.has(j.id);
@@ -1981,7 +1978,7 @@ R.wish=()=>{const list=JOBS.filter(j=>S.saved.has(j.id)); const cats=new Set(lis
     <h3>${esc(j.t)}</h3>
     <ul class="svd-meta"><li>${ic("clock")}<span>${esc(j.time)}</span></li><li>${ic("pin")}<span>${esc(j.place)}</span></li><li>${ic("cal")}<span>เริ่มงาน ${j.start}</span></li></ul>
     <div class="svd-ft"><span class="price">${tok(16,"tki")}${fmt(j.pay)}<small> /${j.u}</small></span><span class="tag t-ok">ทักษะตรง ${j.match}%</span></div>
-    <div class="svd-act"><button type="button" class="btn btn-o btn-sm" data-a="job" data-id="${j.id}">ดูรายละเอียด</button>${ap?`<button type="button" class="btn btn-o btn-sm" data-a="go" data-to="sapps">${ic("check")}สมัครแล้ว</button>`:CLASH[j.id]?`<button type="button" class="btn btn-p btn-sm" disabled title="เวลาซ้ำกับงานที่รับแล้ว">${ic("lock")}เวลาซ้ำ</button>`:`<button type="button" class="btn btn-p btn-sm" data-a="apply" data-id="${j.id}">สมัครเลย</button>`}</div>
+    <div class="svd-act"><button type="button" class="btn btn-o btn-sm" data-a="job" data-id="${j.id}">ดูรายละเอียด</button>${ap?`<button type="button" class="btn btn-o btn-sm" data-a="go" data-to="sapps">${ic("check")}สมัครแล้ว</button>`:`<button type="button" class="btn btn-p btn-sm" data-a="apply" data-id="${j.id}">สมัครเลย</button>`}</div>
    </div></article>`;};
  return wrapApp(`${topbar("Wishlist",false)}
   <div class="wl-head pad"><p class="wl-n"><b>${list.length}</b>งานที่บันทึกไว้</p><p class="wl-sub">${list.length?"กดหัวใจอีกครั้งเพื่อนำออก":"เก็บงานที่สนใจไว้ตัดสินใจทีหลัง"}</p></div>
@@ -2100,10 +2097,10 @@ R.estu=()=>{const a=APPLICANTS.find(x=>x.id===S.stuId)||APPLICANTS[0], acc=S.emp
   <div class="pf-grid"><div class="stat work"><small>${ic("brief")}ประสบการณ์ในระบบ</small><b>2 งาน · 64 ชม.</b></div><div class="stat hours"><small>${ic("award")}Certificate</small><b>Digital Marketing Fundamentals</b></div></div>
   <button type="button" class="cvbtn ok" data-a="toast" data-m="เปิด CV.pdf ของนักศึกษา"><span class="fi">${ic("file")}</span><span><b>CV.pdf</b><small>สร้างโดย AI จากงานและคอร์สในระบบ</small></span></button>
   <section class="wk-sec" aria-labelledby="wk-h"><div class="wk-hd"><p class="lbl" id="wk-h" style="margin:0">${ic("cal")}ตารางเวลาประจำสัปดาห์</p><small>อัปเดต 9 พ.ย.</small></div><div class="fitrow">${fitTag(a)}<small>ว่างทั้งหมด ${freeH(a)} ชม./สัปดาห์</small></div>${calGrid(a.cal)}<p class="fhint">${ic("info")}ร้านต้องการ ~${JWIN.need} ชม./สัปดาห์ ในช่วง ${JWIN.label}</p></section>
-  ${a.clash&&!dec&&!acc?`<div class="clash">${ic("alert")}<div><b>รับไม่ได้ · เวลาซ้ำกับงานที่นักศึกษารับแล้ว</b><small>${esc(a.clash)} · ช่วงที่นักศึกษารับงานแล้วจะจองซ้ำไม่ได้</small></div></div>`:""}
+  ${a.clash&&!dec&&!acc?`<div class="clash">${ic("alert")}<div><b>เวลาทับซ้อนกับงานอื่น</b><small>${esc(a.clash)}</small></div></div>`:""}
   <div><p class="lbl">Skills ที่เกี่ยวข้องกับงานนี้</p><div class="chips">${a.sk.map(k=>`<span class="sk have">${ic("check")}${SK[k]}</span>`).join("")}</div></div>
   <p class="priv">${ic("lock")}ไม่แสดงที่อยู่ละเอียด เบอร์ผู้ปกครอง และเรื่องที่นักศึกษาแจ้ง VOC · เบอร์ติดต่อจะแสดงหลังกด «รับ»</p>
-  ${a.wd?`<div class="lock-note" style="background:#F0ECEA;color:#5E5551">${ic("x")}<span><b>นักศึกษายกเลิกใบสมัครเมื่อ ${a.wd.d}</b><br>เหตุผล: ${esc(a.wd.r)}${a.wd.m?` · «${esc(a.wd.m)}»`:""}</span></div>`:acc?`<div class="lock-note">${ic("check")}<span>รับเข้าทำงานแล้ว · เบอร์ติดต่อ 08x-xxx-1234 · ขั้นถัดไป: ยืนยันข้อตกลงงาน</span></div>`:dec?`<div class="lock-note" style="background:#F0ECEA;color:#5E5551">${ic("x")}<span>แจ้งผลไม่ผ่านแล้ว · เหตุผล: ${esc((S.emp.dr||{})[a.id]||"—")}</span></div>`:`<div class="row2"><button type="button" class="btn btn-o btn-danger" data-a="decline" data-v="${a.id}">ไม่ผ่าน</button>${a.clash?`<button type="button" class="btn btn-g" disabled>${ic("lock")} รับไม่ได้</button>`:`<button type="button" class="btn btn-g" data-a="accept" data-v="${a.id}">${ic("check")} รับ</button>`}</div><button type="button" class="linkb" style="align-self:center" data-a="askinfo" data-v="${a.id}">ขอข้อมูลเพิ่มเติม</button>`}
+  ${a.wd?`<div class="lock-note" style="background:#F0ECEA;color:#5E5551">${ic("x")}<span><b>นักศึกษายกเลิกใบสมัครเมื่อ ${a.wd.d}</b><br>เหตุผล: ${esc(a.wd.r)}${a.wd.m?` · «${esc(a.wd.m)}»`:""}</span></div>`:acc?`<div class="lock-note">${ic("check")}<span>รับเข้าทำงานแล้ว · เบอร์ติดต่อ 08x-xxx-1234 · ขั้นถัดไป: ยืนยันข้อตกลงงาน</span></div>`:dec?`<div class="lock-note" style="background:#F0ECEA;color:#5E5551">${ic("x")}<span>แจ้งผลไม่ผ่านแล้ว · เหตุผล: ${esc((S.emp.dr||{})[a.id]||"—")}</span></div>`:`<div class="row2"><button type="button" class="btn btn-o btn-danger" data-a="decline" data-v="${a.id}">ไม่ผ่าน</button><button type="button" class="btn btn-g" data-a="accept" data-v="${a.id}">${ic("check")} รับ</button></div><button type="button" class="linkb" style="align-self:center" data-a="askinfo" data-v="${a.id}">ขอข้อมูลเพิ่มเติม</button>`}
  </div>`);};
 R.ework=()=>wrapApp(`${topbar("Work",false)}<p class="pad" style="color:var(--muted);font-size:0.875rem;margin-bottom:12px">นักศึกษาที่กำลังทำงานกับร้าน · Mentor จะแสดงเมื่อเปิดระบบเฟสถัดไป</p>
  <div class="pad" style="display:grid;gap:12px">${WORKERS.map((w,i)=>{const ap=S.emp.approved.has(i);return `<div class="worker"><div class="t"><span class="av" style="background:${AVC[w.c]}">${w.ini}</span><div><b>${w.n}</b><small>ตำแหน่ง: ${w.pos}</small><small>เบอร์ 08x-xxx-${4410+i} · Mentor: เฟสถัดไป</small></div></div>
@@ -2386,7 +2383,7 @@ vp.addEventListener("click",e=>{
       updateBadge(); if(on) toast("เพิ่มใน Wishlist แล้ว"); else toastUndo("นำออกจาก Wishlist แล้ว",()=>{ S.saved.add(id); if(S.scr==="wish") go("wish",false); else { $$(`[data-a="heart"][data-id="${id}"]`,scr).forEach(b=>b.setAttribute("aria-pressed","true")); updateBadge(); } });
       if(S.scr==="wish"&&!on){ const row=el.closest(".lrow,.svd"); if(row){ row.classList.add("out"); later(()=>{ go("wish",false); },340);} }
       break; }
-    case "apply": if(CLASH[+el.dataset.id]){ toast("ช่วงเวลานี้คุณรับงานอื่นแล้ว · รับงานซ้อนเวลาไม่ได้",false); break; } applySheet(+el.dataset.id); break;
+    case "apply": applySheet(+el.dataset.id); break;
     case "send": sendApply(+el.dataset.id, el); break;
     case "cv": if(S.cv==="ok"){ toast("ดาวน์โหลด CV.pdf (จำลอง)"); break; } if(S.cv==="gen") break; S.cv="gen"; rerenderKeep(); later(()=>{S.cv="ok"; rerenderKeep(); toast("AI สร้าง CV.pdf ให้แล้ว");},2000); break;
     case "payout": payoutSheet(); break;
@@ -2481,7 +2478,7 @@ R.sapps=()=>{const wd=S.wd||(S.wd={}); const list=[...[...S.applied].map(id=>({i
  return wrapApp(`${topbar("ใบสมัครของฉัน",true)}<div class="pad" style="display:grid;gap:12px;padding-bottom:16px">${list.map(a=>{const j=JOB(a.id), s=SHOPS[j.shop], c=CAT(j.cat), st=APPST[a.st];
   const steps=["ส่งแล้ว","พิจารณา","ผลคัดเลือก","ข้อตกลง"].map((l,i)=>`<li class="${i<st[3]?(a.st==="declined"&&i===2?"no":"on"):""}">${l}</li>`).join("");
   const open=a.st!=="accepted"&&a.st!=="declined"&&a.st!=="withdrawn", cl=open&&CLASH[a.id], cj=cl&&JOB(cl.job);
-  const clashBox=cl?`<div class="clash">${ic("alert")}<div><b>รับงานนี้ไม่ได้ · เวลาซ้ำกับงานที่รับแล้ว</b><small>${esc(cj.t)} · ${cl.t} ทับกับงานนี้ (${esc(j.time)}) ช่วงที่รับงานแล้วจะรับงานอื่นซ้ำไม่ได้ ยกเลิกใบสมัครเพื่อให้ร้านพิจารณาคนอื่น</small></div></div>`:"";
+  const clashBox=cl?`<div class="clash">${ic("alert")}<div><b>เวลาซ้ำกับงานที่รับแล้ว</b><small>${esc(cj.t)} · ${cl.t} ทับกับงานนี้ (${esc(j.time)})</small></div></div>`:"";
   const wdBtn=open?`<button type="button" class="btn ${cl?"btn-o btn-danger":"btn-ghost"} btn-sm wd-btn" data-a="wdopen" data-v="${a.id}">${ic("x")}ยกเลิกใบสมัคร</button>`:"";
   const next=a.st==="accepted"?`<div class="win">${ic("award")}<div><b>ยินดีด้วย! ${esc(s.n)} รับคุณแล้ว</b><small>ขั้นถัดไป: ตรวจและยืนยันข้อตกลงงาน (ค่าตอบแทน วันเริ่ม ตารางงาน)</small></div></div><button type="button" class="btn btn-g btn-blk" data-a="toast" data-m="หน้าข้อตกลงงานอยู่ในรายการออกแบบรอบถัดไป">ดูข้อตกลงงาน</button>`
    :a.st==="info"?`<p class="nx">${ic("alert")}<span>ร้านขอ «ตัวอย่างผลงาน» ตอบภายใน 12 พ.ย. 2569</span></p><button type="button" class="btn btn-o btn-blk" data-a="toast" data-m="เปิดแผ่นตอบคำขอ (ออกแบบรอบถัดไป)">ตอบคำขอ</button>`
