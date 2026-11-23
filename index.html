@@ -861,6 +861,37 @@ tr.flash td{animation:flash 1.2s ease}
 .lacts .btn{padding:0 8px}
 .maplink{display:inline-flex;gap:4px;align-items:center;min-height:0}
 @media (prefers-reduced-motion:reduce){.lmap.on .lpin{animation:none}}
+.clash{display:flex;gap:12px;align-items:flex-start;background:#FFF1EB;border:1px solid #FAD0C2;border-radius:16px;padding:12px 16px;color:#712319}
+.clash .ic{width:18px;height:18px;margin-top:2px;flex:none}
+.clash b{display:block;font-weight:600;font-size:0.875rem}
+.clash small{display:block;font-size:0.875rem;color:var(--ink2);line-height:1.5}
+.wd-btn{justify-self:center;color:#712319}
+.appc.withdrawn{opacity:.85}
+.app-card .fh,.app-card .wd-r{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.app-card .fh .ic,.app-card .wd-r .ic{width:14px;height:14px}
+.app-card .fh em{font-style:normal;color:#712319;display:inline-flex;gap:4px;align-items:center;font-weight:500}
+.app-card.is-wd .av{opacity:.55}
+.rsn{display:grid;gap:8px}
+.rsn-o{display:flex;align-items:center;gap:12px;min-height:48px;padding:8px 16px;border-radius:16px;border:2px solid var(--line);background:#fff;text-align:left;font-size:1rem;color:var(--ink);transition:border-color .15s,background .15s}
+.rsn-o i{width:20px;height:20px;border-radius:50%;border:2px solid var(--line2);flex:none;display:grid;place-items:center}
+.rsn-o[aria-checked="true"]{border-color:var(--act);background:var(--peach-soft)}
+.rsn-o[aria-checked="true"] i{border-color:var(--act)}
+.rsn-o[aria-checked="true"] i::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--act)}
+.wk-sec{display:grid;gap:8px}
+.wk-hd{display:flex;justify-content:space-between;align-items:center}
+.wk-hd .lbl{display:flex;gap:8px;align-items:center}
+.wk-hd small{font-size:0.75rem;color:var(--muted)}
+.wkcal{display:grid;gap:4px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}
+.wk-r{display:grid;grid-template-columns:44px repeat(7,1fr);gap:4px;align-items:center}
+.wk-d{font-size:0.75rem;font-weight:600;text-align:center;color:var(--ink2)}
+.wk-t{font-size:0.75rem;color:var(--muted);font-variant-numeric:tabular-nums;font-family:"Poppins"}
+.wk-c{height:22px;border-radius:6px}
+.wk-c.f,.wk-lg i.f{background:#D4E6BD}
+.wk-c.c,.wk-lg i.c{background:#F0ECEA}
+.wk-c.w,.wk-lg i.w{background:#FAD0C2;background-image:repeating-linear-gradient(45deg,transparent 0 4px,rgba(113,35,25,.18) 4px 6px)}
+.wk-lg{display:flex;gap:16px;font-size:0.75rem;color:var(--ink2);flex-wrap:wrap}
+.wk-lg span{display:inline-flex;gap:8px;align-items:center}
+.wk-lg i{width:14px;height:14px;border-radius:4px;display:inline-block}
 .sh-f{padding:12px 24px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
 .share{border:1px solid var(--line);border-radius:16px;padding:12px 16px;font-size:0.875rem;display:grid;gap:8px}
 .share div{display:flex;justify-content:space-between;gap:12px}
@@ -1697,7 +1728,7 @@ const JOBS=[
  {id:5,shop:"ne",cat:"event",t:"เจ้าหน้าที่ลงทะเบียนงานสัมมนา",pay:500,u:"วัน",place:"ศูนย์ประชุมฯ เชียงใหม่",time:"22–23 พ.ย. 07:30–17:00",post:1,match:74,fac:true,req:["service","punct"],dev:["eventops","problem"],q:"มาถึงหน้างานได้ 07:00 แต่งกายสุภาพ",start:"22 พ.ย. 2569",hrs:"2 วัน",more:"ดูแลจุดลงทะเบียนผู้ร่วมงานประมาณ 600 คน สแกน QR แจกป้ายชื่อ และตอบคำถามหน้างาน"},
  {id:6,shop:"pf",cat:"it",t:"สรุปยอดขายด้วย Google Sheets",pay:2500,u:"โปรเจกต์",place:"ออนไลน์",time:"ส่งงานใน 2 สัปดาห์",post:4,match:58,fac:true,req:["sheets","detail"],dev:["dash","present"],q:"ใช้สูตรพื้นฐานใน Google Sheets ได้",start:"20 พ.ย. 2569",hrs:"~15 ชม. ทั้งโปรเจกต์",more:"รวมยอดขาย 12 เดือนจากหลายไฟล์ ทำ Dashboard และสรุปผลให้เจ้าของไร่"},
  {id:7,shop:"kn",cat:"it",t:"พาร์ทไทม์พัฒนาเว็บไซต์ Front-end",pay:135,u:"ชม.",place:"วัดอุโมงค์ + ออนไลน์",time:"12 ชม./สัปดาห์ เลือกเวลาเอง",post:6,match:40,req:["html","js"],dev:["git","agile"],q:"เขียน HTML/CSS ได้ มีโปรเจกต์ให้ดู",start:"1 ธ.ค. 2569",hrs:"12 ชม. / สัปดาห์",more:"แก้ไขและเพิ่มหน้าเว็บให้ลูกค้าร่วมกับทีม 4 คน มีรีวิวโค้ดทุกครั้ง"},
- {id:8,shop:"tk",cat:"photo",t:"ถ่ายภาพสินค้าผ้าทอสำหรับร้านออนไลน์",pay:150,u:"ชม.",place:"อ.สันกำแพง",time:"ศ. 13:00–17:00",post:9,match:66,fac:true,req:["cam"],dev:["light","edit","story"],q:"มีมือถือหรือกล้องที่ถ่ายชัด เดินทางเองได้",start:"21 พ.ย. 2569",hrs:"4 ชม. / สัปดาห์",more:"ถ่ายผ้าทอสัปดาห์ละ 30 ชิ้น พร้อมจัดฉากและแต่งภาพเบื้องต้น"},
+ {id:8,shop:"tk",cat:"photo",t:"ถ่ายภาพสินค้าผ้าทอสำหรับร้านออนไลน์",pay:150,u:"ชม.",place:"อ.สันกำแพง",time:"พ. 16:00–18:00",post:9,match:66,fac:true,req:["cam"],dev:["light","edit","story"],q:"มีมือถือหรือกล้องที่ถ่ายชัด เดินทางเองได้",start:"21 พ.ย. 2569",hrs:"4 ชม. / สัปดาห์",more:"ถ่ายผ้าทอสัปดาห์ละ 30 ชิ้น พร้อมจัดฉากและแต่งภาพเบื้องต้น"},
  {id:9,shop:"ms",cat:"lang",t:"แปลเมนูอาหาร ไทย–อังกฤษ–จีน",pay:1200,u:"งาน",place:"ออนไลน์",time:"ส่งงานใน 5 วัน",post:3,match:52,req:["chinese","english"],dev:["trans"],q:"ภาษาจีน HSK 4 ขึ้นไป",start:"15 พ.ย. 2569",hrs:"~6 ชม.",more:"แปลเมนู 45 รายการพร้อมคำอธิบายวัตถุดิบสั้น ๆ สำหรับนักท่องเที่ยว"},
  {id:10,shop:"dd",cat:"cafe",t:"ผู้ช่วยจัดเวิร์กช็อปดริปกาแฟ",pay:450,u:"วัน",place:"นิมมานเหมินท์",time:"อา. 30 พ.ย. 09:00–16:00",post:0,match:70,req:["service","comm"],dev:["eventops","barista"],q:"ชอบพูดคุยกับลูกค้า",start:"30 พ.ย. 2569",hrs:"1 วัน",more:"ช่วยเตรียมอุปกรณ์และดูแลผู้ร่วมเวิร์กช็อป 20 คน"}];
 const JOB=id=>JOBS.find(j=>j.id===id);
@@ -1710,10 +1741,16 @@ const COURSES=[
  {n:"Presentation ที่คนจำได้",h:"3 ชม.",st:"new",p:0,ic:"play",c:"photo"}];
 const AVC=["#712319","#AF5577","#1A1A1A","#AF5577","#712319","#712319"];
 const APPLICANTS=[
- {id:"a1",n:"ปภาวรินทร์ ใจดี",ini:"ป",fac:"บริหารธุรกิจ · การตลาด ปี 3",match:92,sk:["canva","caption","comm"],c:0},
- {id:"a2",n:"ธนกฤต วงศ์ใหญ่",ini:"ธ",fac:"การสื่อสารมวลชน ปี 2",match:84,sk:["caption","photo","comm"],c:1},
- {id:"a3",n:"ณัฐธิดา แก้วมา",ini:"ณ",fac:"วิจิตรศิลป์ ปี 4",match:80,sk:["canva","photo"],c:2},
- {id:"a4",n:"ภูมิ ศรีสุข",ini:"ภ",fac:"มนุษยศาสตร์ ปี 1",match:61,sk:["comm","english"],c:3}];
+ {id:"a1",n:"ปภาวรินทร์ ใจดี",ini:"ป",fac:"บริหารธุรกิจ · การตลาด ปี 3",match:92,sk:["canva","caption","comm"],c:0,cal:["ccffff","ffccff","ccffwf","ffccff","ccffff","ffffff","ffffff"]},
+ {id:"a2",n:"ธนกฤต วงศ์ใหญ่",ini:"ธ",fac:"การสื่อสารมวลชน ปี 2",match:84,sk:["caption","photo","comm"],c:1,cal:["ccwwff","wwccff","ccwwff","wwccff","ccffff","wwwwff","ffffff"],clash:"เพิ่งรับงานอื่นที่เวลาทับช่วงบ่าย จ.–พฤ. · เหลือเวลาว่างน้อยกว่าที่งานนี้ต้องการ"},
+ {id:"a3",n:"ณัฐธิดา แก้วมา",ini:"ณ",fac:"วิจิตรศิลป์ ปี 4",match:80,sk:["canva","photo"],c:2,cal:["ffccff","ccffff","ffccff","ccffff","ffffff","ffffcc","ffffff"]},
+ {id:"a4",n:"ภูมิ ศรีสุข",ini:"ภ",fac:"มนุษยศาสตร์ ปี 1",match:61,sk:["comm","english"],c:3,cal:["ccccff","ccccff","ccwwff","ccccff","ccffff","ffffff","ffffff"],wd:{r:"ได้งานอื่นที่เวลาซ้ำกัน",m:"ได้งานสอนพิเศษ จ. และ พ. เย็น ขอบคุณที่พิจารณาครับ",d:"9 พ.ย."}}];
+const WDAYS=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."], WSLOT=["08–10","10–12","13–15","15–17","17–19","19–21"];
+const freeH=a=>a.cal.join("").split("").filter(x=>x==="f").length*2;
+function calGrid(cal){ const lab={c:"มีเรียน",w:"ทำงานอื่น",f:"ว่าง"};
+  return `<div class="wkcal" role="table" aria-label="ตารางเวลาประจำสัปดาห์"><div role="row" class="wk-r"><span role="columnheader" class="wk-t"></span>${WDAYS.map(d=>`<span role="columnheader" class="wk-d">${d}</span>`).join("")}</div>
+   ${WSLOT.map((t,si)=>`<div role="row" class="wk-r"><span role="rowheader" class="wk-t">${t}</span>${cal.map((day,di)=>`<span role="cell" class="wk-c ${day[si]}" aria-label="${WDAYS[di]} ${t} ${lab[day[si]]}"></span>`).join("")}</div>`).join("")}</div>
+   <div class="wk-lg"><span><i class="f"></i>ว่าง</span><span><i class="c"></i>มีเรียน</span><span><i class="w"></i>ทำงานอื่น</span></div>`; }
 const WORKERS=[
  {n:"กมลชนก ปัญญา",ini:"ก",pos:"ผู้ช่วยทำคอนเทนต์",h:18,max:32,c:4,pend:3},
  {n:"ศุภวิชญ์ ทองดี",ini:"ศ",pos:"ช่างภาพสินค้า",h:26,max:32,c:5,pend:0}];
@@ -2032,16 +2069,19 @@ R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a
   <button type="button" class="btn btn-sm" data-a="donate" ${tkOk()?"":"disabled"}>${tkOk()?`เติม ${fmt(e.amt)} Token`:"ระบุจำนวน Token"}</button></div>
   <p class="fhint">${ic("info")}1 Token = ฿1 · ชำระผ่าน QR Payment (รอ LE ยืนยัน)</p></section>`);};
 R.eapps=()=>wrapApp(`${topbar("ผู้สมัคร · ผู้ช่วยทำคอนเทนต์",true)}<p class="pad" style="color:var(--muted);font-size:0.875rem;margin-bottom:12px">เรียงตามทักษะที่ตรงกับประกาศ · เห็นเฉพาะข้อมูลที่จำเป็นต่อการคัดเลือก</p>
- <div class="pad" style="display:grid;gap:12px">${APPLICANTS.map(a=>{const st=S.emp.accepted.has(a.id)?`<span class="tag t-ok">${ic("check")}รับแล้ว</span>`:S.emp.declined.has(a.id)?`<span class="tag t-grey">ไม่ผ่าน</span>`:`<span class="match"><span class="ring" style="--m:${a.match}"></span>${a.match}%</span>`;
-  return `<div class="app-card"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div style="min-width:0"><b>${a.n}</b><small>${a.fac}</small><small>${a.sk.map(k=>SK[k]).join(" · ")}</small></div><div class="r">${st}<button type="button" class="btn btn-o btn-sm" data-a="estu" data-v="${a.id}">ดูรายละเอียด</button></div></div>`;}).join("")}</div>`);
+ <div class="pad" style="display:grid;gap:12px">${APPLICANTS.map(a=>{const st=a.wd?`<span class="tag t-grey">${ic("x")}ยกเลิกใบสมัคร</span>`:S.emp.accepted.has(a.id)?`<span class="tag t-ok">${ic("check")}รับแล้ว</span>`:S.emp.declined.has(a.id)?`<span class="tag t-grey">ไม่ผ่าน</span>`:`<span class="match"><span class="ring" style="--m:${a.match}"></span>${a.match}%</span>`;
+  const sub=a.wd?`<small class="wd-r">${ic("info")}เหตุผล: ${esc(a.wd.r)}</small>`:`<small class="fh">${ic("clock")}ว่าง ${freeH(a)} ชม./สัปดาห์${a.clash&&!S.emp.declined.has(a.id)?` · <em>${ic("alert")}เวลาทับซ้อน</em>`:""}</small>`;
+  return `<div class="app-card${a.wd?" is-wd":""}"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div style="min-width:0"><b>${a.n}</b><small>${a.fac}</small>${sub}</div><div class="r">${st}<button type="button" class="btn btn-o btn-sm" data-a="estu" data-v="${a.id}">ดูรายละเอียด</button></div></div>`;}).join("")}</div>`);
 R.estu=()=>{const a=APPLICANTS.find(x=>x.id===S.stuId)||APPLICANTS[0], acc=S.emp.accepted.has(a.id), dec=S.emp.declined.has(a.id);
  return wrapApp(`<div class="pf-head"><div style="display:flex;align-items:center;gap:4px;position:relative;z-index:1"><button type="button" class="ib" style="color:#fff" data-a="back" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1" style="font-size:1.125rem">Profile นักศึกษา</h1></div></div>
  <div class="pf-card"><div class="pf-top"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div><h2 style="font-size:1.25rem">${a.n}</h2><p>${a.fac}</p><p style="font-size:0.875rem;color:var(--muted)">สมัคร: ผู้ช่วยทำคอนเทนต์ · ตรงทักษะ ${a.match}%</p></div></div>
   <div class="pf-grid"><div class="stat work"><small>${ic("brief")}ประสบการณ์ในระบบ</small><b>2 งาน · 64 ชม.</b></div><div class="stat hours"><small>${ic("award")}Certificate</small><b>Digital Marketing Fundamentals</b></div></div>
   <button type="button" class="cvbtn ok" data-a="toast" data-m="เปิด CV.pdf ของนักศึกษา"><span class="fi">${ic("file")}</span><span><b>CV.pdf</b><small>สร้างโดย AI จากงานและคอร์สในระบบ</small></span></button>
+  <section class="wk-sec" aria-labelledby="wk-h"><div class="wk-hd"><p class="lbl" id="wk-h" style="margin:0">${ic("cal")}ตารางเวลาประจำสัปดาห์</p><small>ว่าง ${freeH(a)} ชม./สัปดาห์ · อัปเดต 9 พ.ย.</small></div>${calGrid(a.cal)}<p class="fhint">${ic("info")}งานนี้ต้องการ ~8 ชม./สัปดาห์ เลือกช่วงเวลาที่นักศึกษาว่างได้</p></section>
+  ${a.clash&&!dec&&!acc?`<div class="clash">${ic("alert")}<div><b>เวลาทับซ้อนกับงานอื่น</b><small>${esc(a.clash)}</small></div></div>`:""}
   <div><p class="lbl">Skills ที่เกี่ยวข้องกับงานนี้</p><div class="chips">${a.sk.map(k=>`<span class="sk have">${ic("check")}${SK[k]}</span>`).join("")}</div></div>
   <p class="priv">${ic("lock")}ไม่แสดงที่อยู่ละเอียด เบอร์ผู้ปกครอง และเรื่องที่นักศึกษาแจ้ง VOC · เบอร์ติดต่อจะแสดงหลังกด «รับ»</p>
-  ${acc?`<div class="lock-note">${ic("check")}<span>รับเข้าทำงานแล้ว · เบอร์ติดต่อ 08x-xxx-1234 · ขั้นถัดไป: ยืนยันข้อตกลงงาน</span></div>`:dec?`<div class="lock-note" style="background:#F0ECEA;color:#5E5551">${ic("x")}<span>แจ้งผลไม่ผ่านแล้ว</span></div>`:`<div class="row2"><button type="button" class="btn btn-o" data-a="decline" data-v="${a.id}">ไม่ผ่าน</button><button type="button" class="btn btn-g" data-a="accept" data-v="${a.id}">${ic("check")} รับ</button></div><button type="button" class="linkb" style="align-self:center" data-a="askinfo" data-v="${a.id}">ขอข้อมูลเพิ่มเติม</button>`}
+  ${a.wd?`<div class="lock-note" style="background:#F0ECEA;color:#5E5551">${ic("x")}<span><b>นักศึกษายกเลิกใบสมัครเมื่อ ${a.wd.d}</b><br>เหตุผล: ${esc(a.wd.r)}${a.wd.m?` · «${esc(a.wd.m)}»`:""}</span></div>`:acc?`<div class="lock-note">${ic("check")}<span>รับเข้าทำงานแล้ว · เบอร์ติดต่อ 08x-xxx-1234 · ขั้นถัดไป: ยืนยันข้อตกลงงาน</span></div>`:dec?`<div class="lock-note" style="background:#F0ECEA;color:#5E5551">${ic("x")}<span>แจ้งผลไม่ผ่านแล้ว · เหตุผล: ${esc((S.emp.dr||{})[a.id]||"—")}</span></div>`:`<div class="row2"><button type="button" class="btn btn-o btn-danger" data-a="decline" data-v="${a.id}">ไม่ผ่าน</button><button type="button" class="btn btn-g" data-a="accept" data-v="${a.id}">${ic("check")} รับ</button></div><button type="button" class="linkb" style="align-self:center" data-a="askinfo" data-v="${a.id}">ขอข้อมูลเพิ่มเติม</button>`}
  </div>`);};
 R.ework=()=>wrapApp(`${topbar("Work",false)}<p class="pad" style="color:var(--muted);font-size:0.875rem;margin-bottom:12px">นักศึกษาที่กำลังทำงานกับร้าน · Mentor จะแสดงเมื่อเปิดระบบเฟสถัดไป</p>
  <div class="pad" style="display:grid;gap:12px">${WORKERS.map((w,i)=>{const ap=S.emp.approved.has(i);return `<div class="worker"><div class="t"><span class="av" style="background:${AVC[w.c]}">${w.ini}</span><div><b>${w.n}</b><small>ตำแหน่ง: ${w.pos}</small><small>เบอร์ 08x-xxx-${4410+i} · Mentor: เฟสถัดไป</small></div></div>
@@ -2348,7 +2388,15 @@ vp.addEventListener("click",e=>{
     case "eobdone": S.eobf.step=1; S.hist=[]; go("ehome"); toast("สร้างโปรไฟล์ร้านแล้ว · ประกาศรอตรวจสอบ"); break;
     case "estu": S.stuId=v; go("estu"); break;
     case "accept": S.emp.accepted.add(v); rerenderKeep(); confetti(); toast("รับเข้าทำงานแล้ว · แจ้งนักศึกษาให้แล้ว"); break;
-    case "decline": S.emp.declined.add(v); rerenderKeep(); toastUndo("บันทึกผลไม่ผ่าน · จะแจ้งนักศึกษาใน 5 วินาที",()=>{ S.emp.declined.delete(v); rerenderKeep(); }); break;
+    case "decline": reasonSheet("dec",v); break;
+    case "wdopen": reasonSheet("wd",+v); break;
+    case "rsn": { $$('[data-a="rsn"]',ov).forEach(b=>b.setAttribute("aria-checked",b===el)); S.rsn=v; const e=$("#rsn-e",ov); if(e) e.hidden=true; const m=$("#rsn-m",ov); if(m) m.removeAttribute("aria-invalid"); break; }
+    case "rsnok": { const m=$("#rsn-m",ov), txt=m.value.trim(), e=$("#rsn-e",ov);
+      if(!S.rsn||(S.rsn==="อื่นๆ"&&!txt)){ e.textContent=S.rsn?"อธิบายเหตุผลสั้น ๆ":"เลือกเหตุผลก่อน"; e.hidden=false; if(S.rsn) { m.setAttribute("aria-invalid","true"); m.focus(); } break; }
+      const r=S.rsn==="อื่นๆ"?txt:S.rsn; closeSheet();
+      if(el.dataset.k==="wd"){ (S.wd||(S.wd={}))[v]=r; rerenderKeep(); toast("ยกเลิกใบสมัครแล้ว · แจ้งร้านพร้อมเหตุผลให้แล้ว"); }
+      else { S.emp.declined.add(v); (S.emp.dr||(S.emp.dr={}))[v]=r; rerenderKeep(); toastUndo("บันทึกผลไม่ผ่าน · จะแจ้งนักศึกษาใน 5 วินาที",()=>{ S.emp.declined.delete(v); rerenderKeep(); }); }
+      break; }
     case "amt": { const o=v==="other"; S.emp.custom=o; S.emp.amt=o?(+S.emp.camt||0):+v;
       $$('[data-a="amt"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); $('.amt-o',scr).setAttribute("aria-expanded",o);
       const box=$("#tk-custom",scr); box.hidden=!o; if(o) $("#tk-amt",scr).focus(); syncDonate(); break; }
@@ -2403,15 +2451,22 @@ function ptestSheet(step){ if(step>=QZ.length){ S.ptStep=0; closeSheet(); S.ob.t
   if(!S.sheet||!$(".sheet",ov)) sheet(html.replace('<div class="grip" aria-hidden="true"></div>','')); else { $(".sheet",ov).innerHTML=html; $("#shh",ov).focus({preventScroll:true}); }
 }
 /* new pages */
-const APPST={sent:["t-peach","ส่งแล้ว · รอร้านเปิดดู","clock",1],review:["t-blue","กำลังพิจารณา","clock",2],info:["t-warn","ขอข้อมูลเพิ่มเติม","alert",2],accepted:["t-ok","ผ่านการคัดเลือก","check",3],declined:["t-grey","ไม่ผ่าน","x",3]};
-R.sapps=()=>{const list=[...[...S.applied].map(id=>({id,st:"sent",d:"วันนี้"})),{id:4,st:"accepted",d:"6 พ.ย."},{id:5,st:"info",d:"8 พ.ย."},{id:9,st:"declined",d:"1 พ.ย."}];
+const APPST={sent:["t-peach","ส่งแล้ว · รอร้านเปิดดู","clock",1],review:["t-blue","กำลังพิจารณา","clock",2],info:["t-warn","ขอข้อมูลเพิ่มเติม","alert",2],accepted:["t-ok","ผ่านการคัดเลือก","check",3],declined:["t-grey","ไม่ผ่าน","x",3],withdrawn:["t-grey","ยกเลิกแล้ว","x",1]};
+const CLASH={8:{job:4,t:"พ. 17:00–19:00"}};
+const WD_RS=["ได้งานอื่นที่เวลาซ้ำกัน","ตารางเรียนเปลี่ยน","ระยะทางหรือค่าตอบแทนไม่เหมาะ","เปลี่ยนใจ","อื่นๆ"];
+const DEC_RS=["เวลาไม่ตรงหรือซ้ำกับงานอื่นของนักศึกษา","ทักษะยังไม่ตรงกับงาน","รับครบตามจำนวนแล้ว","อื่นๆ"];
+R.sapps=()=>{const wd=S.wd||(S.wd={}); const list=[...[...S.applied].map(id=>({id,st:"sent",d:"วันนี้"})),{id:4,st:"accepted",d:"6 พ.ย."},{id:8,st:"review",d:"9 พ.ย."},{id:5,st:"info",d:"8 พ.ย."},{id:9,st:"declined",d:"1 พ.ย."}].map(a=>wd[a.id]?{...a,st:"withdrawn"}:a);
  return wrapApp(`${topbar("ใบสมัครของฉัน",true)}<div class="pad" style="display:grid;gap:12px;padding-bottom:16px">${list.map(a=>{const j=JOB(a.id), s=SHOPS[j.shop], c=CAT(j.cat), st=APPST[a.st];
   const steps=["ส่งแล้ว","พิจารณา","ผลคัดเลือก","ข้อตกลง"].map((l,i)=>`<li class="${i<st[3]?(a.st==="declined"&&i===2?"no":"on"):""}">${l}</li>`).join("");
+  const open=a.st!=="accepted"&&a.st!=="declined"&&a.st!=="withdrawn", cl=open&&CLASH[a.id], cj=cl&&JOB(cl.job);
+  const clashBox=cl?`<div class="clash">${ic("alert")}<div><b>เวลาซ้ำกับงานที่รับแล้ว</b><small>${esc(cj.t)} · ${cl.t} ทับกับงานนี้ (${esc(j.time)})</small></div></div>`:"";
+  const wdBtn=open?`<button type="button" class="btn ${cl?"btn-o btn-danger":"btn-ghost"} btn-sm wd-btn" data-a="wdopen" data-v="${a.id}">${ic("x")}ยกเลิกใบสมัคร</button>`:"";
   const next=a.st==="accepted"?`<div class="win">${ic("award")}<div><b>ยินดีด้วย! ${esc(s.n)} รับคุณแล้ว</b><small>ขั้นถัดไป: ตรวจและยืนยันข้อตกลงงาน (ค่าตอบแทน วันเริ่ม ตารางงาน)</small></div></div><button type="button" class="btn btn-g btn-blk" data-a="toast" data-m="หน้าข้อตกลงงานอยู่ในรายการออกแบบรอบถัดไป">ดูข้อตกลงงาน</button>`
    :a.st==="info"?`<p class="nx">${ic("alert")}<span>ร้านขอ «ตัวอย่างผลงาน» ตอบภายใน 12 พ.ย. 2569</span></p><button type="button" class="btn btn-o btn-blk" data-a="toast" data-m="เปิดแผ่นตอบคำขอ (ออกแบบรอบถัดไป)">ตอบคำขอ</button>`
    :a.st==="declined"?`<p class="nx">${ic("info")}<span>ไม่เป็นไร ยังมีงานในหมวด ${c.n} ที่เปิดรับอยู่</span></p><button type="button" class="btn btn-o btn-blk" data-a="cat" data-v="${j.cat}">ดูงานที่คล้ายกัน</button>`
+   :a.st==="withdrawn"?`<p class="nx">${ic("info")}<span>คุณยกเลิกใบสมัครแล้ว · เหตุผล: ${esc(wd[a.id])} · แจ้งร้านให้แล้ว</span></p>`
    :`<p class="nx">${ic("bell")}<span>เราจะแจ้งเตือนเมื่อร้านตอบกลับ</span></p>`;
-  return `<article class="appc ${a.st}"><div class="t"><span class="lg" style="${cover(c)}">${s.ini}</span><div style="min-width:0"><b>${esc(j.t)}</b><small>${esc(s.n)} · สมัคร ${a.d}</small></div><span class="tag ${st[0]}">${ic(st[2])}${st[1]}</span></div><ol class="mstep" aria-label="ความคืบหน้า">${steps}</ol>${next}</article>`;}).join("")}</div>`);};
+  return `<article class="appc ${a.st}"><div class="t"><span class="lg" style="${cover(c)}">${s.ini}</span><div style="min-width:0"><b>${esc(j.t)}</b><small>${esc(s.n)} · สมัคร ${a.d}</small></div><span class="tag ${st[0]}">${ic(st[2])}${st[1]}</span></div><ol class="mstep" aria-label="ความคืบหน้า">${steps}</ol>${clashBox}${next}${wdBtn}</article>`;}).join("")}</div>`);};
 R.swork=()=>{const w=S.work||(S.work={h:4,saved:false,log:[{d:"9 พ.ย.",h:2,st:"wait"},{d:"8 พ.ย.",h:1,st:"wait"},{d:"6 พ.ย.",h:4,st:"ok"},{d:"4 พ.ย.",h:3,st:"ok"}]});
  return wrapApp(`${topbar("งานที่กำลังทำ",true)}<div class="pad" style="display:grid;gap:16px;padding-bottom:16px">
   <div class="wcard"><span class="lg" style="${cover(CAT("mkt"))}">LC</span><div><b>ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย</b><small>${esc(SHOPS.lc.n)} · สัปดาห์ที่ 3 จาก 4</small></div></div>
@@ -2445,6 +2500,13 @@ function notifSheet(){ const it=(cls,bg,fg,i,t,sm,why,attrs)=>`<button type="but
    ${it("","#F8E1E8","#AF5577","clock","ชั่วโมง 6 พ.ย. ได้รับอนุมัติ · 500 Token รอจ่าย","เมื่อวาน","เพราะคุณบันทึกชั่วโมงไว้",'data-to="swork"')}
    ${it("","#FFF1EB","#712319","smile","Feedback เดือนพฤศจิกายนรอคุณอยู่","2 วันที่แล้ว","",'data-to="feedback"')}
   </div><p class="priv">${ic("bell")}ปิดเสียงแจ้งเตือนช่วงสอบได้ที่ตั้งค่า (ออกแบบรอบถัดไป)</p></div>`);}
+function reasonSheet(k,id){ const wd=k==="wd", j=wd&&JOB(id), a=!wd&&(APPLICANTS.find(x=>x.id===id)||APPLICANTS[0]);
+  const rs=wd?WD_RS:DEC_RS, pre=wd?(CLASH[id]?rs[0]:null):(a.clash?rs[0]:null); S.rsn=pre;
+  sheet(`<div class="sh-h"><div><h2 id="shh">${wd?"ยกเลิกใบสมัคร":`แจ้งผลไม่ผ่าน · ${esc(a.n)}`}</h2><p>${wd?esc(j.t):"นักศึกษาจะเห็นเหตุผลนี้ในใบสมัคร"}</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
+  <div class="sh-b"><div><p class="lbl" id="rsn-l">${wd?"ทำไมถึงยกเลิก":"เหตุผลที่ไม่ผ่าน"}</p><div class="rsn" role="radiogroup" aria-labelledby="rsn-l">${rs.map(r=>`<button type="button" role="radio" class="rsn-o" data-a="rsn" data-v="${r}" aria-checked="${r===pre}"><i></i>${r}</button>`).join("")}</div><p class="ferr" id="rsn-e" role="alert" hidden></p></div>
+   <div><label class="lbl" for="rsn-m">${wd?"ข้อความถึงร้าน":"ข้อความถึงนักศึกษา"} <span style="color:var(--muted);font-weight:400">(ไม่บังคับ ยกเว้นเลือก «อื่นๆ»)</span></label><textarea class="inp" id="rsn-m" placeholder="${wd?"เช่น ได้งานสอนพิเศษเวลาเดียวกัน ขอบคุณที่พิจารณา":"เช่น ขอบคุณที่สนใจ หวังว่าจะได้ร่วมงานครั้งหน้า"}"></textarea></div>
+   <p class="priv">${ic("info")}${wd?"ร้านจะได้รับแจ้งพร้อมเหตุผล · ยกเลิกแล้วย้อนกลับไม่ได้":"แจ้งนักศึกษาหลังยืนยัน 5 วินาที · กดเลิกทำได้"}</p></div>
+  <div class="sh-f"><button type="button" class="btn btn-o btn-danger btn-blk" data-a="rsnok" data-k="${k}" data-v="${id}">${wd?"ยืนยันยกเลิกใบสมัคร":"ยืนยันไม่ผ่าน"}</button><button type="button" class="btn btn-ghost btn-blk" data-a="close">${wd?"เก็บใบสมัครไว้":"ยกเลิก"}</button></div>`);}
 function askSheet(id){ const a=APPLICANTS.find(x=>x.id===id)||APPLICANTS[0];
   sheet(`<div class="sh-h"><div><h2 id="shh">ขอข้อมูลเพิ่มจาก ${esc(a.n)}</h2><p>นักศึกษาจะได้รับแจ้งเตือนและตอบในระบบ</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
   <div class="sh-b"><div><p class="lbl">ต้องการอะไรเพิ่ม</p><div class="chips">${["ตัวอย่างผลงาน","ตารางเวลาที่สะดวก","ประสบการณ์ที่เกี่ยวข้อง"].map((x,k)=>`<button type="button" class="chip" data-a="tog" aria-pressed="${k===0}">${x}</button>`).join("")}</div></div>
