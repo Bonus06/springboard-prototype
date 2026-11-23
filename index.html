@@ -841,6 +841,24 @@ tr.flash td{animation:flash 1.2s ease}
 .stc-t b{display:block;font-size:1rem;font-weight:600;line-height:1.35}
 .stc-t small{display:block;font-size:0.875rem;color:var(--muted);margin-top:2px;line-height:1.45}
 .stc-o>.ic:last-child{color:var(--muted)}
+.req{color:#D92D20;margin-left:4px;font-weight:600}
+.taxseg{display:flex;width:100%}.taxseg button{flex:1}
+.locc{display:grid;gap:8px}
+.lmap{position:relative;height:132px;border-radius:16px;border:1.5px dashed var(--line2);background:#FFFAF7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-size:0.875rem;color:var(--muted);overflow:hidden}
+.lmap.on{border-style:solid;border-color:var(--line);background:linear-gradient(90deg,transparent 47%,#fff 47% 53%,transparent 53%) 0 0/88px 100%,linear-gradient(0deg,transparent 46%,#fff 46% 54%,transparent 54%) 0 0/100% 56px,linear-gradient(160deg,transparent 58%,#D4E6BD 58% 70%,transparent 70%),#FAD0C2}
+.lmap.busy{border-style:solid}
+.lpin{width:40px;height:40px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#F37449;color:#fff;display:grid;place-items:center;box-shadow:0 8px 16px -6px rgba(113,35,25,.6)}
+.lpin .ic{transform:rotate(45deg);width:20px;height:20px}
+.lmap.on .lpin{animation:pinDrop .6s var(--spring) both}
+@keyframes pinDrop{from{transform:translateY(-40px) rotate(-45deg);opacity:0}}
+.lpin.off{background:#fff;color:var(--muted);border:1.5px solid var(--line2);box-shadow:none}
+.lmeta{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:0.875rem;color:var(--ink2)}
+.lmeta span{display:inline-flex;gap:4px;align-items:center}
+.lmeta .ic{width:16px;height:16px;color:#1A1A1A}
+.lacts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lacts .btn{padding:0 8px}
+.maplink{display:inline-flex;gap:4px;align-items:center;min-height:0}
+@media (prefers-reduced-motion:reduce){.lmap.on .lpin{animation:none}}
 .sh-f{padding:12px 24px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
 .share{border:1px solid var(--line);border-radius:16px;padding:12px 16px;font-size:0.875rem;display:grid;gap:8px}
 .share div{display:flex;justify-content:space-between;gap:12px}
@@ -1945,7 +1963,7 @@ R.feedback=()=>{ if(S.fbDone) return wrapApp(`<div class="ok-screen"><span class
 /* employer */
 const SKOPT=["comm","canva","caption","service","team","photo","english","sheets"], DEVOPT=["plan","insight","brand","present","eventops","problem","lead","dash"];
 const BTYPES=[["food","ร้านอาหาร","coffee"],["craft","หัตถกรรม","pen"],["edu","การศึกษา","book"],["event","อีเวนต์","ticket"],["tech","เทคโนโลยี","code"],["other","อื่น ๆ","grid"]];
-R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟต์ สตูดิโอ",type:"craft",pos:"ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย",pay:"3500",u:"โปรเจกต์",req:new Set(["canva","caption"]),dev:new Set(["plan","insight"])});
+R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟต์ สตูดิโอ",type:"craft",pos:"ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย",pay:"3500",u:"โปรเจกต์",hasTax:true,pin:false,req:new Set(["canva","caption"]),dev:new Set(["plan","insight"])});
  const st=e.step, ttl=["ข้อมูลร้าน","ประกาศงานแรก","ตรวจก่อนส่ง"][st-1], sub=["นักศึกษาจะเห็นชื่อ ประเภท และย่านของร้าน ส่วนเลขผู้เสียภาษีใช้ตรวจสอบเท่านั้น","บอกให้ชัดว่างานต้องใช้อะไร และนักศึกษาจะได้อะไรกลับไป","นี่คือการ์ดที่นักศึกษาจะเห็นในหน้า Home"][st-1];
  const head=`<header class="topbar"><button type="button" class="ib" data-a="eback" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1">สร้างโปรไฟล์ร้าน</h1><span class="sp"></span></header>${obSteps(st)}<div class="ob-h"><small>ขั้นที่ ${st} จาก 3</small><h2 style="font-size:1.5rem;margin-top:2px">${ttl}</h2><p>${sub}</p></div>`;
  const chip=(g,k)=>`<button type="button" class="chip${g==="dev"?" dev":""}" data-a="echip" data-g="${g}" data-v="${k}" aria-pressed="${e[g].has(k)}">${SK[k]}</button>`;
@@ -1956,8 +1974,12 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
    <div><label class="lbl" for="e-n">ชื่อร้าน</label><input class="inp" id="e-n" data-live="name" value="${esc(e.name)}" aria-describedby="e-n-e"><p class="ferr" id="e-n-e" hidden></p></div>
    <div><p class="lbl">ประเภทธุรกิจ</p><div class="btypes" role="group" aria-label="ประเภทธุรกิจ">${BTYPES.map(([k,l,i])=>`<button type="button" class="btype" data-a="btype" data-v="${k}" aria-pressed="${e.type===k}">${ic(i)}${l}</button>`).join("")}</div></div>
    <div><label class="lbl" for="e-a">ที่อยู่ร้าน</label><input class="inp" id="e-a" value="ช้างคลาน อ.เมือง เชียงใหม่"></div>
+   <div><p class="lbl" id="loc-l">โลเคชั่นร้าน</p><div class="locc" id="locc" aria-labelledby="loc-l">${locCard(e.pin)}</div><p class="fhint">${ic("info")}นักศึกษาใช้ดูระยะทางและนำทางไปร้าน</p></div>
    <div><label class="lbl" for="e-t">เบอร์โทรร้าน</label><input class="inp" id="e-t" inputmode="tel" value="081-xxx-239"></div>
-   <div><label class="lbl" for="e-tax">เลขประจำตัวผู้เสียภาษี</label><input class="inp" id="e-tax" inputmode="numeric" maxlength="13" value="0505565012347" aria-describedby="e-tax-e"><p class="ferr" id="e-tax-e" hidden></p><p class="fhint">${ic("lock")}13 หลัก ใช้ตรวจสอบกิจการ นักศึกษาไม่เห็น</p></div>
+   <div><p class="lbl" id="tax-l">เลขประจำตัวผู้เสียภาษี<span class="req" id="tax-req" aria-hidden="true" ${e.hasTax?"":"hidden"}>*</span></p>
+    <div class="seg taxseg" role="group" aria-labelledby="tax-l"><button type="button" data-a="etax" data-v="1" aria-pressed="${e.hasTax}">ระบุเลข</button><button type="button" data-a="etax" data-v="0" aria-pressed="${!e.hasTax}">ไม่ระบุ</button></div>
+    <div id="tax-in" ${e.hasTax?"":"hidden"} style="margin-top:8px"><label class="sr" for="e-tax">เลขประจำตัวผู้เสียภาษี 13 หลัก (จำเป็น)</label><input class="inp" id="e-tax" inputmode="numeric" maxlength="13" value="0505565012347" aria-required="true" aria-describedby="e-tax-e"><p class="ferr" id="e-tax-e" hidden></p><p class="fhint">${ic("lock")}13 หลัก ใช้ตรวจสอบกิจการ นักศึกษาไม่เห็น</p></div>
+    <p class="fhint" id="tax-no" ${e.hasTax?"hidden":""}>${ic("info")}ไม่บังคับ · เพิ่มภายหลังได้จากโปรไฟล์ร้าน</p></div>
    <div class="row2"><div><label class="lbl" for="e-c">ผู้ประสานงาน</label><input class="inp" id="e-c" value="คุณอรุณี"></div><div><label class="lbl" for="e-cp">ตำแหน่ง</label><input class="inp" id="e-cp" value="เจ้าของแบรนด์"></div></div>`;
   foot=`<button type="button" class="btn btn-g" data-a="estep" data-v="2">ต่อไป ${ic("chev-r")}</button>`;
  } else if(st===2){
@@ -1973,7 +1995,7 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
   const bt=BTYPES.find(b=>b[0]===e.type)||BTYPES[5];
   body=`<div class="pvwrap">${card(pj)}</div>
    <div class="sum"><div class="sum-h"><b>ข้อมูลร้าน</b><button type="button" class="linkb" data-a="estep" data-v="1">${ic("edit")}แก้ไข</button></div>
-    <div class="r"><span>ชื่อร้าน</span><b>${esc(e.name)}</b></div><div class="r"><span>ประเภท</span><b>${bt[1]}</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div></div>
+    <div class="r"><span>ชื่อร้าน</span><b>${esc(e.name)}</b></div><div class="r"><span>ประเภท</span><b>${bt[1]}</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>${e.hasTax?"0505565•••347":"ไม่ระบุ"}</b></div><div class="r"><span>โลเคชั่น</span><b>${e.pin?"ปักหมุดแล้ว · ช้างคลาน":"ยังไม่ปักหมุด"}</b></div></div>
    <div class="sum"><div class="sum-h"><b>ประกาศงาน</b><button type="button" class="linkb" data-a="estep" data-v="2">${ic("edit")}แก้ไข</button></div>
     <div class="r"><span>ตำแหน่ง</span><b>${esc(e.pos)}</b></div><div class="r"><span>ค่าตอบแทน</span><b class="price" style="font-size:1rem">${tok(16,"tki")}${fmt(pj.pay)}<small> /${e.u}</small></b></div>
     <div class="r col"><span>Skill ที่ใช้</span><div class="chips">${[...e.req].map(k=>`<span class="sk">${SK[k]}</span>`).join("")||"—"}</div></div>
@@ -1982,6 +2004,8 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
   foot=`<button type="button" class="btn btn-o" data-a="estep" data-v="2">ย้อนกลับ</button><button type="button" class="btn btn-g" data-a="eobdone">สร้างโปรไฟล์ ${ic("check")}</button>`;
  }
  return `${head}<div class="form">${body}</div><div class="foot-act">${foot}</div>`;};
+function locCard(pin){ return pin?`<div class="lmap on"><span class="lpin">${ic("pin")}</span></div><div class="lmeta"><span>${ic("check")}<b>ปักหมุดแล้ว</b> · ช้างคลาน อ.เมือง เชียงใหม่</span><button type="button" class="linkb" data-a="eunpin">เปลี่ยน</button></div>`
+  :`<div class="lmap"><span class="lpin off">${ic("pin")}</span><span>ยังไม่ได้ปักหมุดร้าน</span></div><div class="lacts"><button type="button" class="btn btn-o btn-sm" data-a="epin">${ic("target")}ใช้ตำแหน่งปัจจุบัน</button><button type="button" class="btn btn-o btn-sm" data-a="epin">${ic("pin")}ปักหมุดบนแผนที่</button></div>`; }
 const ehead=()=>`<div class="hhead" style="padding-bottom:72px"><div class="hh-top emp-top"><span class="av">LC</span><div style="min-width:0"><p class="emp-meta"><span>${esc(SHOPS.lc.type)}</span><span class="vpill">${ic("shield")}ตรวจสอบแล้ว</span></p><b>${esc(SHOPS.lc.n)}</b></div><button type="button" class="ib" data-a="toast" data-m="มีผู้สมัครใหม่ 4 คน" aria-label="การแจ้งเตือน">${ic("bell")}<span class="dot"></span></button></div></div>`;
 const TK_MIN=100, TK_MAX=100000;
 function tkOk(){ const a=S.emp.amt; return a>=TK_MIN&&a<=TK_MAX; }
@@ -2311,8 +2335,11 @@ vp.addEventListener("click",e=>{
     case "single": $$('[data-a="single"]',el.parentElement).forEach(b=>b.setAttribute("aria-pressed",b===el)); break;
     case "eback": if(S.eobf&&S.eobf.step>1){ S.eobf.step--; dir="back"; render(); } else back(); break;
     case "estep": { if(S.eobf.step===1&&+v===2){ const n=$("#e-n",scr), t=$("#e-tax",scr); let bad=null; const d=t.value.replace(/\D/g,"");
-        bad=setErr(n,$("#e-n-e",scr),n.value.trim()?"":"กรอกชื่อร้านตามที่จดทะเบียน")||bad; bad=setErr(t,$("#e-tax-e",scr),d.length===13?"":`กรอกให้ครบ 13 หลัก ตอนนี้มี ${d.length} หลัก`)||bad;
+        bad=setErr(n,$("#e-n-e",scr),n.value.trim()?"":"กรอกชื่อร้านตามที่จดทะเบียน")||bad; if(S.eobf.hasTax) bad=setErr(t,$("#e-tax-e",scr),d.length===13?"":`กรอกให้ครบ 13 หลัก ตอนนี้มี ${d.length} หลัก`)||bad;
         if(bad){ bad.focus(); break; } } S.eobf.step=+v; render(); break; }
+    case "etax": { const on=v==="1"; S.eobf.hasTax=on; $$('[data-a="etax"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); $("#tax-in",scr).hidden=!on; $("#tax-no",scr).hidden=on; $("#tax-req",scr).hidden=!on; if(on) $("#e-tax",scr).focus(); break; }
+    case "epin": { const c=$("#locc",scr); c.innerHTML=`<div class="lmap busy"><span class="spin"></span><span>กำลังหาตำแหน่ง…</span></div>`; setTimeout(()=>{ S.eobf.pin=true; if($("#locc",scr)) $("#locc",scr).innerHTML=locCard(true); toast("ปักหมุดร้านแล้ว"); },700); break; }
+    case "eunpin": S.eobf.pin=false; $("#locc",scr).innerHTML=locCard(false); break;
     case "btype": S.eobf.type=v; $$(".btype",scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
     case "echip": { const g=el.dataset.g, set=S.eobf[g]; set.has(v)?set.delete(v):set.add(v); el.setAttribute("aria-pressed",set.has(v)); break; }
     case "eunit": S.eobf.u=v; $$('[data-a="eunit"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
@@ -2404,7 +2431,7 @@ R.efeedback=()=>wrapApp(`${topbar("Feedback ถึงนักศึกษา",f
   <button type="button" class="btn btn-p btn-blk" data-a="efsend" data-v="${i}">ส่ง Feedback</button>`}</div>`;}).join("")}</div>`);
 R.eprofile=()=>wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">โปรไฟล์ร้าน</h1><div class="pad" style="display:grid;gap:16px;margin-top:-48px;position:relative;z-index:3;padding-bottom:16px">
   <div class="sum" style="box-shadow:var(--sh1)"><div class="sum-h"><b>ข้อมูลร้าน</b><button type="button" class="linkb" data-a="go" data-to="eob">${ic("edit")}แก้ไข</button></div>
-   <div class="r"><span>ที่อยู่</span><b>${esc(SHOPS.lc.addr)}</b></div><div class="r"><span>เบอร์</span><b>${SHOPS.lc.tel}</b></div><div class="r"><span>ประเภทธุรกิจ</span><b>${esc(SHOPS.lc.type)}</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>0505565•••347</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div></div>
+   <div class="r"><span>ที่อยู่</span><b>${esc(SHOPS.lc.addr)}</b></div><div class="r"><span>โลเคชั่น</span><b><a class="linkb maplink" href="https://www.google.com/maps?q=18.7786,98.9986" target="_blank" rel="noopener noreferrer">${ic("pin")}เปิดแผนที่</a></b></div><div class="r"><span>เบอร์</span><b>${SHOPS.lc.tel}</b></div><div class="r"><span>ประเภทธุรกิจ</span><b>${esc(SHOPS.lc.type)}</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>0505565•••347</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div></div>
   <div class="win">${ic("shield")}<div><b>ตรวจสอบโดยวิทยาลัยฯ แล้ว</b><small>เมื่อ 20 ก.ย. 2569 · นักศึกษาเห็นป้าย «ตรวจสอบแล้ว» บนประกาศของร้าน</small></div></div>
   <div class="kv"><div><b>${SHOPS.lc.hired}</b><span>จ้างนักศึกษาแล้ว</span></div><div><b>2</b><span>ประกาศที่เปิด</span></div><div><b class="tk-v">${tok(18)}${fmt(12000+S.emp.donated)}</b><span>Token สะสม</span></div></div>
   <div class="lo-wrap"><button type="button" class="lo-btn" data-a="logout"><span class="lo-ic">${ic("logout")}</span><span class="lo-t"><b>ออกจากระบบ</b><small>บัญชีร้าน · เข้าสู่ระบบอยู่</small></span>${ic("chev-r")}</button><p class="lo-ver">SpringBoard v0.2 · วิทยาลัยการศึกษาตลอดชีวิต มช.</p></div></div>`);
