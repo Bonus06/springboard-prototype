@@ -642,9 +642,6 @@ tr.clk:hover td{background:#FFF7F3}
 .hc-d.wait{background:var(--warn-soft);color:var(--warn-ink);box-shadow:inset 0 0 0 1.5px #FA9746}
 .hc-d.today{box-shadow:inset 0 0 0 2px #712319}
 .hc-d.today.wait{box-shadow:inset 0 0 0 2px #712319}
-.hc-d.rej{background:#F0ECEA;color:#5E5551;box-shadow:inset 0 0 0 1.5px #5E5551}
-.hc-d.rej b{text-decoration:line-through;text-decoration-thickness:1.5px}
-.hc-lg i.rej{background:#F0ECEA;box-shadow:inset 0 0 0 1.5px #5E5551}
 .hc-lg{display:flex;gap:16px;flex-wrap:wrap;font-size:0.75rem;color:var(--ink2)}
 .hc-lg span{display:inline-flex;gap:8px;align-items:center}
 .hc-lg i{width:14px;height:14px;border-radius:4px;display:inline-block}
@@ -1903,18 +1900,17 @@ R.ob3=()=>`${topbar("สมัครสมาชิก",true)}${obSteps(3)}<div 
   <div class="card" style="padding:16px"><b style="font-weight:500">สรุปที่คุณกรอก</b><div class="chips" style="margin-top:12px">${[...S.ob.skills].map(k=>`<span class="tag t-grey">${SK[k]}</span>`).join("")}<span class="tag t-peach">${ic("target")}${esc(S.ob.dream)}</span></div></div>
  </div><div class="foot-act pt-foot">${S.ob.test?`<button type="button" class="btn btn-g" data-a="obdone">สมัครและดูผลวิเคราะห์ ${ic("spark")}</button>`
   :`<button type="button" class="btn btn-g" data-a="ptest">${S.ptStep?`ทำต่อ · ข้อ ${S.ptStep+1} จาก ${QZ.length}`:"เริ่มทำแบบทดสอบ"} ${ic("chev-r")}</button><button type="button" class="linkb pt-skip" data-a="obskip">ข้ามไปก่อน · ทำทีหลังได้</button>`}</div>`;
-const HLOG={2:[3,"ok"],4:[3,"ok"],5:[2,"rej","ไม่มีนัดทำงานวันนี้ · ทักร้านเพื่อสอบถาม"],6:[4,"ok"],8:[1,"wait"],9:[2,"wait"]};
-const HST={ok:["ร้านอนุมัติแล้ว","อนุมัติแล้ว"],wait:["รอร้านอนุมัติ","รออนุมัติ"],rej:["ร้านปฏิเสธ","ร้านปฏิเสธ"]};
+const HLOG={2:[3,"ok"],4:[3,"ok"],6:[4,"ok"],8:[1,"wait"],9:[2,"wait"]};
 function hoursCal(){ const first=6, days=30, today=10, cells=[];
   for(let i=0;i<first;i++) cells.push(`<span class="hc-d empty" aria-hidden="true"></span>`);
   for(let d=1;d<=days;d++){ const l=HLOG[d], h=l?l[0]:0, st=l?l[1]:"";
-    cells.push(l?`<button type="button" class="hc-d has ${st} lv${Math.min(h,4)}${d===today?" today":""}" data-a="toast" data-m="${d} พ.ย. · ${h} ชม. · ${HST[st][0]}${l[2]?` · เหตุผล: ${l[2]}`:""}" aria-label="${d} พฤศจิกายน ทำงาน ${h} ชั่วโมง ${HST[st][1]}"><span>${d}</span><b>${h}<small>ชม.</small></b></button>`
+    cells.push(l?`<button type="button" class="hc-d has ${st} lv${Math.min(h,4)}${d===today?" today":""}" data-a="toast" data-m="${d} พ.ย. · ${h} ชม. · ${st==="ok"?"ร้านอนุมัติแล้ว":"รอร้านอนุมัติ"}" aria-label="${d} พฤศจิกายน ทำงาน ${h} ชั่วโมง ${st==="ok"?"อนุมัติแล้ว":"รออนุมัติ"}"><span>${d}</span><b>${h}<small>ชม.</small></b></button>`
       :`<span class="hc-d${d===today?" today":""}${d>today?" fut":""}"${d===today?' aria-current="date"':""}><span>${d}</span></span>`); }
-  const sum=k=>Object.values(HLOG).filter(x=>x[1]===k).reduce((a,x)=>a+x[0],0), ok=sum("ok"), wt=sum("wait"), rj=sum("rej"), mo=ok+wt;
+  const mo=Object.values(HLOG).reduce((a,x)=>a+x[0],0), ok=Object.values(HLOG).filter(x=>x[1]==="ok").reduce((a,x)=>a+x[0],0);
   return `<section class="hcal" aria-labelledby="hc-h"><div class="hc-top"><p class="hc-l" id="hc-h">${ic("cal")}Credit / Hours</p><div class="hc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><b>พ.ย. 2569</b><button type="button" class="ib" disabled aria-label="เดือนถัดไป">${ic("chev-r")}</button></div></div>
-   <div class="hc-sum"><div><b>42</b><span>/ 60 ชม. ภาคการศึกษานี้</span></div><div class="hc-bar"><i style="width:70%"></i></div><small>เดือนนี้ ${mo} ชม. · อนุมัติแล้ว ${ok} · รออนุมัติ ${wt}${rj?` · ร้านปฏิเสธ ${rj}`:""}</small></div>
+   <div class="hc-sum"><div><b>42</b><span>/ 60 ชม. ภาคการศึกษานี้</span></div><div class="hc-bar"><i style="width:70%"></i></div><small>เดือนนี้ ${mo} ชม. · อนุมัติแล้ว ${ok} · รออนุมัติ ${mo-ok}</small></div>
    <div class="hc-g" role="grid" aria-label="ชั่วโมงทำงานเดือนพฤศจิกายน 2569">${["จ","อ","พ","พฤ","ศ","ส","อา"].map(x=>`<span class="hc-w">${x}</span>`).join("")}${cells.join("")}</div>
-   <div class="hc-lg"><span><i class="ok"></i>อนุมัติแล้ว</span><span><i class="wait"></i>รอร้านอนุมัติ</span><span><i class="rej"></i>ร้านปฏิเสธ</span><span><i class="td"></i>วันนี้</span></div></section>`; }
+   <div class="hc-lg"><span><i class="ok"></i>อนุมัติแล้ว</span><span><i class="wait"></i>รอร้านอนุมัติ</span><span><i class="td"></i>วันนี้</span></div></section>`; }
 const NEED=[["สร้างคอนเทนต์",90,72],["วิเคราะห์ข้อมูล",80,35],["การสื่อสาร",75,82],["สร้างแบรนด์",65,40],["SEO & โฆษณา",60,15]];
 R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div class="orb-w"><div class="orb"></div><img src="${MARK}" alt=""></div><h1 id="h1" tabindex="-1" style="font-size:1.25rem">AI กำลังวิเคราะห์โปรไฟล์ของคุณ</h1>
   <ol class="ai-steps" id="aisteps">${["อ่านทักษะและความสนใจ","รวมผล Personality Test","เทียบกับอาชีพในฝัน","จับคู่งานและคอร์ส"].map(s=>`<li><i>${ic("check")}</i>${s}</li>`).join("")}</ol></div>`;
