@@ -1465,8 +1465,6 @@ svg.tok:not(.spin):not(.pop){margin-right:6px!important;margin-left:0!important}
 /* verified pill: CI green, dark text for contrast */
 .vpill{background:#88C887;border-color:#88C887;color:#1A1A1A;font-weight:600}
 .vpill .ic{color:#1A1A1A}
-.vpill.wait{background:#FAD0C2;border-color:#FAD0C2;color:#712319}
-.vpill.wait .ic{color:#712319}
 
 /* admin: post detail */
 .aj-t{font-weight:500}
@@ -1985,23 +1983,23 @@ R.eob=()=>{const e=S.eobf||(S.eobf=eobNew());
   foot=`<button type="button" class="btn btn-o" data-a="estep" data-v="2">ย้อนกลับ</button><button type="button" class="btn btn-g" data-a="eobdone">${po?"ส่งประกาศ":"สร้างโปรไฟล์"} ${ic("check")}</button>`;
  }
  return `${head}<div class="form">${body}</div><div class="foot-act">${foot}</div>`;};
-const ehead=()=>`<div class="hhead" style="padding-bottom:72px"><div class="hh-top emp-top"><span class="av">LC</span><div style="min-width:0"><p class="emp-meta"><span>${esc(SHOPS.lc.type)}</span>${S.emp.pending?`<span class="vpill wait">${ic("clock")}รอตรวจสอบ</span>`:`<span class="vpill">${ic("shield")}ตรวจสอบแล้ว</span>`}</p><b>${esc(SHOPS.lc.n)}</b></div><button type="button" class="ib" data-a="toast" data-m="มีผู้สมัครใหม่ 4 คน" aria-label="การแจ้งเตือน">${ic("bell")}<span class="dot"></span></button></div></div>`;
+const ehead=()=>`<div class="hhead" style="padding-bottom:72px"><div class="hh-top emp-top"><span class="av">LC</span><div style="min-width:0"><p class="emp-meta"><span>${esc(SHOPS.lc.type)}</span><span class="vpill">${ic("shield")}ตรวจสอบแล้ว</span></p><b>${esc(SHOPS.lc.n)}</b></div><button type="button" class="ib" data-a="toast" data-m="มีผู้สมัครใหม่ 4 คน" aria-label="การแจ้งเตือน">${ic("bell")}<span class="dot"></span></button></div></div>`;
 const TK_MIN=100, TK_MAX=100000;
 function tkOk(){ const a=S.emp.amt; return a>=TK_MIN&&a<=TK_MAX; }
 function syncDonate(){ const b=$('[data-a="donate"]',scr); if(!b) return; const ok=tkOk(); b.disabled=!ok; b.textContent=ok?`เติม ${fmt(S.emp.amt)} Token`:"ระบุจำนวน Token";
   const h=$("#tk-help",scr), i=$("#tk-amt",scr); if(!h||!i) return; const a=S.emp.amt, typed=S.emp.camt!=="";
   const bad=S.emp.custom&&typed&&!ok; h.textContent=bad?(a<TK_MIN?`ขั้นต่ำ ${fmt(TK_MIN)} Token`:`สูงสุด ${fmt(TK_MAX)} Token ต่อครั้ง`):`ขั้นต่ำ ${fmt(TK_MIN)} · สูงสุด ${fmt(TK_MAX)} Token`;
   h.classList.toggle("err",bad); i.setAttribute("aria-invalid",bad); }
-R.ehome=()=>{const e=S.emp, np=!!e.noPost, pd=!!e.pending; const newApps=np||pd?0:APPLICANTS.filter(a=>!e.accepted.has(a.id)&&!e.declined.has(a.id)).length;
+R.ehome=()=>{const e=S.emp, np=!!e.noPost; const newApps=np?0:APPLICANTS.filter(a=>!e.accepted.has(a.id)&&!e.declined.has(a.id)).length;
  return wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">Home ผู้ประกอบการ</h1>
- <div class="emp-stats"><div><b data-count="${newApps}">0</b><span>ผู้สมัครใหม่</span></div><div><b data-count="${np||pd?0:2}">0</b><span>กำลังทำงาน</span></div><div><b data-count="${np||pd?0:3}">0</b><span>ชม. รออนุมัติ</span></div></div>
+ <div class="emp-stats"><div><b data-count="${newApps}">0</b><span>ผู้สมัครใหม่</span></div><div><b data-count="${np?0:2}">0</b><span>กำลังทำงาน</span></div><div><b data-count="${np?0:3}">0</b><span>ชม. รออนุมัติ</span></div></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("brief")}ตำแหน่งที่ประกาศ</h2>${np?"":`<button type="button" data-a="epost">${ic("plus")}เพิ่ม</button>`}</div>
   ${np?`<div class="post post-empty"><span class="pe-ic">${ic("brief")}</span><b>ยังไม่มีประกาศงาน</b><p>สร้างประกาศเมื่อพร้อม นักศึกษาจะเห็นหลังวิทยาลัยฯ ตรวจสอบ 1–2 วันทำการ</p><button type="button" class="btn btn-g" data-a="epost">${ic("plus")}สร้างประกาศงานแรก</button></div>`:`<div style="display:grid;gap:12px">
-   <div class="post"><div class="post-h"><div><b>ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย</b><small>${tok(16,"tki")}3,500/โปรเจกต์ · ปิดรับ 25 พ.ย.</small></div>${pd?`<span class="tag t-warn">รอตรวจสอบ</span>`:`<span class="tag t-ok">เปิดรับ</span>`}</div>
+   <div class="post"><div class="post-h"><div><b>ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย</b><small>${tok(16,"tki")}3,500/โปรเจกต์ · ปิดรับ 25 พ.ย.</small></div><span class="tag t-ok">เปิดรับ</span></div>
     <p style="font-size:0.875rem;color:var(--ink2)">ทำโพสต์ Facebook และ Instagram 8 โพสต์ในหนึ่งเดือน…</p>
-    ${pd?`<p style="font-size:0.875rem;color:var(--muted)">ประกาศจะขึ้นให้นักศึกษาเห็นหลังวิทยาลัยฯ ตรวจสอบร้านแล้ว</p>`:""}<div style="display:flex;justify-content:${pd?"flex-end":"space-between"};align-items:center;gap:12px;flex-wrap:wrap">${pd?"":`<button type="button" style="border:0;background:none;display:flex;gap:12px;align-items:center;padding:0" data-a="go" data-to="eapps"><span class="stack">${APPLICANTS.map(a=>`<i style="background:${AVC[a.c]}">${a.ini}</i>`).join("")}</span><span style="font-size:0.875rem;color:var(--act-ink);font-weight:500">${APPLICANTS.length} คนสมัคร ${ic("chev-r")}</span></button>`}
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><button type="button" style="border:0;background:none;display:flex;gap:12px;align-items:center;padding:0" data-a="go" data-to="eapps"><span class="stack">${APPLICANTS.map(a=>`<i style="background:${AVC[a.c]}">${a.ini}</i>`).join("")}</span><span style="font-size:0.875rem;color:var(--act-ink);font-weight:500">${APPLICANTS.length} คนสมัคร ${ic("chev-r")}</span></button>
     <div class="acts"><button type="button" class="btn btn-o btn-sm" data-a="go" data-to="eob">${ic("edit")}แก้ไข</button><button type="button" class="btn btn-ghost btn-sm" data-a="toast" data-m="ต้นแบบ: จะถามยืนยันก่อนลบประกาศ">${ic("trash")}ลบ</button></div></div></div>
-   ${pd?"":`<div class="post"><div class="post-h"><div><b>ออกแบบโลโก้และแพ็กเกจสินค้า</b><small>${tok(16,"tki")}4,500/โปรเจกต์ · ปิดรับ 30 พ.ย.</small></div><span class="tag t-warn">รอตรวจสอบ</span></div><p style="font-size:0.875rem;color:var(--muted)">วิทยาลัยฯ กำลังตรวจประกาศ ปกติใช้ 1–2 วันทำการ</p></div>`}
+   <div class="post"><div class="post-h"><div><b>ออกแบบโลโก้และแพ็กเกจสินค้า</b><small>${tok(16,"tki")}4,500/โปรเจกต์ · ปิดรับ 30 พ.ย.</small></div><span class="tag t-warn">รอตรวจสอบ</span></div><p style="font-size:0.875rem;color:var(--muted)">วิทยาลัยฯ กำลังตรวจประกาศ ปกติใช้ 1–2 วันทำการ</p></div>
   </div>`}</section>
  <section class="sec pad"><div class="donate tkcard"><h3>${tok(32,"spin")}SpringBoard Token</h3><p>เติม Token เพื่อมอบทุนและรางวัลให้นักศึกษาในโครงการ</p><p class="tk-bal"><span>Token สะสมของร้าน</span><b>${tok(20)}<span data-count="${12000+e.donated}">0</span></b></p>
   <div class="amts" role="group" aria-label="จำนวน Token">${[300,500,1000,2000].map(a=>`<button type="button" data-a="amt" data-v="${a}" aria-pressed="${!e.custom&&e.amt===a}">${tok(16)}${fmt(a)}</button>`).join("")}<button type="button" class="amt-o" data-a="amt" data-v="other" aria-pressed="${e.custom}" aria-expanded="${e.custom}" aria-controls="tk-custom">${ic("edit")}อื่นๆ</button></div>
@@ -2315,7 +2313,7 @@ vp.addEventListener("click",e=>{
     case "btype": S.eobf.type=v; $$(".btype",scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
     case "echip": { const g=el.dataset.g, set=S.eobf[g]; set.has(v)?set.delete(v):set.add(v); el.setAttribute("aria-pressed",set.has(v)); break; }
     case "eunit": S.eobf.u=v; $$('[data-a="eunit"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
-    case "eobdone": { const f=S.eobf; if(!f.postOnly){ S.emp.noPost=f.skip; S.emp.pending=true; } else S.emp.noPost=false; S.eobf=null; S.hist=[]; go("ehome"); toast(f.postOnly?"ส่งประกาศแล้ว · รอวิทยาลัยฯ ตรวจสอบ":f.skip?"สร้างโปรไฟล์ร้านแล้ว · สร้างประกาศได้ทุกเมื่อ":"สร้างโปรไฟล์ร้านแล้ว · ประกาศรอตรวจสอบ"); break; }
+    case "eobdone": { const f=S.eobf; S.emp.noPost=f.skip; S.eobf=null; S.hist=[]; go("ehome"); toast(f.postOnly?"ส่งประกาศแล้ว · รอวิทยาลัยฯ ตรวจสอบ":f.skip?"สร้างโปรไฟล์ร้านแล้ว · สร้างประกาศได้ทุกเมื่อ":"สร้างโปรไฟล์ร้านแล้ว · ประกาศรอตรวจสอบ"); break; }
     case "estu": S.stuId=v; go("estu"); break;
     case "accept": S.emp.accepted.add(v); rerenderKeep(); confetti(); toast("รับเข้าทำงานแล้ว · แจ้งนักศึกษาให้แล้ว"); break;
     case "decline": S.emp.declined.add(v); rerenderKeep(); toastUndo("บันทึกผลไม่ผ่าน · จะแจ้งนักศึกษาใน 5 วินาที",()=>{ S.emp.declined.delete(v); rerenderKeep(); }); break;
@@ -2404,8 +2402,8 @@ R.efeedback=()=>wrapApp(`${topbar("Feedback ถึงนักศึกษา",f
 R.eprofile=()=>wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">โปรไฟล์ร้าน</h1><div class="pad" style="display:grid;gap:16px;margin-top:-48px;position:relative;z-index:3;padding-bottom:16px">
   <div class="sum" style="box-shadow:var(--sh1)"><div class="sum-h"><b>ข้อมูลร้าน</b><button type="button" class="linkb" data-a="go" data-to="eob">${ic("edit")}แก้ไข</button></div>
    <div class="r"><span>ที่อยู่</span><b>${esc(SHOPS.lc.addr)}</b></div><div class="r"><span>เบอร์</span><b>${SHOPS.lc.tel}</b></div><div class="r"><span>ประเภทธุรกิจ</span><b>${esc(SHOPS.lc.type)}</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>0505565•••347</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div></div>
-  ${S.emp.pending?`<div class="win" style="background:#FAD0C2;color:#712319">${ic("clock")}<div><b>รอวิทยาลัยฯ ตรวจสอบร้าน</b><small>ปกติใช้ 1–2 วันทำการ · ระหว่างนี้ประกาศงานยังไม่แสดงให้นักศึกษาเห็น</small></div></div>`:`<div class="win">${ic("shield")}<div><b>ตรวจสอบโดยวิทยาลัยฯ แล้ว</b><small>เมื่อ 20 ก.ย. 2569 · นักศึกษาเห็นป้าย «ตรวจสอบแล้ว» บนประกาศของร้าน</small></div></div>`}
-  <div class="kv"><div><b>${SHOPS.lc.hired}</b><span>จ้างนักศึกษาแล้ว</span></div><div><b>${S.emp.pending?0:2}</b><span>ประกาศที่เปิด</span></div><div><b class="tk-v">${tok(18)}${fmt(12000+S.emp.donated)}</b><span>Token สะสม</span></div></div>
+  <div class="win">${ic("shield")}<div><b>ตรวจสอบโดยวิทยาลัยฯ แล้ว</b><small>เมื่อ 20 ก.ย. 2569 · นักศึกษาเห็นป้าย «ตรวจสอบแล้ว» บนประกาศของร้าน</small></div></div>
+  <div class="kv"><div><b>${SHOPS.lc.hired}</b><span>จ้างนักศึกษาแล้ว</span></div><div><b>2</b><span>ประกาศที่เปิด</span></div><div><b class="tk-v">${tok(18)}${fmt(12000+S.emp.donated)}</b><span>Token สะสม</span></div></div>
   <div class="lo-wrap"><button type="button" class="lo-btn" data-a="logout"><span class="lo-ic">${ic("logout")}</span><span class="lo-t"><b>ออกจากระบบ</b><small>บัญชีร้าน · เข้าสู่ระบบอยู่</small></span>${ic("chev-r")}</button><p class="lo-ver">SpringBoard v0.2 · วิทยาลัยการศึกษาตลอดชีวิต มช.</p></div></div>`);
 function notifSheet(){ const it=(cls,bg,fg,i,t,sm,why,attrs)=>`<button type="button" class="nitem ${cls}" data-a="ngo" ${attrs}><span class="ni" style="background:${bg};color:${fg}">${ic(i)}</span><span><b>${t}</b><small>${sm}</small>${why?`<em>${why}</em>`:""}</span></button>`;
   sheet(`<div class="sh-h"><div><h2 id="shh">การแจ้งเตือน</h2><p>ใหม่ 3 รายการ</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
