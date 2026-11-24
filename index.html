@@ -412,6 +412,27 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .chk-line input{width:16px;height:16px;accent-color:var(--act)}
 .stars.sm button .ic{width:32px;height:32px}
 .docs{display:grid;gap:8px}
+.updocs{display:grid;gap:8px}
+.updoc{display:flex;gap:12px;align-items:center;width:100%;min-height:64px;padding:12px;border:1.5px dashed #E6D9D3;border-radius:16px;background:#fff;text-align:left;font:inherit;color:inherit;transition:border-color .2s,background .2s,transform .25s var(--spring)}
+button.updoc{cursor:pointer}
+button.updoc:hover{border-color:#F37449;background:#FFF7F3}
+button.updoc:active{transform:scale(.98)}
+.updoc .ui{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#FFF1EB;color:#712319;flex:none}
+.updoc .ut{display:grid;gap:2px;min-width:0;flex:1}
+.updoc .ut b{font-size:0.875rem;font-weight:600;line-height:1.4}
+.updoc .ut small{font-size:0.75rem;color:var(--muted);line-height:1.4}
+.updoc .ut em{font-style:normal;font-weight:400;font-size:0.75rem;color:var(--muted)}
+.updoc .upb{display:inline-flex;gap:4px;align-items:center;font-size:0.8125rem;font-weight:600;color:#712319;flex:none}
+.updoc.on{border-style:solid;border-color:#88C887;background:#F7FBF1}
+.updoc.on .ui{background:#D4E6BD;color:#1A1A1A}
+.updoc.busy{border-style:solid;border-color:#FA9746}
+.updoc.bad{border-color:#712319;border-style:solid;background:#FFF5F1}
+.updoc.pop{animation:upPop .5s var(--spring)}
+.worker.fbsel{box-shadow:0 0 0 2px #F37449,0 8px 24px rgba(243,116,73,.18);animation:fbIn .6s var(--spring)}
+.fbfrom{display:inline-flex;align-self:flex-start;gap:4px;align-items:center;font-size:0.75rem;font-weight:600;color:#712319;background:#FAD0C2;border-radius:999px;padding:2px 10px}
+.fbfrom .ic{width:14px;height:14px}
+@keyframes fbIn{0%{transform:scale(.97)}60%{transform:scale(1.01)}100%{transform:none}}
+@media (prefers-reduced-motion:reduce){.updoc.pop,.worker.fbsel{animation:none}}
 .doc{display:flex;gap:12px;align-items:center;min-height:48px;padding:0 16px;border:1px solid var(--line);border-radius:8px;background:#fff;text-align:left;font-size:0.875rem}
 .doc .ic:first-child{color:var(--act-ink)}
 .doc .ic:last-child{margin-left:auto;color:var(--muted)}
@@ -2022,7 +2043,7 @@ function hoursCal(){ const first=6, days=30, today=10, cells=[];
       :`<span class="hc-d${d===today?" today":""}${d>today?" fut":""}"${d===today?' aria-current="date"':""}><span>${d}</span></span>`); }
   const mo=Object.values(HLOG).reduce((a,x)=>a+x[0],0), ok=Object.values(HLOG).filter(x=>x[1]==="ok").reduce((a,x)=>a+x[0],0);
   return `<section class="hcal" aria-labelledby="hc-h"><div class="hc-top"><p class="hc-l" id="hc-h">${ic("cal")}Credit / Hours</p><div class="hc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><b>พ.ย. 2569</b><button type="button" class="ib" disabled aria-label="เดือนถัดไป">${ic("chev-r")}</button></div></div>
-   <div class="hc-sum"><div><b>42</b><span>/ 60 ชม. ภาคการศึกษานี้</span></div><div class="hc-bar"><i style="width:70%"></i></div><small>เดือนนี้ ${mo} ชม. · อนุมัติแล้ว ${ok} · รออนุมัติ ${mo-ok}</small></div>
+   <div class="hc-sum"><div><b>42</b><span>ชม. ภาคการศึกษานี้ · เป้าหมายหลักสูตร 60 ชม.</span></div><div class="hc-bar"><i style="width:70%"></i></div><small>เดือนนี้ ${mo} ชม. · อนุมัติแล้ว ${ok} · รออนุมัติ ${mo-ok}</small></div>
    <div class="hc-g" role="grid" aria-label="ชั่วโมงทำงานเดือนพฤศจิกายน 2569">${["จ","อ","พ","พฤ","ศ","ส","อา"].map(x=>`<span class="hc-w">${x}</span>`).join("")}${cells.join("")}</div>
    <div class="hc-lg"><span><i class="ok"></i>อนุมัติแล้ว</span><span><i class="wait"></i>รอร้านอนุมัติ</span><span><i class="td"></i>วันนี้</span></div></section>`; }
 const NEED=[["สร้างคอนเทนต์",90,72],["วิเคราะห์ข้อมูล",80,35],["การสื่อสาร",75,82],["สร้างแบรนด์",65,40],["SEO & โฆษณา",60,15]];
@@ -2047,7 +2068,7 @@ R.courses=()=>`${topbar("Skills4life",true)}<div class="pad" style="padding-top:
 R.home=()=>{const newj=[...JOBS].sort((a,b)=>a.post-b.post).slice(0,6), fit=[...JOBS].sort((a,b)=>b.match-a.match).slice(0,6), fac=JOBS.filter(j=>j.fac);
  return wrapApp(`<div class="hhead home-h"><img class="hwm" src="${MARK}" alt=""><div class="hh-top"><span class="av">${ME.ini}</span><div><small>สวัสดี ${ME.nick}</small><b>วันนี้อยากทำงานแบบไหน?</b></div><button type="button" class="ib" data-a="notif" aria-label="การแจ้งเตือน 3 รายการใหม่">${ic("bell")}<span class="dot"></span></button></div>
    <button type="button" class="hsum" data-a="go" data-to="swork" aria-label="ดูงานที่กำลังทำและบันทึกชั่วโมง">
-    <span class="c"><small>ชั่วโมงสะสม</small><b><span data-count="42">42</span><i> / 60</i></b><span class="mini"><i data-w="70"></i></span></span>
+    <span class="c"><small>ชั่วโมงเทอมนี้</small><b><span data-count="42">42</span><i> / 60 ชม.</i></b><span class="mini"><i data-w="70"></i></span><em>60 = เป้าหลักสูตร</em></span>
     <span class="c"><small>Token เดือนนี้</small><b class="tkv">${tok(18,"tki")}<span data-count="4860">4,860</span></b><em class="up">+1,000 สัปดาห์นี้</em></span>
     <span class="c"><small>งานที่ทำอยู่</small><b><i class="live" aria-hidden="true"></i>1 งาน</b><em title="${esc(SHOPS.lc.n)}">${esc(SHOPS.lc.n)}</em></span></button></div>
   <div class="search-float"><button type="button" class="sbox" data-a="viewall" data-v="">${ic("search")}<span>ค้นหางาน ทักษะ หรือร้าน</span></button></div>
@@ -2148,7 +2169,7 @@ R.feedback=()=>{ if(S.fbDone) return wrapApp(`<div class="ok-screen"><span class
 /* employer */
 const SKOPT=["comm","canva","caption","service","team","photo","english","sheets"], DEVOPT=["plan","insight","brand","present","eventops","problem","lead","dash"];
 const BTYPES=[["food","ร้านอาหาร","coffee"],["craft","หัตถกรรม","pen"],["edu","การศึกษา","book"],["event","อีเวนต์","ticket"],["tech","เทคโนโลยี","code"],["other","อื่น ๆ","grid"]];
-R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟต์ สตูดิโอ",type:"craft",pos:"ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย",pay:"3,500",u:"โปรเจกต์",hasTax:true,pin:false,req:new Set(["canva","caption"]),dev:new Set(["plan","insight"])});
+R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟต์ สตูดิโอ",type:"craft",pos:"ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย",pay:"3,500",u:"โปรเจกต์",hasTax:true,pin:false,docs:new Set(["front","id"]),req:new Set(["canva","caption"]),dev:new Set(["plan","insight"])});
  const st=e.step, ttl=["ข้อมูลร้าน","ประกาศงานแรก","ตรวจก่อนส่ง"][st-1], sub=["นักศึกษาจะเห็นชื่อ ประเภท และย่านของร้าน ส่วนเลขผู้เสียภาษีใช้ตรวจสอบเท่านั้น","บอกให้ชัดว่างานต้องใช้อะไร และนักศึกษาจะได้อะไรกลับไป","นี่คือการ์ดที่นักศึกษาจะเห็นในหน้า Home"][st-1];
  const head=`<header class="topbar"><button type="button" class="ib" data-a="eback" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1">สร้างโปรไฟล์ร้าน</h1><span class="sp"></span></header>${obSteps(st)}<div class="ob-h"><small>ขั้นที่ ${st} จาก 3</small><h2 style="font-size:1.5rem;margin-top:2px">${ttl}</h2><p>${sub}</p></div>`;
  const chip=(g,k)=>`<button type="button" class="chip${g==="dev"?" dev":""}" data-a="echip" data-g="${g}" data-v="${k}" aria-pressed="${e[g].has(k)}">${SK[k]}</button>`;
@@ -2165,6 +2186,7 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
     <div class="taxopt" role="group" aria-labelledby="tax-l"><button type="button" class="btype" data-a="etax" data-v="1" aria-pressed="${e.hasTax}">${ic("receipt")}ระบุเลข</button><button type="button" class="btype" data-a="etax" data-v="0" aria-pressed="${!e.hasTax}">${ic("clock")}ไว้ทีหลัง</button></div>
     <div id="tax-in" ${e.hasTax?"":"hidden"} style="margin-top:8px"><label class="sr" for="e-tax">เลขประจำตัวผู้เสียภาษี 13 หลัก (จำเป็น)</label><input class="inp" id="e-tax" inputmode="numeric" maxlength="13" value="0505565012347" aria-required="true" aria-describedby="e-tax-e"><p class="ferr" id="e-tax-e" hidden></p><p class="fhint">${ic("lock")}13 หลัก ใช้ตรวจสอบกิจการ นักศึกษาไม่เห็น</p></div>
     <p class="fhint" id="tax-no" ${e.hasTax?"hidden":""}>${ic("info")}ไม่บังคับ · เพิ่มภายหลังได้จากโปรไฟล์ร้าน</p></div>
+   <div><p class="lbl" id="doc-l">เอกสารยืนยันร้าน</p><div class="updocs" role="group" aria-labelledby="doc-l">${EDOCS.map(d=>`<div id="ud-${d[0]}">${docRow(d,e.docs.has(d[0]))}</div>`).join("")}</div><p class="ferr" id="e-doc-e" hidden></p><p class="fhint">${ic("lock")}ใช้ให้วิทยาลัยฯ ตรวจสอบร้านเท่านั้น นักศึกษาไม่เห็น · JPG, PNG หรือ PDF ไม่เกิน 10 MB</p></div>
    <div class="row2"><div><label class="lbl" for="e-c">ผู้ประสานงาน</label><input class="inp" id="e-c" value="คุณอรุณี"></div><div><label class="lbl" for="e-cp">ตำแหน่ง</label><input class="inp" id="e-cp" value="เจ้าของแบรนด์"></div></div>`;
   foot=`<button type="button" class="btn btn-g" data-a="estep" data-v="2">ต่อไป ${ic("chev-r")}</button>`;
  } else if(st===2){
@@ -2180,7 +2202,7 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
   const bt=BTYPES.find(b=>b[0]===e.type)||BTYPES[5];
   body=`<div class="pvwrap">${card(pj)}</div>
    <div class="sum"><div class="sum-h"><b>ข้อมูลร้าน</b><button type="button" class="linkb" data-a="estep" data-v="1">${ic("edit")}แก้ไข</button></div>
-    <div class="r"><span>ชื่อร้าน</span><b>${esc(e.name)}</b></div><div class="r"><span>ประเภท</span><b>${bt[1]}</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>${e.hasTax?"0505565•••347":"ไม่ระบุ"}</b></div><div class="r"><span>โลเคชั่น</span><b>${e.pin?"ปักหมุดแล้ว · ช้างคลาน":"ยังไม่ปักหมุด"}</b></div></div>
+    <div class="r"><span>ชื่อร้าน</span><b>${esc(e.name)}</b></div><div class="r"><span>ประเภท</span><b>${bt[1]}</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>${e.hasTax?"0505565•••347":"ไม่ระบุ"}</b></div><div class="r"><span>โลเคชั่น</span><b>${e.pin?"ปักหมุดแล้ว · ช้างคลาน":"ยังไม่ปักหมุด"}</b></div><div class="r"><span>เอกสาร</span><b>แนบแล้ว ${e.docs.size}/${EDOCS.length}${e.docs.has("reg")?"":" · ไม่มีทะเบียนพาณิชย์"}</b></div></div>
    <div class="sum"><div class="sum-h"><b>ประกาศงาน</b><button type="button" class="linkb" data-a="estep" data-v="2">${ic("edit")}แก้ไข</button></div>
     <div class="r"><span>ตำแหน่ง</span><b>${esc(e.pos)}</b></div><div class="r"><span>ค่าตอบแทน</span><b class="price" style="font-size:1rem">${tok(16,"tki")}${fmt(pj.pay)}<small> /${e.u}</small></b></div>
     <div class="r col"><span>Skill ที่ใช้</span><div class="chips">${[...e.req].map(k=>`<span class="sk">${SK[k]}</span>`).join("")||"—"}</div></div>
@@ -2189,6 +2211,10 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
   foot=`<button type="button" class="btn btn-o" data-a="estep" data-v="2">ย้อนกลับ</button><button type="button" class="btn btn-g" data-a="eobdone">สร้างโปรไฟล์ ${ic("check")}</button>`;
  }
  return `${head}<div class="form">${body}</div><div class="foot-act">${foot}</div>`;};
+const EDOCS=[["reg","หนังสือรับรอง / ทะเบียนพาณิชย์","ถ้ามี ช่วยให้ตรวจผ่านเร็วขึ้น",false,"file","ทะเบียนพาณิชย์.pdf"],["front","ภาพหน้าร้าน 3 ภาพ","เห็นป้ายชื่อร้านและด้านในร้าน",true,"camera","หน้าร้าน 3 ภาพ"],["id","สำเนาบัตรผู้ประสานงาน","เขียนกำกับ «ใช้กับ SpringBoard เท่านั้น»",true,"user","บัตร_ผู้ประสานงาน.jpg"]];
+function docRow(d,up){ const [k,l,h,req,i,f]=d;
+  return up?`<div class="updoc on"><span class="ui">${ic("check")}</span><span class="ut"><b>${l}</b><small>${f} · แนบแล้ว</small></span><button type="button" class="linkb" data-a="edocx" data-v="${k}" aria-label="ลบ ${l}">ลบ</button></div>`
+   :`<button type="button" class="updoc" data-a="edoc" data-v="${k}"><span class="ui">${ic(i)}</span><span class="ut"><b>${l}${req?`<span class="req" aria-hidden="true">*</span><span class="sr">(จำเป็น)</span>`:""}</b><small>${req?"":"ไม่บังคับ · "}${h}</small></span><span class="upb">${ic("plus")}แนบไฟล์</span></button>`; }
 function locCard(pin){ return pin?`<div class="lmap on"><span class="lpin">${ic("pin")}</span></div><div class="lmeta"><span>${ic("check")}<b>ปักหมุดแล้ว</b> · ช้างคลาน อ.เมือง เชียงใหม่</span><button type="button" class="linkb" data-a="eunpin">เปลี่ยน</button></div>`
   :`<div class="lmap"><span class="lpin off">${ic("pin")}</span><span>ยังไม่ได้ปักหมุดร้าน</span></div><div class="lacts"><button type="button" class="btn btn-o btn-sm" data-a="epin">${ic("target")}ใช้ตำแหน่งปัจจุบัน</button><button type="button" class="btn btn-o btn-sm" data-a="epin">${ic("pin")}ปักหมุดบนแผนที่</button></div>`; }
 const ehead=()=>`<div class="hhead" style="padding-bottom:72px"><div class="hh-top emp-top"><span class="av">LC</span><div style="min-width:0"><p class="emp-meta"><span>${esc(SHOPS.lc.type)}</span><span class="vpill">${ic("shield")}ตรวจสอบแล้ว</span></p><b>${esc(SHOPS.lc.n)}</b></div><button type="button" class="ib" data-a="toast" data-m="มีผู้สมัครใหม่ 4 คน" aria-label="การแจ้งเตือน">${ic("bell")}<span class="dot"></span></button></div></div>`;
@@ -2233,7 +2259,7 @@ R.ework=()=>wrapApp(`${topbar("Work",false)}${shopWeek()}<p class="pad" style="c
  <div class="pad" style="display:grid;gap:12px">${WORKERS.map((w,i)=>{const ap=S.emp.approved.has(i);return `<div class="worker"><div class="t"><span class="av" style="background:${AVC[w.c]}">${w.ini}</span><div><b>${w.n}</b><small>ตำแหน่ง: ${w.pos}</small><small>เบอร์ 08x-xxx-${4410+i} · Mentor: เฟสถัดไป</small></div></div>
   <div><p class="hrs"><span>ระยะเวลาที่ทำ</span><span><b>${w.h+(ap?w.pend:0)}</b> / ${w.max} ชม. · 4 สัปดาห์</span></p><div class="hbar"><i data-w="${Math.round((w.h+(ap?w.pend:0))/w.max*100)}"></i></div></div>
   ${w.pend&&!ap?`<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--warn-soft);border-radius:16px;padding:12px 12px"><span style="font-size:0.875rem;color:var(--warn-ink)">${ic("clock")} ${w.pend} ชม. รออนุมัติ (8–9 พ.ย.)</span><button type="button" class="btn btn-p btn-sm" data-a="approve" data-v="${i}">อนุมัติ</button></div>`:`<span class="tag t-ok" style="align-self:flex-start">${ic("check")}ชั่วโมงอนุมัติครบแล้ว</span>`}
-  <div style="display:flex;gap:8px"><button type="button" class="btn btn-o btn-sm" data-a="go" data-to="efeedback">${ic("smile")}ให้ Feedback</button></div></div>`;}).join("")}</div>`);
+  <div style="display:flex;gap:8px"><button type="button" class="btn btn-o btn-sm" data-a="fbgo" data-v="${i}" aria-label="ให้ Feedback ${w.n}">${ic("smile")}ให้ Feedback</button></div></div>`;}).join("")}</div>`);
 const SHIFTS=[{d:0,w:0,t:"13:00–17:00",h:4},{d:1,w:1,t:"10:00–14:00",h:4},{d:1,w:0,t:"15:00–17:00",h:2},{d:2,w:0,t:"13:00–17:00",h:4},{d:3,w:1,t:"10:00–14:00",h:4},{d:5,w:1,t:"09:00–15:00",h:6},{d:5,w:0,t:"10:00–12:00",h:2}];
 const WCOL=["#F37449","#AF5577"];
 function shopWeek(){ const sel=S.wkSel==null?1:S.wkSel, today=1, days=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."];
@@ -2469,7 +2495,8 @@ vp.addEventListener("click",e=>{
   if(el.getAttribute("aria-disabled")==="true"){ if(el.dataset.a==="obdone") toast("ทำ Personality Test ก่อนนะ",false); else if(el.dataset.a==="vocsend") toast("เลือกเรื่องที่ต้องการแจ้งก่อน",false); else if(el.dataset.a==="fbsend") toast("ให้คะแนนดาวก่อน",false); return; }
   const a=el.dataset.a, v=el.dataset.v;
   switch(a){
-    case "go": go(el.dataset.to); break;
+    case "go": if(el.dataset.to==="efeedback") S.fbFocus=null; go(el.dataset.to); break;
+    case "fbgo": { S.fbFocus=+v; go("efeedback"); setTimeout(()=>{ const c=$("#fbw-"+v,scr); if(!c) return; c.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); const t=$("#ef-"+v,scr); if(t) t.focus({preventScroll:true}); },420); break; }
     case "back": back(); break;
     case "toast": toast(el.dataset.m,false); break;
     case "close": closeSheet(); if(S.scr==="ob3"&&!S.ob.test) rerenderKeep(); break;
@@ -2535,7 +2562,13 @@ vp.addEventListener("click",e=>{
     case "eback": if(S.eobf&&S.eobf.step>1){ S.eobf.step--; dir="back"; render(); } else back(); break;
     case "estep": { if(S.eobf.step===1&&+v===2){ const n=$("#e-n",scr), t=$("#e-tax",scr); let bad=null; const d=t.value.replace(/\D/g,"");
         bad=setErr(n,$("#e-n-e",scr),n.value.trim()?"":"กรอกชื่อร้านตามที่จดทะเบียน")||bad; if(S.eobf.hasTax) bad=setErr(t,$("#e-tax-e",scr),d.length===13?"":`กรอกให้ครบ 13 หลัก ตอนนี้มี ${d.length} หลัก`)||bad;
+        const miss=EDOCS.filter(d=>d[3]&&!S.eobf.docs.has(d[0])), de=$("#e-doc-e",scr);
+        $$(".updoc.bad",scr).forEach(x=>x.classList.remove("bad"));
+        if(miss.length){ de.hidden=false; de.textContent=`แนบ «${miss.map(d=>d[1]).join("» และ «")}» ก่อนไปต่อ`; miss.forEach(d=>{ const r=$("#ud-"+d[0]+" .updoc",scr); if(r) r.classList.add("bad"); }); bad=bad||$("#ud-"+miss[0][0]+" .updoc",scr); } else de.hidden=true;
         if(bad){ bad.focus(); break; } } S.eobf.step=+v; render(); break; }
+    case "edoc": { const box=$("#ud-"+v,scr); if(!box) break; box.innerHTML=`<div class="updoc busy"><span class="ui"><span class="spin"></span></span><span class="ut"><b>กำลังอัปโหลด…</b><small>${EDOCS.find(d=>d[0]===v)[1]}</small></span></div>`;
+      setTimeout(()=>{ S.eobf.docs.add(v); const b=$("#ud-"+v,scr); if(!b) return; b.innerHTML=docRow(EDOCS.find(d=>d[0]===v),true); b.firstElementChild.classList.add("pop"); const de=$("#e-doc-e",scr); if(de&&EDOCS.every(d=>!d[3]||S.eobf.docs.has(d[0]))) de.hidden=true; toast("แนบไฟล์แล้ว"); },800); break; }
+    case "edocx": { S.eobf.docs.delete(v); const b=$("#ud-"+v,scr); if(b){ b.innerHTML=docRow(EDOCS.find(d=>d[0]===v),false); b.firstElementChild.focus(); } break; }
     case "etax": { const on=v==="1"; S.eobf.hasTax=on; $$('[data-a="etax"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); $("#tax-in",scr).hidden=!on; $("#tax-no",scr).hidden=on; $("#tax-req",scr).hidden=!on; if(on) $("#e-tax",scr).focus(); break; }
     case "epin": { const c=$("#locc",scr); c.innerHTML=`<div class="lmap busy"><span class="spin"></span><span>กำลังหาตำแหน่ง…</span></div>`; setTimeout(()=>{ S.eobf.pin=true; if($("#locc",scr)) $("#locc",scr).innerHTML=locCard(true); toast("ปักหมุดร้านแล้ว"); },700); break; }
     case "eunpin": S.eobf.pin=false; $("#locc",scr).innerHTML=locCard(false); break;
@@ -2642,8 +2675,8 @@ R.swork=()=>{const w=S.work||(S.work={h:4,saved:false,log:[{d:"9 พ.ย.",h:2,s
   </section>
   <section aria-labelledby="hh"><div class="sec-h" style="padding:0"><h2 id="hh">${ic("clock")}ประวัติชั่วโมง</h2></div><div class="hist">${w.log.map(l=>`<div class="hrow"><span>${l.d}</span><span class="num">${l.h} ชม.</span>${l.st==="ok"?'<span class="tag t-ok">อนุมัติแล้ว</span>':'<span class="tag t-warn">รออนุมัติ</span>'}</div>`).join("")}</div></section>
  </div>`);};
-R.efeedback=()=>wrapApp(`${topbar("Feedback ถึง Mentor",false)}<div class="pad" style="display:grid;gap:12px;padding-bottom:16px"><div class="remind">${ic("bell")}<span>ทุกสิ้นเดือน · ประเมินนักศึกษาที่ทำงานกับร้าน ส่งถึง Mentor ผู้ดูแล</span></div><p class="priv">${ic("lock")}นักศึกษาไม่เห็นความเห็นนี้โดยตรง · Mentor จะสรุปและคุยกับนักศึกษาเอง</p>${WORKERS.map((w,i)=>{const done=S.efb[i], sv=S.efs[i]||0;
-  return `<div class="worker"><div class="t"><span class="av" style="background:${AVC[w.c]}">${w.ini}</span><div><b>${w.n}</b><small>${w.pos}</small></div>${done?`<span class="tag t-ok" style="margin-left:auto">${ic("check")}ส่งถึง Mentor แล้ว</span>`:""}</div>
+R.efeedback=()=>wrapApp(`${topbar("Feedback ถึง Mentor",false)}<div class="pad" style="display:grid;gap:12px;padding-bottom:16px"><div class="remind">${ic("bell")}<span>ทุกสิ้นเดือน · ประเมินนักศึกษาที่ทำงานกับร้าน ส่งถึง Mentor ผู้ดูแล</span></div><p class="priv">${ic("lock")}นักศึกษาไม่เห็นความเห็นนี้โดยตรง · Mentor จะสรุปและคุยกับนักศึกษาเอง</p>${WORKERS.map((w,i)=>[w,i]).sort((a,b)=>(b[1]===S.fbFocus)-(a[1]===S.fbFocus)).map(([w,i])=>{const done=S.efb[i], sv=S.efs[i]||0, sel=S.fbFocus===i;
+  return `<div class="worker${sel?" fbsel":""}" id="fbw-${i}">${sel?`<span class="fbfrom">${ic("check")}เลือกจากหน้า Work</span>`:""}<div class="t"><span class="av" style="background:${AVC[w.c]}">${w.ini}</span><div><b>${w.n}</b><small>${w.pos}</small></div>${done?`<span class="tag t-ok" style="margin-left:auto">${ic("check")}ส่งถึง Mentor แล้ว</span>`:""}</div>
   ${done?"":`<div class="stars sm" role="radiogroup" aria-label="คะแนนของ ${w.n}">${[1,2,3,4,5].map(k=>`<button type="button" role="radio" aria-checked="${sv===k}" aria-label="${k} ดาว" data-a="estar" data-w="${i}" data-v="${k}" class="${k<=sv?"on":""}">${ic("star")}</button>`).join("")}</div>
   <div><label class="lbl" for="ef-${i}">ความเห็นถึง Mentor</label><textarea class="inp" id="ef-${i}" placeholder="จุดที่ทำได้ดี และสิ่งที่อยากให้พัฒนา"></textarea></div>
   <button type="button" class="btn btn-p btn-blk" data-a="efsend" data-v="${i}">${ic("send")}ส่งให้ Mentor</button>`}</div>`;}).join("")}</div>`);
@@ -2689,7 +2722,7 @@ function taxCheckCard(d){ const ok=taxValid(d);
 function verifySheet(i,n,t){
   sheet(`<div class="sh-h"><div><h2 id="shh">ตรวจสอบ ${esc(n)}</h2><p>${esc(t)} · ลงทะเบียนเมื่อ 9 พ.ย. 2569</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
   <div class="sh-b">${taxCheckCard("0505565012347")}<div class="share"><div><span>ผู้ประสานงาน</span><b style="font-weight:500">คุณวรรณา · เจ้าของกิจการ</b></div><div><span>เบอร์</span><b style="font-weight:500">084-xxx-031</b></div></div>
-   <div><p class="lbl">เอกสาร</p><div class="docs">${["หนังสือรับรอง / ทะเบียนพาณิชย์","ภาพหน้าร้าน 3 ภาพ","สำเนาบัตรผู้ประสานงาน"].map(d=>`<button type="button" class="doc" data-a="toast" data-m="เปิด ${d} (PDF)">${ic("file")}<span>${d}</span>${ic("chev-r")}</button>`).join("")}</div></div>
+   <div><p class="lbl">เอกสาร <span style="font-weight:400;color:var(--muted)">· ร้านแนบตอนสมัคร</span></p><div class="docs">${["หนังสือรับรอง / ทะเบียนพาณิชย์","ภาพหน้าร้าน 3 ภาพ","สำเนาบัตรผู้ประสานงาน"].map(d=>`<button type="button" class="doc" data-a="toast" data-m="เปิด ${d} (PDF)">${ic("file")}<span>${d}</span>${ic("chev-r")}</button>`).join("")}</div></div>
    <div><label class="lbl" for="vr">หมายเหตุถึงร้าน <span style="color:var(--muted);font-weight:400">(จำเป็นถ้าขอแก้ไขหรือปฏิเสธ)</span></label><textarea class="inp" id="vr" aria-describedby="vr-e"></textarea><p class="ferr" id="vr-e" hidden></p></div></div>
   <div class="sh-f"><button type="button" class="btn btn-g btn-blk" data-a="verify" data-v="${i}">อนุมัติร้านนี้</button><div class="row2"><button type="button" class="btn btn-o" data-a="vfix">ขอแก้ไข</button><button type="button" class="btn btn-o btn-danger" data-a="vrej">ปฏิเสธ</button></div></div>`);}
 function vocSheet(n,k,s){
