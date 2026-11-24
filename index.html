@@ -899,6 +899,27 @@ tr.flash td{animation:flash 1.2s ease}
 .lacts .btn{padding:0 8px}
 .maplink{display:inline-flex;gap:4px;align-items:center;min-height:0}
 @media (prefers-reduced-motion:reduce){.lmap.on .lpin{animation:none}}
+.gst-bar{display:flex;gap:8px;align-items:center;margin:0 16px 8px;padding:8px 12px;border-radius:12px;background:#FAD0C2;color:#712319;font-size:0.875rem;font-weight:500}
+.gst-bar .ic{width:16px;height:16px;flex:none}
+.gst-hero h2{font-size:1.5rem;line-height:1.3}
+.gst-hero p{color:var(--ink2);margin-top:4px}
+.gst-h{font-size:1.125rem;margin-bottom:12px}
+.gst-steps{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.gst-steps li{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+.gst-n{width:24px;height:24px;border-radius:50%;background:#712319;color:#fff;font-size:0.75rem;font-weight:600;display:grid;place-items:center;flex:none;font-family:"Poppins"}
+.gst-i{width:40px;height:40px;border-radius:12px;background:#FFF1EB;color:#712319;display:grid;place-items:center;flex:none}
+.gst-i .ic{width:20px;height:20px}
+.gst-steps b{display:block;font-weight:600}
+.gst-steps small{display:block;font-size:0.875rem;color:var(--muted)}
+.gst-pool{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gst-p{display:grid;gap:4px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}
+.gst-p .tile{width:40px;height:40px;border-radius:12px;display:grid;place-items:center}
+.gst-p .tile .ic{width:20px;height:20px}
+.gst-p b{font-family:"Poppins","Kanit",sans-serif;font-size:1.125rem}
+.gst-p small{font-size:0.875rem;color:var(--muted)}
+.gst-a .av{filter:saturate(.6)}
+.gst-foot{flex-direction:column;align-items:stretch;gap:4px}
+.gst-foot .linkb{align-self:center}
 .sh-f{padding:12px 24px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
 .share{border:1px solid var(--line);border-radius:16px;padding:12px 16px;font-size:0.875rem;display:grid;gap:8px}
 .share div{display:flex;justify-content:space-between;gap:12px}
@@ -1793,7 +1814,7 @@ const SCREENS={
  home:{g:"stu",n:"Home",role:"student",nav:"home"}, search:{g:"stu",n:"ค้นหา / หมวดงาน",role:"student",nav:"home"}, job:{g:"stu",n:"รายละเอียดร้าน & งาน",role:"student"},
  wish:{g:"stu",n:"Wishlist",role:"student",nav:"wish"}, profile:{g:"stu",n:"Profile",role:"student",nav:"profile"}, sapps:{g:"stu",n:"ใบสมัครของฉัน (ใหม่)",role:"student",nav:"profile"}, swork:{g:"stu",n:"งานที่กำลังทำ + ชั่วโมง (ใหม่)",role:"student",nav:"profile"},
  voc:{g:"stu",n:"VOC · ช่วยเหลือ",role:"any",nav:"voc"}, feedback:{g:"stu",n:"Feedback รายเดือน",role:"student",nav:"feedback"},
- eob:{g:"emp",n:"สมัคร + สร้างประกาศ",role:"employer"}, ehome:{g:"emp",n:"Home ผู้ประกอบการ",role:"employer",nav:"home"}, eapps:{g:"emp",n:"ผู้สมัคร",role:"employer",nav:"home"},
+ eguest:{g:"emp",n:"ดูตัวอย่างแบบผู้เยี่ยมชม (ใหม่)",role:"guest"}, eob:{g:"emp",n:"สมัคร + สร้างประกาศ",role:"employer"}, ehome:{g:"emp",n:"Home ผู้ประกอบการ",role:"employer",nav:"home"}, eapps:{g:"emp",n:"ผู้สมัคร",role:"employer",nav:"home"},
  estu:{g:"emp",n:"Profile นศ. (มุมผู้ประกอบการ)",role:"employer",nav:"home"}, ework:{g:"emp",n:"Work · นศ. ที่ทำงาน",role:"employer",nav:"work"}, efeedback:{g:"emp",n:"Feedback ถึง Mentor",role:"employer",nav:"feedback"}, eprofile:{g:"emp",n:"โปรไฟล์ร้าน (ใหม่)",role:"employer",nav:"profile"},
  adash:{g:"adm",n:"Dashboard",role:"admin"}, ausers:{g:"adm",n:"User & Account",role:"admin"}, afin:{g:"adm",n:"Financial & Tax Receipt",role:"admin"}, ajobs:{g:"adm",n:"Job Post & Matching",role:"admin"}, ajob:{g:"adm",n:"รายละเอียดประกาศ (ใหม่)",role:"admin"}, avoc:{g:"adm",n:"VOC & Dispute",role:"admin"},
  mentor:{g:"men",n:"Mentor (เฟสถัดไป)",role:"mentor",off:true}};
@@ -1842,6 +1863,17 @@ function wrapApp(body){const n=bnav();return n.top+`<main class="app-main">${bod
 
 /* ── screens ── */
 const R={};
+R.eguest=()=>{ const steps=[["edit","ลงประกาศงาน","บอกตำแหน่ง ค่าตอบแทน และทักษะที่ต้องการ"],["users","เลือกนักศึกษา","ระบบเรียงผู้สมัครตามทักษะที่ตรงกับงาน"],["clock","อนุมัติชั่วโมงงาน","นักศึกษาบันทึกชั่วโมง ร้านกดอนุมัติ"],["wallet","จ่ายด้วย Token","1 Token = ฿1 วิทยาลัยฯ ดูแลการจ่ายให้"]];
+ const pool=[["mkt",48],["cafe",62],["design",35],["photo",21]];
+ const demo=[{ini:"ป",c:0,f:"บริหารธุรกิจ ปี 3",m:92,sk:["canva","caption"]},{ini:"ธ",c:1,f:"การสื่อสารมวลชน ปี 2",m:84,sk:["caption","photo"]},{ini:"ณ",c:2,f:"วิจิตรศิลป์ ปี 4",m:80,sk:["canva","photo"]}];
+ return `${topbar("ดูตัวอย่างสำหรับร้าน",true)}<div class="gst-bar" role="note">${ic("eye")}<span>คุณกำลังดูแบบผู้เยี่ยมชม · ข้อมูลในหน้านี้เป็นตัวอย่าง</span></div>
+ <div class="pad gst" style="display:grid;gap:24px;padding-bottom:24px">
+  <section class="gst-hero"><h2>หานักศึกษาพาร์ทไทม์ที่ทักษะตรงงาน</h2><p>นักศึกษาวิทยาลัยการศึกษาตลอดชีวิต มช. ที่ผ่านการยืนยันตัวตนแล้ว</p></section>
+  <section aria-labelledby="gs-h1"><h3 class="gst-h" id="gs-h1">ใช้งานอย่างไร</h3><ol class="gst-steps">${steps.map(([i,t,d],k)=>`<li><span class="gst-n">${k+1}</span><span class="gst-i">${ic(i)}</span><div><b>${t}</b><small>${d}</small></div></li>`).join("")}</ol></section>
+  <section aria-labelledby="gs-h2"><h3 class="gst-h" id="gs-h2">นักศึกษาที่พร้อมทำงานตอนนี้</h3><div class="gst-pool">${pool.map(([k,n])=>{const c=CAT(k);return `<div class="gst-p"><span class="tile" style="background:${c.c1};color:${c.fg}">${ic(c.ic)}</span><b>${n} คน</b><small>${c.n}</small></div>`;}).join("")}</div></section>
+  <section aria-labelledby="gs-h3"><h3 class="gst-h" id="gs-h3">ตัวอย่างผู้สมัครที่ร้านจะเห็น</h3><div style="display:grid;gap:8px">${demo.map(a=>`<div class="app-card gst-a"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div style="min-width:0"><b>นักศึกษา ${a.f.split(" ")[0]}</b><small>${a.f}</small><small>${a.sk.map(k=>SK[k]).join(" · ")}</small></div><div class="r"><span class="match"><span class="ring" style="--m:${a.m}"></span>${a.m}%</span><button type="button" class="btn btn-o btn-sm" data-a="glock">${ic("lock")}ดูโปรไฟล์</button></div></div>`).join("")}</div><p class="fhint">${ic("lock")}ชื่อจริง โปรไฟล์ และช่องทางติดต่อ ดูได้หลังสมัครร้าน</p></section>
+ </div>
+ <div class="foot-act gst-foot"><button type="button" class="btn btn-g" data-a="go" data-to="eob">สมัครร้านและลงประกาศงาน ${ic("chev-r")}</button><button type="button" class="linkb" data-a="go" data-to="login">มีบัญชีร้านแล้ว? เข้าสู่ระบบ</button></div>`; };
 R.welcome=()=>`<div class="welcome">
   <div class="w-deco" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="d1"></i><i class="d2"></i><i class="d3"></i>
    <svg class="arc" viewBox="0 0 300 200" fill="none"><path d="M10 190 C 60 60, 190 20, 290 70" stroke="#F37449" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 10"/></svg></div>
@@ -2303,10 +2335,10 @@ function confetti(){ if(RM) return; const c=document.createElement("canvas"); c.
   const cols=["#F37449","#FA9746","#D16F8A","#88C887","#FAD0C2","#712319"]; const P=Array.from({length:110},()=>({x:r.width/2,y:r.height*.55,vx:(Math.random()-.5)*11,vy:-Math.random()*13-5,s:Math.random()*7+4,c:cols[Math.random()*cols.length|0],a:Math.random()*6,va:(Math.random()-.5)*.4}));
   const t0=performance.now(); const f=t=>{x.clearRect(0,0,r.width,r.height); P.forEach(p=>{p.vy+=.38;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore();}); if(t-t0<2200) requestAnimationFrame(f); else c.remove();}; requestAnimationFrame(f);}
 function sheet(html){S.sheet=true; ov.innerHTML=`<div class="scrim" data-a="close"></div><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="shh"><div class="grip" aria-hidden="true"></div>${html}</div>`; const f=$("#shh",ov); if(f){f.setAttribute("tabindex","-1"); f.focus({preventScroll:true});}}
-function startSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">จะเริ่มจากอะไรก่อน</h2><p>เลือก 1 ทาง · เปลี่ยนใจทีหลังได้</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
+function startSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">จะเริ่มจากอะไรก่อน</h2><p>เลือกทางไหนก็เปลี่ยนใจทีหลังได้</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
   <div class="sh-b"><div class="stc">
-   <button type="button" class="stc-o main" data-a="estart" data-v="create"><span class="stc-ic">${ic("brief")}</span><span class="stc-t"><b>ประกาศหานักศึกษาเลย</b><small>กรอกข้อมูลร้านและงานที่ต้องการ ใช้เวลาประมาณ 3 นาที · ประกาศจะขึ้นหลังวิทยาลัยฯ ตรวจ 1–2 วันทำการ</small></span>${ic("chev-r")}</button>
-   <button type="button" class="stc-o" data-a="estart" data-v="skip"><span class="stc-ic">${ic("eye")}</span><span class="stc-t"><b>ดูระบบก่อน ยังไม่ประกาศ</b><small>เข้าไปดูหน้าแรกของร้านได้เลย · กลับมาประกาศงานได้ทุกเมื่อที่ปุ่ม «+ เพิ่ม»</small></span>${ic("chev-r")}</button>
+   <button type="button" class="stc-o main" data-a="estart" data-v="create"><span class="stc-ic">${ic("brief")}</span><span class="stc-t"><b>สมัครร้านและลงประกาศงาน</b><small>ใช้เวลาประมาณ 3 นาที · นักศึกษาจะเห็นประกาศหลังวิทยาลัยฯ ตรวจสอบร้าน (1–2 วันทำการ)</small></span>${ic("chev-r")}</button>
+   <button type="button" class="stc-o" data-a="estart" data-v="skip"><span class="stc-ic">${ic("eye")}</span><span class="stc-t"><b>ดูตัวอย่างก่อน ยังไม่สมัคร</b><small>ดูว่าร้านจะใช้อะไรได้บ้าง โดยไม่ต้องกรอกข้อมูล</small></span>${ic("chev-r")}</button>
   </div></div>`); }
 function closeSheet(){ov.innerHTML=""; S.sheet=null;}
 
@@ -2354,7 +2386,8 @@ vp.addEventListener("click",e=>{
     case "pw": { S.pw=!S.pw; const i=$("#lg-p",scr); i.type=S.pw?"text":"password"; el.innerHTML=ic(S.pw?"eyeoff":"eye"); el.setAttribute("aria-label",S.pw?"ซ่อนรหัสผ่าน":"แสดงรหัสผ่าน"); break; }
     case "rolesel": S.roleSel=v; $$(".role",scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
     case "rolego": if(S.roleSel==="employer") startSheet(); else go("ob1"); break;
-    case "estart": closeSheet(); if(v==="skip"){ S.role="employer"; S.hist=[]; go("ehome"); toast("สร้างประกาศได้ทุกเมื่อจากปุ่ม «+ เพิ่ม»"); } else go("eob"); break;
+    case "estart": closeSheet(); go(v==="skip"?"eguest":"eob"); break;
+    case "glock": toast("สมัครร้านก่อน เพื่อใช้งานส่วนนี้",false); break;
     case "obtog": { const g=el.dataset.g; S.ob[g].has(v)?S.ob[g].delete(v):S.ob[g].add(v); el.setAttribute("aria-pressed",S.ob[g].has(v)); break; }
     case "dream": S.ob.dream=v; $("#f-dream",scr).value=v; break;
     case "ptest": ptestSheet(S.ptStep||0); break;
