@@ -2095,6 +2095,24 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .ct-row small{font-size:0.8125rem;color:var(--ink2)}
 .ct-row>.ic:last-child{color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.hh-live .dot{animation:none}.sw i{transition:none}}
+/* v117 time log inside feedback */
+.fb-time{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;display:grid;gap:10px;box-shadow:var(--sh1)}
+.fbt-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.fbt-top p{display:flex;gap:6px;align-items:center;font-weight:600;font-size:0.9375rem}
+.fbt-top p .ic{width:18px;height:18px;color:#F37449}
+.fbt-top span{font-size:0.75rem;color:var(--muted)}
+.fbt-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:stretch}
+.fbt-row .wt-shift{padding:8px 12px;flex-direction:column;align-items:flex-start;justify-content:center;gap:0}
+.fbt-row .wt-shift b{font-size:1.0625rem;white-space:nowrap}
+.fbt-row .wt-shift span{font-size:0.75rem}
+.fbt-ok{min-height:48px;gap:6px;white-space:nowrap}
+.fb-sum{background:#FFF7F3;border:1px solid #F6DCD0;border-radius:18px;padding:12px 14px;display:grid;gap:8px}
+.fb-sum p{display:flex;gap:6px;align-items:center;font-size:0.8125rem;font-weight:600;color:#712319}
+.fb-sum p .ic{width:16px;height:16px}
+.fbs-n{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fbs-n>div{background:#fff;border-radius:12px;padding:8px;text-align:center;display:grid;gap:2px}
+.fbs-n b{font-family:"Poppins";font-size:1.25rem;font-weight:600}
+.fbs-n small{font-size:0.6875rem;color:var(--muted)}
 </style>
 
 <div class="studio">
@@ -2520,7 +2538,7 @@ R.profile=()=>wrapApp(`<div class="pf-head"><div style="display:flex;justify-con
   <div class="stat" style="background:transparent;flex-direction:row;align-items:center;justify-content:space-between"><div><small style="color:var(--muted)">${ic("wallet")}ค่าตอบแทนเดือนนี้</small><b class="tkv" style="font-family:Poppins;font-size:1.5rem">${tok(24,"tki")}<span data-count="4860">0</span></b></div><button type="button" class="btn btn-g btn-sm" data-a="payout">ถอน Token</button></div>
   <button type="button" class="cvbtn ${S.cv==="gen"?"gen":S.cv==="ok"?"ok":""}" data-a="cv"><span class="fi">${S.cv==="gen"?'<span class="spin" style="color:var(--act-ink)"></span>':ic(S.cv==="ok"?"check":"file")}</span><span><b>${S.cv==="ok"?"CV.pdf พร้อมแล้ว":S.cv==="gen"?"AI กำลังเขียน CV…":"สร้าง CV.pdf ด้วย AI"}</b><small>${S.cv==="ok"?"ดึงจากงาน ชั่วโมง และคอร์สที่เรียน · กดเพื่อดาวน์โหลด":"รวมประสบการณ์ทำงานและทักษะเป็น CV ให้อัตโนมัติ"}</small></span></button>
  </div>
- <section class="sec pad"><div class="menu-rows"><button type="button" data-a="go" data-to="sapps">${ic("file")}<span>ใบสมัครของฉัน<small>${3+S.applied.size} ใบ · ร้านรับคุณแล้ว 1 ที่</small></span>${ic("chev-r")}</button><button type="button" data-a="go" data-to="swork">${ic("clock")}<span>ลงเวลาทำงาน<small>ยืนยันชั่วโมงตามกะที่ร้านกำหนด</small></span>${ic("chev-r")}</button></div></section>
+ <section class="sec pad"><div class="menu-rows"><button type="button" data-a="go" data-to="sapps">${ic("file")}<span>ใบสมัครของฉัน<small>${3+S.applied.size} ใบ · ร้านรับคุณแล้ว 1 ที่</small></span>${ic("chev-r")}</button></div></section>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("trend")}Skills</h2></div><div class="skrings">${[["การสื่อสาร",82,"#F37449"],["Canva",74,"#D16F8A"],["ทำงานเป็นทีม",68,"#88C887"]].map(([n,p,c])=>`<div class="skr"><span class="pring" data-p="${p}" data-l="${p}" style="--c:${c}"></span>${n}</div>`).join("")}</div></section>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("cap")}Course</h2><button type="button" data-a="go" data-to="courses">ทั้งหมด ${ic("chev-r")}</button></div><div class="pcrs">${(()=>{const L=COURSES.slice(0,3), d=L.filter(c=>c.st==="done").length; return `<p class="pcrs-sum"><b>${d}</b> จาก ${L.length} คอร์สเรียนจบแล้ว<span class="pcrs-bar"><i data-w="${Math.round(d/L.length*100)}"></i></span></p>`+L.map(c=>{const cc=CAT(c.c), done=c.st==="done"; return `<div class="pcr${done?" done":""}"><span class="th" style="${cover(cc)}">${ic(c.ic)}${done?`<span class="ok">${ic("check")}</span>`:""}</span><div class="m"><b>${c.n}</b>${done?`<small class="g">${ic("award")}ได้ Certificate แล้ว</small>`:`<small>เรียนไป ${c.p}%</small><span class="pb"><i data-w="${c.p}"></i></span>`}</div>${done?`<button type="button" class="pcr-b o" data-a="toast" data-m="เปิด Certificate (จำลอง)">ดูใบรับรอง</button>`:`<button type="button" class="pcr-b" data-a="go" data-to="courses">เรียนต่อ</button>`}</div>`}).join("")})()}</div></section>
  <section class="sec pad lo-wrap"><button type="button" class="lo-btn" data-a="logout"><span class="lo-ic">${ic("logout")}</span><span class="lo-t"><b>ออกจากระบบ</b><small>เข้าสู่ระบบอยู่ในชื่อ ${esc(ME.name)}</small></span>${ic("chev-r")}</button><p class="lo-ver">SpringBoard v0.2 · วิทยาลัยการศึกษาตลอดชีวิต มช.</p></section>`);
@@ -2591,8 +2609,13 @@ const LVW=["","เท่าเดิม","ขึ้นนิดหน่อย",
 const lvl=(n,v)=>{const k=n.replace(/\s/g,""); return `<div class="lvlg"><p class="t"><span id="lg-${k}">${n}</span><b id="lw-${k}">${LVW[v]}</b></p><div class="lvl" role="radiogroup" aria-labelledby="lg-${k}">${[1,2,3,4,5].map(i=>`<button type="button" role="radio" aria-checked="${i===v}" aria-label="${i} ${LVW[i]}" data-a="lvl" data-k="${k}" data-v="${i}" class="${i<=v?"on":""}">${i}</button>`).join("")}</div></div>`;};
 R.feedback=()=>{ if(S.fbDone) return wrapApp(`<div class="ok-screen"><span class="big">${ic("smile")}</span><h1 id="h1" tabindex="-1">ขอบคุณที่เล่าให้ฟัง</h1><p>Feedback เดือนนี้ถูกบันทึกในพอร์ตของคุณแล้ว เดือนหน้าเราจะเตือนอีกครั้ง</p><button type="button" class="btn btn-o" data-a="go" data-to="profile">ดู Profile</button></div>`);
  const rng=(n,v)=>`<div class="rng"><p class="t"><label for="r-${n}">${n}</label><b id="rv-${n}">${v}</b></p><input type="range" id="r-${n}" data-a="rng" min="0" max="100" value="${v}" style="--v:${v}%"></div>`;
- return wrapApp(`${topbar("Feedback",false)}<div class="form" style="padding-top:4px">
-  <div class="remind">${ic("bell")}<span>ทุกสิ้นเดือนระบบจะเตือนให้ทำ · เดือนพฤศจิกายน 2569</span></div>
+ return wrapApp(`${topbar("Feedback & ลงเวลา",false)}<div class="form" style="padding-top:4px">
+  ${(()=>{ const w=workState(); const mo=Object.values(HLOG).reduce((a,x)=>a+x[0],0)+(w.saved?w.sh:0), ok=Object.values(HLOG).filter(x=>x[1]==="ok").reduce((a,x)=>a+x[0],0);
+   return `<section class="fb-time" aria-labelledby="fbt-h"><div class="fbt-top"><p id="fbt-h">${ic("clock")}ลงเวลาวันนี้</p><span>อ. 10 พ.ย. · ${esc(SHOPS.lc.n)}</span></div>
+    ${w.saved?`<div class="wt-done">${ic("check")}<div><b>ส่งแล้ว · ${w.sh} ชม.</b><small>${w.st} · รอร้านอนุมัติ</small></div><button type="button" class="linkb" data-a="go" data-to="swork">ดูประวัติ</button></div>`
+    :`<div class="fbt-row"><div class="wt-shift"><b>13:00–17:00</b><span>4 ชม.</span></div><button type="button" class="btn btn-g fbt-ok" data-a="wsave" data-v="plan">${ic("check")}ทำตามกะแล้ว</button></div><button type="button" class="wt-alt" data-a="go" data-to="swork">${ic("edit")}เวลาไม่ตรงกะ หรือดูประวัติชั่วโมง</button>`}</section>
+   <section class="fb-sum" aria-labelledby="fbs-h"><p id="fbs-h">${ic("listcheck")}ชั่วโมงเดือนนี้ · แนบไปกับ Feedback อัตโนมัติ</p><div class="fbs-n"><div><b>${mo}</b><small>ชม. ทั้งหมด</small></div><div><b>${ok}</b><small>อนุมัติแล้ว</small></div><div><b>${mo-ok}</b><small>รอร้าน</small></div></div></section>`; })()}
+  <div class="remind">${ic("bell")}<span>Reflection รายเดือน · ระบบจะเตือนทุกสิ้นเดือน · พฤศจิกายน 2569</span></div>
   <div class="card" style="padding:16px"><p class="lbl">ประสบการณ์เดือนนี้เป็นอย่างไร</p><div class="stars" role="radiogroup" aria-label="ให้คะแนน 1 ถึง 5">${[1,2,3,4,5].map(i=>`<button type="button" role="radio" aria-checked="${S.fb.stars===i}" aria-label="${i} ดาว" data-a="star" data-v="${i}" class="${i<=S.fb.stars?"on":""}">${ic("star")}</button>`).join("")}</div><p class="mood" id="mood">${S.fb.stars?MOODS[S.fb.stars]:"1 = ต้องปรับปรุง · 5 = ดีมาก"}</p></div>
   <div class="card" style="padding:16px;display:grid;gap:12px"><p class="lbl" style="margin:0">Skill ที่รู้สึกว่าพัฒนาขึ้น</p>${lvl("Communication",3)}${lvl("Teamwork",2)}${lvl("Problem Solving",2)}</div>
   <div class="card" style="padding:16px"><label class="lbl" for="refl">Reflection</label><p class="fhint" style="margin:-2px 0 8px">เดือนนี้ทำอะไร ได้เรียนรู้อะไร และอยากลองอะไรต่อ</p><textarea class="inp" id="refl" placeholder="เช่น ได้ลองวางแผนคอนเทนต์ทั้งเดือนครั้งแรก รู้ว่าโพสต์วิดีโอสั้นได้ยอดดีกว่า"></textarea></div>
@@ -3167,7 +3190,8 @@ R.sapps=()=>{const wd=S.wd||(S.wd={}); const list=[...[...S.applied].map(id=>({i
    :`<p class="nx">${ic("bell")}<span>เราจะแจ้งเตือนเมื่อร้านตอบกลับ</span></p>`;
   return `<article class="appc ${a.st}"><div class="t"><span class="lg" style="${cover(c)}">${s.ini}</span><div style="min-width:0"><b>${esc(j.t)}</b><small>${esc(s.n)} · สมัคร ${a.d}</small></div><span class="tag ${st[0]}">${ic(st[2])}${st[1]}</span></div><ol class="mstep" aria-label="ความคืบหน้า">${steps}</ol>${clashBox}${next}${wdBtn}</article>`;}).join("")}</div>`);};
 const wHrs=(a,b)=>{ const [h1,m1]=a.split(":").map(Number), [h2,m2]=b.split(":").map(Number); return Math.max(0,Math.round(((h2*60+m2)-(h1*60+m1))/30)/2); };
-R.swork=()=>{const w=S.work||(S.work={edit:false,from:"13:00",to:"17:00",rs:null,saved:false,log:[{d:"9 พ.ย.",h:2,st:"wait",t:"14:00–16:00"},{d:"8 พ.ย.",h:1,st:"wait",t:"17:00–18:00"},{d:"6 พ.ย.",h:4,st:"ok",t:"09:00–13:00"},{d:"4 พ.ย.",h:3,st:"ok",t:"13:00–16:00"}]});
+const workState=()=>S.work||(S.work={edit:false,from:"13:00",to:"17:00",rs:null,saved:false,log:[{d:"9 พ.ย.",h:2,st:"wait",t:"14:00–16:00"},{d:"8 พ.ย.",h:1,st:"wait",t:"17:00–18:00"},{d:"6 พ.ย.",h:4,st:"ok",t:"09:00–13:00"},{d:"4 พ.ย.",h:3,st:"ok",t:"13:00–16:00"}]});
+R.swork=()=>{const w=workState();
  const plan={t:"13:00–17:00",h:4}, eh=wHrs(w.from,w.to);
  const next=[["พ. 11 พ.ย.","13:00–17:00",4],["ส. 14 พ.ย.","10:00–12:00",2]];
  return wrapApp(`${topbar("ลงเวลาทำงาน",true)}<div class="pad" style="display:grid;gap:16px;padding-bottom:16px">
