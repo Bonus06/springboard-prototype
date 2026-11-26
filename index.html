@@ -2230,6 +2230,19 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .lang-seg .ic{width:16px;height:16px}
 .lang-seg button[aria-pressed="true"]{background:#fff;color:#712319;box-shadow:0 1px 4px rgba(113,35,25,.14)}
 .lang-seg button[aria-pressed="true"] .lc{background:#FAD0C2;color:#712319}
+/* v130 stat cards (option B) */
+.emp-stats{gap:8px!important;background:transparent!important;box-shadow:none!important;overflow:visible!important;border:0!important}
+.emp-stats>button.es-card{position:relative;display:grid;justify-items:start;gap:2px;text-align:left;background:#fff;border:1px solid #F3E4DC!important;border-radius:16px!important;padding:12px 10px 10px;box-shadow:0 8px 20px -12px rgba(113,35,25,.35)!important;transition:transform .3s var(--spring),box-shadow .25s}
+.emp-stats>button.es-card+button.es-card{border-left:1px solid #F3E4DC!important}
+.emp-stats>button.es-card:hover{transform:translateY(-3px);background:#fff;box-shadow:0 12px 24px -12px rgba(113,35,25,.45)!important}
+.emp-stats>button.es-card:active{transform:scale(.97)}
+.es-card .es-ch{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:#FFF1EB;color:#712319;display:grid;place-items:center;transition:transform .3s var(--spring),background .2s}
+.es-card .es-ch .ic{width:14px;height:14px}
+.es-card:hover .es-ch{background:#FAD0C2;transform:translateX(2px)}
+.es-card .es-ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;margin-bottom:4px}
+.es-card .es-ic .ic{width:17px;height:17px}
+.emp-stats>button.es-card b{font-size:1.5rem;line-height:1.1}
+.es-card .es-lb{font-size:0.75rem;color:var(--ink2);font-weight:500;line-height:1.3}
 </style>
 
 <div class="studio">
@@ -2806,7 +2819,7 @@ function syncDonate(){ const b=$('[data-a="donate"]',scr); if(!b) return; const 
   h.classList.toggle("err",bad); i.setAttribute("aria-invalid",bad); }
 R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a.id)&&!e.declined.has(a.id)).length;
  return wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">Home ผู้ประกอบการ</h1>
- <div class="emp-stats" role="group" aria-label="สรุปงานของร้านวันนี้">${[[newApps,"ผู้สมัครใหม่","คน · รอคุณตอบ","eapps","users"],[2,"นักศึกษาที่ทำงาน","คน · อยู่กับร้าน","ework","brief"],[3,"ชั่วโมงรออนุมัติ","ชม. · กดเพื่ออนุมัติ","ework","clock"]].map(([v,l,u,to,i])=>`<button type="button" data-a="go" data-to="${to}"><b data-count="${v}">0</b><span class="es-go">ดู${ic("chev-r")}</span><span class="es-l">${ic(i)}${l}</span></button>`).join("")}</div>
+ <div class="emp-stats" role="group" aria-label="สรุปงานของร้านวันนี้">${[[newApps,"ผู้สมัครใหม่","eapps","users","#FBE9EF","#AF5577"],[2,"นักศึกษาที่ทำงาน","ework","brief","#FFF1EB","#712319"],[3,"ชั่วโมงรออนุมัติ","ework","clock","#FFF0D1","#712319"]].map(([v,l,to,i,bg,fg])=>`<button type="button" class="es-card" data-a="go" data-to="${to}" aria-label="${l} ${v} · ดูรายละเอียด"><span class="es-ch" aria-hidden="true">${ic("chev-r")}</span><span class="es-ic" style="background:${bg};color:${fg}">${ic(i)}</span><b data-count="${v}">0</b><span class="es-lb">${l}</span></button>`).join("")}</div>
  ${S.emp.shopSt==="none"?`<div class="pad"><div class="shop-st warn">${ic("building")}<div><b>ยังไม่ได้ส่งข้อมูลร้าน</b><small>กรอกข้อมูลร้านและแนบเอกสารให้วิทยาลัยฯ ตรวจ ประกาศงานจึงจะขึ้นให้นักศึกษาเห็น</small></div><button type="button" class="btn btn-g btn-sm" data-a="eshopgo">กรอกข้อมูลร้าน</button></div></div>`:S.emp.shopSt==="pending"?`<div class="pad"><div class="shop-st"><div class="ss-h">${ic("shield")}<b>วิทยาลัยฯ กำลังตรวจร้าน</b><small>ปกติ 1–2 วันทำการ</small></div><ol class="vf-steps sm"><li class="done"><span>${ic("check")}</span><b>ส่งข้อมูลแล้ว</b></li><li class="on"><span>2</span><b>กำลังตรวจ</b></li><li><span>3</span><b>ประกาศขึ้น</b></li></ol></div></div>`:""}
  <div class="pad"><button type="button" class="newpost" data-a="newpost"><span class="np-ic">${ic("plus")}</span><span class="np-t"><b>ลงประกาศงาน</b><small>ใช้เวลาราว 3 นาที · วิทยาลัยฯ ตรวจภายใน 1–2 วัน</small></span>${ic("chev-r")}</button></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("brief")}ตำแหน่งที่ประกาศ</h2><span class="sec-n">${S.emp.pc?1:2} ประกาศ</span></div>
