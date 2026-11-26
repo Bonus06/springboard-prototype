@@ -2136,6 +2136,29 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .shop-st.warn b{font-size:0.9375rem;font-weight:600;color:#712319}
 .shop-st.warn small{font-size:0.75rem;color:var(--ink2);line-height:1.5}
 .emp-stats>button{gap:4px}
+/* v120 shop calendar readability */
+.scal.pad{background:#fff;border:1px solid var(--line);border-radius:20px;margin:8px 16px 0;padding:16px 12px;box-shadow:var(--sh1);position:relative;z-index:2}
+.mc{background:#FFF8F4;border-color:#F3E4DC}
+.mc.off{background:#fff}
+.mc .md{align-items:center;min-height:6px}
+.mc .md em{font-style:normal;font-size:0.5625rem;font-weight:700;color:var(--ink2);margin-left:1px;line-height:1}
+.mc[aria-pressed="true"] .md em{color:#fff}
+.mc-key{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:0.75rem;color:var(--ink2);margin:12px 0 8px}
+.mc-key span{display:inline-flex;align-items:center;gap:6px}
+.mc-key i{width:10px;height:10px;border-radius:3px}
+.mc-key i.dt{border-radius:50%;background:linear-gradient(90deg,#F37449 50%,#AF5577 50%)}
+.mc-key i.wt{background:var(--warn-soft);box-shadow:inset 0 0 0 1.5px #FA9746}
+.mc-key i.td{background:#fff;box-shadow:inset 0 0 0 1.5px #712319}
+.mc-ws{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.mc-ws::-webkit-scrollbar{display:none}
+.mw{flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:4px 12px 4px 4px;border-radius:999px;border:1.5px solid var(--line2);background:#fff;font:inherit;font-size:0.8125rem;color:var(--ink2);cursor:pointer;white-space:nowrap;transition:background .2s,border-color .2s}
+.mw-a{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:0.75rem;font-weight:600;flex:none}
+.mw-a.all{background:#F3EBE6;color:#712319}
+.mw-a.all .ic{width:16px;height:16px}
+.mw-t{display:grid;line-height:1.2;text-align:left}
+.mw-t b{font-weight:600;font-size:0.8125rem}
+.mw-t small{font-size:0.6875rem;color:var(--muted)}
+.mw[aria-pressed="true"]{border-color:#F37449;background:#FFF1EB;color:#712319}
 </style>
 
 <div class="studio">
@@ -2753,17 +2776,19 @@ const SHIFTS=[{d:0,w:0,t:"13:00–17:00",h:4},{d:1,w:1,t:"10:00–14:00",h:4},{d
 const WCOL=["#F37449","#AF5577"];
 const scToggle=v=>`<div class="sc-tg" role="group" aria-label="มุมมองตาราง">${[["w","สัปดาห์"],["m","เดือน"]].map(([k,l])=>`<button type="button" data-a="scview" data-v="${k}" aria-pressed="${v===k}">${l}</button>`).join("")}</div>`;
 const M_FIRST=6, M_DAYS=30, M_TODAY=10, M_START=2, M_END=29, M_WAIT=new Set([9]);
-const mShifts=d=>d<M_START||d>M_END?[]:SHIFTS.filter(x=>x.d===(M_FIRST+d-1)%7);
+const mShifts=d=>d<M_START||d>M_END?[]:SHIFTS.filter(x=>x.d===(M_FIRST+d-1)%7&&(S.mW==null||x.w===S.mW));
+const mDots=sh=>{ const u=[...new Set(sh.map(x=>x.w))]; return `<span class="md">${u.slice(0,3).map(w=>`<i style="background:${WCOL[w]}"></i>`).join("")}${u.length>3?`<em>+${u.length-3}</em>`:""}</span>`; };
 function shopMonth(){ const sel=S.mSel||M_TODAY, wd=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."], cells=[];
   let tot=0; for(let d=1;d<=M_DAYS;d++) tot+=mShifts(d).reduce((a,x)=>a+x.h,0);
   for(let i=0;i<M_FIRST;i++) cells.push(`<span class="mc empty" aria-hidden="true"></span>`);
   for(let d=1;d<=M_DAYS;d++){ const sh=mShifts(d), h=sh.reduce((a,x)=>a+x.h,0), cls=["mc"]; if(d===M_TODAY) cls.push("today"); if(d<M_TODAY) cls.push("past"); if(M_WAIT.has(d)) cls.push("wait"); if(!sh.length) cls.push("off");
-    cells.push(`<button type="button" class="${cls.join(" ")}" data-a="mday" data-v="${d}" aria-pressed="${d===sel}" aria-label="${wd[(M_FIRST+d-1)%7]} ${d} พ.ย. ${sh.length?`${sh.length} กะ ${h} ชม.`:"ไม่มีกะ"}${M_WAIT.has(d)?" มีชั่วโมงรออนุมัติ":""}" style="--k:${d}"><span class="mn">${d}</span>${sh.length?`<span class="md">${sh.map(x=>`<i style="background:${WCOL[x.w]}"></i>`).join("")}</span>`:""}</button>`); }
+    cells.push(`<button type="button" class="${cls.join(" ")}" data-a="mday" data-v="${d}" aria-pressed="${d===sel}" aria-label="${wd[(M_FIRST+d-1)%7]} ${d} พ.ย. ${sh.length?`${sh.length} กะ ${h} ชม.`:"ไม่มีกะ"}${M_WAIT.has(d)?" มีชั่วโมงรออนุมัติ":""}" style="--k:${d}"><span class="mn">${d}</span>${sh.length?mDots(sh):""}</button>`); }
   const list=mShifts(sel), st=d=>M_WAIT.has(d)?["t-warn","รออนุมัติ"]:d<M_TODAY?["t-ok","ทำแล้ว"]:d===M_TODAY?["t-peach","วันนี้"]:["t-grey","นัดไว้"];
-  return `<section class="scal pad" aria-labelledby="sc-h"><div class="sc-top"><div><h2 id="sc-h">${ic("cal")}ตารางงานของร้าน</h2><small>พ.ย. 2569 · รวม ${tot} ชม. · ${WORKERS.length} คน</small></div>${scToggle("m")}</div>
+  return `<section class="scal pad" aria-labelledby="sc-h"><div class="sc-top"><div><h2 id="sc-h">${ic("cal")}ตารางงานของร้าน</h2><small>พ.ย. 2569 · รวม ${tot} ชม. · ${S.mW==null?`${WORKERS.length} คน`:WORKERS[S.mW].n.split(" ")[0]}</small></div>${scToggle("m")}</div>
    <div class="mc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><b>พ.ย. 2569</b><button type="button" class="ib" data-a="toast" data-m="ดูเดือนถัดไป (ต้นแบบ)" aria-label="เดือนถัดไป">${ic("chev-r")}</button></div>
    <div class="mc-g">${wd.map(x=>`<span class="mc-w">${x}</span>`).join("")}${cells.join("")}</div>
-   <div class="mc-lg">${WORKERS.map((w,i)=>`<span><i style="background:${WCOL[i]}"></i>${w.n.split(" ")[0]}</span>`).join("")}<span><i class="wt"></i>รออนุมัติชั่วโมง</span></div>
+   <div class="mc-key"><span><i class="dt"></i>มีกะ (สีตามคน)</span><span><i class="wt"></i>รออนุมัติ</span><span><i class="td"></i>วันนี้</span></div>
+   <div class="mc-ws" role="group" aria-label="กรองตามนักศึกษา"><button type="button" class="mw" data-a="mw" data-v="" aria-pressed="${S.mW==null}"><span class="mw-a all">${ic("users")}</span>ทุกคน</button>${WORKERS.map((w,i)=>{ const h=SHIFTS.filter(x=>x.w===i).reduce((a,x)=>a+x.h,0)*4; return `<button type="button" class="mw" data-a="mw" data-v="${i}" aria-pressed="${S.mW===i}"><span class="mw-a" style="background:${WCOL[i]}">${w.ini}</span><span class="mw-t"><b>${w.n.split(" ")[0]}</b><small>${h} ชม.</small></span></button>`; }).join("")}</div>
    <p class="mc-dt">${wd[(M_FIRST+sel-1)%7]} ${sel} พ.ย. 2569</p>
    <div class="sc-list" role="region" aria-live="polite" aria-label="กะวันที่เลือก">${list.length?list.map((x,k)=>{const w=WORKERS[x.w], t=st(sel);return `<div class="shift" style="--k:${k};--c:${WCOL[x.w]}"><span class="av" style="background:${WCOL[x.w]}">${w.ini}</span><div><b>${x.t}</b><small>${w.n} · ${w.pos}</small></div><span class="tag ${t[0]}">${t[1]}</span></div>`;}).join(""):`<p class="sc-empty">${ic("smile")}ไม่มีนัดทำงานวันนี้</p>`}</div></section>`; }
 function shopWeek(){ if(S.wkView==="m") return shopMonth(); const sel=S.wkSel==null?1:S.wkSel, today=1, days=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."];
@@ -3140,6 +3165,7 @@ vp.addEventListener("click",e=>{
     case "sday": S.wkSel=+v; S.mSel=9+(+v); rerenderKeep(); break;
     case "scview": { if(v==="w"&&S.mSel>=9&&S.mSel<=15) S.wkSel=S.mSel-9; if(v==="m"&&S.mSel==null) S.mSel=9+(S.wkSel==null?1:S.wkSel); S.wkView=v; rerenderKeep(); const b=$(`[data-a="scview"][data-v="${v}"]`,scr); if(b) b.focus(); break; }
     case "mday": S.mSel=+v; rerenderKeep(); break;
+    case "mw": S.mW=v===""?null:+v; rerenderKeep(); break;
     case "rsn": { $$('[data-a="rsn"]',ov).forEach(b=>b.setAttribute("aria-checked",b===el)); S.rsn=v; const e=$("#rsn-e",ov); if(e) e.hidden=true; const m=$("#rsn-m",ov); if(m) m.removeAttribute("aria-invalid"); break; }
     case "rsnok": { const m=$("#rsn-m",ov), txt=m.value.trim(), e=$("#rsn-e",ov);
       if(!S.rsn||(S.rsn==="อื่นๆ"&&!txt)){ e.textContent=S.rsn?"อธิบายเหตุผลสั้น ๆ":"เลือกเหตุผลก่อน"; e.hidden=false; if(S.rsn) { m.setAttribute("aria-invalid","true"); m.focus(); } break; }
