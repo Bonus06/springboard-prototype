@@ -2250,6 +2250,16 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .seg{background:#F3EBE6!important;border:0!important;padding:4px!important;border-radius:14px!important;gap:2px}
 .seg button{border-radius:10px!important;color:var(--ink2);font-weight:500;transition:background .2s,color .2s,box-shadow .2s}
 .seg button[aria-pressed="true"]{background:#fff!important;color:#712319!important;box-shadow:0 1px 4px rgba(113,35,25,.14)}
+/* v133 glass stat cards on orange header */
+.emp-stats.glass{margin-top:-128px!important}
+.emp-stats.glass>button.es-card{background:rgba(255,255,255,.17)!important;border:1px solid rgba(255,255,255,.38)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.25)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff}
+.emp-stats.glass>button.es-card:hover{background:rgba(255,255,255,.26)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 10px 22px -12px rgba(74,22,15,.5)!important}
+.emp-stats.glass .es-ch{background:rgba(255,255,255,.22);color:#fff}
+.emp-stats.glass .es-card:hover .es-ch{background:rgba(255,255,255,.34)}
+.emp-stats.glass .es-ic{background:rgba(255,255,255,.22)!important;color:#fff!important}
+.emp-stats.glass>button.es-card b{color:#fff;text-shadow:0 1px 2px rgba(74,22,15,.25)}
+.emp-stats.glass .es-lb{color:#fff;font-weight:600;text-shadow:0 1px 2px rgba(74,22,15,.3)}
+.emp-stats.glass>button.es-card:focus-visible{outline:2px solid #fff;outline-offset:2px}
 </style>
 
 <div class="studio">
@@ -2826,8 +2836,8 @@ function syncDonate(){ const b=$('[data-a="donate"]',scr); if(!b) return; const 
   const bad=S.emp.custom&&typed&&!ok; h.textContent=bad?(a<TK_MIN?`ขั้นต่ำ ${fmt(TK_MIN)} Token`:`สูงสุด ${fmt(TK_MAX)} Token ต่อครั้ง`):`ขั้นต่ำ ${fmt(TK_MIN)} · สูงสุด ${fmt(TK_MAX)} Token`;
   h.classList.toggle("err",bad); i.setAttribute("aria-invalid",bad); }
 R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a.id)&&!e.declined.has(a.id)).length;
- return wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">Home ผู้ประกอบการ</h1>
- <div class="emp-stats" role="group" aria-label="สรุปงานของร้านวันนี้">${[[newApps,"ผู้สมัครใหม่","eapps","users","#FBE9EF","#AF5577"],[2,"นักศึกษาที่ทำงาน","ework","brief","#FFF1EB","#712319"],[3,"ชั่วโมงรออนุมัติ","ework","clock","#FFF0D1","#712319"]].map(([v,l,to,i,bg,fg])=>`<button type="button" class="es-card" data-a="go" data-to="${to}" aria-label="${l} ${v} · ดูรายละเอียด"><span class="es-ch" aria-hidden="true">${ic("chev-r")}</span><span class="es-ic" style="background:${bg};color:${fg}">${ic(i)}</span><b data-count="${v}">0</b><span class="es-lb">${l}</span></button>`).join("")}</div>
+ return wrapApp(`${ehead().replace("padding-bottom:72px","padding-bottom:140px")}<h1 class="sr" id="h1" tabindex="-1">Home ผู้ประกอบการ</h1>
+ <div class="emp-stats glass" role="group" aria-label="สรุปงานของร้านวันนี้">${[[newApps,"ผู้สมัครใหม่","eapps","users","#FBE9EF","#AF5577"],[2,"นักศึกษาที่ทำงาน","ework","brief","#FFF1EB","#712319"],[3,"ชั่วโมงรออนุมัติ","ework","clock","#FFF0D1","#712319"]].map(([v,l,to,i,bg,fg])=>`<button type="button" class="es-card" data-a="go" data-to="${to}" aria-label="${l} ${v} · ดูรายละเอียด"><span class="es-ch" aria-hidden="true">${ic("chev-r")}</span><span class="es-ic" style="background:${bg};color:${fg}">${ic(i)}</span><b data-count="${v}">0</b><span class="es-lb">${l}</span></button>`).join("")}</div>
  ${S.emp.shopSt==="none"?`<div class="pad"><div class="shop-st warn">${ic("building")}<div><b>ยังไม่ได้ส่งข้อมูลร้าน</b><small>กรอกข้อมูลร้านและแนบเอกสารให้วิทยาลัยฯ ตรวจ ประกาศงานจึงจะขึ้นให้นักศึกษาเห็น</small></div><button type="button" class="btn btn-g btn-sm" data-a="eshopgo">กรอกข้อมูลร้าน</button></div></div>`:S.emp.shopSt==="pending"?`<div class="pad"><div class="shop-st"><div class="ss-h">${ic("shield")}<b>วิทยาลัยฯ กำลังตรวจร้าน</b><small>ปกติ 1–2 วันทำการ</small></div><ol class="vf-steps sm"><li class="done"><span>${ic("check")}</span><b>ส่งข้อมูลแล้ว</b></li><li class="on"><span>2</span><b>กำลังตรวจ</b></li><li><span>3</span><b>ประกาศขึ้น</b></li></ol></div></div>`:""}
  <div class="pad"><button type="button" class="newpost" data-a="newpost"><span class="np-ic">${ic("plus")}</span><span class="np-t"><b>ลงประกาศงาน</b><small>ใช้เวลาราว 3 นาที · วิทยาลัยฯ ตรวจภายใน 1–2 วัน</small></span>${ic("chev-r")}</button></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("brief")}ตำแหน่งที่ประกาศ</h2><span class="sec-n">${S.emp.pc?1:2} ประกาศ</span></div>
