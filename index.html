@@ -2040,6 +2040,61 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .wt-fb>.ic{color:#AF5577;flex:none}
 .wt-fb .linkb{padding:0;min-height:0;display:inline}
 @media (prefers-reduced-motion:reduce){.wt-edit,.wt-done{animation:none}}
+/* v116 student help hub */
+.hh-s{border-radius:14px}
+.hh-live{display:flex;align-items:center;gap:12px;width:100%;text-align:left;font:inherit;color:inherit;background:#FFF0D1;border:1px solid #F8D9A4;border-radius:16px;padding:12px 16px;cursor:pointer}
+.hh-live .dot{width:10px;height:10px;border-radius:50%;background:#FA9746;box-shadow:0 0 0 4px rgba(250,151,70,.25);flex:none;animation:livePulse 1.6s ease-out infinite}
+.hh-live>span:nth-child(2){flex:1;min-width:0;display:grid;gap:2px}
+.hh-live b{font-size:0.875rem;font-weight:600;color:#712319}
+.hh-live small{font-size:0.75rem;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hh-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hh-t{position:relative;display:grid;gap:4px;align-content:start;text-align:left;font:inherit;color:inherit;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;min-height:120px;cursor:pointer;box-shadow:var(--sh1);transition:transform .3s var(--spring),box-shadow .25s}
+.hh-t:hover{transform:translateY(-3px)}
+.hh-t:active{transform:scale(.97)}
+.hh-i{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#FFF1EB;color:#712319;margin-bottom:4px;transition:transform .45s var(--spring)}
+.hh-t:hover .hh-i{transform:rotate(-8deg) scale(1.06)}
+.hh-t b{font-size:0.9375rem;font-weight:600}
+.hh-t small{font-size:0.75rem;color:var(--muted);line-height:1.4}
+.hh-t.main{background:linear-gradient(135deg,#F37449,#FA9746);border-color:transparent;color:#fff;box-shadow:0 10px 22px -12px rgba(243,116,73,.8)}
+.hh-t.main .hh-i{background:rgba(255,255,255,.22);color:#fff}
+.hh-t.main small{color:rgba(255,255,255,.9)}
+.hh-n{position:absolute;top:12px;right:12px;min-width:22px;height:22px;border-radius:999px;background:#F37449;color:#fff;font-family:"Poppins";font-size:0.75rem;font-weight:600;display:grid;place-items:center;padding:0 6px}
+.hh-safe{display:flex;gap:12px;align-items:center;background:#712319;color:#fff;border-radius:18px;padding:14px 16px;flex-wrap:wrap}
+.hh-safe>.ic{width:28px;height:28px;flex:none;color:#FAD0C2}
+.hh-safe>div{flex:1;min-width:160px;display:grid;gap:2px}
+.hh-safe b{font-size:0.9375rem;font-weight:600}
+.hh-safe small{font-size:0.75rem;opacity:.85}
+.hh-call{background:#fff;color:#712319;border-color:#fff}
+.hh-empty{font-size:0.8125rem;color:var(--muted);text-align:center;padding:12px}
+.hh-row{display:flex;gap:12px;align-items:center;width:100%;text-align:left;font:inherit;color:inherit;background:#FBE9EF;border:0;border-radius:16px;padding:12px 16px;cursor:pointer}
+.hh-row>.ic:first-child{color:#AF5577;flex:none}
+.hh-row>span{flex:1;display:grid;gap:2px}
+.hh-row b{font-size:0.875rem;font-weight:600}
+.hh-row small{font-size:0.75rem;color:var(--ink2)}
+.st-g{background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px 16px;display:grid;gap:4px}
+.st-g h2{display:flex;gap:6px;align-items:center;font-size:0.9375rem;font-weight:600;margin-bottom:4px}
+.st-g h2 .ic{width:18px;height:18px;color:#F37449}
+.st-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;border-top:1px solid var(--line);padding:8px 0}
+.st-g h2+.st-row{border-top:0}
+.st-row>span{display:grid;gap:2px}
+.st-row b{font-size:0.875rem;font-weight:500}
+.st-row small{font-size:0.75rem;color:var(--muted)}
+.sw{width:48px;height:28px;border-radius:999px;border:0;background:#E6DCD7;position:relative;cursor:pointer;flex:none;transition:background .25s}
+.sw i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .35s var(--spring)}
+.sw[aria-checked="true"]{background:#88C887}
+.sw[aria-checked="true"] i{transform:translateX(20px)}
+.sw:focus-visible{outline:2px solid #712319;outline-offset:2px}
+.st-link{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:48px;border:0;border-top:1px solid var(--line);background:none;font:inherit;font-size:0.875rem;color:var(--ink);cursor:pointer;text-align:left}
+.st-g h2+.st-link{border-top:0}
+.st-link .ic{width:16px;height:16px;color:var(--muted)}
+.st-link.danger{color:#712319}
+.ct-row{display:flex;gap:12px;align-items:center;width:100%;text-align:left;font:inherit;color:inherit;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;cursor:pointer}
+.ct-i{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none}
+.ct-row>span:nth-child(2){flex:1;display:grid;gap:2px}
+.ct-row b{font-size:0.875rem;font-weight:600}
+.ct-row small{font-size:0.8125rem;color:var(--ink2)}
+.ct-row>.ic:last-child{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.hh-live .dot{animation:none}.sw i{transition:none}}
 </style>
 
 <div class="studio">
@@ -2219,7 +2274,7 @@ const SCREENS={
  ai:{g:"stu",n:"AI · อาชีพในฝัน",role:"student"}, courses:{g:"stu",n:"Skills4life · 6 คอร์ส",role:"student"},
  home:{g:"stu",n:"Home",role:"student",nav:"home"}, search:{g:"stu",n:"ค้นหา / หมวดงาน",role:"student",nav:"home"}, job:{g:"stu",n:"รายละเอียดร้าน & งาน",role:"student"},
  wish:{g:"stu",n:"Wishlist",role:"student",nav:"wish"}, profile:{g:"stu",n:"Profile",role:"student",nav:"profile"}, sapps:{g:"stu",n:"ใบสมัครของฉัน (ใหม่)",role:"student",nav:"profile"}, swork:{g:"stu",n:"ลงเวลาทำงาน",role:"student",nav:"profile"},
- voc:{g:"stu",n:"VOC · ช่วยเหลือ",role:"any",nav:"voc"}, feedback:{g:"stu",n:"Feedback รายเดือน",role:"student",nav:"feedback"},
+ voc:{g:"stu",n:"ช่วยเหลือ (หน้าหลัก)",role:"any",nav:"voc"}, vocform:{g:"stu",n:"ช่วยเหลือ · แจ้งปัญหา",role:"student",nav:"voc"}, vochist:{g:"stu",n:"ช่วยเหลือ · ประวัติเรื่อง",role:"student",nav:"voc"}, vocset:{g:"stu",n:"ช่วยเหลือ · ตั้งค่า",role:"student",nav:"voc"}, feedback:{g:"stu",n:"Feedback รายเดือน",role:"student",nav:"feedback"},
  esignup:{g:"emp",n:"สร้างบัญชีผู้ประกอบการ (ใหม่)",role:"guest"}, eob:{g:"emp",n:"ลงประกาศงาน + สร้างร้าน",role:"employer"}, ehome:{g:"emp",n:"Home ผู้ประกอบการ",role:"employer",nav:"home"}, eapps:{g:"emp",n:"ผู้สมัคร",role:"employer",nav:"home"},
  estu:{g:"emp",n:"Profile นศ. (มุมผู้ประกอบการ)",role:"employer",nav:"home"}, ework:{g:"emp",n:"Work · นศ. ที่ทำงาน",role:"employer",nav:"work"}, efeedback:{g:"emp",n:"Feedback ถึง Mentor",role:"employer",nav:"feedback"}, eprofile:{g:"emp",n:"โปรไฟล์ร้าน (ใหม่)",role:"employer",nav:"profile"},
  adash:{g:"adm",n:"Dashboard",role:"admin"}, ausers:{g:"adm",n:"User & Account",role:"admin"}, afin:{g:"adm",n:"Financial & Tax Receipt",role:"admin"}, ajobs:{g:"adm",n:"Job Post & Matching",role:"admin"}, ajob:{g:"adm",n:"รายละเอียดประกาศ (ใหม่)",role:"admin"}, avoc:{g:"adm",n:"VOC & Dispute",role:"admin"},
@@ -2497,9 +2552,36 @@ const ticketsHTML=()=>{ const TL=tixList(); if(!TL.length) return ""; const tab=
   const tb=(k,l,n)=>`<button type="button" role="tab" id="tt-${k}" aria-selected="${tab===k}" aria-controls="tix-p" data-a="tixtab" data-v="${k}">${l}<span class="n">${n}</span></button>`;
   return `<section class="tix" aria-labelledby="tix-h"><p class="lbl" id="tix-h" style="margin:0;display:flex;gap:6px;align-items:center">${ic("listcheck")}ประวัติเรื่องที่แจ้ง</p><div class="tix-tabs" role="tablist" aria-label="สถานะเรื่องที่แจ้ง">${tb("open","กำลังดำเนินการ",open.length)}${tb("done","เสร็จแล้ว",done.length)}</div>
    <div class="tix-p" id="tix-p" role="tabpanel" aria-labelledby="tt-${tab}">${list.length?list.map((x,ix)=>{const [c,i,l]=TIX_ST[x.st]||TIX_ST["ใหม่"]; return `<div class="tixr ${c}" style="--d:${ix*60}ms"><span class="tx-ic">${ic(i)}</span><div><b>${x.t}</b><small>${x.no} · แจ้ง ${x.d}</small>${x.n?`<em>${esc(x.n)}</em>`:""}</div><span class="tag ${c}">${l}</span></div>`;}).join(""):`<p class="tix-empty">${tab==="open"?"ไม่มีเรื่องที่กำลังดำเนินการ":"ยังไม่มีเรื่องที่ปิดแล้ว"}</p>`}</div></section>`; };
-R.voc=()=>{ if(S.role==="employer") return R.evoc(); const tp=(k,l,i,bg,fg)=>`<button type="button" class="topic" data-a="topic" data-v="${k}" aria-pressed="${S.voc.topic===k}"><span class="ti" style="background:${bg};color:${fg}">${ic(i)}</span>${l}</button>`;
- if(S.vocDone) return wrapApp(`<div class="ok-screen"><span class="big">${ic("check")}</span><h1 id="h1" tabindex="-1">ส่งเรื่องแล้ว</h1><p>แอดมินจะติดต่อกลับภายใน 2 วันทำการ ติดตามสถานะได้ด้วยเลขเรื่องนี้</p><span class="ticket">VOC-2569-0142</span><button type="button" class="btn btn-o" data-a="vocnew">แจ้งเรื่องใหม่</button><div style="width:100%;max-width:400px;text-align:left">${ticketsHTML()}</div></div>`);
- return wrapApp(`${topbar("ช่วยเหลือ",false)}<div class="form" style="padding-top:4px">${ticketsHTML()}
+const SFAQ=[["spay","cash","ค่าตอบแทนและ Token",[["Token ได้เมื่อไร","หลังร้านอนุมัติชั่วโมง ระบบโอน Token ภายใน 3 วันทำการ ดูได้ที่หน้าโปรไฟล์"],["ร้านยังไม่อนุมัติชั่วโมง ทำอย่างไร","ถ้าเกิน 7 วัน ระบบเตือนร้านและวิทยาลัยฯ ให้อัตโนมัติ หรือกด «แจ้งปัญหา» เรื่องค่าตอบแทน"]]],
+ ["sapp","brief","การสมัครงาน",[["ยกเลิกใบสมัครได้ไหม","ได้ ที่หน้า «ใบสมัครของฉัน» เลือกเหตุผล ร้านจะเห็นแค่เหตุผลที่เลือก"],["ทำไมใบสมัครถูกปฏิเสธ","ร้านเลือกเหตุผลไว้ให้ ดูได้ในใบสมัครนั้น ไม่กระทบการสมัครงานอื่น"]]],
+ ["shrs","clock","ชั่วโมงและการลงเวลา",[["เวลาทำจริงไม่ตรงกะ","ที่หน้า «ลงเวลาทำงาน» กด «แก้เวลา» แล้วเลือกเหตุผล ร้านจะอนุมัติตามเวลาจริง"],["ชั่วโมงสะสมนับอย่างไร","นับเฉพาะชั่วโมงที่ร้านอนุมัติแล้ว เป้าหมายหลักสูตร 60 ชม. ต่อภาคการศึกษา"]]],
+ ["sacc","lock","บัญชีและความเป็นส่วนตัว",[["ร้านเห็นข้อมูลอะไรของฉัน","ชื่อ คณะ ทักษะ และ CV ไม่เห็นที่อยู่ละเอียด เบอร์ผู้ปกครอง และเรื่องที่คุณแจ้ง"],["เปลี่ยนชื่อหรือคณะได้ไหม","ข้อมูลจาก CMU Account แก้ได้ที่ระบบมหาวิทยาลัย แล้วจะอัปเดตอัตโนมัติ"]]]];
+const faqHTML=(list,openK)=>`<div class="bh-faq" id="faqs">${list.map(([k,i,l,qs])=>`<div class="bh-g${openK===k?" open":""}"><button type="button" class="bh-gh" data-a="efaq" data-v="${k}" aria-expanded="${openK===k}" aria-controls="fq-${k}"><span class="ti">${ic(i)}</span><b>${l}</b><small>${qs.length} คำถาม</small>${ic("chev-d")}</button><div class="bh-qs" id="fq-${k}" ${openK===k?"":"hidden"}>${qs.map(([q,a])=>`<details class="bh-q"><summary>${q}</summary><p>${a}</p></details>`).join("")}</div></div>`).join("")}</div>`;
+R.voc=()=>{ if(S.role==="employer") return R.evoc(); const open=S.tickets.filter(x=>x.st!=="ปิดแล้ว"), o=open[0];
+ const tile=(a,to,i,t,d,cls,b="")=>`<button type="button" class="hh-t ${cls}" data-a="${a}" ${to?`data-to="${to}"`:""}><span class="hh-i">${ic(i)}</span><b>${t}</b><small>${d}</small>${b}</button>`;
+ return wrapApp(`${topbar("ช่วยเหลือ",false)}<div class="pad hh" style="display:grid;gap:16px;padding-bottom:16px">
+  <label class="sfield hh-s">${ic("search")}<span class="sr">ค้นหาคำถาม</span><input id="hq" type="search" placeholder="ค้นหาคำถาม เช่น Token, ยกเลิกใบสมัคร" autocomplete="off"></label>
+  ${o?`<button type="button" class="hh-live" data-a="go" data-to="vochist"><span class="dot"></span><span><b>มี ${open.length} เรื่องกำลังดำเนินการ</b><small>${o.no} · ${o.t} · ${esc(o.n||"")}</small></span>${ic("chev-r")}</button>`:""}
+  <div class="hh-grid">${tile("vocreport","","alert","แจ้งปัญหา","ค่าตอบแทน ความปลอดภัย งานไม่ตรงประกาศ","main")}${tile("contact","","phone","ติดต่อเจ้าหน้าที่","โทร · LINE · อีเมล","")}${tile("go","vochist","listcheck","ประวัติเรื่องที่แจ้ง",`${S.tickets.length} เรื่อง`,"",open.length?`<span class="hh-n">${open.length}</span>`:"")}${tile("go","vocset","sliders","ตั้งค่า","แจ้งเตือน ภาษา ความเป็นส่วนตัว","")}</div>
+  <div class="hh-safe">${ic("shield")}<div><b>รู้สึกไม่ปลอดภัยขณะทำงาน?</b><small>ออกจากสถานที่ก่อน แล้วโทรหาเจ้าหน้าที่ได้ตลอด 24 ชม.</small></div><button type="button" class="btn btn-sm hh-call" data-a="toast" data-m="โทรสายด่วนวิทยาลัยฯ (จำลอง)">${ic("phone")}โทรเลย</button></div>
+  <div><p class="lbl" style="display:flex;gap:6px;align-items:center">${ic("help")}คำถามที่พบบ่อย</p>${faqHTML(SFAQ,S.efaq)}<p class="hh-empty" id="hq-e" hidden>ไม่พบคำถามนี้ · <button type="button" class="linkb" data-a="vocreport">แจ้งปัญหาถึงแอดมิน</button></p></div>
+  <button type="button" class="hh-row" data-a="go" data-to="feedback">${ic("smile")}<span><b>อยากเล่าประสบการณ์ทำงาน?</b><small>ใช้ Feedback รายเดือน · ไม่ใช่การแจ้งปัญหา</small></span>${ic("chev-r")}</button>
+ </div>`); };
+R.vochist=()=>wrapApp(`${topbar("ประวัติเรื่องที่แจ้ง",true)}<div class="pad" style="display:grid;gap:16px;padding-bottom:16px">${ticketsHTML()||'<p class="tix-empty">ยังไม่เคยแจ้งเรื่อง</p>'}<button type="button" class="btn btn-o btn-blk" data-a="vocreport">${ic("plus")}แจ้งเรื่องใหม่</button></div>`);
+R.vocset=()=>{ const st=S.set||(S.set={newjob:true,hrs:true,exam:false,profile:true,lang:"th"});
+ const sw=(k,t,d)=>`<div class="st-row"><span><b id="st-${k}">${t}</b><small>${d}</small></span><button type="button" class="sw" role="switch" aria-checked="${!!st[k]}" aria-labelledby="st-${k}" data-a="setsw" data-v="${k}"><i></i></button></div>`;
+ return wrapApp(`${topbar("ตั้งค่า",true)}<div class="pad" style="display:grid;gap:16px;padding-bottom:16px">
+  <section class="st-g" aria-labelledby="st-n"><h2 id="st-n">${ic("bell")}การแจ้งเตือน</h2>${sw("newjob","งานใหม่ที่ตรงกับฉัน","ตามทักษะและอาชีพในฝัน")}${sw("hrs","ชั่วโมงได้รับอนุมัติ","และ Token ที่ได้รับ")}${sw("exam","โหมดช่วงสอบ","ปิดแจ้งเตือนงานใหม่ชั่วคราว 2 สัปดาห์")}</section>
+  <section class="st-g" aria-labelledby="st-p"><h2 id="st-p">${ic("lock")}ความเป็นส่วนตัว</h2>${sw("profile","ให้ร้านค้นเจอโปรไฟล์","ร้านเชิญสมัครงานได้ · ปิดแล้วยังสมัครงานเองได้")}<button type="button" class="st-link" data-a="toast" data-m="เปิดรายการข้อมูลที่ร้านเห็น (จำลอง)">ดูข้อมูลที่ร้านเห็น ${ic("chev-r")}</button></section>
+  <section class="st-g" aria-labelledby="st-l"><h2 id="st-l">${ic("globe")}ภาษา</h2><div class="seg" role="group" aria-label="ภาษา">${[["th","ไทย"],["en","English"]].map(([k,l])=>`<button type="button" data-a="setlang" data-v="${k}" aria-pressed="${st.lang===k}">${l}</button>`).join("")}</div></section>
+  <section class="st-g" aria-labelledby="st-a"><h2 id="st-a">${ic("user")}บัญชี</h2><button type="button" class="st-link" data-a="toast" data-m="เปิด CMU Account (จำลอง)">แก้ข้อมูลส่วนตัวที่ CMU Account ${ic("ext")}</button><button type="button" class="st-link danger" data-a="logout">ออกจากระบบ ${ic("logout")}</button></section>
+ </div>`); };
+function contactSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">ติดต่อเจ้าหน้าที่</h2><p>วิทยาลัยการศึกษาตลอดชีวิต มช. · จ.–ศ. 08:30–16:30</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
+ <div class="sh-b" style="display:grid;gap:8px">${[["phone","โทร","053-xxx-xxx","#FFE3D3","#712319"],["send","LINE OA","@springboard.le","#D4E6BD","#1A1A1A"],["mail","อีเมล","springboard@le.cmu.ac.th","#F8E1E8","#AF5577"],["building","พบที่สำนักงาน","อาคาร LE ชั้น 2","#F0ECEA","#5E5551"]].map(([i,t,d,bg,fg])=>`<button type="button" class="ct-row" data-a="toast" data-m="${t}: ${d} (จำลอง)"><span class="ct-i" style="background:${bg};color:${fg}">${ic(i)}</span><span><b>${t}</b><small>${d}</small></span>${ic("chev-r")}</button>`).join("")}
+  <p class="priv">${ic("shield")}เรื่องด่วนด้านความปลอดภัย โทรสายด่วนได้ตลอด 24 ชม.</p></div>`); }
+R.vocform=()=>{ const tp=(k,l,i,bg,fg)=>`<button type="button" class="topic" data-a="topic" data-v="${k}" aria-pressed="${S.voc.topic===k}"><span class="ti" style="background:${bg};color:${fg}">${ic(i)}</span>${l}</button>`;
+ if(S.vocDone) return wrapApp(`<div class="ok-screen"><span class="big">${ic("check")}</span><h1 id="h1" tabindex="-1">ส่งเรื่องแล้ว</h1><p>แอดมินจะติดต่อกลับภายใน 2 วันทำการ ติดตามสถานะได้ด้วยเลขเรื่องนี้</p><span class="ticket">VOC-2569-0142</span><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center"><button type="button" class="btn btn-o" data-a="go" data-to="vochist">ดูประวัติเรื่อง</button><button type="button" class="btn btn-o" data-a="go" data-to="voc">กลับหน้าช่วยเหลือ</button></div></div>`);
+ return wrapApp(`${topbar("แจ้งปัญหา",true)}<div class="form" style="padding-top:4px"><p class="fhint" style="margin:0">${ic("info")}เลือกเรื่อง เล่ารายละเอียด แล้วแอดมินจะติดต่อกลับภายใน 2 วันทำการ</p>
   <div><p class="lbl">เรื่องที่ต้องการแจ้ง</p><div class="topics" role="group" aria-label="เรื่องที่ต้องการแจ้ง">${tp("pay","ค่าตอบแทน","cash","#FFF0D1","#712319")}${tp("safe","ความปลอดภัย","shield","#FDECEA","#712319")}${tp("mis","งานไม่ตรงประกาศ","alert","#F8E1E8","#AF5577")}${tp("other","อื่น ๆ","help","#F0ECEA","#5E5551")}</div></div>
   ${S.role==="employer"?`<div><p class="lbl">เรื่องนี้เกี่ยวกับนักศึกษาคนไหน <span style="color:var(--muted);font-weight:400">(ไม่บังคับ)</span></p><div class="jobpick">${WORKERS.map((w,i)=>`<button type="button" data-a="vocjob" data-v="${100+i}" aria-pressed="${S.voc.job===100+i}"><span class="lg" style="background:${AVC[w.c]};color:#fff">${w.ini}</span><span><b>${w.n}</b><small>${w.pos}</small></span></button>`).join("")}</div></div>`:""}<div ${S.role==="employer"?"hidden":""}><p class="lbl">สถานประกอบการ <span style="color:var(--muted);font-weight:400">(เลือกจากงานที่ทำอยู่)</span></p><div class="jobpick">${[[1,"lc","ผู้ช่วยทำคอนเทนต์ · ทำอยู่"],[2,"dd","พนักงานร้านกาแฟ · จบแล้ว ต.ค."]].map(([id,sh,l])=>`<button type="button" data-a="vocjob" data-v="${id}" aria-pressed="${S.voc.job===id}"><span class="lg" style="background:${CAT(JOB(id).cat).c1}">${SHOPS[sh].ini}</span><span><b>${esc(SHOPS[sh].n)}</b><small>${l}</small></span></button>`).join("")}</div></div>
   <div><label class="lbl" for="voc-d">รายละเอียด</label><textarea class="inp" id="voc-d" placeholder="เล่าสิ่งที่เกิดขึ้น วันที่ และสิ่งที่อยากให้ช่วย"></textarea><p class="fhint">${ic("lock")}${S.role==="employer"?"นักศึกษาไม่เห็นเรื่องที่คุณแจ้ง":"ผู้ประกอบการไม่เห็นเรื่องที่คุณแจ้ง"}</p></div>
@@ -2959,8 +3041,12 @@ vp.addEventListener("click",e=>{
     case "efaqask": { const map={bpost:"bpost",users:"bstu",clock:"bstu",btk:"btk"}; const t=map[v]||"bother"; S.voc.topic=t; $$(".topic",scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===t)); const s=$('[data-a="vocsend"]',scr); if(s) s.removeAttribute("aria-disabled"); const f=$("#bh-form",scr); if(f){ f.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); setTimeout(()=>$("#voc-d",scr)?.focus({preventScroll:true}),450); } break; }
     case "eurg": S.voc.urg=v; $$('[data-a="eurg"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
     case "vocsend": if(S.role==="employer"){ if(!S.voc.topic){ toast("เลือกเรื่องที่ต้องการแจ้งก่อน",false); break; } S.tixTab="open"; S.etickets.unshift({no:"BIZ-2569-0044",t:TOPIC[S.voc.topic]||"อื่น ๆ",st:"ใหม่",d:"วันนี้",n:S.voc.urg==="u"?"เรื่องด่วน · ทีมจะโทรกลับภายในวันนี้":"ทีมดูแลผู้ประกอบการจะติดต่อกลับภายใน 1 วันทำการ"}); S.vocDone=true; go("voc",false); break; }
-      S.tixTab="open"; S.tickets.unshift({no:"VOC-2569-0142",t:TOPIC[S.voc.topic]||"อื่น ๆ",st:"ใหม่",d:"วันนี้",n:"แอดมินจะติดต่อกลับภายใน 2 วันทำการ"}); S.vocDone=true; go("voc",false); break;
+      S.tixTab="open"; S.tickets.unshift({no:"VOC-2569-0142",t:TOPIC[S.voc.topic]||"อื่น ๆ",st:"ใหม่",d:"วันนี้",n:"แอดมินจะติดต่อกลับภายใน 2 วันทำการ"}); S.vocDone=true; go("vocform",false); break;
     case "vocnew": S.vocDone=false; S.voc={topic:null,job:null}; go("voc",false); break;
+    case "vocreport": S.vocDone=false; S.voc={topic:null,job:null}; go("vocform"); break;
+    case "contact": contactSheet(); break;
+    case "setsw": { S.set[v]=!S.set[v]; el.setAttribute("aria-checked",S.set[v]); if(v==="exam") toast(S.set[v]?"เปิดโหมดช่วงสอบแล้ว · ปิดแจ้งเตือนงานใหม่ 2 สัปดาห์":"ปิดโหมดช่วงสอบแล้ว"); break; }
+    case "setlang": S.set.lang=v; $$('[data-a="setlang"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); if(v==="en") toast("ภาษาอังกฤษ: ออกแบบรอบถัดไป",false); break;
     case "star": { S.fb.stars=+v; $$('[data-a="star"]',scr).forEach((b,k)=>{b.classList.toggle("on",k<S.fb.stars); b.setAttribute("aria-checked",k+1===S.fb.stars); if(k<S.fb.stars){b.classList.remove("burst"); void b.offsetWidth; setTimeout(()=>b.classList.add("burst"),k*60);} }); $("#mood",scr).textContent=MOODS[S.fb.stars]; $('[data-a="fbsend"]',scr).removeAttribute("aria-disabled"); break; }
     case "fbsend": S.fbDone=true; go("feedback",false); confetti(); break;
     case "single": $$('[data-a="single"]',el.parentElement).forEach(b=>b.setAttribute("aria-pressed",b===el)); break;
@@ -3021,6 +3107,7 @@ vp.addEventListener("input",e=>{
   if(t.dataset.live && S.eobf){ S.eobf[t.dataset.live]=t.value; if(t.dataset.live==="name"){ const l=$(".sh-logo span",scr); if(l) l.textContent=t.value==="ล้านนาคราฟต์ สตูดิโอ"?"LC":Array.from(t.value||"?")[0]; } }
   if(t.id==="tk-amt"){ const d=t.value.replace(/\D/g,"").replace(/^0+/,"").slice(0,6); S.emp.camt=d; S.emp.amt=+d||0; t.value=d?fmt(+d):""; syncDonate(); }
   if(t.id==="f-dream") S.ob.dream=t.value;
+  if(t.id==="hq"){ const q=t.value.trim().toLowerCase(); let any=false; $$(".bh-g",scr).forEach(g=>{ let hit=0; $$(".bh-q",g).forEach(d=>{ const m=!q||d.textContent.toLowerCase().includes(q); d.hidden=!m; if(m) hit++; if(q&&m) d.open=true; }); g.hidden=!!q&&!hit; const qs=$(".bh-qs",g); if(q&&hit){ qs.hidden=false; g.classList.add("open"); } else if(!q){ const on=S.efaq===$(".bh-gh",g).dataset.v; qs.hidden=!on; g.classList.toggle("open",on); } if(hit) any=true; }); const e=$("#hq-e",scr); if(e) e.hidden=!q||any; }
   if((t.id==="w-from"||t.id==="w-to")&&S.work){ S.work[t.id==="w-from"?"from":"to"]=t.value; const c=$("#wt-calc",scr); if(c){ const h=wHrs(S.work.from,S.work.to); c.innerHTML=`รวม <b>${h} ชม.</b>${h!==4?` <span class="wt-diff">${h>4?"+":"−"}${Math.abs(h-4)} ชม. จากกะ</span>`:""}`; } }
   if(t.id==="ap-m") S.draft[S.apId]=t.value;
   if(t.id==="finq"||t.id==="usrq"){ const q=t.value.trim().toLowerCase(); const rows=$$("tbody tr",scr); rows.forEach(tr=>{ tr.hidden=!!q&&!tr.textContent.toLowerCase().includes(q); }); const em=$("#q-empty",scr); if(em) em.hidden=rows.some(r=>!r.hidden); }
