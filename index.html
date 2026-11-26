@@ -2192,6 +2192,25 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .cn-scale{display:inline-flex;align-items:center;gap:4px}
 .mc-key i.cn{font-style:normal;width:auto;height:16px;border-radius:999px;font-family:"Poppins";font-size:0.625rem;font-weight:700;display:inline-grid;place-items:center;padding:0 6px}
 .mc-key i.cn.c1{background:#D4E6BD;color:#1A1A1A}.mc-key i.cn.c2{background:#FAD0C2;color:#712319}.mc-key i.cn.c3{background:#FA9746;color:#4A160F}.mc-key i.cn.c4{background:#AF5577;color:#fff}
+/* v124 coverage bars */
+.cov{display:block;width:28px;height:6px;border-radius:999px;background:#F3E4DC;overflow:hidden}
+.cov i{display:block;height:100%;border-radius:999px}
+.cov.ok i{background:#88C887}
+.cov.mid i{background:#FA9746}
+.cov.low{background:#F8E1E8}
+.cov.low i{background:#AF5577}
+.scal .mc[aria-pressed="true"] .cov,.sd[aria-selected="true"] .cov{background:rgba(255,255,255,.45)}
+.scal .mc[aria-pressed="true"] .cov i,.sd[aria-selected="true"] .cov i{background:#fff}
+.sd .cov{margin-top:4px}
+.cvk{display:inline-block;width:14px;height:6px;border-radius:999px;margin-left:4px}
+.cvk.ok{background:#88C887}.cvk.mid{background:#FA9746}.cvk.low{background:#AF5577}
+.cv-t{font-size:0.75rem;font-weight:600;border-radius:999px;padding:1px 8px;margin-left:6px}
+.cv-t.ok{background:#D4E6BD;color:#27500A}
+.cv-t.low{background:#F8E1E8;color:#712319}
+.mc-need{display:flex;align-items:center;gap:6px;font-size:0.8125rem;color:var(--ink2);margin:0 0 8px}
+.mc-need .ic{width:16px;height:16px;color:#F37449}
+.mc-need .linkb{padding:0;min-height:0;margin-left:auto}
+.scal .mc.short:not([aria-pressed="true"]){border-color:#F1D3DD}
 </style>
 
 <div class="studio">
@@ -2810,27 +2829,30 @@ const WCOL=["#F37449","#AF5577","#88C887","#FA9746","#D16F8A","#712319","#E89A7E
 const scToggle=v=>`<div class="sc-tg" role="group" aria-label="มุมมองตาราง">${[["w","สัปดาห์"],["m","เดือน"]].map(([k,l])=>`<button type="button" data-a="scview" data-v="${k}" aria-pressed="${v===k}">${l}</button>`).join("")}</div>`;
 const M_FIRST=6, M_DAYS=30, M_TODAY=10, M_START=2, M_END=29, M_WAIT=new Set([9]);
 const mShifts=d=>d<M_START||d>M_END?[]:SHIFTS.filter(x=>x.d===(M_FIRST+d-1)%7&&(S.mW==null||x.w===S.mW));
+const SHOP_NEED=()=>Math.max(2,Math.ceil(WORKERS.length/2)), OPEN_WD=[0,1,2,3,4,5];
+const covBar=(n,need,lbl)=>{ const p=Math.min(1,n/need), c=p>=1?"ok":p>=.5?"mid":"low"; return `<span class="cov ${c}" title="${lbl||""}${n}/${need} คน"><i style="width:${Math.max(p*100,n?12:0)}%"></i></span>`; };
 const cntCls=n=>n<=2?"c1":n<=4?"c2":n<=6?"c3":"c4";
 const mDots=sh=>{ const u=[...new Set(sh.map(x=>x.w))]; if(S.mW==null) return `<span class="mcnt ${cntCls(u.length)}">${u.length}</span>`; return `<span class="md">${u.slice(0,3).map(w=>`<i style="background:${WCOL[w]}"></i>`).join("")}${u.length>3?`<em>+${u.length-3}</em>`:""}</span>`; };
 function shopMonth(){ const sel=S.mSel||M_TODAY, wd=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."], cells=[];
   let tot=0; for(let d=1;d<=M_DAYS;d++) tot+=mShifts(d).reduce((a,x)=>a+x.h,0);
   for(let i=0;i<M_FIRST;i++) cells.push(`<span class="mc empty" aria-hidden="true"></span>`);
-  for(let d=1;d<=M_DAYS;d++){ const sh=mShifts(d), h=sh.reduce((a,x)=>a+x.h,0), cls=["mc"]; if(d===M_TODAY) cls.push("today"); if(d<M_TODAY) cls.push("past"); if(M_WAIT.has(d)) cls.push("wait"); if(!sh.length) cls.push("off"); 
-    cells.push(`<button type="button" class="${cls.join(" ")}" data-a="mday" data-v="${d}" aria-pressed="${d===sel}" aria-label="${wd[(M_FIRST+d-1)%7]} ${d} พ.ย. ${sh.length?`${sh.length} กะ ${h} ชม.`:"ไม่มีกะ"}${M_WAIT.has(d)?" มีชั่วโมงรออนุมัติ":""}" style="--k:${d}"><span class="mn">${d}</span>${sh.length?mDots(sh):""}</button>`); }
+  for(let d=1;d<=M_DAYS;d++){ const sh=mShifts(d), h=sh.reduce((a,x)=>a+x.h,0), cls=["mc"]; if(d===M_TODAY) cls.push("today"); if(d<M_TODAY) cls.push("past"); if(M_WAIT.has(d)) cls.push("wait"); const openD=d>=M_START&&d<=M_END&&OPEN_WD.includes((M_FIRST+d-1)%7); if(!sh.length&&!(openD&&S.mW==null)) cls.push("off"); if(openD&&S.mW==null&&new Set(sh.map(x=>x.w)).size<SHOP_NEED()) cls.push("short"); 
+    cells.push(`<button type="button" class="${cls.join(" ")}" data-a="mday" data-v="${d}" aria-pressed="${d===sel}" aria-label="${wd[(M_FIRST+d-1)%7]} ${d} พ.ย. ${sh.length?`${new Set(sh.map(x=>x.w)).size} จาก ${SHOP_NEED()} คน ${h} ชม.`:"ไม่มีกะ"}${M_WAIT.has(d)?" มีชั่วโมงรออนุมัติ":""}" style="--k:${d}"><span class="mn">${d}</span>${S.mW!=null?(sh.length?mDots(sh):""):(d>=M_START&&d<=M_END&&OPEN_WD.includes((M_FIRST+d-1)%7)?covBar(new Set(sh.map(x=>x.w)).size,SHOP_NEED()):"")}</button>`); }
   const list=mShifts(sel).sort((a,b)=>a.t.localeCompare(b.t)), st=d=>M_WAIT.has(d)?["t-warn","รออนุมัติ"]:d<M_TODAY?["t-ok","ทำแล้ว"]:d===M_TODAY?["t-peach","วันนี้"]:["t-grey","นัดไว้"];
   return `<section class="scal pad" aria-labelledby="sc-h"><div class="sc-top"><div><h2 id="sc-h">${ic("cal")}ตารางงานของร้าน</h2><small>พ.ย. 2569 · รวม ${tot} ชม. · ${S.mW==null?`${WORKERS.length} คน`:WORKERS[S.mW].n.split(" ")[0]}</small></div>${scToggle("m")}</div>
    <div class="mc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><b>พ.ย. 2569</b><button type="button" class="ib" data-a="toast" data-m="ดูเดือนถัดไป (ต้นแบบ)" aria-label="เดือนถัดไป">${ic("chev-r")}</button></div>
    <div class="mc-g">${wd.map(x=>`<span class="mc-w">${x}</span>`).join("")}${cells.join("")}</div>
-   <div class="mc-key">${S.mW==null?`<span class="cn-scale">จำนวนคน <i class="cn c1">1–2</i><i class="cn c2">3–4</i><i class="cn c3">5–6</i><i class="cn c4">7+</i></span>`:`<span><i class="dt" style="background:${WCOL[S.mW]}"></i>วันที่มีกะ</span>`}<span><i class="wd"></i>รออนุมัติชั่วโมง</span><span><i class="td"></i>วันนี้</span></div>
+   <div class="mc-key">${S.mW==null?`<span class="cn-scale">ความครบของกะ <i class="cvk ok"></i>ครบ <i class="cvk mid"></i>ขาดบ้าง <i class="cvk low"></i>ขาดมาก</span>`:`<span><i class="dt" style="background:${WCOL[S.mW]}"></i>วันที่มีกะ</span>`}<span><i class="wd"></i>รออนุมัติชั่วโมง</span><span><i class="td"></i>วันนี้</span></div>
+   <p class="mc-need">${ic("users")}ร้านต้องการ <b>${SHOP_NEED()} คน/วัน</b> (จ.–ส.) <button type="button" class="linkb" data-a="toast" data-m="ตั้งจำนวนคนที่ต้องการต่อวันได้ในประกาศงาน (ต้นแบบ)">แก้</button></p>
    <div class="mc-ws" role="group" aria-label="กรองตามนักศึกษา"><button type="button" class="mw" data-a="mw" data-v="" aria-pressed="${S.mW==null}"><span class="mw-a all">${ic("users")}</span>ทุกคน</button>${WORKERS.map((w,i)=>{ const h=SHIFTS.filter(x=>x.w===i).reduce((a,x)=>a+x.h,0)*4; return `<button type="button" class="mw" data-a="mw" data-v="${i}" aria-pressed="${S.mW===i}"><span class="mw-a" style="background:${WCOL[i]}">${w.ini}</span><span class="mw-t"><b>${w.n.split(" ")[0]}</b><small>${h} ชม.</small></span></button>`; }).join("")}</div>
-   <p class="mc-dt">${wd[(M_FIRST+sel-1)%7]} ${sel} พ.ย. 2569</p>
+   <p class="mc-dt">${wd[(M_FIRST+sel-1)%7]} ${sel} พ.ย. 2569${S.mW==null&&OPEN_WD.includes((M_FIRST+sel-1)%7)&&sel>=M_START&&sel<=M_END?(()=>{ const n=new Set(list.map(x=>x.w)).size, nd=SHOP_NEED(); return n>=nd?` <span class="cv-t ok">ครบ ${n}/${nd} คน</span>`:` <span class="cv-t low">ขาด ${nd-n} คน · มี ${n}/${nd}</span>`; })():""}</p>
    <div class="sc-list" role="region" aria-live="polite" aria-label="กะวันที่เลือก">${list.length?list.map((x,k)=>{const w=WORKERS[x.w], t=st(sel);return `<div class="shift" style="--k:${k};--c:${WCOL[x.w]}"><span class="av" style="background:${WCOL[x.w]}">${w.ini}</span><div><b>${x.t}</b><small>${w.n} · ${w.pos}</small></div><span class="tag ${t[0]}">${t[1]}</span></div>`;}).join(""):`<p class="sc-empty">${ic("smile")}ไม่มีนัดทำงานวันนี้</p>`}</div></section>`; }
 function shopWeek(){ if(S.wkView==="m") return shopMonth(); const sel=S.wkSel==null?1:S.wkSel, today=1, days=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."];
   const list=SHIFTS.filter(x=>x.d===sel).sort((a,b)=>a.t.localeCompare(b.t)), tot=SHIFTS.reduce((a,x)=>a+x.h,0);
   const st=d=>d<today?["t-ok","ทำแล้ว"]:d===today?["t-peach","วันนี้"]:["t-grey","นัดไว้"];
   return `<section class="scal pad" aria-labelledby="sc-h"><div class="sc-top"><div><h2 id="sc-h">${ic("cal")}ตารางงานของร้าน</h2><small>9–15 พ.ย. 2569 · รวม ${tot} ชม. · ${WORKERS.length} คน</small></div>${scToggle("w")}</div>
    <div class="mc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูสัปดาห์ก่อนหน้า (ต้นแบบ)" aria-label="สัปดาห์ก่อนหน้า">${ic("chev-l")}</button><b>9–15 พ.ย.</b><button type="button" class="ib" data-a="toast" data-m="ดูสัปดาห์ถัดไป (ต้นแบบ)" aria-label="สัปดาห์ถัดไป">${ic("chev-r")}</button></div>
-   <div class="sc-days" role="tablist" aria-label="เลือกวัน">${days.map((n,i)=>{const sh=SHIFTS.filter(x=>x.d===i);return `<button type="button" role="tab" class="sd${i===today?" today":""}" data-a="sday" data-v="${i}" aria-selected="${i===sel}" aria-label="${n} ${9+i} พ.ย. ${sh.length?`มี ${sh.length} กะ`:"ไม่มีกะ"}"><small>${n}</small><b>${9+i}</b>${sh.length?`<span class="mcnt ${cntCls(new Set(sh.map(x=>x.w)).size)}">${new Set(sh.map(x=>x.w)).size}</span>`:""}</button>`;}).join("")}</div>
+   <div class="sc-days" role="tablist" aria-label="เลือกวัน">${days.map((n,i)=>{const sh=SHIFTS.filter(x=>x.d===i);return `<button type="button" role="tab" class="sd${i===today?" today":""}" data-a="sday" data-v="${i}" aria-selected="${i===sel}" aria-label="${n} ${9+i} พ.ย. ${sh.length?`มี ${sh.length} กะ`:"ไม่มีกะ"}"><small>${n}</small><b>${9+i}</b>${OPEN_WD.includes(i)?covBar(new Set(sh.map(x=>x.w)).size,SHOP_NEED()):""}</button>`;}).join("")}</div>
    <div class="sc-list" role="tabpanel">${list.length?list.map((x,k)=>{const w=WORKERS[x.w], t=st(x.d);return `<div class="shift" style="--k:${k};--c:${WCOL[x.w]}"><span class="av" style="background:${WCOL[x.w]}">${w.ini}</span><div><b>${x.t}</b><small>${w.n} · ${w.pos}</small></div><span class="tag ${t[0]}">${t[1]}</span></div>`;}).join(""):`<p class="sc-empty">${ic("smile")}ไม่มีนัดทำงานวันนี้</p>`}</div></section>`; }
 /* admin */
 function admShell(key,body){const it=(k,i,l,c="")=>`<button type="button" data-a="go" data-to="${k}" ${key===k?'aria-current="page"':""}>${ic(i)}<span>${l}</span>${c}</button>`;
