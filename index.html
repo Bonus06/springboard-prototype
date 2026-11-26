@@ -2277,6 +2277,15 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .bnav.moved button[aria-current="page"]::after{animation:navDot .45s var(--spring)}
 @keyframes navDot{0%{transform:scale(0)}60%{transform:scale(1.6)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.bnav.moved button[aria-current="page"]::after{animation:none}}
+/* v136 bottom nav: top line indicator (slides) */
+.bnav{position:sticky}
+.bnav .ind{display:grid!important;top:0!important;bottom:auto!important;height:3px;padding:0!important}
+.bnav .ind::before{background:#F37449!important;border-radius:0 0 4px 4px!important;margin:0 28%}
+.bnav button::after{display:none!important}
+.bnav button{color:#8A7F7A}
+.bnav button[aria-current="page"]{color:#712319;font-weight:600}
+.bnav button[aria-current="page"] .ic{color:#712319;transform:translateY(-1px) scale(1.06)}
+.bnav.hide-ind .ind{display:none!important}
 </style>
 
 <div class="studio">
