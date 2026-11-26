@@ -2224,6 +2224,12 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .emp-stats .es-go .ic{width:12px;height:12px}
 .emp-stats>button:hover .es-go{background:#FAD0C2;transform:translateX(2px)}
 .emp-stats>button:focus-visible{outline:2px solid #F37449;outline-offset:-3px}
+.lang-seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#F3EBE6;border-radius:14px;padding:4px}
+.lang-seg button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border:0;border-radius:10px;background:transparent;font:inherit;font-size:0.875rem;font-weight:500;color:var(--ink2);cursor:pointer;transition:background .2s,color .2s,box-shadow .2s}
+.lang-seg .lc{font-family:"Poppins";font-size:0.6875rem;font-weight:600;border-radius:6px;padding:1px 5px;background:rgba(0,0,0,.06)}
+.lang-seg .ic{width:16px;height:16px}
+.lang-seg button[aria-pressed="true"]{background:#fff;color:#712319;box-shadow:0 1px 4px rgba(113,35,25,.14)}
+.lang-seg button[aria-pressed="true"] .lc{background:#FAD0C2;color:#712319}
 </style>
 
 <div class="studio">
@@ -2703,7 +2709,7 @@ R.vocset=()=>{ const st=S.set||(S.set={newjob:true,hrs:true,exam:false,profile:t
  return wrapApp(`${topbar("ตั้งค่า",true)}<div class="pad" style="display:grid;gap:16px;padding-bottom:16px">
   <section class="st-g" aria-labelledby="st-n"><h2 id="st-n">${ic("bell")}การแจ้งเตือน</h2>${sw("newjob","งานใหม่ที่ตรงกับฉัน","ตามทักษะและอาชีพในฝัน")}${sw("hrs","ชั่วโมงได้รับอนุมัติ","และ Token ที่ได้รับ")}${sw("exam","โหมดช่วงสอบ","ปิดแจ้งเตือนงานใหม่ชั่วคราว 2 สัปดาห์")}</section>
   <section class="st-g" aria-labelledby="st-p"><h2 id="st-p">${ic("lock")}ความเป็นส่วนตัว</h2>${sw("profile","ให้ร้านค้นเจอโปรไฟล์","ร้านเชิญสมัครงานได้ · ปิดแล้วยังสมัครงานเองได้")}<button type="button" class="st-link" data-a="toast" data-m="เปิดรายการข้อมูลที่ร้านเห็น (จำลอง)">ดูข้อมูลที่ร้านเห็น ${ic("chev-r")}</button></section>
-  <section class="st-g" aria-labelledby="st-l"><h2 id="st-l">${ic("globe")}ภาษา</h2><div class="seg" role="group" aria-label="ภาษา">${[["th","ไทย"],["en","English"]].map(([k,l])=>`<button type="button" data-a="setlang" data-v="${k}" aria-pressed="${st.lang===k}">${l}</button>`).join("")}</div></section>
+  <section class="st-g" aria-labelledby="st-l"><h2 id="st-l">${ic("globe")}ภาษา</h2><div class="lang-seg" role="group" aria-label="ภาษา">${[["th","ไทย","TH"],["en","English","EN"]].map(([k,l,c])=>`<button type="button" data-a="setlang" data-v="${k}" aria-pressed="${st.lang===k}"><span class="lc">${c}</span>${l}${st.lang===k?ic("check"):""}</button>`).join("")}</div></section>
   <section class="st-g" aria-labelledby="st-a"><h2 id="st-a">${ic("user")}บัญชี</h2><button type="button" class="st-link" data-a="toast" data-m="เปิด CMU Account (จำลอง)">แก้ข้อมูลส่วนตัวที่ CMU Account ${ic("ext")}</button><button type="button" class="st-link danger" data-a="logout">ออกจากระบบ ${ic("logout")}</button></section>
  </div>`); };
 function contactSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">ติดต่อเจ้าหน้าที่</h2><p>วิทยาลัยการศึกษาตลอดชีวิต มช. · จ.–ศ. 08:30–16:30</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
@@ -3196,7 +3202,7 @@ vp.addEventListener("click",e=>{
     case "vocreport": S.vocDone=false; S.voc={topic:null,job:null}; go("vocform"); break;
     case "contact": contactSheet(); break;
     case "setsw": { S.set[v]=!S.set[v]; el.setAttribute("aria-checked",S.set[v]); if(v==="exam") toast(S.set[v]?"เปิดโหมดช่วงสอบแล้ว · ปิดแจ้งเตือนงานใหม่ 2 สัปดาห์":"ปิดโหมดช่วงสอบแล้ว"); break; }
-    case "setlang": S.set.lang=v; $$('[data-a="setlang"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); if(v==="en") toast("ภาษาอังกฤษ: ออกแบบรอบถัดไป",false); break;
+    case "setlang": S.set.lang=v; rerenderKeep(); if(v==="en") toast("ภาษาอังกฤษ: ออกแบบรอบถัดไป",false); break;
     case "star": { S.fb.stars=+v; $$('[data-a="star"]',scr).forEach((b,k)=>{b.classList.toggle("on",k<S.fb.stars); b.setAttribute("aria-checked",k+1===S.fb.stars); if(k<S.fb.stars){b.classList.remove("burst"); void b.offsetWidth; setTimeout(()=>b.classList.add("burst"),k*60);} }); $("#mood",scr).textContent=MOODS[S.fb.stars]; $('[data-a="fbsend"]',scr).removeAttribute("aria-disabled"); break; }
     case "fbsend": S.fbDone=true; go("feedback",false); confetti(); break;
     case "single": $$('[data-a="single"]',el.parentElement).forEach(b=>b.setAttribute("aria-pressed",b===el)); break;
