@@ -2318,6 +2318,32 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .fbt-links button:hover{background:#FFF7F3;border-color:#F6DCD0}
 .fbt-links .ic{width:16px;height:16px;color:#F37449}
 .sso .gg{border:0!important;background:transparent!important}
+/* v140 student picker (employer report) */
+.stu-pick{position:relative}
+.stu-f{width:100%;display:flex;gap:12px;align-items:center;text-align:left;padding:12px 14px;min-height:60px;border-radius:16px;border:1.5px solid var(--line2);background:#fff;font:inherit;cursor:pointer;transition:border-color .2s}
+.stu-f:hover{border-color:#F37449}
+.stu-pick.on .stu-f{border-color:var(--act);padding-right:56px}
+.stu-f>span:not(.lg):not(.stu-ph){flex:1;min-width:0;display:grid;gap:1px}
+.stu-f b,.stu-o b{font-weight:500;font-size:0.9375rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stu-f small,.stu-o small{font-size:0.8125rem;color:var(--muted)}
+.stu-f>.ic:last-child{width:18px;height:18px;color:var(--muted);flex:none}
+.stu-pick.on .stu-f>.ic:last-child{display:none}
+.stu-x{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:0;background:#FFF1EB;color:#712319;display:grid;place-items:center;cursor:pointer}
+.stu-x .ic{width:16px;height:16px}
+.stu-f .lg,.stu-o .lg{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:0.8125rem;font-weight:600;font-family:"Poppins";flex:none}
+.stu-ph{width:36px;height:36px;border-radius:10px;background:#FFF1EB;color:#F37449;display:grid;place-items:center;flex:none}
+.stu-ph .ic{width:18px;height:18px}
+.stu-sh{display:grid;gap:10px;max-height:62vh;overflow:auto;padding-bottom:16px}
+.stu-sh .sfield{position:sticky;top:0;z-index:1;background:#fff;box-shadow:0 6px 8px -6px rgba(113,35,25,.12)}
+.stu-g{display:grid;gap:6px}
+.stu-gh{font-size:0.75rem;font-weight:600;color:var(--muted);padding:6px 4px 0}
+.stu-o{display:flex;gap:12px;align-items:center;text-align:left;padding:10px 12px;min-height:56px;border-radius:14px;border:1.5px solid transparent;background:#fff;font:inherit;cursor:pointer;transition:background .2s,border-color .2s}
+.stu-o:hover{background:#FFF7F3}
+.stu-o[aria-pressed="true"]{border-color:var(--act);background:#FFF7F3}
+.stu-o>span:not(.lg):not(.stu-ph){flex:1;min-width:0;display:grid;gap:1px}
+.stu-o>.ic:last-child{width:20px;height:20px;color:#F37449;flex:none}
+.stu-o.none{border:1.5px dashed var(--line2)}
+.stu-empty{text-align:center;color:var(--muted);font-size:0.875rem;padding:16px 0}
 </style>
 
 <div class="studio">
@@ -2764,7 +2790,7 @@ R.evoc=()=>{ const tp=(k,l,i,bg,fg)=>`<button type="button" class="topic" data-a
   <section class="bh-form" id="bh-form" aria-labelledby="bhf-h"><h2 id="bhf-h">แจ้งเรื่องถึงวิทยาลัยฯ</h2><p class="bh-sub">เรื่องการเงิน ประกาศงาน หรือปัญหากับนักศึกษา · นักศึกษาไม่เห็นเรื่องที่ร้านแจ้ง</p>
    <div class="topics" role="group" aria-label="เรื่องที่ต้องการแจ้ง">${tp("btk","Token / ใบเสร็จ","wallet","#FFF0D1","#712319")}${tp("bpost","ประกาศงาน / การตรวจสอบ","brief","#FFE3D3","#712319")}${tp("bstu","นักศึกษา / การทำงาน","users","#F8E1E8","#AF5577")}${tp("bacc","บัญชีร้าน","building","#D4E6BD","#1A1A1A")}</div>
    <div><p class="lbl">ความเร่งด่วน</p><div class="seg bh-urg" role="group" aria-label="ความเร่งด่วน">${[["n","ปกติ"],["u","ด่วน · กระทบงานวันนี้"]].map(([k,l])=>`<button type="button" data-a="eurg" data-v="${k}" aria-pressed="${(S.voc.urg||"n")===k}">${l}</button>`).join("")}</div></div>
-   <div><p class="lbl">เกี่ยวกับนักศึกษาคนไหน <span style="color:var(--muted);font-weight:400">(ไม่บังคับ)</span></p><div class="jobpick">${WORKERS.map((w,i)=>`<button type="button" data-a="vocjob" data-v="${100+i}" aria-pressed="${S.voc.job===100+i}"><span class="lg" style="background:${AVC[w.c]};color:#fff">${w.ini}</span><span><b>${w.n}</b><small>${w.pos}</small></span></button>`).join("")}</div></div>
+   <div><p class="lbl">เกี่ยวกับนักศึกษาคนไหน <span style="color:var(--muted);font-weight:400">(ไม่บังคับ)</span></p>${stuField()}</div>
    <div><label class="lbl" for="voc-d">รายละเอียด</label><textarea class="inp" id="voc-d" placeholder="เกิดอะไรขึ้น วันที่ และสิ่งที่อยากให้ทีมช่วย"></textarea></div>
    <button type="button" class="bh-att" data-a="toast" data-m="เลือกไฟล์แนบ (จำลอง)">${ic("file")}แนบรูปหรือใบเสร็จ <small>ไม่บังคับ · ไม่เกิน 10 MB</small></button>
    <div class="bh-diff">${ic("smile")}<span>อยากประเมินการทำงานของนักศึกษา? ใช้เมนู <button type="button" class="linkb" data-a="go" data-to="efeedback">Feedback ถึง Mentor</button> แทน</span></div>
@@ -2803,11 +2829,24 @@ R.vocset=()=>{ const st=S.set||(S.set={newjob:true,hrs:true,exam:false,profile:t
 function contactSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">ติดต่อเจ้าหน้าที่</h2><p>วิทยาลัยการศึกษาตลอดชีวิต มช. · จ.–ศ. 08:30–16:30</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
  <div class="sh-b" style="display:grid;gap:8px">${[["phone","โทร","053-xxx-xxx","#FFE3D3","#712319"],["send","LINE OA","@springboard.le","#D4E6BD","#1A1A1A"],["mail","อีเมล","springboard@le.cmu.ac.th","#F8E1E8","#AF5577"],["building","พบที่สำนักงาน","อาคาร LE ชั้น 2","#F0ECEA","#5E5551"]].map(([i,t,d,bg,fg])=>`<button type="button" class="ct-row" data-a="toast" data-m="${t}: ${d} (จำลอง)"><span class="ct-i" style="background:${bg};color:${fg}">${ic(i)}</span><span><b>${t}</b><small>${d}</small></span>${ic("chev-r")}</button>`).join("")}
   <p class="priv">${ic("shield")}เรื่องด่วนด้านความปลอดภัย โทรสายด่วนได้ตลอด 24 ชม.</p></div>`); }
+const STU_PAST=[["ธนพร ใจดี","ธ","พนักงานหน้าร้าน · ก.ย.",1],["ณัฐวุฒิ แก้วมา","ณ","ผู้ช่วยแพ็กสินค้า · ส.ค.",2],["พิมพ์ชนก สายบุญ","พ","แอดมินเพจ · ส.ค.",3],["อนุชา คำปัน","อ","ช่างภาพสินค้า · ก.ค.",0],["วริศรา มณีวงศ์","ว","ผู้ช่วยทำคอนเทนต์ · มิ.ย.",5],["ภูมิพัฒน์ ศรีสุข","ภ","พนักงานหน้าร้าน · พ.ค.",4],["ชลธิชา บุญมา","ช","ผู้ช่วยจัดสต๊อก · เม.ย.",1],["กิตติพัฒน์ อินทร์แก้ว","ก","ผู้ช่วยงานอีเวนต์ · มี.ค.",2]];
+const STU_ALL=()=>[...WORKERS.map((w,i)=>({id:100+i,n:w.n,ini:w.ini,sub:w.pos,c:w.c,now:true})),...STU_PAST.map(([n,ini,sub,c],i)=>({id:200+i,n,ini,sub,c,now:false}))];
+const stuAv=x=>`<span class="lg" style="background:${AVC[x.c%AVC.length]};color:#fff">${x.ini}</span>`;
+const stuField=()=>{ const x=STU_ALL().find(o=>o.id===S.voc.job);
+ return `<div class="stu-pick${x?" on":""}"><button type="button" class="stu-f" data-a="stupick" aria-haspopup="dialog">${x?`${stuAv(x)}<span><b>${esc(x.n)}</b><small>${esc(x.sub)}</small></span>`:`<span class="stu-ph">${ic("users")}</span><span><b>ไม่ระบุ</b><small>แตะเพื่อค้นหาและเลือกนักศึกษา</small></span>`}${ic("chev-d")}</button>${x?`<button type="button" class="stu-x" data-a="stuclear" aria-label="ล้างนักศึกษาที่เลือก">${ic("x")}</button>`:""}</div>`; };
+const stuRow=x=>`<button type="button" class="stu-o" data-a="vocstu" data-v="${x.id}" aria-pressed="${S.voc.job===x.id}" data-q="${esc((x.n+" "+x.sub).toLowerCase())}">${stuAv(x)}<span><b>${esc(x.n)}</b><small>${esc(x.sub)}</small></span>${S.voc.job===x.id?ic("check"):""}</button>`;
+function stuPickSheet(){ const all=STU_ALL(), now=all.filter(x=>x.now), past=all.filter(x=>!x.now);
+ sheet(`<div class="sh-h"><div><h2 id="shh">เลือกนักศึกษา</h2><p>${all.length} คนที่เคยทำงานกับร้าน</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
+ <div class="sh-b stu-sh"><label class="sfield">${ic("search")}<span class="sr">ค้นหานักศึกษา</span><input id="stuq" type="search" placeholder="ค้นหาชื่อหรือตำแหน่ง" autocomplete="off"></label>
+ <button type="button" class="stu-o none" data-a="vocstu" data-v="0" aria-pressed="${!S.voc.job}"><span class="stu-ph">${ic("users")}</span><span><b>ไม่ระบุนักศึกษา</b><small>แจ้งเรื่องทั่วไปของร้าน</small></span>${!S.voc.job?ic("check"):""}</button>
+ <div class="stu-g"><p class="stu-gh">ทำงานอยู่ตอนนี้ · ${now.length}</p>${now.map(stuRow).join("")}</div>
+ <div class="stu-g"><p class="stu-gh">เคยทำงานกับร้าน · ${past.length}</p>${past.map(stuRow).join("")}</div>
+ <p class="stu-empty" id="stu-empty" hidden>ไม่พบนักศึกษาที่ตรงกับคำค้น</p></div>`); }
 R.vocform=()=>{ const tp=(k,l,i,bg,fg)=>`<button type="button" class="topic" data-a="topic" data-v="${k}" aria-pressed="${S.voc.topic===k}"><span class="ti" style="background:${bg};color:${fg}">${ic(i)}</span>${l}</button>`;
  if(S.vocDone) return wrapApp(`<div class="ok-screen"><span class="big">${ic("check")}</span><h1 id="h1" tabindex="-1">ส่งเรื่องแล้ว</h1><p>แอดมินจะติดต่อกลับภายใน 2 วันทำการ ติดตามสถานะได้ด้วยเลขเรื่องนี้</p><span class="ticket">VOC-2569-0142</span><div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center"><button type="button" class="btn btn-o" data-a="go" data-to="vochist">ดูประวัติเรื่อง</button><button type="button" class="btn btn-o" data-a="go" data-to="voc">กลับหน้าช่วยเหลือ</button></div></div>`);
  return wrapApp(`${topbar("แจ้งปัญหา",true)}<div class="form" style="padding-top:4px"><p class="fhint" style="margin:0">${ic("info")}เลือกเรื่อง เล่ารายละเอียด แล้วแอดมินจะติดต่อกลับภายใน 2 วันทำการ</p>
   <div><p class="lbl">เรื่องที่ต้องการแจ้ง</p><div class="topics" role="group" aria-label="เรื่องที่ต้องการแจ้ง">${tp("pay","ค่าตอบแทน","cash","#FFF0D1","#712319")}${tp("safe","ความปลอดภัย","shield","#FDECEA","#712319")}${tp("mis","งานไม่ตรงประกาศ","alert","#F8E1E8","#AF5577")}${tp("other","อื่น ๆ","help","#F0ECEA","#5E5551")}</div></div>
-  ${S.role==="employer"?`<div><p class="lbl">เรื่องนี้เกี่ยวกับนักศึกษาคนไหน <span style="color:var(--muted);font-weight:400">(ไม่บังคับ)</span></p><div class="jobpick">${WORKERS.map((w,i)=>`<button type="button" data-a="vocjob" data-v="${100+i}" aria-pressed="${S.voc.job===100+i}"><span class="lg" style="background:${AVC[w.c]};color:#fff">${w.ini}</span><span><b>${w.n}</b><small>${w.pos}</small></span></button>`).join("")}</div></div>`:""}<div ${S.role==="employer"?"hidden":""}><p class="lbl">สถานประกอบการ <span style="color:var(--muted);font-weight:400">(เลือกจากงานที่ทำอยู่)</span></p><div class="jobpick">${[[1,"lc","ผู้ช่วยทำคอนเทนต์ · ทำอยู่"],[2,"dd","พนักงานร้านกาแฟ · จบแล้ว ต.ค."]].map(([id,sh,l])=>`<button type="button" data-a="vocjob" data-v="${id}" aria-pressed="${S.voc.job===id}"><span class="lg" style="background:${CAT(JOB(id).cat).c1}">${SHOPS[sh].ini}</span><span><b>${esc(SHOPS[sh].n)}</b><small>${l}</small></span></button>`).join("")}</div></div>
+  ${S.role==="employer"?`<div><p class="lbl">เรื่องนี้เกี่ยวกับนักศึกษาคนไหน <span style="color:var(--muted);font-weight:400">(ไม่บังคับ)</span></p>${stuField()}</div>`:""}<div ${S.role==="employer"?"hidden":""}><p class="lbl">สถานประกอบการ <span style="color:var(--muted);font-weight:400">(เลือกจากงานที่ทำอยู่)</span></p><div class="jobpick">${[[1,"lc","ผู้ช่วยทำคอนเทนต์ · ทำอยู่"],[2,"dd","พนักงานร้านกาแฟ · จบแล้ว ต.ค."]].map(([id,sh,l])=>`<button type="button" data-a="vocjob" data-v="${id}" aria-pressed="${S.voc.job===id}"><span class="lg" style="background:${CAT(JOB(id).cat).c1}">${SHOPS[sh].ini}</span><span><b>${esc(SHOPS[sh].n)}</b><small>${l}</small></span></button>`).join("")}</div></div>
   <div><label class="lbl" for="voc-d">รายละเอียด</label><textarea class="inp" id="voc-d" placeholder="เล่าสิ่งที่เกิดขึ้น วันที่ และสิ่งที่อยากให้ช่วย"></textarea><p class="fhint">${ic("lock")}${S.role==="employer"?"นักศึกษาไม่เห็นเรื่องที่คุณแจ้ง":"ผู้ประกอบการไม่เห็นเรื่องที่คุณแจ้ง"}</p></div>
  </div><div class="foot-act" style="position:static"><button type="button" class="btn btn-g" data-a="vocsend" ${S.voc.topic?"":'aria-disabled="true"'}>${ic("send")} ส่งเรื่อง</button></div>`);};
 const MOODS=["","ต้องปรับปรุง","พอใช้","ดี","ดีมาก","ดีมากที่สุด"];
@@ -3263,6 +3302,9 @@ vp.addEventListener("click",e=>{
     case "cv": if(S.cv==="ok"){ toast("ดาวน์โหลด CV.pdf (จำลอง)"); break; } if(S.cv==="gen") break; S.cv="gen"; rerenderKeep(); later(()=>{S.cv="ok"; rerenderKeep(); toast("AI สร้าง CV.pdf ให้แล้ว");},2000); break;
     case "payout": payoutSheet(); break;
     case "topic": S.voc.topic=v; $$(".topic",scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); { const s=$('[data-a="vocsend"]',scr); s.removeAttribute("aria-disabled"); } break;
+    case "stupick": stuPickSheet(); break;
+    case "vocstu": S.voc.job=+v||null; closeSheet(); { const f=$(".stu-pick",scr); if(f){ f.outerHTML=stuField(); const b=$(".stu-f",scr); if(b) b.focus({preventScroll:true}); } } if(+v) toast("เลือกแล้ว"); break;
+    case "stuclear": S.voc.job=null; { const f=$(".stu-pick",scr); if(f){ f.outerHTML=stuField(); $(".stu-f",scr)?.focus({preventScroll:true}); } } break;
     case "vocjob": S.voc.job=+v; $$('[data-a="vocjob"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
     case "astu": astuSheet(+v); break;
     case "expsheet": expSheet(); break;
@@ -3361,6 +3403,7 @@ vp.addEventListener("input",e=>{
   if(t.id==="hq"){ const q=t.value.trim().toLowerCase(); let any=false; $$(".bh-g",scr).forEach(g=>{ let hit=0; $$(".bh-q",g).forEach(d=>{ const m=!q||d.textContent.toLowerCase().includes(q); d.hidden=!m; if(m) hit++; if(q&&m) d.open=true; }); g.hidden=!!q&&!hit; const qs=$(".bh-qs",g); if(q&&hit){ qs.hidden=false; g.classList.add("open"); } else if(!q){ const on=S.efaq===$(".bh-gh",g).dataset.v; qs.hidden=!on; g.classList.toggle("open",on); } if(hit) any=true; }); const e=$("#hq-e",scr); if(e) e.hidden=!q||any; }
   if((t.id==="w-from"||t.id==="w-to")&&S.work){ S.work[t.id==="w-from"?"from":"to"]=t.value; const c=$("#wt-calc",scr); if(c){ const h=wHrs(S.work.from,S.work.to); c.innerHTML=`รวม <b>${h} ชม.</b>${h!==4?` <span class="wt-diff">${h>4?"+":"−"}${Math.abs(h-4)} ชม. จากกะ</span>`:""}`; } }
   if(t.id==="ap-m") S.draft[S.apId]=t.value;
+  if(t.id==="stuq"){ const q=t.value.trim().toLowerCase(); let any=0; $$(".stu-g",ov).forEach(g=>{ let hit=0; $$(".stu-o",g).forEach(o=>{ const m=!q||o.dataset.q.includes(q); o.hidden=!m; if(m) hit++; }); g.hidden=!hit; any+=hit; }); const n=$(".stu-o.none",ov); if(n) n.hidden=!!q; const em=$("#stu-empty",ov); if(em) em.hidden=!!any; }
   if(t.id==="finq"||t.id==="usrq"){ const q=t.value.trim().toLowerCase(); const rows=$$("tbody tr",scr); rows.forEach(tr=>{ tr.hidden=!!q&&!tr.textContent.toLowerCase().includes(q); }); const em=$("#q-empty",scr); if(em) em.hidden=rows.some(r=>!r.hidden); }
 });
 vp.addEventListener("change",e=>{ const t=e.target; if(t.id==="sortsel"){ S.sort=t.value; refreshResults(300); } if(t.dataset.a==="echk"&&S.eobf){ const g=t.dataset.g; t.checked?S.eobf[g].add(t.value):S.eobf[g].delete(t.value); updatePreview(); }});
