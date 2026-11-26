@@ -2165,6 +2165,22 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .mc[aria-pressed="true"] .mcnt{color:#fff}
 .mc-key i.h1{background:#FFE9DE}.mc-key i.h2{background:#FCCDB6;margin-left:-4px}.mc-key i.h3{background:#F7A985;margin-left:-4px}
 .sd-dots em{font-style:normal;font-size:0.5625rem;font-weight:700;margin-left:1px;line-height:1}
+/* v122 calendar cells simplified */
+.scal .mc{background:#fff;border:1px solid #F1E6E0;box-shadow:none}
+.scal .mc.off{background:#FCFAF9;border-color:#F6EFEB}
+.scal .mc.off .mn{color:#C4B7B1}
+.scal .mc .mn{font-size:0.875rem}
+.scal .mc .mcnt{min-width:20px;height:18px;padding:0 6px;border-radius:999px;background:#FFE3D3;color:#712319;font-family:"Poppins";font-size:0.6875rem;font-weight:600;display:inline-grid;place-items:center;line-height:1}
+.scal .mc.wait{background:#fff;box-shadow:none;border-color:#F1E6E0}
+.scal .mc.wait::after{content:"";position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:#FA9746;box-shadow:0 0 0 2px #fff}
+.scal .mc.today{border:2px solid #712319}
+.scal .mc[aria-pressed="true"]{background:#F37449;border-color:#F37449}
+.scal .mc[aria-pressed="true"] .mn{color:#fff}
+.scal .mc[aria-pressed="true"] .mcnt{background:#fff;color:#F37449}
+.scal .mc[aria-pressed="true"].wait::after{box-shadow:0 0 0 2px #F37449;background:#fff}
+.mc-key i.cn{width:auto;min-width:18px;height:16px;border-radius:999px;background:#FFE3D3;color:#712319;font-style:normal;font-family:"Poppins";font-size:0.625rem;font-weight:600;display:inline-grid;place-items:center;padding:0 5px}
+.mc-key i.wd{width:8px;height:8px;border-radius:50%;background:#FA9746}
+.scal .mc.empty{background:transparent;border:0}
 </style>
 
 <div class="studio">
@@ -2783,17 +2799,17 @@ const WCOL=["#F37449","#AF5577","#88C887","#FA9746","#D16F8A","#712319","#E89A7E
 const scToggle=v=>`<div class="sc-tg" role="group" aria-label="มุมมองตาราง">${[["w","สัปดาห์"],["m","เดือน"]].map(([k,l])=>`<button type="button" data-a="scview" data-v="${k}" aria-pressed="${v===k}">${l}</button>`).join("")}</div>`;
 const M_FIRST=6, M_DAYS=30, M_TODAY=10, M_START=2, M_END=29, M_WAIT=new Set([9]);
 const mShifts=d=>d<M_START||d>M_END?[]:SHIFTS.filter(x=>x.d===(M_FIRST+d-1)%7&&(S.mW==null||x.w===S.mW));
-const mDots=sh=>{ const u=[...new Set(sh.map(x=>x.w))]; if(WORKERS.length>5&&S.mW==null) return `<span class="mcnt">${u.length} คน</span>`; return `<span class="md">${u.slice(0,3).map(w=>`<i style="background:${WCOL[w]}"></i>`).join("")}${u.length>3?`<em>+${u.length-3}</em>`:""}</span>`; };
+const mDots=sh=>{ const u=[...new Set(sh.map(x=>x.w))]; if(WORKERS.length>5&&S.mW==null) return `<span class="mcnt">${u.length}</span>`; return `<span class="md">${u.slice(0,3).map(w=>`<i style="background:${WCOL[w]}"></i>`).join("")}${u.length>3?`<em>+${u.length-3}</em>`:""}</span>`; };
 function shopMonth(){ const sel=S.mSel||M_TODAY, wd=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."], cells=[];
   let tot=0; for(let d=1;d<=M_DAYS;d++) tot+=mShifts(d).reduce((a,x)=>a+x.h,0);
   for(let i=0;i<M_FIRST;i++) cells.push(`<span class="mc empty" aria-hidden="true"></span>`);
-  for(let d=1;d<=M_DAYS;d++){ const sh=mShifts(d), h=sh.reduce((a,x)=>a+x.h,0), cls=["mc"]; if(d===M_TODAY) cls.push("today"); if(d<M_TODAY) cls.push("past"); if(M_WAIT.has(d)) cls.push("wait"); if(!sh.length) cls.push("off"); if(WORKERS.length>5&&S.mW==null&&sh.length){ const n=new Set(sh.map(x=>x.w)).size; cls.push(n>=6?"h3":n>=3?"h2":"h1"); }
+  for(let d=1;d<=M_DAYS;d++){ const sh=mShifts(d), h=sh.reduce((a,x)=>a+x.h,0), cls=["mc"]; if(d===M_TODAY) cls.push("today"); if(d<M_TODAY) cls.push("past"); if(M_WAIT.has(d)) cls.push("wait"); if(!sh.length) cls.push("off"); 
     cells.push(`<button type="button" class="${cls.join(" ")}" data-a="mday" data-v="${d}" aria-pressed="${d===sel}" aria-label="${wd[(M_FIRST+d-1)%7]} ${d} พ.ย. ${sh.length?`${sh.length} กะ ${h} ชม.`:"ไม่มีกะ"}${M_WAIT.has(d)?" มีชั่วโมงรออนุมัติ":""}" style="--k:${d}"><span class="mn">${d}</span>${sh.length?mDots(sh):""}</button>`); }
   const list=mShifts(sel).sort((a,b)=>a.t.localeCompare(b.t)), st=d=>M_WAIT.has(d)?["t-warn","รออนุมัติ"]:d<M_TODAY?["t-ok","ทำแล้ว"]:d===M_TODAY?["t-peach","วันนี้"]:["t-grey","นัดไว้"];
   return `<section class="scal pad" aria-labelledby="sc-h"><div class="sc-top"><div><h2 id="sc-h">${ic("cal")}ตารางงานของร้าน</h2><small>พ.ย. 2569 · รวม ${tot} ชม. · ${S.mW==null?`${WORKERS.length} คน`:WORKERS[S.mW].n.split(" ")[0]}</small></div>${scToggle("m")}</div>
    <div class="mc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><b>พ.ย. 2569</b><button type="button" class="ib" data-a="toast" data-m="ดูเดือนถัดไป (ต้นแบบ)" aria-label="เดือนถัดไป">${ic("chev-r")}</button></div>
    <div class="mc-g">${wd.map(x=>`<span class="mc-w">${x}</span>`).join("")}${cells.join("")}</div>
-   <div class="mc-key">${WORKERS.length>5&&S.mW==null?`<span><i class="h1"></i><i class="h2"></i><i class="h3"></i>จำนวนคนเข้ากะ</span>`:`<span><i class="dt"></i>มีกะ (สีตามคน)</span>`}<span><i class="wt"></i>รออนุมัติ</span><span><i class="td"></i>วันนี้</span></div>
+   <div class="mc-key">${WORKERS.length>5&&S.mW==null?`<span><i class="cn">3</i>จำนวนคนเข้ากะ</span>`:`<span><i class="dt"></i>มีกะ (สีตามคน)</span>`}<span><i class="wd"></i>รออนุมัติชั่วโมง</span><span><i class="td"></i>วันนี้</span></div>
    <div class="mc-ws" role="group" aria-label="กรองตามนักศึกษา"><button type="button" class="mw" data-a="mw" data-v="" aria-pressed="${S.mW==null}"><span class="mw-a all">${ic("users")}</span>ทุกคน</button>${WORKERS.map((w,i)=>{ const h=SHIFTS.filter(x=>x.w===i).reduce((a,x)=>a+x.h,0)*4; return `<button type="button" class="mw" data-a="mw" data-v="${i}" aria-pressed="${S.mW===i}"><span class="mw-a" style="background:${WCOL[i]}">${w.ini}</span><span class="mw-t"><b>${w.n.split(" ")[0]}</b><small>${h} ชม.</small></span></button>`; }).join("")}</div>
    <p class="mc-dt">${wd[(M_FIRST+sel-1)%7]} ${sel} พ.ย. 2569</p>
    <div class="sc-list" role="region" aria-live="polite" aria-label="กะวันที่เลือก">${list.length?list.map((x,k)=>{const w=WORKERS[x.w], t=st(sel);return `<div class="shift" style="--k:${k};--c:${WCOL[x.w]}"><span class="av" style="background:${WCOL[x.w]}">${w.ini}</span><div><b>${x.t}</b><small>${w.n} · ${w.pos}</small></div><span class="tag ${t[0]}">${t[1]}</span></div>`;}).join(""):`<p class="sc-empty">${ic("smile")}ไม่มีนัดทำงานวันนี้</p>`}</div></section>`; }
