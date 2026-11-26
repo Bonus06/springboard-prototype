@@ -412,6 +412,94 @@ select.inp{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .chk-line input{width:16px;height:16px;accent-color:var(--act)}
 .stars.sm button .ic{width:32px;height:32px}
 .docs{display:grid;gap:8px}
+.bh-card{background:linear-gradient(135deg,#712319,#AF5577);color:#fff;border-radius:20px;padding:16px;display:grid;gap:12px;box-shadow:0 10px 24px -12px rgba(113,35,25,.6)}
+.bh-top{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.bh-ic{width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.16);display:grid;place-items:center;flex:none}
+.bh-top>div{flex:1;min-width:150px;display:grid;gap:2px}
+.bh-top b{font-size:1rem;font-weight:600}
+.bh-top small{font-size:0.75rem;opacity:.85}
+.bh-on{display:inline-flex;align-items:center;gap:6px;font-size:0.75rem;background:rgba(255,255,255,.16);border-radius:999px;padding:4px 10px}
+.bh-on i{width:8px;height:8px;border-radius:50%;background:#88C887;box-shadow:0 0 0 3px rgba(136,200,135,.3)}
+.bh-acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bh-acts .btn{background:#fff;color:#712319;border-color:#fff}
+.bh-faq{display:grid;gap:8px}
+.bh-g{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.bh-g.open{border-color:#FA9746;box-shadow:0 6px 16px -10px rgba(243,116,73,.5)}
+.bh-gh{width:100%;display:flex;align-items:center;gap:12px;padding:12px 16px;min-height:56px;border:0;background:none;font:inherit;text-align:left;cursor:pointer}
+.bh-gh .ti{width:36px;height:36px;border-radius:10px;background:#FFF1EB;color:#712319;display:grid;place-items:center;flex:none}
+.bh-gh b{flex:1;font-size:0.9375rem;font-weight:600}
+.bh-gh small{font-size:0.75rem;color:var(--muted)}
+.bh-gh>.ic:last-child{color:var(--muted);transition:transform .3s var(--spring)}
+.bh-g.open .bh-gh>.ic:last-child{transform:rotate(180deg)}
+.bh-qs{padding:0 16px 12px;display:grid;gap:4px;animation:upPop .35s var(--spring)}
+.bh-q{border-top:1px solid var(--line);padding:8px 0}
+.bh-q summary{cursor:pointer;font-size:0.875rem;font-weight:500;color:var(--ink);list-style:none;display:flex;justify-content:space-between;gap:8px;min-height:32px;align-items:center}
+.bh-q summary::-webkit-details-marker{display:none}
+.bh-q summary::after{content:"+";font-family:"Poppins";color:#F37449;font-weight:600;font-size:1.125rem;transition:transform .25s}
+.bh-q[open] summary::after{transform:rotate(45deg)}
+.bh-q p{font-size:0.8125rem;color:var(--ink2);line-height:1.6;margin-top:4px}
+.bh-no{font-size:0.8125rem;color:var(--muted);padding-top:4px}
+.bh-form{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;display:grid;gap:16px}
+.bh-form h2{font-size:1.125rem;font-weight:600}
+.bh-sub{font-size:0.8125rem;color:var(--muted);margin-top:-12px}
+.bh-form .topic{font-size:0.875rem;padding:12px}
+.bh-urg{display:grid;grid-template-columns:1fr 1.4fr}
+.bh-urg button[aria-pressed="true"][data-v="u"]{background:#712319;border-color:#712319;color:#fff}
+.bh-att{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-height:48px;padding:8px 16px;border:1.5px dashed var(--line2);border-radius:12px;background:#FFFAF7;font:inherit;font-size:0.875rem;color:#712319;font-weight:500;cursor:pointer}
+.bh-att small{color:var(--muted);font-weight:400}
+.bh-diff{display:flex;gap:8px;align-items:flex-start;font-size:0.8125rem;color:var(--ink2);background:#FBE9EF;border-radius:12px;padding:12px}
+.bh-diff>.ic{color:#AF5577;flex:none}
+.bh-diff .linkb{padding:0;min-height:0;display:inline}
+@media (prefers-reduced-motion:reduce){.bh-qs{animation:none}}
+.es-badge{width:64px;height:64px;border-radius:20px;background:#D4E6BD;color:#1A1A1A;display:grid;place-items:center;animation:upPop .6s var(--spring)}
+.es-badge .ic{width:30px;height:30px}
+.es-ok{flex-wrap:wrap;gap:4px 8px;line-height:1.5}
+.es-ok .linkb{padding:0;min-height:0}
+.es-next{display:flex;gap:12px;align-items:flex-start;background:#FFF7F3;border:1px solid #FAD0C2;border-radius:16px;padding:12px 16px;font-size:0.8125rem;color:var(--ink2);line-height:1.55}
+.es-next>.ic{color:#F37449;flex:none;margin-top:2px}
+.es-next b{display:block;color:#712319;font-weight:600}
+.es-login{text-align:center;font-size:0.875rem;color:var(--muted)}
+.vpill.np{background:#FFF0D1;color:#712319}
+.eh-start{background:#fff;border-radius:20px;box-shadow:var(--sh1);border:1px solid var(--line);padding:16px;display:grid;gap:12px;margin-bottom:4px}
+.eh-start h2{font-size:1rem;font-weight:600}
+.eh-steps{list-style:none;margin:0;padding:0;display:grid;gap:0;position:relative}
+.eh-steps li{display:flex;gap:12px;align-items:flex-start;padding:8px 0;position:relative}
+.eh-steps li+li::before{content:"";position:absolute;left:13px;top:-10px;height:18px;border-left:2px dashed #F3D9CE}
+.eh-dot{width:28px;height:28px;border-radius:999px;display:grid;place-items:center;flex:none;background:#F3EBE6;color:var(--ink2);font-family:"Poppins";font-size:0.8125rem;font-weight:600}
+.eh-dot .ic{width:16px;height:16px}
+.eh-steps li.ok .eh-dot{background:#D4E6BD;color:#1A1A1A}
+.eh-steps li.now .eh-dot{background:#F37449;color:#fff;box-shadow:0 0 0 4px #FFE3D3}
+.eh-steps b{display:block;font-size:0.9375rem;font-weight:600;line-height:1.4}
+.eh-steps li.ok b{color:var(--muted);text-decoration:line-through;text-decoration-color:#88C887}
+.eh-steps small{font-size:0.75rem;color:var(--muted)}
+.eh-empty{display:grid;justify-items:center;gap:4px;text-align:center;padding:24px 16px;border:1.5px dashed var(--line2);border-radius:16px;background:#fff}
+.eh-empty img{width:48px;opacity:.85;margin-bottom:4px}
+.eh-empty b{font-weight:600}
+.eh-empty span{font-size:0.8125rem;color:var(--muted)}
+.eh-lock{display:flex;gap:12px;align-items:flex-start;background:#F7F3F1;border-radius:16px;padding:12px 16px;font-size:0.8125rem;color:#5E5551}
+.eh-lock b{display:block;font-weight:600;color:var(--ink2)}
+@media (prefers-reduced-motion:reduce){.es-badge{animation:none}}
+.hjob-sec{padding-top:4px}
+.hfil{display:flex;gap:4px;overflow-x:auto;padding:8px 12px 4px;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.hfil::-webkit-scrollbar{display:none}
+.hf{flex:none;width:76px;scroll-snap-align:start;border:0;background:none;padding:4px 0 8px;display:flex;flex-direction:column;align-items:center;gap:8px;font:inherit;font-size:0.75rem;line-height:1.3;color:var(--ink2);text-align:center;cursor:pointer;position:relative}
+.hf .tile{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;transition:transform .45s var(--spring),box-shadow .25s}
+.hf .tile .ic{width:24px;height:24px}
+.hf:hover .tile{transform:translateY(-3px) rotate(-4deg)}
+.hf:active .tile{transform:scale(.88)}
+.hf .hf-l{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
+.hf[aria-pressed="true"] .tile{box-shadow:0 0 0 2.5px #fff,0 0 0 5px #F37449;transform:translateY(-2px)}
+.hf[aria-pressed="true"] .hf-l{color:#712319;font-weight:600}
+.hf::after{content:"";position:absolute;bottom:0;left:50%;width:0;height:3px;border-radius:3px;background:#F37449;transform:translateX(-50%);transition:width .35s var(--spring)}
+.hf[aria-pressed="true"]::after{width:20px}
+.hjobs{display:grid;gap:12px}
+.hj-c{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:0.8125rem;color:var(--muted);margin:-4px 0 0}
+.hj-pill{display:inline-flex;align-items:center;gap:4px;min-height:32px;padding:0 8px 0 12px;border-radius:999px;border:0;background:#FAD0C2;color:#712319;font:inherit;font-size:0.8125rem;font-weight:600;cursor:pointer}
+.hj-pill .ic{width:14px;height:14px}
+.hj-pill:hover{background:#F8C1AE}
+.hj-it{animation:shIn .45s var(--spring) var(--d,0ms) both}
+.hj-empty{display:grid;justify-items:center;gap:8px;text-align:center;padding:24px 16px;border:1.5px dashed var(--line2);border-radius:16px;color:var(--muted);font-size:0.875rem}
+@media (prefers-reduced-motion:reduce){.hj-it{animation:none}.hf[aria-pressed="true"] .tile{transform:none}}
 .chip.add{border-style:dashed;border-color:#F37449;color:#712319;background:#FFF7F3}
 .chip.add:hover{background:#FFF1EB}
 .chip.cx .ic{width:14px;height:14px}
@@ -1823,6 +1911,135 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .btn-danger{color:#712319;border-color:#FAD0C2;box-shadow:0 2px 0 #FAD0C2}
 .btn-danger:hover{background:#FFF0EA}
 .btn-danger:active{transform:translateY(2px);box-shadow:none}
+/* v109 applicant card balance */
+.app-card{display:grid!important;grid-template-columns:48px minmax(0,1fr) auto;grid-template-areas:"av i r" "av f f";column-gap:12px;row-gap:8px;align-items:center;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;transition:transform .35s var(--spring),box-shadow .25s}
+.app-card:hover{transform:translateY(-2px);box-shadow:0 10px 22px -12px rgba(113,35,25,.3)}
+.app-card:active{transform:scale(.98)}
+.app-card:focus-visible{outline:2px solid #F37449;outline-offset:2px}
+.app-card .av{grid-area:av;align-self:start}
+.app-card .ac-i{grid-area:i;min-width:0;display:grid;gap:2px}
+.app-card .ac-i b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-card .ac-i small{font-size:0.8125rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-card .ac-r{grid-area:r;align-self:start;display:flex;align-items:center;gap:4px}
+.app-card .ac-r>.ic{width:18px;height:18px;color:var(--muted);transition:transform .3s var(--spring)}
+.app-card:hover .ac-r>.ic{transform:translateX(3px)}
+.app-card .ac-r .tag{white-space:nowrap}
+.app-card .ac-f{grid-area:f;min-width:0}
+.app-card .ac-f small{margin:0}
+.app-card .match{font-family:"Poppins",sans-serif;font-size:0.875rem;font-weight:600;color:#1A1A1A;gap:6px}
+.app-card .match .ring{width:22px;height:22px;background:conic-gradient(#88C887 calc(var(--m)*1%),#EEF5E6 0)}
+.app-card .match .ring::after{width:12px;height:12px}
+.pf-fit{margin-top:8px}
+.doc span small{display:block;font-size:0.75rem;color:var(--muted)}
+.doc .tag{margin-left:auto;flex:none}
+.doc .tag+.ic{margin-left:4px!important}
+.doc-no{background:#FAF7F5;color:var(--ink2)}
+.doc-sec{background:#FFFAF7;border:1px solid #F6DCD0;border-radius:16px;padding:12px}
+.doc-need{font-size:0.75rem;font-weight:600;color:#712319;background:#FAD0C2;border-radius:999px;padding:2px 8px}
+.es-next em{display:block;font-style:normal;margin-top:4px;color:#712319}
+/* v113 shop calendar week/month toggle */
+.sc-top{align-items:flex-start}
+.sc-tg{display:inline-grid;grid-template-columns:1fr 1fr;background:#F3EBE6;border-radius:999px;padding:3px;flex:none}
+.sc-tg button{border:0;background:transparent;border-radius:999px;min-height:36px;padding:0 14px;font:inherit;font-size:0.8125rem;font-weight:500;color:var(--ink2);cursor:pointer;transition:background .25s,color .25s,box-shadow .25s}
+.sc-tg button[aria-pressed="true"]{background:#fff;color:#712319;box-shadow:0 1px 4px rgba(113,35,25,.15)}
+.mc-nav{display:flex;align-items:center;justify-content:space-between;margin:8px 0 4px}
+.mc-nav b{font-size:0.875rem;font-weight:600}
+.mc-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;width:100%}
+.mc-w{text-align:center;font-size:0.6875rem;color:var(--muted);padding:4px 0}
+.mc{min-width:0;padding:0;aspect-ratio:1/1.05;border:1px solid #F6E6DE;border-radius:10px;background:#FFFAF7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font:inherit;cursor:pointer;position:relative;animation:cellIn .4s var(--spring) both;animation-delay:calc(var(--k)*12ms);transition:transform .25s var(--spring),background .2s}
+.mc.empty{background:transparent;border:0;animation:none}
+.mc .mn{font-family:"Poppins","Kanit",sans-serif;font-size:0.8125rem;font-weight:500;color:var(--ink);line-height:1}
+.mc.off .mn{color:#B8A9A2}
+.mc.past .mn{color:var(--ink2)}
+.mc .md{display:flex;gap:2px}
+.mc .md i{width:6px;height:6px;border-radius:50%}
+.mc:hover{background:#FFF1EB}
+.mc:active{transform:scale(.92)}
+.mc.today{box-shadow:inset 0 0 0 2px #712319}
+.mc.wait{box-shadow:inset 0 0 0 2px #FA9746;background:var(--warn-soft)}
+.mc[aria-pressed="true"]{background:#F37449}
+.mc[aria-pressed="true"] .mn{color:#fff;font-weight:600}
+.mc[aria-pressed="true"] .md i{box-shadow:0 0 0 1.5px #fff}
+.mc-lg{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:0.75rem;color:var(--ink2);margin:12px 0 4px}
+.mc-lg span{display:inline-flex;align-items:center;gap:6px}
+.mc-lg i{width:10px;height:10px;border-radius:50%}
+.mc-lg i.wt{border-radius:3px;background:var(--warn-soft);box-shadow:inset 0 0 0 1.5px #FA9746}
+.mc-dt{font-size:0.8125rem;font-weight:600;color:var(--ink2);margin:8px 0 4px}
+@media (prefers-reduced-motion:reduce){.mc{animation:none}}
+/* v114 hours calendar redesign */
+.hcal.v2{display:grid;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.h2-sum{background:linear-gradient(135deg,#F37449,#FA9746);color:#fff;border-radius:20px;padding:16px;display:grid;gap:8px;box-shadow:0 10px 22px -14px rgba(243,116,73,.8)}
+.h2-top{display:flex;justify-content:space-between;align-items:center}
+.h2-l{display:flex;gap:6px;align-items:center;font-weight:600;font-size:0.9375rem}
+.h2-l .ic{width:18px;height:18px}
+.h2-term{font-size:0.75rem;background:rgba(255,255,255,.2);border-radius:999px;padding:2px 10px}
+.h2-big{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.h2-big b{font-family:"Poppins",sans-serif;font-size:2.25rem;font-weight:700;line-height:1}
+.h2-big span{font-size:0.9375rem;opacity:.9}
+.h2-big em{font-style:normal;font-size:0.75rem;opacity:.9;margin-left:auto}
+.h2-bar{height:8px;border-radius:999px;background:rgba(255,255,255,.3);overflow:hidden}
+.h2-bar i{display:block;height:100%;background:#fff;border-radius:999px}
+.h2-cal{background:#fff;border:1px solid var(--line);border-radius:20px;padding:12px 12px 16px}
+.h2-mh{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}
+.h2-mh>div{text-align:center;display:grid;gap:2px}
+.h2-mh b{font-size:0.9375rem;font-weight:600}
+.h2-mh small{font-size:0.75rem;color:var(--muted);display:inline-flex;align-items:center;gap:4px;justify-content:center}
+.h2-mh .k{width:8px;height:8px;border-radius:50%;display:inline-block}
+.h2-mh .k.ok{background:#88C887}
+.h2-mh .k.wait{background:#FA9746;margin-left:6px}
+.hcal.v2 .hc-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px 2px}
+.hcal.v2 .hc-w{text-align:center;font-size:0.6875rem;color:var(--muted);padding:4px 0 6px}
+.hcal.v2 .hc-d{aspect-ratio:auto;height:52px;background:none!important;border:0;box-shadow:none!important;border-radius:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:2px;padding:2px 0 0;font:inherit;color:var(--ink);animation:none}
+.hcal.v2 .hc-d .dn{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-family:"Poppins","Kanit",sans-serif;font-size:0.8125rem;font-weight:500;transition:transform .3s var(--spring),box-shadow .25s,background .2s}
+.hcal.v2 .hc-d .dh{font-size:0.625rem;line-height:1;color:var(--muted);white-space:nowrap}
+.hcal.v2 .hc-d.fut .dn{color:#C4B7B1}
+.hcal.v2 .hc-d.today .dn{color:#712319;font-weight:700;box-shadow:inset 0 0 0 1.5px #712319}
+.hcal.v2 .hc-d.today .dh{color:#712319;font-weight:600}
+.hcal.v2 .hc-d.has{cursor:pointer}
+.hcal.v2 .hc-d.has.ok .dn{background:#D4E6BD;color:#1A1A1A}
+.hcal.v2 .hc-d.has.wait .dn{background:#FFF0D1;color:#712319;box-shadow:inset 0 0 0 1.5px #FA9746}
+.hcal.v2 .hc-d.has .dh{color:var(--ink2);font-weight:500}
+.hcal.v2 .hc-d.has:hover .dn{transform:translateY(-2px)}
+.hcal.v2 .hc-d.has:active .dn{transform:scale(.9)}
+.hcal.v2 .hc-d.has[aria-pressed="true"]{outline:none}
+.hcal.v2 .hc-d.has[aria-pressed="true"] .dn{background:#F37449;color:#fff;box-shadow:0 0 0 3px #FFE3D3}
+.hcal.v2 .hc-d.has[aria-pressed="true"] .dh{color:#F37449;font-weight:600}
+.hcal.v2 .hc-d:focus-visible{outline:none}
+.hcal.v2 .hc-d:focus-visible .dn{outline:2px solid #712319;outline-offset:2px}
+.hcal.v2 .hc-det{margin-top:8px;background:#FFFAF7}
+@media (prefers-reduced-motion:reduce){.hcal.v2 .hc-d .dn{transition:none}}
+/* v115 time log */
+.wt-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;display:grid;gap:12px;box-shadow:var(--sh1)}
+.wt-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.wt-top p{display:flex;gap:6px;align-items:center;font-weight:600;font-size:0.9375rem}
+.wt-top p .ic{width:18px;height:18px;color:#F37449}
+.wt-src{font-size:0.75rem;color:var(--muted);background:#F7F3F1;border-radius:999px;padding:2px 10px}
+.wt-shift{display:flex;align-items:baseline;justify-content:space-between;background:#FFF7F3;border:1px dashed #F6CDBB;border-radius:14px;padding:12px 16px}
+.wt-shift b{font-family:"Poppins",sans-serif;font-size:1.5rem;font-weight:600;color:#712319;font-variant-numeric:tabular-nums}
+.wt-shift span{font-size:0.875rem;color:var(--ink2);font-weight:500}
+.wt-ok{min-height:52px;gap:8px}
+.wt-alt{border:0;background:none;font:inherit;font-size:0.875rem;color:var(--ink2);display:inline-flex;gap:6px;align-items:center;justify-content:center;min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line2)}
+.wt-alt .ic{width:16px;height:16px}
+.wt-edit{display:grid;gap:12px;animation:upPop .35s var(--spring)}
+.wt-calc{font-size:0.875rem;color:var(--ink2)}
+.wt-calc b{font-family:"Poppins";color:var(--ink)}
+.wt-diff{font-size:0.75rem;font-weight:600;color:#712319;background:#FAD0C2;border-radius:999px;padding:2px 8px;margin-left:4px}
+.wt-acts{display:grid;grid-template-columns:1fr 1.4fr;gap:8px}
+.wt-done{display:flex;gap:12px;align-items:center;background:#F7FBF1;border:1px solid #CFE3B8;border-radius:14px;padding:12px 16px;animation:upPop .4s var(--spring)}
+.wt-done>.ic{width:28px;height:28px;padding:5px;border-radius:50%;background:#88C887;color:#fff;flex:none}
+.wt-done>div{flex:1;display:grid;gap:2px}
+.wt-done b{font-weight:600;font-size:0.9375rem}
+.wt-done small{font-size:0.75rem;color:var(--muted)}
+.wt-next{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wt-next>div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;display:grid;gap:2px}
+.wt-next span{font-size:0.75rem;color:var(--muted)}
+.wt-next b{font-family:"Poppins";font-size:1rem;font-weight:600;font-variant-numeric:tabular-nums}
+.wt-next small{font-size:0.75rem;color:var(--ink2)}
+.wt-t{display:block;font-size:0.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.wt-fb{display:flex;gap:8px;align-items:flex-start;font-size:0.8125rem;color:var(--ink2);background:#FBE9EF;border-radius:14px;padding:12px}
+.wt-fb>.ic{color:#AF5577;flex:none}
+.wt-fb .linkb{padding:0;min-height:0;display:inline}
+@media (prefers-reduced-motion:reduce){.wt-edit,.wt-done{animation:none}}
 </style>
 
 <div class="studio">
@@ -1986,7 +2203,7 @@ const WORKERS=[
  {n:"ศุภวิชญ์ ทองดี",ini:"ศ",pos:"ช่างภาพสินค้า",h:26,max:32,c:5,pend:0}];
 
 /* ── state ── */
-const fresh=()=>({view:null,sort:"match",ptStep:0,draft:{},efs:{},efb:{},tickets:[{no:"VOC-2569-0128",t:"ค่าตอบแทน",st:"กำลังดำเนินการ",d:"2 พ.ย.",n:"แอดมินกำลังประสานร้าน · ตอบล่าสุด 3 พ.ย."},{no:"VOC-2569-0097",t:"งานไม่ตรงประกาศ",st:"ปิดแล้ว",d:"12 ต.ค.",n:"ร้านแก้ประกาศให้ตรงกับงานจริงแล้ว"},{no:"VOC-2569-0061",t:"ความปลอดภัย",st:"ปิดแล้ว",d:"20 ก.ย.",n:"ย้ายกะเลิกงานให้ไม่เกิน 20:00 แล้ว"}],tixTab:"open",work:null,role:"guest",scr:"welcome",hist:[],dev:innerWidth<760?"phone":"phone",saved:new Set([2]),applied:new Set(),
+const fresh=()=>({view:null,sort:"match",ptStep:0,draft:{},efs:{},efb:{},tickets:[{no:"VOC-2569-0128",t:"ค่าตอบแทน",st:"กำลังดำเนินการ",d:"2 พ.ย.",n:"แอดมินกำลังประสานร้าน · ตอบล่าสุด 3 พ.ย."},{no:"VOC-2569-0097",t:"งานไม่ตรงประกาศ",st:"ปิดแล้ว",d:"12 ต.ค.",n:"ร้านแก้ประกาศให้ตรงกับงานจริงแล้ว"},{no:"VOC-2569-0061",t:"ความปลอดภัย",st:"ปิดแล้ว",d:"20 ก.ย.",n:"ย้ายกะเลิกงานให้ไม่เกิน 20:00 แล้ว"}],tixTab:"open",etickets:[{no:"BIZ-2569-0031",t:"Token / ใบเสร็จ",st:"กำลังดำเนินการ",d:"6 พ.ย.",n:"ฝ่ายการเงินกำลังออกใบเสร็จรับเงินฉบับแก้ไข"},{no:"BIZ-2569-0019",t:"ประกาศงาน / การตรวจสอบ",st:"ปิดแล้ว",d:"22 ต.ค.",n:"ปรับคำอธิบายงานตามคำแนะนำ ประกาศผ่านการตรวจแล้ว"}],efaq:null,work:null,role:"guest",scr:"welcome",hist:[],dev:innerWidth<760?"phone":"phone",saved:new Set([2]),applied:new Set(),
   roleSel:"student",ob:{skills:new Set(["comm","canva","caption"]),ints:new Set(["mkt","design"]),dream:"นักการตลาดดิจิทัล",test:false},
   jobId:1,openPos:0,q:"",cat:null,loading:false,cv:"idle",voc:{topic:null,job:null},fb:{stars:0},
   emp:{accepted:new Set(),declined:new Set(),amt:500,custom:false,camt:"",donated:0,approved:new Set()},
@@ -2001,9 +2218,9 @@ const SCREENS={
  ob1:{g:"stu",n:"สมัคร 1 · ข้อมูลส่วนตัว",role:"student"}, ob2:{g:"stu",n:"สมัคร 2 · ทักษะ & อาชีพในฝัน",role:"student"}, ob3:{g:"stu",n:"สมัคร 3 · Personality Test",role:"student"},
  ai:{g:"stu",n:"AI · อาชีพในฝัน",role:"student"}, courses:{g:"stu",n:"Skills4life · 6 คอร์ส",role:"student"},
  home:{g:"stu",n:"Home",role:"student",nav:"home"}, search:{g:"stu",n:"ค้นหา / หมวดงาน",role:"student",nav:"home"}, job:{g:"stu",n:"รายละเอียดร้าน & งาน",role:"student"},
- wish:{g:"stu",n:"Wishlist",role:"student",nav:"wish"}, profile:{g:"stu",n:"Profile",role:"student",nav:"profile"}, sapps:{g:"stu",n:"ใบสมัครของฉัน (ใหม่)",role:"student",nav:"profile"}, swork:{g:"stu",n:"งานที่กำลังทำ + ชั่วโมง (ใหม่)",role:"student",nav:"profile"},
+ wish:{g:"stu",n:"Wishlist",role:"student",nav:"wish"}, profile:{g:"stu",n:"Profile",role:"student",nav:"profile"}, sapps:{g:"stu",n:"ใบสมัครของฉัน (ใหม่)",role:"student",nav:"profile"}, swork:{g:"stu",n:"ลงเวลาทำงาน",role:"student",nav:"profile"},
  voc:{g:"stu",n:"VOC · ช่วยเหลือ",role:"any",nav:"voc"}, feedback:{g:"stu",n:"Feedback รายเดือน",role:"student",nav:"feedback"},
- eguest:{g:"emp",n:"ดูตัวอย่างแบบผู้เยี่ยมชม (ใหม่)",role:"guest"}, eob:{g:"emp",n:"สมัคร + สร้างประกาศ",role:"employer"}, ehome:{g:"emp",n:"Home ผู้ประกอบการ",role:"employer",nav:"home"}, eapps:{g:"emp",n:"ผู้สมัคร",role:"employer",nav:"home"},
+ esignup:{g:"emp",n:"สร้างบัญชีผู้ประกอบการ (ใหม่)",role:"guest"}, eob:{g:"emp",n:"ลงประกาศงาน + สร้างร้าน",role:"employer"}, ehome:{g:"emp",n:"Home ผู้ประกอบการ",role:"employer",nav:"home"}, eapps:{g:"emp",n:"ผู้สมัคร",role:"employer",nav:"home"},
  estu:{g:"emp",n:"Profile นศ. (มุมผู้ประกอบการ)",role:"employer",nav:"home"}, ework:{g:"emp",n:"Work · นศ. ที่ทำงาน",role:"employer",nav:"work"}, efeedback:{g:"emp",n:"Feedback ถึง Mentor",role:"employer",nav:"feedback"}, eprofile:{g:"emp",n:"โปรไฟล์ร้าน (ใหม่)",role:"employer",nav:"profile"},
  adash:{g:"adm",n:"Dashboard",role:"admin"}, ausers:{g:"adm",n:"User & Account",role:"admin"}, afin:{g:"adm",n:"Financial & Tax Receipt",role:"admin"}, ajobs:{g:"adm",n:"Job Post & Matching",role:"admin"}, ajob:{g:"adm",n:"รายละเอียดประกาศ (ใหม่)",role:"admin"}, avoc:{g:"adm",n:"VOC & Dispute",role:"admin"},
  mentor:{g:"men",n:"Mentor (เฟสถัดไป)",role:"mentor",off:true}};
@@ -2027,6 +2244,9 @@ function card(j){
       <p class="meta">${ic("pin")}<span>${esc(j.place)}</span></p>
       <div class="ft"><div><small>ค่าตอบแทน</small><span class="price">${tok(16,"tki")}${fmt(j.pay)}<small> /${j.u}</small></span></div></div></div></article>`;
 }
+function homeJobs(){ const k=S.hcat||"", all=JOBS.filter(j=>!k||j.cat===k).sort((a,b)=>b.match-a.match), list=all.slice(0,3);
+  if(!all.length) return `<div class="hj-empty">${ic("search")}<span>ยังไม่มีงานเปิดรับในหมวด «${CAT(k).n}»</span><button type="button" class="linkb" data-a="hcat" data-v="">ดูทุกหมวด</button></div>`;
+  return `<div class="hj-c">${k?`<button type="button" class="hj-pill" data-a="hcat" data-v="" aria-label="ล้างตัวกรอง ${CAT(k).n}">${CAT(k).n}${ic("x")}</button>`:""}<span>${all.length} งาน · เรียงตามความเหมาะกับคุณ</span></div>${list.map((j,i)=>`<div class="hj-it" style="--d:${i*70}ms">${rowCard(j)}</div>`).join("")}${all.length>3?`<button type="button" class="btn btn-o btn-blk" data-a="hall">ดูอีก ${all.length-3} งาน${k?`ในหมวดนี้`:""} ${ic("chev-r")}</button>`:""}`; }
 function rowCard(j){
   const c=CAT(j.cat), s=SHOPS[j.shop];
   return `<article class="lrow" data-row="${j.id}"><div class="cvs" style="${cover(c)}">${ic(c.ic)}</div>
@@ -2052,17 +2272,6 @@ function wrapApp(body){const n=bnav();return n.top+`<main class="app-main">${bod
 
 /* ── screens ── */
 const R={};
-R.eguest=()=>{ const steps=[["edit","ลงประกาศงาน","บอกตำแหน่ง ค่าตอบแทน และทักษะที่ต้องการ"],["users","เลือกนักศึกษา","ระบบเรียงผู้สมัครตามทักษะที่ตรงกับงาน"],["clock","อนุมัติชั่วโมงงาน","นักศึกษาบันทึกชั่วโมง ร้านกดอนุมัติ"],["wallet","จ่ายด้วย Token","1 Token = ฿1 วิทยาลัยฯ ดูแลการจ่ายให้"]];
- const pool=[["mkt",48],["cafe",62],["design",35],["photo",21]];
- const demo=[{ini:"ป",c:0,f:"บริหารธุรกิจ ปี 3",m:92,sk:["canva","caption"]},{ini:"ธ",c:1,f:"การสื่อสารมวลชน ปี 2",m:84,sk:["caption","photo"]},{ini:"ณ",c:2,f:"วิจิตรศิลป์ ปี 4",m:80,sk:["canva","photo"]}];
- return `${topbar("ดูตัวอย่างสำหรับร้าน",true)}<div class="gst-bar" role="note">${ic("eye")}<span>คุณกำลังดูแบบผู้เยี่ยมชม · ข้อมูลในหน้านี้เป็นตัวอย่าง</span></div>
- <div class="pad gst" style="display:grid;gap:24px;padding-bottom:24px">
-  <section class="gst-hero"><h2>หานักศึกษาพาร์ทไทม์ที่ทักษะตรงงาน</h2><p>นักศึกษาวิทยาลัยการศึกษาตลอดชีวิต มช. ที่ผ่านการยืนยันตัวตนแล้ว</p></section>
-  <section aria-labelledby="gs-h1"><h3 class="gst-h" id="gs-h1">ใช้งานอย่างไร</h3><ol class="gst-steps">${steps.map(([i,t,d],k)=>`<li><span class="gst-n">${k+1}</span><span class="gst-i">${ic(i)}</span><div><b>${t}</b><small>${d}</small></div></li>`).join("")}</ol></section>
-  <section aria-labelledby="gs-h2"><h3 class="gst-h" id="gs-h2">นักศึกษาที่พร้อมทำงานตอนนี้</h3><div class="gst-pool">${pool.map(([k,n])=>{const c=CAT(k);return `<div class="gst-p"><span class="tile" style="background:${c.c1};color:${c.fg}">${ic(c.ic)}</span><b>${n} คน</b><small>${c.n}</small></div>`;}).join("")}</div></section>
-  <section aria-labelledby="gs-h3"><h3 class="gst-h" id="gs-h3">ตัวอย่างผู้สมัครที่ร้านจะเห็น</h3><div style="display:grid;gap:8px">${demo.map(a=>`<div class="app-card gst-a"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div style="min-width:0"><b>นักศึกษา ${a.f.split(" ")[0]}</b><small>${a.f}</small><small>${a.sk.map(k=>SK[k]).join(" · ")}</small></div><div class="r"><span class="match"><span class="ring" style="--m:${a.m}"></span>${a.m}%</span><button type="button" class="btn btn-o btn-sm" data-a="glock">${ic("lock")}ดูโปรไฟล์</button></div></div>`).join("")}</div><p class="fhint">${ic("lock")}ชื่อจริง โปรไฟล์ และช่องทางติดต่อ ดูได้หลังสมัครร้าน</p></section>
- </div>
- <div class="foot-act gst-foot"><button type="button" class="btn btn-g" data-a="go" data-to="eob">สมัครร้านและลงประกาศงาน ${ic("chev-r")}</button><button type="button" class="linkb" data-a="go" data-to="login">มีบัญชีร้านแล้ว? เข้าสู่ระบบ</button></div>`; };
 R.welcome=()=>`<div class="welcome">
   <div class="w-deco" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i><i class="d1"></i><i class="d2"></i><i class="d3"></i>
    <svg class="arc" viewBox="0 0 300 200" fill="none"><path d="M10 190 C 60 60, 190 20, 290 70" stroke="#F37449" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 10"/></svg></div>
@@ -2093,6 +2302,20 @@ R.role=()=>{const r=(k,t,d,i,bg,fg,off)=>`<button type="button" class="role" dat
   <div class="roles" role="group" aria-label="บทบาท">${r("student","Student","นักศึกษา มช. หางานและพัฒนาทักษะ","cap","#FFE3D3","#712319")}${r("employer","Entrepreneur","กิจการที่อยากจ้างนักศึกษา","building","#D4E6BD","#1A1A1A")}${r("mentor","Mentor","พี่เลี้ยงดูแลนักศึกษา · เปิดเฟสถัดไป","users","#F0ECEA","#5E5551",true)}</div>
   <button type="button" class="btn btn-g btn-blk" data-a="rolego" style="margin-top:auto">ต่อไป ${ic("chev-r")}</button></div>`;};
 const obSteps=n=>`<div class="steps" aria-label="ขั้นที่ ${n} จาก 3">${[1,2,3].map(i=>`<i class="${i<=n?"on":""}"></i>`).join("")}</div>`;
+R.esignup=()=>`${topbar("",true)}<div class="auth">
+  <div class="auth-h"><span class="es-badge">${ic("building")}</span><h1 id="h1" tabindex="-1">สร้างบัญชีผู้ประกอบการ</h1><p>สร้างบัญชีก่อน ข้อมูลร้านค่อยกรอกตอนลงประกาศงาน</p></div>
+  <button type="button" class="sso" data-a="toast" data-m="เชื่อมบัญชี Google (จำลอง)"><span class="lg gg">G</span>สมัครด้วย Google</button>
+  <p class="or">หรือกรอกข้อมูล</p>
+  <form class="form" style="padding:0" id="esf" novalidate>
+    <div><label class="lbl" for="es-n">ชื่อ-นามสกุล ผู้ติดต่อ</label><input class="inp" id="es-n" autocomplete="name" value="อรุณี ศรีวงศ์" aria-describedby="es-n-e"><p class="ferr" id="es-n-e" hidden></p></div>
+    <div><label class="lbl" for="es-m">อีเมล</label><input class="inp" id="es-m" type="email" inputmode="email" autocomplete="email" placeholder="name@example.com" value="arunee@lannacraft.co" aria-describedby="es-m-e"><p class="ferr" id="es-m-e" hidden></p></div>
+    <div><label class="lbl" for="es-t">เบอร์โทรศัพท์</label><input class="inp" id="es-t" inputmode="tel" autocomplete="tel" value="081-xxx-2390"></div>
+    <div><label class="lbl" for="es-p">ตั้งรหัสผ่าน</label><div class="pw"><input class="inp" id="es-p" type="${S.pw?"text":"password"}" autocomplete="new-password" placeholder="อย่างน้อย 8 ตัวอักษร" aria-describedby="es-p-h"><button type="button" class="ib" data-a="pw" aria-label="${S.pw?"ซ่อนรหัสผ่าน":"แสดงรหัสผ่าน"}">${ic(S.pw?"eyeoff":"eye")}</button></div><p class="fhint" id="es-p-h">${ic("lock")}อย่างน้อย 8 ตัว ผสมตัวอักษรและตัวเลข</p></div>
+    <label class="chk-line es-ok"><input type="checkbox" id="es-c" aria-describedby="es-c-e"> ยอมรับ<button type="button" class="linkb" data-a="toast" data-m="เปิดเงื่อนไขการใช้งาน (จำลอง)">เงื่อนไขการใช้งาน</button>และนโยบายความเป็นส่วนตัว</label><p class="ferr" id="es-c-e" hidden></p>
+    <div class="es-next">${ic("info")}<span><b>หลังสร้างบัญชี</b>เข้าหน้าแรกได้เลย ยังไม่ต้องสร้างร้าน · กรอกข้อมูลร้านและแนบเอกสารครั้งเดียวตอนกด «ลงประกาศงาน» ครั้งแรก<em>เตรียมไว้: ภาพหน้าร้าน 3 ภาพ · สำเนาบัตรผู้ประสานงาน · ทะเบียนพาณิชย์ (ถ้ามี)</em></span></div>
+    <button type="button" class="btn btn-g btn-blk" data-a="esgo">สร้างบัญชี ${ic("chev-r")}</button>
+  </form>
+  <p class="es-login">มีบัญชีแล้ว? <button type="button" class="linkb" data-a="go" data-to="login">เข้าสู่ระบบ</button></p></div>`;
 R.ob1=()=>`${topbar("สมัครสมาชิก",true)}${obSteps(1)}<div class="ob-h"><small>ขั้นที่ 1 จาก 3</small><h1>ข้อมูลส่วนตัว</h1><p>ข้อมูลจาก CMU Account เติมให้แล้ว ตรวจและเพิ่มส่วนที่ขาด</p></div>
  <div class="form">
   <div class="pfp"><span class="av">${ME.ini}<span class="cam">${ic("camera")}</span></span><div><b style="font-weight:500">รูปโปรไฟล์</b><p class="fhint" style="margin:0">ผู้ประกอบการจะเห็นรูปนี้ตอนคุณสมัครงาน</p></div></div>
@@ -2132,17 +2355,19 @@ function addChip(w){ const i=$("input",w), v=i.value.trim().replace(/\s+/g," "),
   w.outerHTML=addBtn(g,o,ph); const nb=box.querySelector(".chip.add"); if(nb) nb.focus(); }
 const HLOG={2:[3,"ok","13:00–16:00"],4:[3,"ok","13:00–16:00"],6:[4,"ok","09:00–13:00"],8:[1,"wait","17:00–18:00"],9:[2,"wait","14:00–16:00"]}, HC_WD=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."];
 const hcDet=d=>{ const l=HLOG[d]; if(!l) return ""; const ok=l[1]==="ok"; return `<p class="hc-dt">${HC_WD[(6+d-1)%7]} ${d} พ.ย. 2569</p><div class="hc-row"><span class="lg" style="background:#AF5577">${SHOPS.lc.ini}</span><div><b>${esc(SHOPS.lc.n)}</b><small>${ic("clock")}${l[2]} · ${l[0]} ชม.</small></div><span class="tag ${ok?"t-ok":"t-warn"}">${ok?ic("check")+"อนุมัติแล้ว":"รอร้านอนุมัติ"}</span></div>`; };
-function hoursCal(){ const first=6, days=30, today=10, cells=[];
+function hoursCal(){ const first=6, days=30, today=10, cells=[], sel=S.hcSel||9;
   for(let i=0;i<first;i++) cells.push(`<span class="hc-d empty" aria-hidden="true"></span>`);
   for(let d=1;d<=days;d++){ const l=HLOG[d], h=l?l[0]:0, st=l?l[1]:"";
-    cells.push(l?`<button type="button" class="hc-d has ${st} lv${Math.min(h,4)}${d===today?" today":""}" data-a="hcday" data-v="${d}" aria-pressed="${d===(S.hcSel||9)}" aria-controls="hc-det" aria-label="${d} พฤศจิกายน ทำงาน ${h} ชั่วโมง ${l[2]} ${st==="ok"?"อนุมัติแล้ว":"รออนุมัติ"}"><span>${d}</span><b>${h}<small>ชม.</small></b></button>`
-      :`<span class="hc-d${d===today?" today":""}${d>today?" fut":""}"${d===today?' aria-current="date"':""}><span>${d}</span></span>`); }
+    cells.push(l?`<button type="button" class="hc-d has ${st}${d===today?" today":""}" data-a="hcday" data-v="${d}" aria-pressed="${d===sel}" aria-controls="hc-det" aria-label="${d} พฤศจิกายน ทำงาน ${h} ชั่วโมง ${l[2]} ${st==="ok"?"อนุมัติแล้ว":"รออนุมัติ"}" style="--k:${d}"><span class="dn">${d}</span><span class="dh">${h} ชม.</span></button>`
+      :`<span class="hc-d${d===today?" today":""}${d>today?" fut":""}"${d===today?' aria-current="date"':""}><span class="dn">${d}</span>${d===today?'<span class="dh">วันนี้</span>':""}</span>`); }
   const mo=Object.values(HLOG).reduce((a,x)=>a+x[0],0), ok=Object.values(HLOG).filter(x=>x[1]==="ok").reduce((a,x)=>a+x[0],0);
-  return `<section class="hcal" aria-labelledby="hc-h"><div class="hc-top"><p class="hc-l" id="hc-h">${ic("cal")}Credit / Hours</p><div class="hc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><b>พ.ย. 2569</b><button type="button" class="ib" disabled aria-label="เดือนถัดไป">${ic("chev-r")}</button></div></div>
-   <div class="hc-sum"><div><b>42</b><span>ชม. ภาคการศึกษานี้ · เป้าหมายหลักสูตร 60 ชม.</span></div><div class="hc-bar"><i style="width:70%"></i></div><small>เดือนนี้ ${mo} ชม. · อนุมัติแล้ว ${ok} · รออนุมัติ ${mo-ok}</small></div>
-   <div class="hc-g" role="grid" aria-label="ชั่วโมงทำงานเดือนพฤศจิกายน 2569">${["จ","อ","พ","พฤ","ศ","ส","อา"].map(x=>`<span class="hc-w">${x}</span>`).join("")}${cells.join("")}</div>
-   <div class="hc-lg"><span><i class="ok"></i>อนุมัติแล้ว</span><span><i class="wait"></i>รอร้านอนุมัติ</span><span><i class="td"></i>วันนี้</span></div>
-   <div class="hc-det" id="hc-det" aria-live="polite">${hcDet(S.hcSel||9)}</div><p class="hc-tip">${ic("info")}แตะวันที่มีชั่วโมงเพื่อดูร้านและช่วงเวลา</p></section>`; }
+  return `<section class="hcal v2" aria-labelledby="hc-h">
+   <div class="h2-sum"><div class="h2-top"><p class="h2-l" id="hc-h">${ic("clock")}ชั่วโมงทำงาน</p><span class="h2-term">ภาคการศึกษานี้</span></div>
+    <div class="h2-big"><b>42</b><span>/ 60 ชม.</span><em>อีก 18 ชม. ถึงเป้าหลักสูตร</em></div>
+    <div class="h2-bar" role="progressbar" aria-valuemin="0" aria-valuemax="60" aria-valuenow="42" aria-label="ชั่วโมงสะสม 42 จาก 60"><i style="width:70%"></i></div></div>
+   <div class="h2-cal"><div class="h2-mh"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><div><b>พฤศจิกายน 2569</b><small><span class="k ok"></span>อนุมัติ ${ok} ชม. <span class="k wait"></span>รอร้าน ${mo-ok} ชม.</small></div><button type="button" class="ib" disabled aria-label="เดือนถัดไป">${ic("chev-r")}</button></div>
+    <div class="hc-g" role="grid" aria-label="ชั่วโมงทำงานเดือนพฤศจิกายน 2569">${["จ","อ","พ","พฤ","ศ","ส","อา"].map(x=>`<span class="hc-w">${x}</span>`).join("")}${cells.join("")}</div>
+    <div class="hc-det" id="hc-det" aria-live="polite">${hcDet(sel)}</div></div></section>`; }
 const NEED=[["สร้างคอนเทนต์",90,72],["วิเคราะห์ข้อมูล",80,35],["การสื่อสาร",75,82],["สร้างแบรนด์",65,40],["SEO & โฆษณา",60,15]];
 R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div class="orb-w"><div class="orb"></div><img src="${MARK}" alt=""></div><h1 id="h1" tabindex="-1" style="font-size:1.25rem">AI กำลังวิเคราะห์โปรไฟล์ของคุณ</h1>
   <ol class="ai-steps" id="aisteps">${["อ่านทักษะและความสนใจ","รวมผล Personality Test","เทียบกับอาชีพในฝัน","จับคู่งานและคอร์ส"].map(s=>`<li><i>${ic("check")}</i>${s}</li>`).join("")}</ol></div>`;
@@ -2170,13 +2395,14 @@ R.home=()=>{const newj=[...JOBS].sort((a,b)=>a.post-b.post).slice(0,6), fit=[...
     <span class="c"><small>งานที่ทำอยู่</small><b><i class="live" aria-hidden="true"></i>1 งาน</b><em title="${esc(SHOPS.lc.n)}">${esc(SHOPS.lc.n)}</em></span></button></div>
   <div class="search-float"><button type="button" class="sbox" data-a="viewall" data-v="">${ic("search")}<span>ค้นหางาน ทักษะ หรือร้าน</span></button></div>
   <h1 class="sr" id="h1" tabindex="-1">Home</h1>
-  <section class="sec pad"><div class="cats">${CATS.map(c=>`<button type="button" class="cat" data-a="cat" data-v="${c.k}"><span class="tile" style="${cover(c)}">${ic(c.ic)}</span>${c.n}</button>`).join("")}</div></section>
+  <section class="sec hjob-sec" aria-labelledby="hj-h"><div class="hfil" role="group" aria-label="กรองงานตามหมวด">${[{k:"",n:"ทั้งหมด",ic:"grid",c1:"#FFF1EB",fg:"#712319"},...CATS].map(c=>`<button type="button" class="hf" data-a="hcat" data-v="${c.k}" aria-pressed="${(S.hcat||"")===c.k}"><span class="tile" style="${cover(c)}">${ic(c.ic)}</span><span class="hf-l">${c.n}</span></button>`).join("")}</div>
+   <div class="sec-h pad" style="margin-top:16px"><h2 id="hj-h">${ic("brief")}งานที่เปิดรับ</h2><button type="button" data-a="hall">ดูทั้งหมด ${ic("chev-r")}</button></div>
+   <div class="hjobs pad" id="hjobs" aria-live="polite">${homeJobs()}</div></section>
   <section class="sec"><div class="banner-w"><div class="banner" id="banner">
     <button type="button" class="bn" data-a="toast" data-m="เปิดหน้ากิจกรรม Career Seminar"><img src="${HERO}" alt="" style="object-position:70% 35%"><small>กิจกรรม · 28 พ.ย.</small><b>Student Part-Time Career Seminar</b><span>พบกิจการที่เปิดรับนักศึกษา</span></button>
     <button type="button" class="bn g1" data-a="go" data-to="feedback"><span class="big">${ic("smile")}</span><small>ทุกสิ้นเดือน</small><b>เล่าประสบการณ์เดือนนี้ ใช้เวลา 2 นาที</b><span>ทำ Feedback และ Reflection</span></button>
     <button type="button" class="bn g2" data-a="go" data-to="courses"><span class="big">${ic("cap")}</span><small>Skills4life</small><b>อีก 2 คอร์สก็ปิดช่องว่าง «วิเคราะห์ข้อมูล»</b><span>เรียนต่อบนเว็บ LE</span></button>
   </div><div class="dots" id="bdots" aria-hidden="true"><i class="on"></i><i></i><i></i></div></div></section>
-  <section class="sec"><div class="sec-h"><h2>${ic("spark")}งานที่กำลังเปิดรับ / งานใหม่</h2><button type="button" data-a="viewall" data-v="new">ดูทั้งหมด ${ic("chev-r")}</button></div><div class="rail-x">${newj.map(card).join("")}</div></section>
   <section class="sec"><div class="sec-h"><h2>${ic("target")}งานที่เหมาะกับฉัน</h2><button type="button" data-a="viewall" data-v="fit">ดูทั้งหมด ${ic("chev-r")}</button></div><div class="rail-x">${fit.map(card).join("")}</div></section>
   <section class="sec"><div class="sec-h"><h2>${ic("cap")}งานที่ตรงกับคณะ/สาขา</h2><button type="button" data-a="viewall" data-v="fac">ดูทั้งหมด ${ic("chev-r")}</button></div><div class="rail-x">${fac.map(card).join("")}</div></section>`);};
 function resultsHTML(){
@@ -2239,17 +2465,39 @@ R.profile=()=>wrapApp(`<div class="pf-head"><div style="display:flex;justify-con
   <div class="stat" style="background:transparent;flex-direction:row;align-items:center;justify-content:space-between"><div><small style="color:var(--muted)">${ic("wallet")}ค่าตอบแทนเดือนนี้</small><b class="tkv" style="font-family:Poppins;font-size:1.5rem">${tok(24,"tki")}<span data-count="4860">0</span></b></div><button type="button" class="btn btn-g btn-sm" data-a="payout">ถอน Token</button></div>
   <button type="button" class="cvbtn ${S.cv==="gen"?"gen":S.cv==="ok"?"ok":""}" data-a="cv"><span class="fi">${S.cv==="gen"?'<span class="spin" style="color:var(--act-ink)"></span>':ic(S.cv==="ok"?"check":"file")}</span><span><b>${S.cv==="ok"?"CV.pdf พร้อมแล้ว":S.cv==="gen"?"AI กำลังเขียน CV…":"สร้าง CV.pdf ด้วย AI"}</b><small>${S.cv==="ok"?"ดึงจากงาน ชั่วโมง และคอร์สที่เรียน · กดเพื่อดาวน์โหลด":"รวมประสบการณ์ทำงานและทักษะเป็น CV ให้อัตโนมัติ"}</small></span></button>
  </div>
- <section class="sec pad"><div class="menu-rows"><button type="button" data-a="go" data-to="sapps">${ic("file")}<span>ใบสมัครของฉัน<small>${3+S.applied.size} ใบ · ร้านรับคุณแล้ว 1 ที่</small></span>${ic("chev-r")}</button><button type="button" data-a="go" data-to="swork">${ic("clock")}<span>งานที่กำลังทำ<small>บันทึกชั่วโมงและ Reflection วันนี้</small></span>${ic("chev-r")}</button></div></section>
+ <section class="sec pad"><div class="menu-rows"><button type="button" data-a="go" data-to="sapps">${ic("file")}<span>ใบสมัครของฉัน<small>${3+S.applied.size} ใบ · ร้านรับคุณแล้ว 1 ที่</small></span>${ic("chev-r")}</button><button type="button" data-a="go" data-to="swork">${ic("clock")}<span>ลงเวลาทำงาน<small>ยืนยันชั่วโมงตามกะที่ร้านกำหนด</small></span>${ic("chev-r")}</button></div></section>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("trend")}Skills</h2></div><div class="skrings">${[["การสื่อสาร",82,"#F37449"],["Canva",74,"#D16F8A"],["ทำงานเป็นทีม",68,"#88C887"]].map(([n,p,c])=>`<div class="skr"><span class="pring" data-p="${p}" data-l="${p}" style="--c:${c}"></span>${n}</div>`).join("")}</div></section>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("cap")}Course</h2><button type="button" data-a="go" data-to="courses">ทั้งหมด ${ic("chev-r")}</button></div><div class="pcrs">${(()=>{const L=COURSES.slice(0,3), d=L.filter(c=>c.st==="done").length; return `<p class="pcrs-sum"><b>${d}</b> จาก ${L.length} คอร์สเรียนจบแล้ว<span class="pcrs-bar"><i data-w="${Math.round(d/L.length*100)}"></i></span></p>`+L.map(c=>{const cc=CAT(c.c), done=c.st==="done"; return `<div class="pcr${done?" done":""}"><span class="th" style="${cover(cc)}">${ic(c.ic)}${done?`<span class="ok">${ic("check")}</span>`:""}</span><div class="m"><b>${c.n}</b>${done?`<small class="g">${ic("award")}ได้ Certificate แล้ว</small>`:`<small>เรียนไป ${c.p}%</small><span class="pb"><i data-w="${c.p}"></i></span>`}</div>${done?`<button type="button" class="pcr-b o" data-a="toast" data-m="เปิด Certificate (จำลอง)">ดูใบรับรอง</button>`:`<button type="button" class="pcr-b" data-a="go" data-to="courses">เรียนต่อ</button>`}</div>`}).join("")})()}</div></section>
  <section class="sec pad lo-wrap"><button type="button" class="lo-btn" data-a="logout"><span class="lo-ic">${ic("logout")}</span><span class="lo-t"><b>ออกจากระบบ</b><small>เข้าสู่ระบบอยู่ในชื่อ ${esc(ME.name)}</small></span>${ic("chev-r")}</button><p class="lo-ver">SpringBoard v0.2 · วิทยาลัยการศึกษาตลอดชีวิต มช.</p></section>`);
-const TOPIC={pay:"ค่าตอบแทน",safe:"ความปลอดภัย",mis:"งานไม่ตรงประกาศ",other:"อื่น ๆ"};
+const TOPIC={pay:"ค่าตอบแทน",safe:"ความปลอดภัย",mis:"งานไม่ตรงประกาศ",other:"อื่น ๆ",btk:"Token / ใบเสร็จ",bpost:"ประกาศงาน / การตรวจสอบ",bstu:"นักศึกษา / การทำงาน",bacc:"บัญชีร้าน",bother:"อื่น ๆ"};
+const EFAQ=[["bpost","brief","ประกาศงาน",[["ทำไมประกาศยังไม่ขึ้นให้นักศึกษาเห็น","วิทยาลัยฯ ตรวจประกาศภายใน 1–2 วันทำการ ระหว่างนี้แก้ไขหรือยกเลิกได้จากหน้าแรก"],["แก้ไขประกาศที่เปิดรับแล้วได้ไหม","ได้ แต่ถ้าแก้ค่าตอบแทนหรือเวลา ประกาศจะกลับไปรอตรวจอีกครั้ง"]]],
+ ["users","users","ผู้สมัครและการคัดเลือก",[["ปฏิเสธผู้สมัครต้องบอกเหตุผลไหม","ต้องเลือกเหตุผล 1 ข้อ นักศึกษาจะเห็นเหตุผลแบบสุภาพ ไม่เห็นข้อความที่พิมพ์เพิ่ม"],["ผู้สมัครเวลาชนกับงานอื่นทำอย่างไร","ระบบเตือนเท่านั้น ร้านคุยกับนักศึกษาเพื่อตกลงเวลาเองได้"]]],
+ ["clock","clock","ชั่วโมงและการอนุมัติ",[["ต้องอนุมัติชั่วโมงภายในกี่วัน","ภายใน 7 วันหลังนักศึกษาบันทึก ถ้าเกินกำหนดระบบจะแจ้งเตือนวิทยาลัยฯ"],["ชั่วโมงไม่ตรงกับที่ทำจริง","กด «ไม่อนุมัติ» แล้วระบุชั่วโมงที่ถูกต้อง นักศึกษาจะได้รับแจ้งให้แก้ไข"]]],
+ ["btk","wallet","Token และใบเสร็จ",[["1 Token เท่ากับเท่าไร","1 Token = ฿1 ชำระผ่าน QR Payment ใบเสร็จออกในชื่อร้านตามที่ลงทะเบียน"],["ขอใบกำกับภาษีได้ไหม","ได้ ถ้าใส่เลขผู้เสียภาษีในโปรไฟล์ร้านแล้ว ขอได้ภายในเดือนที่ชำระ"]]]];
+R.evoc=()=>{ const tp=(k,l,i,bg,fg)=>`<button type="button" class="topic" data-a="topic" data-v="${k}" aria-pressed="${S.voc.topic===k}"><span class="ti" style="background:${bg};color:${fg}">${ic(i)}</span>${l}</button>`;
+ if(S.vocDone) return wrapApp(`<div class="ok-screen"><span class="big">${ic("check")}</span><h1 id="h1" tabindex="-1">ส่งเรื่องถึงวิทยาลัยฯ แล้ว</h1><p>ทีมดูแลผู้ประกอบการจะติดต่อกลับภายใน 1 วันทำการ</p><span class="ticket">BIZ-2569-0044</span><button type="button" class="btn btn-o" data-a="vocnew">แจ้งเรื่องใหม่</button><div style="width:100%;max-width:400px;text-align:left">${ticketsHTML()}</div></div>`);
+ const fq=S.efaq;
+ return wrapApp(`${topbar("ศูนย์ช่วยเหลือร้าน",false)}<div class="form" style="padding-top:4px">
+  <section class="bh-card" aria-labelledby="bh-h"><div class="bh-top"><span class="bh-ic">${ic("building")}</span><div><b id="bh-h">ทีมดูแลผู้ประกอบการ</b><small>วิทยาลัยการศึกษาตลอดชีวิต มช. · จ.–ศ. 08:30–16:30</small></div><span class="bh-on"><i></i>ตอบใน 1 วันทำการ</span></div>
+   <div class="bh-acts"><button type="button" class="btn btn-o btn-sm" data-a="toast" data-m="โทร 053-xxx-xxx (จำลอง)">${ic("phone")}โทรหาทีม</button><button type="button" class="btn btn-o btn-sm" data-a="toast" data-m="เปิด LINE OA ของวิทยาลัยฯ (จำลอง)">${ic("send")}LINE OA</button></div></section>
+  <div><p class="lbl" style="display:flex;gap:6px;align-items:center">${ic("help")}คำถามที่พบบ่อยของร้าน</p><div class="bh-faq">${EFAQ.map(([k,i,l,qs])=>`<div class="bh-g${fq===k?" open":""}"><button type="button" class="bh-gh" data-a="efaq" data-v="${k}" aria-expanded="${fq===k}" aria-controls="fq-${k}"><span class="ti">${ic(i)}</span><b>${l}</b><small>${qs.length} คำถาม</small>${ic("chev-d")}</button><div class="bh-qs" id="fq-${k}" ${fq===k?"":"hidden"}>${qs.map(([q,a])=>`<details class="bh-q"><summary>${q}</summary><p>${a}</p></details>`).join("")}<p class="bh-no">ยังไม่ได้คำตอบ? <button type="button" class="linkb" data-a="efaqask" data-v="${k}">แจ้งเรื่องนี้ถึงทีม</button></p></div></div>`).join("")}</div></div>
+  ${ticketsHTML()}
+  <section class="bh-form" id="bh-form" aria-labelledby="bhf-h"><h2 id="bhf-h">แจ้งเรื่องถึงวิทยาลัยฯ</h2><p class="bh-sub">เรื่องการเงิน ประกาศงาน หรือปัญหากับนักศึกษา · นักศึกษาไม่เห็นเรื่องที่ร้านแจ้ง</p>
+   <div class="topics" role="group" aria-label="เรื่องที่ต้องการแจ้ง">${tp("btk","Token / ใบเสร็จ","wallet","#FFF0D1","#712319")}${tp("bpost","ประกาศงาน / การตรวจสอบ","brief","#FFE3D3","#712319")}${tp("bstu","นักศึกษา / การทำงาน","users","#F8E1E8","#AF5577")}${tp("bacc","บัญชีร้าน","building","#D4E6BD","#1A1A1A")}</div>
+   <div><p class="lbl">ความเร่งด่วน</p><div class="seg bh-urg" role="group" aria-label="ความเร่งด่วน">${[["n","ปกติ"],["u","ด่วน · กระทบงานวันนี้"]].map(([k,l])=>`<button type="button" data-a="eurg" data-v="${k}" aria-pressed="${(S.voc.urg||"n")===k}">${l}</button>`).join("")}</div></div>
+   <div><p class="lbl">เกี่ยวกับนักศึกษาคนไหน <span style="color:var(--muted);font-weight:400">(ไม่บังคับ)</span></p><div class="jobpick">${WORKERS.map((w,i)=>`<button type="button" data-a="vocjob" data-v="${100+i}" aria-pressed="${S.voc.job===100+i}"><span class="lg" style="background:${AVC[w.c]};color:#fff">${w.ini}</span><span><b>${w.n}</b><small>${w.pos}</small></span></button>`).join("")}</div></div>
+   <div><label class="lbl" for="voc-d">รายละเอียด</label><textarea class="inp" id="voc-d" placeholder="เกิดอะไรขึ้น วันที่ และสิ่งที่อยากให้ทีมช่วย"></textarea></div>
+   <button type="button" class="bh-att" data-a="toast" data-m="เลือกไฟล์แนบ (จำลอง)">${ic("file")}แนบรูปหรือใบเสร็จ <small>ไม่บังคับ · ไม่เกิน 10 MB</small></button>
+   <div class="bh-diff">${ic("smile")}<span>อยากประเมินการทำงานของนักศึกษา? ใช้เมนู <button type="button" class="linkb" data-a="go" data-to="efeedback">Feedback ถึง Mentor</button> แทน</span></div>
+   <button type="button" class="btn btn-g btn-blk" data-a="vocsend" ${S.voc.topic?"":'aria-disabled="true"'}>${ic("send")} ส่งเรื่องถึงวิทยาลัยฯ</button></section>
+ </div>`); };
 const TIX_ST={"ใหม่":["t-new","bell","รับเรื่องแล้ว"],"กำลังดำเนินการ":["t-warn","clock","กำลังดำเนินการ"],"ปิดแล้ว":["t-ok","check","ปิดเรื่องแล้ว"]};
-const ticketsHTML=()=>{ if(!S.tickets.length) return ""; const tab=S.tixTab||"open", open=S.tickets.filter(x=>x.st!=="ปิดแล้ว"), done=S.tickets.filter(x=>x.st==="ปิดแล้ว"), list=tab==="open"?open:done;
+const tixList=()=>S.role==="employer"?S.etickets:S.tickets;
+const ticketsHTML=()=>{ const TL=tixList(); if(!TL.length) return ""; const tab=S.tixTab||"open", open=TL.filter(x=>x.st!=="ปิดแล้ว"), done=TL.filter(x=>x.st==="ปิดแล้ว"), list=tab==="open"?open:done;
   const tb=(k,l,n)=>`<button type="button" role="tab" id="tt-${k}" aria-selected="${tab===k}" aria-controls="tix-p" data-a="tixtab" data-v="${k}">${l}<span class="n">${n}</span></button>`;
   return `<section class="tix" aria-labelledby="tix-h"><p class="lbl" id="tix-h" style="margin:0;display:flex;gap:6px;align-items:center">${ic("listcheck")}ประวัติเรื่องที่แจ้ง</p><div class="tix-tabs" role="tablist" aria-label="สถานะเรื่องที่แจ้ง">${tb("open","กำลังดำเนินการ",open.length)}${tb("done","เสร็จแล้ว",done.length)}</div>
    <div class="tix-p" id="tix-p" role="tabpanel" aria-labelledby="tt-${tab}">${list.length?list.map((x,ix)=>{const [c,i,l]=TIX_ST[x.st]||TIX_ST["ใหม่"]; return `<div class="tixr ${c}" style="--d:${ix*60}ms"><span class="tx-ic">${ic(i)}</span><div><b>${x.t}</b><small>${x.no} · แจ้ง ${x.d}</small>${x.n?`<em>${esc(x.n)}</em>`:""}</div><span class="tag ${c}">${l}</span></div>`;}).join(""):`<p class="tix-empty">${tab==="open"?"ไม่มีเรื่องที่กำลังดำเนินการ":"ยังไม่มีเรื่องที่ปิดแล้ว"}</p>`}</div></section>`; };
-R.voc=()=>{const tp=(k,l,i,bg,fg)=>`<button type="button" class="topic" data-a="topic" data-v="${k}" aria-pressed="${S.voc.topic===k}"><span class="ti" style="background:${bg};color:${fg}">${ic(i)}</span>${l}</button>`;
+R.voc=()=>{ if(S.role==="employer") return R.evoc(); const tp=(k,l,i,bg,fg)=>`<button type="button" class="topic" data-a="topic" data-v="${k}" aria-pressed="${S.voc.topic===k}"><span class="ti" style="background:${bg};color:${fg}">${ic(i)}</span>${l}</button>`;
  if(S.vocDone) return wrapApp(`<div class="ok-screen"><span class="big">${ic("check")}</span><h1 id="h1" tabindex="-1">ส่งเรื่องแล้ว</h1><p>แอดมินจะติดต่อกลับภายใน 2 วันทำการ ติดตามสถานะได้ด้วยเลขเรื่องนี้</p><span class="ticket">VOC-2569-0142</span><button type="button" class="btn btn-o" data-a="vocnew">แจ้งเรื่องใหม่</button><div style="width:100%;max-width:400px;text-align:left">${ticketsHTML()}</div></div>`);
  return wrapApp(`${topbar("ช่วยเหลือ",false)}<div class="form" style="padding-top:4px">${ticketsHTML()}
   <div><p class="lbl">เรื่องที่ต้องการแจ้ง</p><div class="topics" role="group" aria-label="เรื่องที่ต้องการแจ้ง">${tp("pay","ค่าตอบแทน","cash","#FFF0D1","#712319")}${tp("safe","ความปลอดภัย","shield","#FDECEA","#712319")}${tp("mis","งานไม่ตรงประกาศ","alert","#F8E1E8","#AF5577")}${tp("other","อื่น ๆ","help","#F0ECEA","#5E5551")}</div></div>
@@ -2270,9 +2518,9 @@ R.feedback=()=>{ if(S.fbDone) return wrapApp(`<div class="ok-screen"><span class
 /* employer */
 const SKOPT=["comm","canva","caption","service","team","photo","english","sheets"], DEVOPT=["plan","insight","brand","present","eventops","problem","lead","dash"];
 const BTYPES=[["food","ร้านอาหาร","coffee"],["craft","หัตถกรรม","pen"],["edu","การศึกษา","book"],["event","อีเวนต์","ticket"],["tech","เทคโนโลยี","code"],["other","อื่น ๆ","grid"]];
-R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟต์ สตูดิโอ",type:"craft",pos:"ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย",pay:"3,500",u:"โปรเจกต์",hasTax:true,pin:false,docs:new Set(["front","id"]),req:new Set(["canva","caption"]),dev:new Set(["plan","insight"])});
- const st=e.step, ttl=["ข้อมูลร้าน","ประกาศงานแรก","ตรวจก่อนส่ง"][st-1], sub=["นักศึกษาจะเห็นชื่อ ประเภท และย่านของร้าน ส่วนเลขผู้เสียภาษีใช้ตรวจสอบเท่านั้น","บอกให้ชัดว่างานต้องใช้อะไร และนักศึกษาจะได้อะไรกลับไป","นี่คือการ์ดที่นักศึกษาจะเห็นในหน้า Home"][st-1];
- const head=`<header class="topbar"><button type="button" class="ib" data-a="eback" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1">สร้างโปรไฟล์ร้าน</h1><span class="sp"></span></header>${obSteps(st)}<div class="ob-h"><small>ขั้นที่ ${st} จาก 3</small><h2 style="font-size:1.5rem;margin-top:2px">${ttl}</h2><p>${sub}</p></div>`;
+R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟต์ สตูดิโอ",type:"craft",pos:"ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย",pay:"3,500",u:"โปรเจกต์",hasTax:true,pin:false,docs:new Set(),req:new Set(["canva","caption"]),dev:new Set(["plan","insight"])});
+ const st=e.step, ttl=["ข้อมูลร้าน",S.emp.fresh?"ประกาศงานแรก":"รายละเอียดงาน","ตรวจก่อนส่ง"][st-1], sub=["นักศึกษาจะเห็นชื่อ ประเภท และย่านของร้าน ส่วนเลขผู้เสียภาษีใช้ตรวจสอบเท่านั้น","บอกให้ชัดว่างานต้องใช้อะไร และนักศึกษาจะได้อะไรกลับไป","นี่คือการ์ดที่นักศึกษาจะเห็นในหน้า Home"][st-1];
+ const head=`<header class="topbar"><button type="button" class="ib" data-a="eback" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1">${S.emp.fresh?"ลงประกาศงานแรก":"ลงประกาศงาน"}</h1><span class="sp"></span></header>${obSteps(st)}<div class="ob-h"><small>ขั้นที่ ${st} จาก 3</small><h2 style="font-size:1.5rem;margin-top:2px">${ttl}</h2><p>${sub}</p></div>`;
  const chip=(g,k)=>`<button type="button" class="chip${g==="dev"?" dev":""}" data-a="echip" data-g="${g}" data-v="${k}" aria-pressed="${e[g].has(k)}">${SK[k]}</button>`;
  const pj={id:0,shop:"lc",shopN:e.name||"ชื่อร้าน",cat:"mkt",t:e.pos||"ชื่อตำแหน่ง",pay:+String(e.pay).replace(/\D/g,"")||0,u:e.u,place:"ช้างคลาน + ออนไลน์",match:88,post:0,req:[...e.req],dev:[...e.dev]};
  let body, foot;
@@ -2288,7 +2536,7 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
     <div class="taxopt" role="group" aria-labelledby="tax-l"><button type="button" class="btype" data-a="etax" data-v="1" aria-pressed="${e.hasTax}">${ic("receipt")}ระบุเลข</button><button type="button" class="btype" data-a="etax" data-v="0" aria-pressed="${!e.hasTax}">${ic("clock")}ไว้ทีหลัง</button></div>
     <div id="tax-in" ${e.hasTax?"":"hidden"} style="margin-top:8px"><label class="sr" for="e-tax">เลขประจำตัวผู้เสียภาษี 13 หลัก (จำเป็น)</label><input class="inp" id="e-tax" inputmode="numeric" maxlength="13" value="0505565012347" aria-required="true" aria-describedby="e-tax-e"><p class="ferr" id="e-tax-e" hidden></p><p class="fhint">${ic("lock")}13 หลัก ใช้ตรวจสอบกิจการ นักศึกษาไม่เห็น</p></div>
     <p class="fhint" id="tax-no" ${e.hasTax?"hidden":""}>${ic("info")}ไม่บังคับ · เพิ่มภายหลังได้จากโปรไฟล์ร้าน</p></div>
-   <div><p class="lbl" id="doc-l">เอกสารยืนยันร้าน</p><div class="updocs" role="group" aria-labelledby="doc-l">${EDOCS.map(d=>`<div id="ud-${d[0]}">${docRow(d,e.docs.has(d[0]))}</div>`).join("")}</div><p class="ferr" id="e-doc-e" hidden></p><p class="fhint">${ic("lock")}ใช้ให้วิทยาลัยฯ ตรวจสอบร้านเท่านั้น นักศึกษาไม่เห็น · JPG, PNG หรือ PDF ไม่เกิน 10 MB</p></div>
+   <div class="doc-sec"><p class="lbl" id="doc-l" style="display:flex;align-items:center;gap:8px">${ic("file")}เอกสารยืนยันร้าน <span class="doc-need">จำเป็น 2 รายการ</span></p><p class="fhint" style="margin:-4px 0 8px">วิทยาลัยฯ ใช้ตรวจว่าร้านมีอยู่จริง ก่อนประกาศขึ้นให้นักศึกษาเห็น</p><div class="updocs" role="group" aria-labelledby="doc-l">${EDOCS.map(d=>`<div id="ud-${d[0]}">${docRow(d,e.docs.has(d[0]))}</div>`).join("")}</div><p class="ferr" id="e-doc-e" hidden></p><p class="fhint">${ic("lock")}ใช้ให้วิทยาลัยฯ ตรวจสอบร้านเท่านั้น นักศึกษาไม่เห็น · JPG, PNG หรือ PDF ไม่เกิน 10 MB</p></div>
    <div class="row2"><div><label class="lbl" for="e-c">ผู้ประสานงาน</label><input class="inp" id="e-c" value="คุณอรุณี"></div><div><label class="lbl" for="e-cp">ตำแหน่ง</label><input class="inp" id="e-cp" value="เจ้าของแบรนด์"></div></div>`;
   foot=`<button type="button" class="btn btn-g" data-a="estep" data-v="2">ต่อไป ${ic("chev-r")}</button>`;
  } else if(st===2){
@@ -2310,7 +2558,7 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
     <div class="r col"><span>Skill ที่ใช้</span><div class="chips">${[...e.req].map(k=>`<span class="sk">${SK[k]}</span>`).join("")||"—"}</div></div>
     <div class="r col"><span>Skill ที่จะได้พัฒนา</span><div class="chips">${[...e.dev].map(k=>`<span class="sk dev">${SK[k]}</span>`).join("")||"—"}</div></div></div>
    <div class="lock-note" style="background:var(--warn-soft);color:var(--warn-ink)">${ic("info")}<span>วิทยาลัยฯ จะตรวจสอบร้านภายใน 1–2 วันทำการ หลังผ่านแล้วประกาศจะขึ้นให้นักศึกษาเห็นทันที</span></div>`;
-  foot=`<button type="button" class="btn btn-o" data-a="estep" data-v="2">ย้อนกลับ</button><button type="button" class="btn btn-g" data-a="eobdone">สร้างโปรไฟล์ ${ic("check")}</button>`;
+  foot=`<button type="button" class="btn btn-o" data-a="estep" data-v="2">ย้อนกลับ</button><button type="button" class="btn btn-g" data-a="eobdone">${S.emp.fresh?"สร้างร้านและส่งประกาศ":"ส่งประกาศ"} ${ic("check")}</button>`;
  }
  return `${head}<div class="form">${body}</div><div class="foot-act">${foot}</div>`;};
 const EDOCS=[["reg","หนังสือรับรอง / ทะเบียนพาณิชย์","ถ้ามี ช่วยให้ตรวจผ่านเร็วขึ้น",false,"file","ทะเบียนพาณิชย์.pdf"],["front","ภาพหน้าร้าน 3 ภาพ","เห็นป้ายชื่อร้านและด้านในร้าน",true,"camera","หน้าร้าน 3 ภาพ"],["id","สำเนาบัตรผู้ประสานงาน","เขียนกำกับ «ใช้กับ SpringBoard เท่านั้น»",true,"user","บัตร_ผู้ประสานงาน.jpg"]];
@@ -2329,7 +2577,7 @@ function syncDonate(){ const b=$('[data-a="donate"]',scr); if(!b) return; const 
 R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a.id)&&!e.declined.has(a.id)).length;
  return wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">Home ผู้ประกอบการ</h1>
  <div class="emp-stats" role="group" aria-label="สรุปงานของร้านวันนี้">${[[newApps,"ผู้สมัครใหม่","คน · รอคุณตอบ","eapps","users"],[2,"นักศึกษาที่ทำงาน","คน · อยู่กับร้าน","ework","brief"],[3,"ชั่วโมงรออนุมัติ","ชม. · กดเพื่ออนุมัติ","ework","clock"]].map(([v,l,u,to,i])=>`<button type="button" data-a="go" data-to="${to}"><span class="es-l">${ic(i)}${l}</span><b data-count="${v}">0</b><small>${u}</small></button>`).join("")}</div>
- <div class="pad"><button type="button" class="newpost" data-a="go" data-to="eob"><span class="np-ic">${ic("plus")}</span><span class="np-t"><b>ลงประกาศงานใหม่</b><small>ใช้เวลาราว 3 นาที · วิทยาลัยฯ ตรวจภายใน 1–2 วัน</small></span>${ic("chev-r")}</button></div>
+ <div class="pad"><button type="button" class="newpost" data-a="newpost"><span class="np-ic">${ic("plus")}</span><span class="np-t"><b>ลงประกาศงาน</b><small>ใช้เวลาราว 3 นาที · วิทยาลัยฯ ตรวจภายใน 1–2 วัน</small></span>${ic("chev-r")}</button></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("brief")}ตำแหน่งที่ประกาศ</h2><span class="sec-n">${S.emp.pc?1:2} ประกาศ</span></div>
   <div style="display:grid;gap:12px">
    <div class="post"><div class="post-h"><div><b>ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย</b><small>${tok(16,"tki")}3,500/โปรเจกต์ · ปิดรับ 25 พ.ย.</small></div><span class="tag t-ok">เปิดรับ</span></div>
@@ -2346,15 +2594,14 @@ R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a
   <button type="button" class="btn btn-sm" data-a="donate" ${tkOk()?"":"disabled"}>${tkOk()?`เติม ${fmt(e.amt)} Token`:"ระบุจำนวน Token"}</button></div>
   <p class="fhint">${ic("info")}1 Token = ฿1 · ชำระผ่าน QR Payment (รอ LE ยืนยัน)</p></section>`);};
 R.eapps=()=>wrapApp(`${topbar("ผู้สมัคร · ผู้ช่วยทำคอนเทนต์",true)}<p class="pad" style="color:var(--muted);font-size:0.875rem;margin-bottom:12px">เรียงตามทักษะที่ตรงกับประกาศ · เห็นเฉพาะข้อมูลที่จำเป็นต่อการคัดเลือก</p>
- <div class="pad" style="display:grid;gap:12px">${APPLICANTS.map(a=>{const st=a.wd?`<span class="tag t-grey">${ic("x")}ยกเลิกใบสมัคร</span>`:S.emp.accepted.has(a.id)?`<span class="tag t-ok">${ic("check")}รับแล้ว</span>`:S.emp.declined.has(a.id)?`<span class="tag t-grey">ไม่ผ่าน</span>`:`<span class="match"><span class="ring" style="--m:${a.match}"></span>${a.match}%</span>`;
+ <div class="pad" style="display:grid;gap:12px">${APPLICANTS.map(a=>{const st=a.wd?`<span class="tag t-grey">${ic("x")}ยกเลิกใบสมัคร</span>`:S.emp.accepted.has(a.id)?`<span class="tag t-ok">${ic("check")}รับแล้ว</span>`:S.emp.declined.has(a.id)?`<span class="tag t-grey">ไม่ผ่าน</span>`:`<span class="match" title="ทักษะตรงกับประกาศ ${a.match}%"><span class="ring" style="--m:${a.match}"></span>${a.match}%</span>`;
   const sub=a.wd?`<small class="wd-r">${ic("info")}เหตุผล: ${esc(a.wd.r)}</small>`:`<small class="fh">${fitTag(a)}</small>`;
-  return `<div class="app-card${a.wd?" is-wd":""}"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div style="min-width:0"><b>${a.n}</b><small>${a.fac}</small>${sub}</div><div class="r">${st}<button type="button" class="btn btn-o btn-sm" data-a="estu" data-v="${a.id}">ดูรายละเอียด</button></div></div>`;}).join("")}</div>`);
+  return `<button type="button" class="app-card${a.wd?" is-wd":""}" data-a="estu" data-v="${a.id}" aria-label="ดูรายละเอียด ${a.n}"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><span class="ac-i"><b>${a.n}</b><small>${a.fac}</small></span><span class="ac-r">${st}${ic("chev-r")}</span><span class="ac-f">${sub}</span></button>`;}).join("")}</div>`);
 R.estu=()=>{const a=APPLICANTS.find(x=>x.id===S.stuId)||APPLICANTS[0], acc=S.emp.accepted.has(a.id), dec=S.emp.declined.has(a.id);
  return wrapApp(`<div class="pf-head"><div style="display:flex;align-items:center;gap:4px;position:relative;z-index:1"><button type="button" class="ib" style="color:#fff" data-a="back" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1" style="font-size:1.125rem">Profile นักศึกษา</h1></div></div>
- <div class="pf-card"><div class="pf-top"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div><h2 style="font-size:1.25rem">${a.n}</h2><p>${a.fac}</p><p style="font-size:0.875rem;color:var(--muted)">สมัคร: ผู้ช่วยทำคอนเทนต์ · ตรงทักษะ ${a.match}%</p></div></div>
+ <div class="pf-card"><div class="pf-top"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div><h2 style="font-size:1.25rem">${a.n}</h2><p>${a.fac}</p><p style="font-size:0.875rem;color:var(--muted)">สมัคร: ผู้ช่วยทำคอนเทนต์ · <span style="white-space:nowrap">ตรงทักษะ ${a.match}%</span></p>${a.wd?"":`<div class="pf-fit">${fitTag(a)}</div>`}</div></div>
   <div class="pf-grid"><div class="stat work"><small>${ic("brief")}ประสบการณ์ในระบบ</small><b>2 งาน · 64 ชม.</b></div><div class="stat hours"><small>${ic("award")}Certificate</small><b>Digital Marketing Fundamentals</b></div></div>
   <button type="button" class="cvbtn ok" data-a="toast" data-m="เปิด CV.pdf ของนักศึกษา"><span class="fi">${ic("file")}</span><span><b>CV.pdf</b><small>สร้างโดย AI จากงานและคอร์สในระบบ</small></span></button>
-  <section class="wk-sec" aria-labelledby="wk-h"><div class="wk-hd"><p class="lbl" id="wk-h" style="margin:0">${ic("cal")}ตารางเวลาประจำสัปดาห์</p><small>อัปเดต 9 พ.ย.</small></div><div class="fitrow">${fitTag(a)}<small>ว่างทั้งหมด ${freeH(a)} ชม./สัปดาห์</small></div>${calGrid(a.cal)}<p class="fhint">${ic("info")}ร้านต้องการ ~${JWIN.need} ชม./สัปดาห์ ในช่วง ${JWIN.label}</p></section>
   ${a.clash&&!dec&&!acc?`<div class="clash">${ic("alert")}<div><b>เวลาทับซ้อนกับงานอื่น</b><small>${esc(a.clash)}</small></div></div>`:""}
   <div><p class="lbl">Skills ที่เกี่ยวข้องกับงานนี้</p><div class="chips">${a.sk.map(k=>`<span class="sk have">${ic("check")}${SK[k]}</span>`).join("")}</div></div>
   <p class="priv">${ic("lock")}ไม่แสดงที่อยู่ละเอียด เบอร์ผู้ปกครอง และเรื่องที่นักศึกษาแจ้ง VOC · เบอร์ติดต่อจะแสดงหลังกด «รับ»</p>
@@ -2367,10 +2614,26 @@ R.ework=()=>wrapApp(`${topbar("Work",false)}${shopWeek()}<p class="pad" style="c
   <div style="display:flex;gap:8px"><button type="button" class="btn btn-o btn-sm" data-a="fbgo" data-v="${i}" aria-label="ให้ Feedback ${w.n}">${ic("smile")}ให้ Feedback</button></div></div>`;}).join("")}</div>`);
 const SHIFTS=[{d:0,w:0,t:"13:00–17:00",h:4},{d:1,w:1,t:"10:00–14:00",h:4},{d:1,w:0,t:"15:00–17:00",h:2},{d:2,w:0,t:"13:00–17:00",h:4},{d:3,w:1,t:"10:00–14:00",h:4},{d:5,w:1,t:"09:00–15:00",h:6},{d:5,w:0,t:"10:00–12:00",h:2}];
 const WCOL=["#F37449","#AF5577"];
-function shopWeek(){ const sel=S.wkSel==null?1:S.wkSel, today=1, days=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."];
+const scToggle=v=>`<div class="sc-tg" role="group" aria-label="มุมมองตาราง">${[["w","สัปดาห์"],["m","เดือน"]].map(([k,l])=>`<button type="button" data-a="scview" data-v="${k}" aria-pressed="${v===k}">${l}</button>`).join("")}</div>`;
+const M_FIRST=6, M_DAYS=30, M_TODAY=10, M_START=2, M_END=29, M_WAIT=new Set([9]);
+const mShifts=d=>d<M_START||d>M_END?[]:SHIFTS.filter(x=>x.d===(M_FIRST+d-1)%7);
+function shopMonth(){ const sel=S.mSel||M_TODAY, wd=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."], cells=[];
+  let tot=0; for(let d=1;d<=M_DAYS;d++) tot+=mShifts(d).reduce((a,x)=>a+x.h,0);
+  for(let i=0;i<M_FIRST;i++) cells.push(`<span class="mc empty" aria-hidden="true"></span>`);
+  for(let d=1;d<=M_DAYS;d++){ const sh=mShifts(d), h=sh.reduce((a,x)=>a+x.h,0), cls=["mc"]; if(d===M_TODAY) cls.push("today"); if(d<M_TODAY) cls.push("past"); if(M_WAIT.has(d)) cls.push("wait"); if(!sh.length) cls.push("off");
+    cells.push(`<button type="button" class="${cls.join(" ")}" data-a="mday" data-v="${d}" aria-pressed="${d===sel}" aria-label="${wd[(M_FIRST+d-1)%7]} ${d} พ.ย. ${sh.length?`${sh.length} กะ ${h} ชม.`:"ไม่มีกะ"}${M_WAIT.has(d)?" มีชั่วโมงรออนุมัติ":""}" style="--k:${d}"><span class="mn">${d}</span>${sh.length?`<span class="md">${sh.map(x=>`<i style="background:${WCOL[x.w]}"></i>`).join("")}</span>`:""}</button>`); }
+  const list=mShifts(sel), st=d=>M_WAIT.has(d)?["t-warn","รออนุมัติ"]:d<M_TODAY?["t-ok","ทำแล้ว"]:d===M_TODAY?["t-peach","วันนี้"]:["t-grey","นัดไว้"];
+  return `<section class="scal pad" aria-labelledby="sc-h"><div class="sc-top"><div><h2 id="sc-h">${ic("cal")}ตารางงานของร้าน</h2><small>พ.ย. 2569 · รวม ${tot} ชม. · ${WORKERS.length} คน</small></div>${scToggle("m")}</div>
+   <div class="mc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><b>พ.ย. 2569</b><button type="button" class="ib" data-a="toast" data-m="ดูเดือนถัดไป (ต้นแบบ)" aria-label="เดือนถัดไป">${ic("chev-r")}</button></div>
+   <div class="mc-g">${wd.map(x=>`<span class="mc-w">${x}</span>`).join("")}${cells.join("")}</div>
+   <div class="mc-lg">${WORKERS.map((w,i)=>`<span><i style="background:${WCOL[i]}"></i>${w.n.split(" ")[0]}</span>`).join("")}<span><i class="wt"></i>รออนุมัติชั่วโมง</span></div>
+   <p class="mc-dt">${wd[(M_FIRST+sel-1)%7]} ${sel} พ.ย. 2569</p>
+   <div class="sc-list" role="region" aria-live="polite" aria-label="กะวันที่เลือก">${list.length?list.map((x,k)=>{const w=WORKERS[x.w], t=st(sel);return `<div class="shift" style="--k:${k};--c:${WCOL[x.w]}"><span class="av" style="background:${WCOL[x.w]}">${w.ini}</span><div><b>${x.t}</b><small>${w.n} · ${w.pos}</small></div><span class="tag ${t[0]}">${t[1]}</span></div>`;}).join(""):`<p class="sc-empty">${ic("smile")}ไม่มีนัดทำงานวันนี้</p>`}</div></section>`; }
+function shopWeek(){ if(S.wkView==="m") return shopMonth(); const sel=S.wkSel==null?1:S.wkSel, today=1, days=["จ.","อ.","พ.","พฤ.","ศ.","ส.","อา."];
   const list=SHIFTS.filter(x=>x.d===sel), tot=SHIFTS.reduce((a,x)=>a+x.h,0);
   const st=d=>d<today?["t-ok","ทำแล้ว"]:d===today?["t-peach","วันนี้"]:["t-grey","นัดไว้"];
-  return `<section class="scal pad" aria-labelledby="sc-h"><div class="sc-top"><div><h2 id="sc-h">${ic("cal")}ตารางงานของร้าน</h2><small>9–15 พ.ย. 2569 · รวม ${tot} ชม. · ${WORKERS.length} คน</small></div><div class="hc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูสัปดาห์ก่อนหน้า (ต้นแบบ)" aria-label="สัปดาห์ก่อนหน้า">${ic("chev-l")}</button><button type="button" class="ib" data-a="toast" data-m="ดูสัปดาห์ถัดไป (ต้นแบบ)" aria-label="สัปดาห์ถัดไป">${ic("chev-r")}</button></div></div>
+  return `<section class="scal pad" aria-labelledby="sc-h"><div class="sc-top"><div><h2 id="sc-h">${ic("cal")}ตารางงานของร้าน</h2><small>9–15 พ.ย. 2569 · รวม ${tot} ชม. · ${WORKERS.length} คน</small></div>${scToggle("w")}</div>
+   <div class="mc-nav"><button type="button" class="ib" data-a="toast" data-m="ดูสัปดาห์ก่อนหน้า (ต้นแบบ)" aria-label="สัปดาห์ก่อนหน้า">${ic("chev-l")}</button><b>9–15 พ.ย.</b><button type="button" class="ib" data-a="toast" data-m="ดูสัปดาห์ถัดไป (ต้นแบบ)" aria-label="สัปดาห์ถัดไป">${ic("chev-r")}</button></div>
    <div class="sc-days" role="tablist" aria-label="เลือกวัน">${days.map((n,i)=>{const sh=SHIFTS.filter(x=>x.d===i);return `<button type="button" role="tab" class="sd${i===today?" today":""}" data-a="sday" data-v="${i}" aria-selected="${i===sel}" aria-label="${n} ${9+i} พ.ย. ${sh.length?`มี ${sh.length} กะ`:"ไม่มีกะ"}"><small>${n}</small><b>${9+i}</b><span class="sd-dots">${sh.map(x=>`<i style="background:${WCOL[x.w]}"></i>`).join("")}</span></button>`;}).join("")}</div>
    <div class="sc-list" role="tabpanel">${list.length?list.map((x,k)=>{const w=WORKERS[x.w], t=st(x.d);return `<div class="shift" style="--k:${k};--c:${WCOL[x.w]}"><span class="av" style="background:${WCOL[x.w]}">${w.ini}</span><div><b>${x.t}</b><small>${w.n} · ${w.pos}</small></div><span class="tag ${t[0]}">${t[1]}</span></div>`;}).join(""):`<p class="sc-empty">${ic("smile")}ไม่มีนัดทำงานวันนี้</p>`}</div></section>`; }
 /* admin */
@@ -2575,11 +2838,6 @@ function confetti(){ if(RM) return; const c=document.createElement("canvas"); c.
   const cols=["#F37449","#FA9746","#D16F8A","#88C887","#FAD0C2","#712319"]; const P=Array.from({length:110},()=>({x:r.width/2,y:r.height*.55,vx:(Math.random()-.5)*11,vy:-Math.random()*13-5,s:Math.random()*7+4,c:cols[Math.random()*cols.length|0],a:Math.random()*6,va:(Math.random()-.5)*.4}));
   const t0=performance.now(); const f=t=>{x.clearRect(0,0,r.width,r.height); P.forEach(p=>{p.vy+=.38;p.vx*=.99;p.x+=p.vx;p.y+=p.vy;p.a+=p.va;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2);x.restore();}); if(t-t0<2200) requestAnimationFrame(f); else c.remove();}; requestAnimationFrame(f);}
 function sheet(html){S.sheet=true; ov.innerHTML=`<div class="scrim" data-a="close"></div><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="shh"><div class="grip" aria-hidden="true"></div>${html}</div>`; const f=$("#shh",ov); if(f){f.setAttribute("tabindex","-1"); f.focus({preventScroll:true});}}
-function startSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">จะเริ่มจากอะไรก่อน</h2><p>เลือกทางไหนก็เปลี่ยนใจทีหลังได้</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
-  <div class="sh-b"><div class="stc">
-   <button type="button" class="stc-o main" data-a="estart" data-v="create"><span class="stc-ic">${ic("brief")}</span><span class="stc-t"><b>สมัครร้านและลงประกาศงาน</b><small>ใช้เวลาประมาณ 3 นาที · นักศึกษาจะเห็นประกาศหลังวิทยาลัยฯ ตรวจสอบร้าน (1–2 วันทำการ)</small></span>${ic("chev-r")}</button>
-   <button type="button" class="stc-o" data-a="estart" data-v="skip"><span class="stc-ic">${ic("eye")}</span><span class="stc-t"><b>ดูตัวอย่างก่อน ยังไม่สมัคร</b><small>ดูว่าร้านจะใช้อะไรได้บ้าง โดยไม่ต้องกรอกข้อมูล</small></span>${ic("chev-r")}</button>
-  </div></div>`); }
 function closeSheet(){ov.innerHTML=""; S.sheet=null;}
 
 /* ── navigation ── */
@@ -2624,11 +2882,9 @@ vp.addEventListener("click",e=>{
     case "logout": sheet(`<div class="lo-sh"><span class="lo-big">${ic("logout")}</span><h2 id="shh">ออกจากระบบใช่ไหม?</h2><p>งานที่บันทึกไว้และใบสมัครยังอยู่ครบ กลับมาเข้าสู่ระบบด้วย CMU Account ได้ทุกเมื่อ</p><div class="lo-acts"><button type="button" class="btn btn-o" data-a="close">ยกเลิก</button><button type="button" class="btn lo-go" data-a="logoutok">ออกจากระบบ</button></div></div>`); break;
     case "logoutok": closeSheet(); go("welcome"); break;
     case "sso": S.hist=[]; go("home"); toast("เข้าสู่ระบบด้วยบัญชีแล้ว (จำลอง)"); break;
-    case "pw": { S.pw=!S.pw; const i=$("#lg-p",scr); i.type=S.pw?"text":"password"; el.innerHTML=ic(S.pw?"eyeoff":"eye"); el.setAttribute("aria-label",S.pw?"ซ่อนรหัสผ่าน":"แสดงรหัสผ่าน"); break; }
+    case "pw": { S.pw=!S.pw; const i=$("#lg-p",scr)||$("#es-p",scr); i.type=S.pw?"text":"password"; el.innerHTML=ic(S.pw?"eyeoff":"eye"); el.setAttribute("aria-label",S.pw?"ซ่อนรหัสผ่าน":"แสดงรหัสผ่าน"); break; }
     case "rolesel": S.roleSel=v; $$(".role",scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
-    case "rolego": if(S.roleSel==="employer") startSheet(); else go("ob1"); break;
-    case "estart": closeSheet(); go(v==="skip"?"eguest":"eob"); break;
-    case "glock": toast("สมัครร้านก่อน เพื่อใช้งานส่วนนี้",false); break;
+    case "rolego": go(S.roleSel==="employer"?"esignup":"ob1"); break;
     case "obtog": { const g=el.dataset.g; S.ob[g].has(v)?S.ob[g].delete(v):S.ob[g].add(v); el.setAttribute("aria-pressed",S.ob[g].has(v)); break; }
     case "dream": S.ob.dream=v; $("#f-dream",scr).value=v; break;
     case "ptest": ptestSheet(S.ptStep||0); break;
@@ -2659,7 +2915,11 @@ vp.addEventListener("click",e=>{
     case "vocclose": closeSheet(); toast("ปิดเรื่องแล้ว",false); break;
     case "lvl": { const k=el.dataset.k, n=+v; $$(`[data-a="lvl"][data-k="${k}"]`,scr).forEach((b,i)=>{ b.setAttribute("aria-checked",i+1===n); b.classList.toggle("on",i<n); }); const w=$("#lw-"+k,scr); if(w) w.textContent=LVW[n]; break; }
     case "hstep": { const w=S.work; w.h=Math.max(0.5,Math.min(12,w.h+(+v))); const o=$("#hval",scr); if(o) o.textContent=`${w.h} ชม.`; break; }
-    case "wsave": { const w=S.work; w.saved=true; w.log.unshift({d:"10 พ.ย.",h:w.h,st:"wait"}); rerenderKeep(); toast(`บันทึก ${w.h} ชม. แล้ว · จะแจ้งเตือนเมื่อร้านอนุมัติ`); break; }
+    case "wsave": { const w=S.work; if(v==="edit"){ w.from=$("#w-from",scr).value; w.to=$("#w-to",scr).value; w.sh=wHrs(w.from,w.to); w.st=`${w.from}–${w.to}`; if(!w.sh){ toast("เวลาเลิกงานต้องหลังเวลาเริ่มงาน",false); break; } } else { w.sh=4; w.st="13:00–17:00 ตามกะ"; w.rs=null; }
+      w.saved=true; w.edit=false; w.log.unshift({d:"10 พ.ย.",h:w.sh,st:"wait",t:w.st.replace(" ตามกะ","")}); rerenderKeep(); toast(`ส่ง ${w.sh} ชม. ให้ร้านอนุมัติแล้ว`); break; }
+    case "wedit": S.work.edit=v==="1"; rerenderKeep(); if(v==="1") setTimeout(()=>$("#w-from",scr)?.focus(),50); break;
+    case "wrs": S.work.rs=S.work.rs===v?null:v; $$('[data-a="wrs"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===S.work.rs)); break;
+    case "wundo": { const w=S.work; w.saved=false; w.log.shift(); rerenderKeep(); break; }
     case "estar": { const i=el.dataset.w; S.efs[i]=+v; $$(`[data-a="estar"][data-w="${i}"]`,scr).forEach((b,k)=>{b.classList.toggle("on",k<+v); b.setAttribute("aria-checked",k+1===+v);}); break; }
     case "efsend": { const i=v; if(!S.efs[i]){ toast("ให้คะแนนดาวก่อนส่ง",false); break; } S.efb[i]=true; rerenderKeep(); toast("ส่ง Feedback ให้ Mentor แล้ว"); break; }
     case "job": S.jobId=+el.dataset.id; S.openPos=0; go("job"); break;
@@ -2691,9 +2951,15 @@ vp.addEventListener("click",e=>{
     case "tixtab": S.tixTab=v; { const t=$(".tix",scr); if(t){ t.outerHTML=ticketsHTML(); const b=$("#tt-"+v,scr); if(b) b.focus(); } } break;
     case "hcday": { S.hcSel=+v; $$(".hc-d.has",scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); const d=$("#hc-det",scr); if(d){ d.innerHTML=hcDet(+v); d.classList.remove("pop"); void d.offsetWidth; d.classList.add("pop"); } break; }
     case "addchip": { const w=document.createElement("span"); w.className="chip-in"; Object.assign(w.dataset,{g:el.dataset.g,o:el.dataset.o,ph:el.dataset.ph}); w.innerHTML=`<input class="inp" maxlength="30" placeholder="${el.dataset.ph}" aria-label="${el.dataset.ph}"><button type="button" class="btn btn-p btn-sm" data-a="addok">เพิ่ม</button><button type="button" class="ib" data-a="addx" aria-label="ยกเลิก">${ic("x")}</button><small class="ci-e" role="alert" hidden></small>`; el.replaceWith(w); $("input",w).focus(); break; }
+    case "hcat": { S.hcat=v; $$('[data-a="hcat"].hf',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); const h=$("#hjobs",scr); if(h) h.innerHTML=homeJobs(); const c=$(`.hf[data-v="${v}"]`,scr); if(c) c.scrollIntoView({inline:"center",block:"nearest",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); break; }
+    case "hall": S.cat=S.hcat||null; S.q=""; S.view=null; go("search"); break;
     case "addok": addChip(el.closest(".chip-in")); break;
     case "addx": { const w=el.closest(".chip-in"); w.outerHTML=addBtn(w.dataset.g,w.dataset.o,w.dataset.ph); break; }
-    case "vocsend": S.tixTab="open"; S.tickets.unshift({no:"VOC-2569-0142",t:TOPIC[S.voc.topic]||"อื่น ๆ",st:"ใหม่",d:"วันนี้",n:"แอดมินจะติดต่อกลับภายใน 2 วันทำการ"}); S.vocDone=true; go("voc",false); break;
+    case "efaq": { S.efaq=S.efaq===v?null:v; $$(".bh-g",scr).forEach(g=>{ const b=$(".bh-gh",g), on=b.dataset.v===S.efaq; g.classList.toggle("open",on); b.setAttribute("aria-expanded",on); $(".bh-qs",g).hidden=!on; }); break; }
+    case "efaqask": { const map={bpost:"bpost",users:"bstu",clock:"bstu",btk:"btk"}; const t=map[v]||"bother"; S.voc.topic=t; $$(".topic",scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===t)); const s=$('[data-a="vocsend"]',scr); if(s) s.removeAttribute("aria-disabled"); const f=$("#bh-form",scr); if(f){ f.scrollIntoView({block:"start",behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}); setTimeout(()=>$("#voc-d",scr)?.focus({preventScroll:true}),450); } break; }
+    case "eurg": S.voc.urg=v; $$('[data-a="eurg"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
+    case "vocsend": if(S.role==="employer"){ if(!S.voc.topic){ toast("เลือกเรื่องที่ต้องการแจ้งก่อน",false); break; } S.tixTab="open"; S.etickets.unshift({no:"BIZ-2569-0044",t:TOPIC[S.voc.topic]||"อื่น ๆ",st:"ใหม่",d:"วันนี้",n:S.voc.urg==="u"?"เรื่องด่วน · ทีมจะโทรกลับภายในวันนี้":"ทีมดูแลผู้ประกอบการจะติดต่อกลับภายใน 1 วันทำการ"}); S.vocDone=true; go("voc",false); break; }
+      S.tixTab="open"; S.tickets.unshift({no:"VOC-2569-0142",t:TOPIC[S.voc.topic]||"อื่น ๆ",st:"ใหม่",d:"วันนี้",n:"แอดมินจะติดต่อกลับภายใน 2 วันทำการ"}); S.vocDone=true; go("voc",false); break;
     case "vocnew": S.vocDone=false; S.voc={topic:null,job:null}; go("voc",false); break;
     case "star": { S.fb.stars=+v; $$('[data-a="star"]',scr).forEach((b,k)=>{b.classList.toggle("on",k<S.fb.stars); b.setAttribute("aria-checked",k+1===S.fb.stars); if(k<S.fb.stars){b.classList.remove("burst"); void b.offsetWidth; setTimeout(()=>b.classList.add("burst"),k*60);} }); $("#mood",scr).textContent=MOODS[S.fb.stars]; $('[data-a="fbsend"]',scr).removeAttribute("aria-disabled"); break; }
     case "fbsend": S.fbDone=true; go("feedback",false); confetti(); break;
@@ -2715,12 +2981,21 @@ vp.addEventListener("click",e=>{
     case "btype": { S.eobf.type=v; $$('[data-a="btype"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); const o=$("#bt-other",scr), ob=$('[data-a="btype"][data-v="other"]',scr); if(o){ o.hidden=v!=="other"; ob.setAttribute("aria-expanded",v==="other"); if(v==="other") $("#e-bto",scr).focus(); } break; }
     case "echip": { const g=el.dataset.g, set=S.eobf[g]; set.has(v)?set.delete(v):set.add(v); el.setAttribute("aria-pressed",set.has(v)); break; }
     case "eunit": S.eobf.u=v; $$('[data-a="eunit"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
-    case "eobdone": S.eobf.step=1; S.hist=[]; go("ehome"); toast("สร้างโปรไฟล์ร้านแล้ว · ประกาศรอตรวจสอบ"); break;
+    case "eobdone": { const was=S.emp.fresh; S.eobf.step=1; S.emp.fresh=false; S.hist=[]; go("ehome"); toast(was?"สร้างร้านและส่งประกาศแรกแล้ว · รอวิทยาลัยฯ ตรวจ":"ส่งประกาศแล้ว · รอวิทยาลัยฯ ตรวจ 1–2 วัน"); break; }
+    case "newpost": if(!S.emp.fresh){ if(!S.eobf) R.eob(); S.eobf.step=2; } else if(S.eobf) S.eobf.step=1; go("eob"); break;
+    case "esgo": { const n=$("#es-n",scr), m=$("#es-m",scr), c=$("#es-c",scr); let bad=null;
+      bad=setErr(n,$("#es-n-e",scr),n.value.trim()?"":"กรอกชื่อผู้ติดต่อ")||bad;
+      bad=setErr(m,$("#es-m-e",scr),/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m.value.trim())?"":"กรอกอีเมลให้ถูกรูปแบบ เช่น name@example.com")||bad;
+      const ce=$("#es-c-e",scr); if(!c.checked){ ce.hidden=false; ce.textContent="ติ๊กยอมรับเงื่อนไขก่อนสร้างบัญชี"; bad=bad||c; } else ce.hidden=true;
+      if(bad){ bad.focus(); break; }
+      S.role="employer"; S.emp.fresh=true; S.eobf=null; S.hist=[]; go("ehome"); toast("สร้างบัญชีแล้ว · ยินดีต้อนรับ"); break; }
     case "estu": S.stuId=v; go("estu"); break;
     case "accept": S.emp.accepted.add(v); rerenderKeep(); confetti(); toast("รับเข้าทำงานแล้ว · แจ้งนักศึกษาให้แล้ว"); break;
     case "decline": reasonSheet("dec",v); break;
     case "wdopen": reasonSheet("wd",+v); break;
-    case "sday": S.wkSel=+v; rerenderKeep(); break;
+    case "sday": S.wkSel=+v; S.mSel=9+(+v); rerenderKeep(); break;
+    case "scview": { if(v==="w"&&S.mSel>=9&&S.mSel<=15) S.wkSel=S.mSel-9; if(v==="m"&&S.mSel==null) S.mSel=9+(S.wkSel==null?1:S.wkSel); S.wkView=v; rerenderKeep(); const b=$(`[data-a="scview"][data-v="${v}"]`,scr); if(b) b.focus(); break; }
+    case "mday": S.mSel=+v; rerenderKeep(); break;
     case "rsn": { $$('[data-a="rsn"]',ov).forEach(b=>b.setAttribute("aria-checked",b===el)); S.rsn=v; const e=$("#rsn-e",ov); if(e) e.hidden=true; const m=$("#rsn-m",ov); if(m) m.removeAttribute("aria-invalid"); break; }
     case "rsnok": { const m=$("#rsn-m",ov), txt=m.value.trim(), e=$("#rsn-e",ov);
       if(!S.rsn||(S.rsn==="อื่นๆ"&&!txt)){ e.textContent=S.rsn?"อธิบายเหตุผลสั้น ๆ":"เลือกเหตุผลก่อน"; e.hidden=false; if(S.rsn) { m.setAttribute("aria-invalid","true"); m.focus(); } break; }
@@ -2746,6 +3021,7 @@ vp.addEventListener("input",e=>{
   if(t.dataset.live && S.eobf){ S.eobf[t.dataset.live]=t.value; if(t.dataset.live==="name"){ const l=$(".sh-logo span",scr); if(l) l.textContent=t.value==="ล้านนาคราฟต์ สตูดิโอ"?"LC":Array.from(t.value||"?")[0]; } }
   if(t.id==="tk-amt"){ const d=t.value.replace(/\D/g,"").replace(/^0+/,"").slice(0,6); S.emp.camt=d; S.emp.amt=+d||0; t.value=d?fmt(+d):""; syncDonate(); }
   if(t.id==="f-dream") S.ob.dream=t.value;
+  if((t.id==="w-from"||t.id==="w-to")&&S.work){ S.work[t.id==="w-from"?"from":"to"]=t.value; const c=$("#wt-calc",scr); if(c){ const h=wHrs(S.work.from,S.work.to); c.innerHTML=`รวม <b>${h} ชม.</b>${h!==4?` <span class="wt-diff">${h>4?"+":"−"}${Math.abs(h-4)} ชม. จากกะ</span>`:""}`; } }
   if(t.id==="ap-m") S.draft[S.apId]=t.value;
   if(t.id==="finq"||t.id==="usrq"){ const q=t.value.trim().toLowerCase(); const rows=$$("tbody tr",scr); rows.forEach(tr=>{ tr.hidden=!!q&&!tr.textContent.toLowerCase().includes(q); }); const em=$("#q-empty",scr); if(em) em.hidden=rows.some(r=>!r.hidden); }
 });
@@ -2803,18 +3079,24 @@ R.sapps=()=>{const wd=S.wd||(S.wd={}); const list=[...[...S.applied].map(id=>({i
    :a.st==="withdrawn"?`<p class="nx">${ic("info")}<span>คุณยกเลิกใบสมัครแล้ว · เหตุผล: ${esc(wd[a.id])} · แจ้งร้านให้แล้ว</span></p>`
    :`<p class="nx">${ic("bell")}<span>เราจะแจ้งเตือนเมื่อร้านตอบกลับ</span></p>`;
   return `<article class="appc ${a.st}"><div class="t"><span class="lg" style="${cover(c)}">${s.ini}</span><div style="min-width:0"><b>${esc(j.t)}</b><small>${esc(s.n)} · สมัคร ${a.d}</small></div><span class="tag ${st[0]}">${ic(st[2])}${st[1]}</span></div><ol class="mstep" aria-label="ความคืบหน้า">${steps}</ol>${clashBox}${next}${wdBtn}</article>`;}).join("")}</div>`);};
-R.swork=()=>{const w=S.work||(S.work={h:4,saved:false,log:[{d:"9 พ.ย.",h:2,st:"wait"},{d:"8 พ.ย.",h:1,st:"wait"},{d:"6 พ.ย.",h:4,st:"ok"},{d:"4 พ.ย.",h:3,st:"ok"}]});
- return wrapApp(`${topbar("งานที่กำลังทำ",true)}<div class="pad" style="display:grid;gap:16px;padding-bottom:16px">
+const wHrs=(a,b)=>{ const [h1,m1]=a.split(":").map(Number), [h2,m2]=b.split(":").map(Number); return Math.max(0,Math.round(((h2*60+m2)-(h1*60+m1))/30)/2); };
+R.swork=()=>{const w=S.work||(S.work={edit:false,from:"13:00",to:"17:00",rs:null,saved:false,log:[{d:"9 พ.ย.",h:2,st:"wait",t:"14:00–16:00"},{d:"8 พ.ย.",h:1,st:"wait",t:"17:00–18:00"},{d:"6 พ.ย.",h:4,st:"ok",t:"09:00–13:00"},{d:"4 พ.ย.",h:3,st:"ok",t:"13:00–16:00"}]});
+ const plan={t:"13:00–17:00",h:4}, eh=wHrs(w.from,w.to);
+ const next=[["พ. 11 พ.ย.","13:00–17:00",4],["ส. 14 พ.ย.","10:00–12:00",2]];
+ return wrapApp(`${topbar("ลงเวลาทำงาน",true)}<div class="pad" style="display:grid;gap:16px;padding-bottom:16px">
   <div class="wcard"><span class="lg" style="${cover(CAT("mkt"))}">LC</span><div><b>ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย</b><small>${esc(SHOPS.lc.n)} · สัปดาห์ที่ 3 จาก 4</small></div></div>
-  <section class="card logc" aria-labelledby="logh"><h2 id="logh">บันทึกชั่วโมงวันนี้ · 10 พ.ย.</h2>
-   ${w.saved?`<div class="win">${ic("check")}<div><b>บันทึกแล้ว ${w.h} ชม.</b><small>รอร้านอนุมัติ เราจะแจ้งเตือนเมื่ออนุมัติแล้ว</small></div></div>`:`
-   <div class="stepper"><button type="button" class="ib bordered" data-a="hstep" data-v="-0.5" aria-label="ลดครึ่งชั่วโมง">−</button><output id="hval" aria-live="polite">${w.h} ชม.</output><button type="button" class="ib bordered" data-a="hstep" data-v="0.5" aria-label="เพิ่มครึ่งชั่วโมง">+</button></div>
-   <div class="row2"><div><label class="lbl" for="w-from">เริ่มงาน</label><input class="inp" id="w-from" type="time" value="13:00"></div><div><label class="lbl" for="w-to">เลิกงาน</label><input class="inp" id="w-to" type="time" value="17:00"></div></div>
-   <div><p class="lbl">วันนี้ได้ใช้ทักษะอะไร</p><div class="chips">${["canva","caption","comm","photo","team"].map((k,i)=>`<button type="button" class="chip" data-a="tog" aria-pressed="${i<2}">${SK[k]}</button>`).join("")}</div></div>
-   <div><label class="lbl" for="w-ref">Reflection สั้น ๆ <span style="color:var(--muted);font-weight:400">(ไม่บังคับ)</span></label><textarea class="inp" id="w-ref" placeholder="วันนี้ทำอะไร ได้เรียนรู้อะไร"></textarea></div>
-   <button type="button" class="btn btn-g btn-blk" data-a="wsave">บันทึกชั่วโมงวันนี้</button>`}
+  <section class="wt-card" aria-labelledby="wt-h"><div class="wt-top"><p id="wt-h">${ic("cal")}กะวันนี้ · อ. 10 พ.ย.</p><span class="wt-src">ร้านกำหนดในตารางงาน</span></div>
+   <div class="wt-shift"><b>${plan.t}</b><span>${plan.h} ชม.</span></div>
+   ${w.saved?`<div class="wt-done">${ic("check")}<div><b>ส่งให้ร้านอนุมัติแล้ว · ${w.sh} ชม.</b><small>${w.st}${w.rs?` · ${esc(w.rs)}`:""} · แจ้งเตือนเมื่อร้านอนุมัติ</small></div><button type="button" class="linkb" data-a="wundo">แก้ไข</button></div>`
+   :w.edit?`<div class="wt-edit"><div class="row2"><div><label class="lbl" for="w-from">เริ่มงานจริง</label><input class="inp" id="w-from" type="time" value="${w.from}"></div><div><label class="lbl" for="w-to">เลิกงานจริง</label><input class="inp" id="w-to" type="time" value="${w.to}"></div></div>
+     <p class="wt-calc" id="wt-calc">รวม <b>${eh} ชม.</b>${eh!==plan.h?` <span class="wt-diff">${eh>plan.h?"+":"−"}${Math.abs(eh-plan.h)} ชม. จากกะ</span>`:""}</p>
+     <div><p class="lbl">เหตุผลที่เวลาไม่ตรงกะ</p><div class="chips">${["เลิกช้ากว่ากะ","เข้างานช้า","ร้านขอให้กลับก่อน","สลับวันกับร้าน"].map(r=>`<button type="button" class="chip" data-a="wrs" data-v="${r}" aria-pressed="${w.rs===r}">${r}</button>`).join("")}</div></div>
+     <div class="wt-acts"><button type="button" class="btn btn-o" data-a="wedit" data-v="0">ยกเลิก</button><button type="button" class="btn btn-g" data-a="wsave" data-v="edit">ส่งเวลาที่แก้</button></div></div>`
+   :`<button type="button" class="btn btn-g btn-blk wt-ok" data-a="wsave" data-v="plan">${ic("check")}ทำตามกะแล้ว · ${plan.h} ชม.</button><button type="button" class="wt-alt" data-a="wedit" data-v="1">${ic("edit")}เวลาไม่ตรงกะ? แก้เวลา</button>`}
   </section>
-  <section aria-labelledby="hh"><div class="sec-h" style="padding:0"><h2 id="hh">${ic("clock")}ประวัติชั่วโมง</h2></div><div class="hist">${w.log.map(l=>`<div class="hrow"><span>${l.d}</span><span class="num">${l.h} ชม.</span>${l.st==="ok"?'<span class="tag t-ok">อนุมัติแล้ว</span>':'<span class="tag t-warn">รออนุมัติ</span>'}</div>`).join("")}</div></section>
+  <section aria-labelledby="nx-h"><div class="sec-h" style="padding:0"><h2 id="nx-h">${ic("clock")}กะถัดไป</h2></div><div class="wt-next">${next.map(([d,t,h])=>`<div><span>${d}</span><b>${t}</b><small>${h} ชม.</small></div>`).join("")}</div></section>
+  <section aria-labelledby="hh"><div class="sec-h" style="padding:0"><h2 id="hh">${ic("listcheck")}ประวัติชั่วโมง</h2></div><div class="hist">${w.log.map(l=>`<div class="hrow"><span>${l.d}<small class="wt-t">${l.t||""}</small></span><span class="num">${l.h} ชม.</span>${l.st==="ok"?'<span class="tag t-ok">อนุมัติแล้ว</span>':'<span class="tag t-warn">รออนุมัติ</span>'}</div>`).join("")}</div></section>
+  <div class="wt-fb">${ic("smile")}<span>อยากเล่าว่าได้เรียนรู้อะไร? เขียนครั้งเดียวสิ้นเดือนที่ <button type="button" class="linkb" data-a="go" data-to="feedback">Feedback รายเดือน</button></span></div>
  </div>`);};
 R.efeedback=()=>wrapApp(`${topbar("Feedback ถึง Mentor",false)}<div class="pad" style="display:grid;gap:12px;padding-bottom:16px"><div class="remind">${ic("bell")}<span>ทุกสิ้นเดือน · ประเมินนักศึกษาที่ทำงานกับร้าน ส่งถึง Mentor ผู้ดูแล</span></div><p class="priv">${ic("lock")}นักศึกษาไม่เห็นความเห็นนี้โดยตรง · Mentor จะสรุปและคุยกับนักศึกษาเอง</p>${WORKERS.map((w,i)=>[w,i]).sort((a,b)=>(b[1]===S.fbFocus)-(a[1]===S.fbFocus)).map(([w,i])=>{const done=S.efb[i], sv=S.efs[i]||0, sel=S.fbFocus===i;
   return `<div class="worker${sel?" fbsel":""}" id="fbw-${i}">${sel?`<span class="fbfrom">${ic("check")}เลือกจากหน้า Work</span>`:""}<div class="t"><span class="av" style="background:${AVC[w.c]}">${w.ini}</span><div><b>${w.n}</b><small>${w.pos}</small></div>${done?`<span class="tag t-ok" style="margin-left:auto">${ic("check")}ส่งถึง Mentor แล้ว</span>`:""}</div>
@@ -2868,7 +3150,7 @@ function taxCheckCard(d){ const ok=taxValid(d);
 function verifySheet(i,n,t){
   sheet(`<div class="sh-h"><div><h2 id="shh">ตรวจสอบ ${esc(n)}</h2><p>${esc(t)} · ลงทะเบียนเมื่อ 9 พ.ย. 2569</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
   <div class="sh-b">${taxCheckCard("0505565012347")}<div class="share"><div><span>ผู้ประสานงาน</span><b style="font-weight:500">คุณวรรณา · เจ้าของกิจการ</b></div><div><span>เบอร์</span><b style="font-weight:500">084-xxx-031</b></div></div>
-   <div><p class="lbl">เอกสาร <span style="font-weight:400;color:var(--muted)">· ร้านแนบตอนสมัคร</span></p><div class="docs">${["หนังสือรับรอง / ทะเบียนพาณิชย์","ภาพหน้าร้าน 3 ภาพ","สำเนาบัตรผู้ประสานงาน"].map(d=>`<button type="button" class="doc" data-a="toast" data-m="เปิด ${d} (PDF)">${ic("file")}<span>${d}</span>${ic("chev-r")}</button>`).join("")}</div></div>
+   <div><p class="lbl">เอกสารยืนยันร้าน <span style="font-weight:400;color:var(--muted)">· แนบในขั้น «ข้อมูลร้าน» ตอนลงประกาศงานแรก</span></p><div class="docs">${EDOCS.map(([k,l,h,req,i,f])=>k==="reg"?`<div class="doc doc-no">${ic("file")}<span>${l}<small>ไม่ได้แนบ · ไม่บังคับ</small></span><span class="tag t-grey">ไม่มี</span></div>`:`<button type="button" class="doc" data-a="toast" data-m="เปิด ${f}">${ic(i)}<span>${l}<small>${f}</small></span><span class="tag t-ok">${ic("check")}แนบแล้ว</span>${ic("chev-r")}</button>`).join("")}</div></div>
    <div><label class="lbl" for="vr">หมายเหตุถึงร้าน <span style="color:var(--muted);font-weight:400">(จำเป็นถ้าขอแก้ไขหรือปฏิเสธ)</span></label><textarea class="inp" id="vr" aria-describedby="vr-e"></textarea><p class="ferr" id="vr-e" hidden></p></div></div>
   <div class="sh-f"><button type="button" class="btn btn-g btn-blk" data-a="verify" data-v="${i}">อนุมัติร้านนี้</button><div class="row2"><button type="button" class="btn btn-o" data-a="vfix">ขอแก้ไข</button><button type="button" class="btn btn-o btn-danger" data-a="vrej">ปฏิเสธ</button></div></div>`);}
 function vocSheet(n,k,s){
@@ -2903,7 +3185,7 @@ function syncShell(){
   $("#devcap").textContent=(dev==="phone"?"จอ 390 × 844 (iPhone 15) · ":"")+SCREENS[S.scr].n+(admin?" · แอดมินใช้บนเดสก์ท็อป":"");
 }
 document.addEventListener("click",e=>{
-  const j=e.target.closest("[data-jump]"); if(j){ const k=j.dataset.jump; S.hist=[]; if(k==="ai") S.aiDone=false; if(k==="voc") S.vocDone=false; if(k==="feedback") S.fbDone=false; go(k,false); return; }
+  const j=e.target.closest("[data-jump]"); if(j){ const k=j.dataset.jump; S.hist=[]; if(k==="ai") S.aiDone=false; if(k==="voc") S.vocDone=false; if(k==="feedback") S.fbDone=false; if(k==="ehome") S.emp.fresh=false; go(k,false); return; }
   const d=e.target.closest("[data-dev]"); if(d){ S.dev=d.dataset.dev; syncShell(); return; }
 });
 function hashView(){ document.body.classList.toggle("full",location.hash==="#full"); }
