@@ -2135,6 +2135,7 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .shop-st.warn>div{flex:1;min-width:180px;display:grid;gap:2px}
 .shop-st.warn b{font-size:0.9375rem;font-weight:600;color:#712319}
 .shop-st.warn small{font-size:0.75rem;color:var(--ink2);line-height:1.5}
+.emp-stats>button{gap:4px}
 </style>
 
 <div class="studio">
@@ -2711,7 +2712,7 @@ function syncDonate(){ const b=$('[data-a="donate"]',scr); if(!b) return; const 
   h.classList.toggle("err",bad); i.setAttribute("aria-invalid",bad); }
 R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a.id)&&!e.declined.has(a.id)).length;
  return wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">Home ผู้ประกอบการ</h1>
- <div class="emp-stats" role="group" aria-label="สรุปงานของร้านวันนี้">${[[newApps,"ผู้สมัครใหม่","คน · รอคุณตอบ","eapps","users"],[2,"นักศึกษาที่ทำงาน","คน · อยู่กับร้าน","ework","brief"],[3,"ชั่วโมงรออนุมัติ","ชม. · กดเพื่ออนุมัติ","ework","clock"]].map(([v,l,u,to,i])=>`<button type="button" data-a="go" data-to="${to}"><span class="es-l">${ic(i)}${l}</span><b data-count="${v}">0</b><small>${u}</small></button>`).join("")}</div>
+ <div class="emp-stats" role="group" aria-label="สรุปงานของร้านวันนี้">${[[newApps,"ผู้สมัครใหม่","คน · รอคุณตอบ","eapps","users"],[2,"นักศึกษาที่ทำงาน","คน · อยู่กับร้าน","ework","brief"],[3,"ชั่วโมงรออนุมัติ","ชม. · กดเพื่ออนุมัติ","ework","clock"]].map(([v,l,u,to,i])=>`<button type="button" data-a="go" data-to="${to}"><b data-count="${v}">0</b><span class="es-l">${ic(i)}${l}</span></button>`).join("")}</div>
  ${S.emp.shopSt==="none"?`<div class="pad"><div class="shop-st warn">${ic("building")}<div><b>ยังไม่ได้ส่งข้อมูลร้าน</b><small>กรอกข้อมูลร้านและแนบเอกสารให้วิทยาลัยฯ ตรวจ ประกาศงานจึงจะขึ้นให้นักศึกษาเห็น</small></div><button type="button" class="btn btn-g btn-sm" data-a="eshopgo">กรอกข้อมูลร้าน</button></div></div>`:S.emp.shopSt==="pending"?`<div class="pad"><div class="shop-st"><div class="ss-h">${ic("shield")}<b>วิทยาลัยฯ กำลังตรวจร้าน</b><small>ปกติ 1–2 วันทำการ</small></div><ol class="vf-steps sm"><li class="done"><span>${ic("check")}</span><b>ส่งข้อมูลแล้ว</b></li><li class="on"><span>2</span><b>กำลังตรวจ</b></li><li><span>3</span><b>ประกาศขึ้น</b></li></ol></div></div>`:""}
  <div class="pad"><button type="button" class="newpost" data-a="newpost"><span class="np-ic">${ic("plus")}</span><span class="np-t"><b>ลงประกาศงาน</b><small>ใช้เวลาราว 3 นาที · วิทยาลัยฯ ตรวจภายใน 1–2 วัน</small></span>${ic("chev-r")}</button></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("brief")}ตำแหน่งที่ประกาศ</h2><span class="sec-n">${S.emp.pc?1:2} ประกาศ</span></div>
