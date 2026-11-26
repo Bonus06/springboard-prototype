@@ -2113,6 +2113,28 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .fbs-n>div{background:#fff;border-radius:12px;padding:8px;text-align:center;display:grid;gap:2px}
 .fbs-n b{font-family:"Poppins";font-size:1.25rem;font-weight:600}
 .fbs-n small{font-size:0.6875rem;color:var(--muted)}
+/* v118 shop-first entrepreneur flow */
+.skipb{border:0;background:none;font:inherit;font-size:0.875rem;font-weight:500;color:#712319;min-height:44px;padding:0 4px;cursor:pointer;text-decoration:underline;text-underline-offset:3px;text-decoration-color:#FAD0C2;white-space:nowrap}
+.vf-steps{list-style:none;margin:0;padding:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#fff;border:1px solid var(--line);border-radius:16px}
+.vf-steps li{display:grid;justify-items:center;text-align:center;gap:4px;position:relative}
+.vf-steps li+li::before{content:"";position:absolute;top:14px;right:calc(50% + 18px);width:calc(100% - 28px);border-top:2px dashed #F3D9CE}
+.vf-steps span{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#F3EBE6;color:var(--ink2);font-family:"Poppins";font-size:0.8125rem;font-weight:600;position:relative;z-index:1}
+.vf-steps span .ic{width:14px;height:14px}
+.vf-steps li.on span{background:#F37449;color:#fff;box-shadow:0 0 0 4px #FFE3D3}
+.vf-steps li.done span{background:#88C887;color:#fff}
+.vf-steps b{font-size:0.75rem;font-weight:600;line-height:1.3}
+.vf-steps small{font-size:0.6875rem;color:var(--muted)}
+.vf-steps.sm{background:transparent;border:0;padding:8px 0 0}
+.shop-st{margin-top:16px;background:#fff;border:1px solid #F6DCD0;border-radius:18px;padding:14px;display:grid;gap:4px;box-shadow:var(--sh1)}
+.shop-st .ss-h{display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:center}
+.shop-st .ss-h .ic{color:#F37449;grid-row:span 2}
+.shop-st .ss-h b{font-size:0.9375rem;font-weight:600}
+.shop-st .ss-h small{font-size:0.75rem;color:var(--muted)}
+.shop-st.warn{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:#FFF0D1;border-color:#F8D9A4}
+.shop-st.warn>.ic{width:28px;height:28px;color:#712319;flex:none}
+.shop-st.warn>div{flex:1;min-width:180px;display:grid;gap:2px}
+.shop-st.warn b{font-size:0.9375rem;font-weight:600;color:#712319}
+.shop-st.warn small{font-size:0.75rem;color:var(--ink2);line-height:1.5}
 </style>
 
 <div class="studio">
@@ -2293,7 +2315,7 @@ const SCREENS={
  home:{g:"stu",n:"Home",role:"student",nav:"home"}, search:{g:"stu",n:"ค้นหา / หมวดงาน",role:"student",nav:"home"}, job:{g:"stu",n:"รายละเอียดร้าน & งาน",role:"student"},
  wish:{g:"stu",n:"Wishlist",role:"student",nav:"wish"}, profile:{g:"stu",n:"Profile",role:"student",nav:"profile"}, sapps:{g:"stu",n:"ใบสมัครของฉัน (ใหม่)",role:"student",nav:"profile"}, swork:{g:"stu",n:"ลงเวลาทำงาน",role:"student",nav:"profile"},
  voc:{g:"stu",n:"ช่วยเหลือ (หน้าหลัก)",role:"any",nav:"voc"}, vocform:{g:"stu",n:"ช่วยเหลือ · แจ้งปัญหา",role:"student",nav:"voc"}, vochist:{g:"stu",n:"ช่วยเหลือ · ประวัติเรื่อง",role:"student",nav:"voc"}, vocset:{g:"stu",n:"ช่วยเหลือ · ตั้งค่า",role:"student",nav:"voc"}, feedback:{g:"stu",n:"Feedback รายเดือน",role:"student",nav:"feedback"},
- esignup:{g:"emp",n:"สร้างบัญชีผู้ประกอบการ (ใหม่)",role:"guest"}, eob:{g:"emp",n:"ลงประกาศงาน + สร้างร้าน",role:"employer"}, ehome:{g:"emp",n:"Home ผู้ประกอบการ",role:"employer",nav:"home"}, eapps:{g:"emp",n:"ผู้สมัคร",role:"employer",nav:"home"},
+ esignup:{g:"emp",n:"สร้างบัญชีผู้ประกอบการ (ใหม่)",role:"guest"}, eob:{g:"emp",n:"สร้างโปรไฟล์ร้าน + แนบเอกสาร",role:"employer"}, epost:{g:"emp",n:"ลงประกาศงาน",role:"employer"}, ehome:{g:"emp",n:"Home ผู้ประกอบการ",role:"employer",nav:"home"}, eapps:{g:"emp",n:"ผู้สมัคร",role:"employer",nav:"home"},
  estu:{g:"emp",n:"Profile นศ. (มุมผู้ประกอบการ)",role:"employer",nav:"home"}, ework:{g:"emp",n:"Work · นศ. ที่ทำงาน",role:"employer",nav:"work"}, efeedback:{g:"emp",n:"Feedback ถึง Mentor",role:"employer",nav:"feedback"}, eprofile:{g:"emp",n:"โปรไฟล์ร้าน (ใหม่)",role:"employer",nav:"profile"},
  adash:{g:"adm",n:"Dashboard",role:"admin"}, ausers:{g:"adm",n:"User & Account",role:"admin"}, afin:{g:"adm",n:"Financial & Tax Receipt",role:"admin"}, ajobs:{g:"adm",n:"Job Post & Matching",role:"admin"}, ajob:{g:"adm",n:"รายละเอียดประกาศ (ใหม่)",role:"admin"}, avoc:{g:"adm",n:"VOC & Dispute",role:"admin"},
  mentor:{g:"men",n:"Mentor (เฟสถัดไป)",role:"mentor",off:true}};
@@ -2385,10 +2407,11 @@ R.esignup=()=>`${topbar("",true)}<div class="auth">
     <div><label class="lbl" for="es-t">เบอร์โทรศัพท์</label><input class="inp" id="es-t" inputmode="tel" autocomplete="tel" value="081-xxx-2390"></div>
     <div><label class="lbl" for="es-p">ตั้งรหัสผ่าน</label><div class="pw"><input class="inp" id="es-p" type="${S.pw?"text":"password"}" autocomplete="new-password" placeholder="อย่างน้อย 8 ตัวอักษร" aria-describedby="es-p-h"><button type="button" class="ib" data-a="pw" aria-label="${S.pw?"ซ่อนรหัสผ่าน":"แสดงรหัสผ่าน"}">${ic(S.pw?"eyeoff":"eye")}</button></div><p class="fhint" id="es-p-h">${ic("lock")}อย่างน้อย 8 ตัว ผสมตัวอักษรและตัวเลข</p></div>
     <label class="chk-line es-ok"><input type="checkbox" id="es-c" aria-describedby="es-c-e"> ยอมรับ<button type="button" class="linkb" data-a="toast" data-m="เปิดเงื่อนไขการใช้งาน (จำลอง)">เงื่อนไขการใช้งาน</button>และนโยบายความเป็นส่วนตัว</label><p class="ferr" id="es-c-e" hidden></p>
-    <div class="es-next">${ic("info")}<span><b>หลังสร้างบัญชี</b>เข้าหน้าแรกได้เลย ยังไม่ต้องสร้างร้าน · กรอกข้อมูลร้านและแนบเอกสารครั้งเดียวตอนกด «ลงประกาศงาน» ครั้งแรก<em>เตรียมไว้: ภาพหน้าร้าน 3 ภาพ · สำเนาบัตรผู้ประสานงาน · ทะเบียนพาณิชย์ (ถ้ามี)</em></span></div>
+    <div class="es-next">${ic("info")}<span><b>ขั้นต่อไป: ข้อมูลร้าน + เอกสาร</b>ส่งให้วิทยาลัยฯ ตรวจร้าน (ข้ามไปก่อนได้) · ลงประกาศงานแยกทีหลัง<em>เตรียมไว้: ภาพหน้าร้าน 3 ภาพ · สำเนาบัตรผู้ประสานงาน · ทะเบียนพาณิชย์ (ถ้ามี)</em></span></div>
     <button type="button" class="btn btn-g btn-blk" data-a="esgo">สร้างบัญชี ${ic("chev-r")}</button>
   </form>
   <p class="es-login">มีบัญชีแล้ว? <button type="button" class="linkb" data-a="go" data-to="login">เข้าสู่ระบบ</button></p></div>`;
+R.epost=()=>{ const e=S.eobf; if(!e||e.step<2||e.step===4){ R.eob(); S.eobf.step=2; } return R.eob(); };
 R.ob1=()=>`${topbar("สมัครสมาชิก",true)}${obSteps(1)}<div class="ob-h"><small>ขั้นที่ 1 จาก 3</small><h1>ข้อมูลส่วนตัว</h1><p>ข้อมูลจาก CMU Account เติมให้แล้ว ตรวจและเพิ่มส่วนที่ขาด</p></div>
  <div class="form">
   <div class="pfp"><span class="av">${ME.ini}<span class="cam">${ic("camera")}</span></span><div><b style="font-weight:500">รูปโปรไฟล์</b><p class="fhint" style="margin:0">ผู้ประกอบการจะเห็นรูปนี้ตอนคุณสมัครงาน</p></div></div>
@@ -2624,8 +2647,11 @@ R.feedback=()=>{ if(S.fbDone) return wrapApp(`<div class="ok-screen"><span class
 const SKOPT=["comm","canva","caption","service","team","photo","english","sheets"], DEVOPT=["plan","insight","brand","present","eventops","problem","lead","dash"];
 const BTYPES=[["food","ร้านอาหาร","coffee"],["craft","หัตถกรรม","pen"],["edu","การศึกษา","book"],["event","อีเวนต์","ticket"],["tech","เทคโนโลยี","code"],["other","อื่น ๆ","grid"]];
 R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟต์ สตูดิโอ",type:"craft",pos:"ผู้ช่วยทำคอนเทนต์โซเชียลมีเดีย",pay:"3,500",u:"โปรเจกต์",hasTax:true,pin:false,docs:new Set(),req:new Set(["canva","caption"]),dev:new Set(["plan","insight"])});
- const st=e.step, ttl=["ข้อมูลร้าน",S.emp.fresh?"ประกาศงานแรก":"รายละเอียดงาน","ตรวจก่อนส่ง"][st-1], sub=["นักศึกษาจะเห็นชื่อ ประเภท และย่านของร้าน ส่วนเลขผู้เสียภาษีใช้ตรวจสอบเท่านั้น","บอกให้ชัดว่างานต้องใช้อะไร และนักศึกษาจะได้อะไรกลับไป","นี่คือการ์ดที่นักศึกษาจะเห็นในหน้า Home"][st-1];
- const head=`<header class="topbar"><button type="button" class="ib" data-a="eback" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1">${S.emp.fresh?"ลงประกาศงานแรก":"ลงประกาศงาน"}</h1><span class="sp"></span></header>${obSteps(st)}<div class="ob-h"><small>ขั้นที่ ${st} จาก 3</small><h2 style="font-size:1.5rem;margin-top:2px">${ttl}</h2><p>${sub}</p></div>`;
+ const job=S.scr==="epost", st=e.step, n=job?(st===3?2:1):(st===4?2:1);
+ const ttl=job?(st===3?"ตรวจก่อนส่ง":"รายละเอียดงาน"):(st===4?"ตรวจข้อมูลร้าน":"ข้อมูลร้าน");
+ const sub=job?(st===3?"นี่คือการ์ดที่นักศึกษาจะเห็นในหน้าแรก":"บอกให้ชัดว่างานต้องใช้อะไร และนักศึกษาจะได้อะไรกลับไป"):(st===4?"ตรวจให้ครบก่อนส่ง วิทยาลัยฯ ใช้ข้อมูลนี้ยืนยันว่าร้านมีอยู่จริง":"กรอกครั้งเดียว · นักศึกษาเห็นชื่อ ประเภท และย่านของร้าน ส่วนเลขผู้เสียภาษีและเอกสารใช้ตรวจสอบเท่านั้น");
+ const bars=`<div class="steps" aria-label="ขั้นที่ ${n} จาก 2">${[1,2].map(k=>`<i class="${k<=n?"on":""}"></i>`).join("")}</div>`;
+ const head=`<header class="topbar"><button type="button" class="ib" data-a="eback" aria-label="ย้อนกลับ">${ic("chev-l")}</button><h1 id="h1" tabindex="-1">${job?"ลงประกาศงาน":"สร้างโปรไฟล์ร้าน"}</h1>${!job&&S.emp.fresh?`<button type="button" class="skipb" data-a="eskip">ข้ามไปก่อน</button>`:'<span class="sp"></span>'}</header>${bars}<div class="ob-h"><small>ขั้นที่ ${n} จาก 2</small><h2 style="font-size:1.5rem;margin-top:2px">${ttl}</h2><p>${sub}</p></div>`;
  const chip=(g,k)=>`<button type="button" class="chip${g==="dev"?" dev":""}" data-a="echip" data-g="${g}" data-v="${k}" aria-pressed="${e[g].has(k)}">${SK[k]}</button>`;
  const pj={id:0,shop:"lc",shopN:e.name||"ชื่อร้าน",cat:"mkt",t:e.pos||"ชื่อตำแหน่ง",pay:+String(e.pay).replace(/\D/g,"")||0,u:e.u,place:"ช้างคลาน + ออนไลน์",match:88,post:0,req:[...e.req],dev:[...e.dev]};
  let body, foot;
@@ -2643,7 +2669,7 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
     <p class="fhint" id="tax-no" ${e.hasTax?"hidden":""}>${ic("info")}ไม่บังคับ · เพิ่มภายหลังได้จากโปรไฟล์ร้าน</p></div>
    <div class="doc-sec"><p class="lbl" id="doc-l" style="display:flex;align-items:center;gap:8px">${ic("file")}เอกสารยืนยันร้าน <span class="doc-need">จำเป็น 2 รายการ</span></p><p class="fhint" style="margin:-4px 0 8px">วิทยาลัยฯ ใช้ตรวจว่าร้านมีอยู่จริง ก่อนประกาศขึ้นให้นักศึกษาเห็น</p><div class="updocs" role="group" aria-labelledby="doc-l">${EDOCS.map(d=>`<div id="ud-${d[0]}">${docRow(d,e.docs.has(d[0]))}</div>`).join("")}</div><p class="ferr" id="e-doc-e" hidden></p><p class="fhint">${ic("lock")}ใช้ให้วิทยาลัยฯ ตรวจสอบร้านเท่านั้น นักศึกษาไม่เห็น · JPG, PNG หรือ PDF ไม่เกิน 10 MB</p></div>
    <div class="row2"><div><label class="lbl" for="e-c">ผู้ประสานงาน</label><input class="inp" id="e-c" value="คุณอรุณี"></div><div><label class="lbl" for="e-cp">ตำแหน่ง</label><input class="inp" id="e-cp" value="เจ้าของแบรนด์"></div></div>`;
-  foot=`<button type="button" class="btn btn-g" data-a="estep" data-v="2">ต่อไป ${ic("chev-r")}</button>`;
+  foot=`<button type="button" class="btn btn-g" data-a="estep" data-v="4">ตรวจข้อมูลก่อนส่ง ${ic("chev-r")}</button>`;
  } else if(st===2){
   body=`<div><label class="lbl" for="e-pos">ตำแหน่งงาน</label><input class="inp" id="e-pos" data-live="pos" value="${esc(e.pos)}"></div>
    <div><label class="lbl" for="e-q">คุณสมบัติที่ต้องการ</label><input class="inp" id="e-q" value="ใช้ Canva ได้ มีตัวอย่างโพสต์"></div>
@@ -2652,18 +2678,22 @@ R.eob=()=>{const e=S.eobf||(S.eobf={step:1,name:"ล้านนาคราฟ�
    <div><label class="lbl" for="e-pay">ค่าตอบแทน</label><div class="payrow"><span class="baht" aria-hidden="true">${tok(20,"tki")}</span><input class="inp" id="e-pay" data-live="pay" inputmode="numeric" value="${esc(e.pay)}"><div class="seg" role="group" aria-label="หน่วย">${["ชม.","วัน","โปรเจกต์"].map(u=>`<button type="button" data-a="eunit" data-v="${u}" aria-pressed="${e.u===u}">/${u}</button>`).join("")}</div></div></div>
    <div class="row2"><div><label class="lbl" for="e-h">ชั่วโมงและวัน</label><input class="inp" id="e-h" value="8 ชม./สัปดาห์ · 4 สัปดาห์"></div><div><label class="lbl" for="e-s">วันเริ่มงาน</label><input class="inp" id="e-s" type="date" value="2026-11-18"></div></div>
    <div><label class="lbl" for="e-d">รายละเอียดงาน</label><textarea class="inp" id="e-d">ทำโพสต์ Facebook และ Instagram 8 โพสต์ในหนึ่งเดือน</textarea></div>`;
-  foot=`<button type="button" class="btn btn-o" data-a="estep" data-v="1">ย้อนกลับ</button><button type="button" class="btn btn-g" data-a="estep" data-v="3">ดูตัวอย่าง ${ic("eye")}</button>`;
- } else {
+  foot=`<button type="button" class="btn btn-g" data-a="estep" data-v="3">ดูตัวอย่างประกาศ ${ic("eye")}</button>`;
+ } else if(st===4){
   const bt=BTYPES.find(b=>b[0]===e.type)||BTYPES[5];
+  body=`<div class="sum"><div class="sum-h"><b>ข้อมูลร้าน</b><button type="button" class="linkb" data-a="estep" data-v="1">${ic("edit")}แก้ไข</button></div>
+    <div class="r"><span>ชื่อร้าน</span><b>${esc(e.name)}</b></div><div class="r"><span>ประเภท</span><b>${e.type==="other"&&e.bto?esc(e.bto):bt[1]}</b></div><div class="r"><span>ที่อยู่</span><b>ช้างคลาน อ.เมือง เชียงใหม่</b></div><div class="r"><span>โลเคชั่น</span><b>${e.pin?"ปักหมุดแล้ว":"ยังไม่ปักหมุด"}</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>${e.hasTax?"0505565•••347":"ไม่ระบุ"}</b></div></div>
+   <div class="sum"><div class="sum-h"><b>เอกสารยืนยันร้าน</b><button type="button" class="linkb" data-a="estep" data-v="1">${ic("edit")}แก้ไข</button></div>${EDOCS.map(([k,l,h,req])=>`<div class="r"><span>${l}</span><b>${e.docs.has(k)?`<span class="tag t-ok">${ic("check")}แนบแล้ว</span>`:`<span class="tag t-grey">${req?"ยังไม่แนบ":"ไม่แนบ · ไม่บังคับ"}</span>`}</b></div>`).join("")}</div>
+   <ol class="vf-steps" aria-label="ขั้นตอนหลังส่ง"><li class="on"><span>1</span><b>ส่งข้อมูลร้าน</b><small>วันนี้</small></li><li><span>2</span><b>วิทยาลัยฯ ตรวจ</b><small>1–2 วันทำการ</small></li><li><span>3</span><b>ลงประกาศงาน</b><small>ร่างไว้ระหว่างรอได้</small></li></ol>`;
+  foot=`<button type="button" class="btn btn-o" data-a="estep" data-v="1">ย้อนกลับ</button><button type="button" class="btn btn-g" data-a="eshopdone">ส่งตรวจร้าน ${ic("send")}</button>`;
+ } else {
   body=`<div class="pvwrap">${card(pj)}</div>
-   <div class="sum"><div class="sum-h"><b>ข้อมูลร้าน</b><button type="button" class="linkb" data-a="estep" data-v="1">${ic("edit")}แก้ไข</button></div>
-    <div class="r"><span>ชื่อร้าน</span><b>${esc(e.name)}</b></div><div class="r"><span>ประเภท</span><b>${e.type==="other"&&e.bto?esc(e.bto):bt[1]}</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>${e.hasTax?"0505565•••347":"ไม่ระบุ"}</b></div><div class="r"><span>โลเคชั่น</span><b>${e.pin?"ปักหมุดแล้ว · ช้างคลาน":"ยังไม่ปักหมุด"}</b></div><div class="r"><span>เอกสาร</span><b>แนบแล้ว ${e.docs.size}/${EDOCS.length}${e.docs.has("reg")?"":" · ไม่มีทะเบียนพาณิชย์"}</b></div></div>
    <div class="sum"><div class="sum-h"><b>ประกาศงาน</b><button type="button" class="linkb" data-a="estep" data-v="2">${ic("edit")}แก้ไข</button></div>
     <div class="r"><span>ตำแหน่ง</span><b>${esc(e.pos)}</b></div><div class="r"><span>ค่าตอบแทน</span><b class="price" style="font-size:1rem">${tok(16,"tki")}${fmt(pj.pay)}<small> /${e.u}</small></b></div>
     <div class="r col"><span>Skill ที่ใช้</span><div class="chips">${[...e.req].map(k=>`<span class="sk">${SK[k]}</span>`).join("")||"—"}</div></div>
     <div class="r col"><span>Skill ที่จะได้พัฒนา</span><div class="chips">${[...e.dev].map(k=>`<span class="sk dev">${SK[k]}</span>`).join("")||"—"}</div></div></div>
-   <div class="lock-note" style="background:var(--warn-soft);color:var(--warn-ink)">${ic("info")}<span>วิทยาลัยฯ จะตรวจสอบร้านภายใน 1–2 วันทำการ หลังผ่านแล้วประกาศจะขึ้นให้นักศึกษาเห็นทันที</span></div>`;
-  foot=`<button type="button" class="btn btn-o" data-a="estep" data-v="2">ย้อนกลับ</button><button type="button" class="btn btn-g" data-a="eobdone">${S.emp.fresh?"สร้างร้านและส่งประกาศ":"ส่งประกาศ"} ${ic("check")}</button>`;
+   <div class="lock-note" style="background:var(--warn-soft);color:var(--warn-ink)">${ic("info")}<span>${S.emp.shopSt==="pending"?"ร้านยังรอวิทยาลัยฯ ตรวจ · ประกาศนี้จะขึ้นให้นักศึกษาเห็นหลังร้านผ่านการตรวจ":"วิทยาลัยฯ ตรวจประกาศภายใน 1–2 วันทำการ แล้วจะขึ้นให้นักศึกษาเห็นทันที"}</span></div>`;
+  foot=`<button type="button" class="btn btn-o" data-a="estep" data-v="2">ย้อนกลับ</button><button type="button" class="btn btn-g" data-a="eobdone">ส่งประกาศ ${ic("check")}</button>`;
  }
  return `${head}<div class="form">${body}</div><div class="foot-act">${foot}</div>`;};
 const EDOCS=[["reg","หนังสือรับรอง / ทะเบียนพาณิชย์","ถ้ามี ช่วยให้ตรวจผ่านเร็วขึ้น",false,"file","ทะเบียนพาณิชย์.pdf"],["front","ภาพหน้าร้าน 3 ภาพ","เห็นป้ายชื่อร้านและด้านในร้าน",true,"camera","หน้าร้าน 3 ภาพ"],["id","สำเนาบัตรผู้ประสานงาน","เขียนกำกับ «ใช้กับ SpringBoard เท่านั้น»",true,"user","บัตร_ผู้ประสานงาน.jpg"]];
@@ -2672,7 +2702,7 @@ function docRow(d,up){ const [k,l,h,req,i,f]=d;
    :`<button type="button" class="updoc" data-a="edoc" data-v="${k}"><span class="ui">${ic(i)}</span><span class="ut"><b>${l}${req?`<span class="req" aria-hidden="true">*</span><span class="sr">(จำเป็น)</span>`:""}</b><small>${req?"":"ไม่บังคับ · "}${h}</small></span><span class="upb">${ic("plus")}แนบไฟล์</span></button>`; }
 function locCard(pin){ return pin?`<div class="lmap on"><span class="lpin">${ic("pin")}</span></div><div class="lmeta"><span>${ic("check")}<b>ปักหมุดแล้ว</b> · ช้างคลาน อ.เมือง เชียงใหม่</span><button type="button" class="linkb" data-a="eunpin">เปลี่ยน</button></div>`
   :`<div class="lmap"><span class="lpin off">${ic("pin")}</span><span>ยังไม่ได้ปักหมุดร้าน</span></div><div class="lacts"><button type="button" class="btn btn-o btn-sm" data-a="epin">${ic("target")}ใช้ตำแหน่งปัจจุบัน</button><button type="button" class="btn btn-o btn-sm" data-a="epin">${ic("pin")}ปักหมุดบนแผนที่</button></div>`; }
-const ehead=()=>`<div class="hhead" style="padding-bottom:72px"><div class="hh-top emp-top"><span class="av">LC</span><div style="min-width:0"><p class="emp-meta"><span>${esc(SHOPS.lc.type)}</span><span class="vpill">${ic("shield")}ตรวจสอบแล้ว</span></p><b>${esc(SHOPS.lc.n)}</b></div><button type="button" class="ib" data-a="toast" data-m="มีผู้สมัครใหม่ 4 คน" aria-label="การแจ้งเตือน">${ic("bell")}<span class="dot"></span></button></div></div>`;
+const ehead=()=>{ const st=S.emp.shopSt; return `<div class="hhead" style="padding-bottom:72px"><div class="hh-top emp-top"><span class="av">${st==="none"?"อร":"LC"}</span><div style="min-width:0"><p class="emp-meta"><span>${st==="none"?"บัญชีผู้ประกอบการ":esc(SHOPS.lc.type)}</span>${st==="none"?`<span class="vpill np">${ic("info")}ยังไม่มีข้อมูลร้าน</span>`:st==="pending"?`<span class="vpill np">${ic("clock")}รอตรวจสอบ</span>`:`<span class="vpill">${ic("shield")}ตรวจสอบแล้ว</span>`}</p><b>${st==="none"?"คุณอรุณี":esc(SHOPS.lc.n)}</b></div><button type="button" class="ib" data-a="toast" data-m="มีผู้สมัครใหม่ 4 คน" aria-label="การแจ้งเตือน">${ic("bell")}<span class="dot"></span></button></div></div>`; };
 const TK_MIN=100, TK_MAX=100000;
 function tkOk(){ const a=S.emp.amt; return a>=TK_MIN&&a<=TK_MAX; }
 function syncDonate(){ const b=$('[data-a="donate"]',scr); if(!b) return; const ok=tkOk(); b.disabled=!ok; b.textContent=ok?`เติม ${fmt(S.emp.amt)} Token`:"ระบุจำนวน Token";
@@ -2682,6 +2712,7 @@ function syncDonate(){ const b=$('[data-a="donate"]',scr); if(!b) return; const 
 R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a.id)&&!e.declined.has(a.id)).length;
  return wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">Home ผู้ประกอบการ</h1>
  <div class="emp-stats" role="group" aria-label="สรุปงานของร้านวันนี้">${[[newApps,"ผู้สมัครใหม่","คน · รอคุณตอบ","eapps","users"],[2,"นักศึกษาที่ทำงาน","คน · อยู่กับร้าน","ework","brief"],[3,"ชั่วโมงรออนุมัติ","ชม. · กดเพื่ออนุมัติ","ework","clock"]].map(([v,l,u,to,i])=>`<button type="button" data-a="go" data-to="${to}"><span class="es-l">${ic(i)}${l}</span><b data-count="${v}">0</b><small>${u}</small></button>`).join("")}</div>
+ ${S.emp.shopSt==="none"?`<div class="pad"><div class="shop-st warn">${ic("building")}<div><b>ยังไม่ได้ส่งข้อมูลร้าน</b><small>กรอกข้อมูลร้านและแนบเอกสารให้วิทยาลัยฯ ตรวจ ประกาศงานจึงจะขึ้นให้นักศึกษาเห็น</small></div><button type="button" class="btn btn-g btn-sm" data-a="eshopgo">กรอกข้อมูลร้าน</button></div></div>`:S.emp.shopSt==="pending"?`<div class="pad"><div class="shop-st"><div class="ss-h">${ic("shield")}<b>วิทยาลัยฯ กำลังตรวจร้าน</b><small>ปกติ 1–2 วันทำการ</small></div><ol class="vf-steps sm"><li class="done"><span>${ic("check")}</span><b>ส่งข้อมูลแล้ว</b></li><li class="on"><span>2</span><b>กำลังตรวจ</b></li><li><span>3</span><b>ประกาศขึ้น</b></li></ol></div></div>`:""}
  <div class="pad"><button type="button" class="newpost" data-a="newpost"><span class="np-ic">${ic("plus")}</span><span class="np-t"><b>ลงประกาศงาน</b><small>ใช้เวลาราว 3 นาที · วิทยาลัยฯ ตรวจภายใน 1–2 วัน</small></span>${ic("chev-r")}</button></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("brief")}ตำแหน่งที่ประกาศ</h2><span class="sec-n">${S.emp.pc?1:2} ประกาศ</span></div>
   <div style="display:grid;gap:12px">
@@ -3073,8 +3104,8 @@ vp.addEventListener("click",e=>{
     case "star": { S.fb.stars=+v; $$('[data-a="star"]',scr).forEach((b,k)=>{b.classList.toggle("on",k<S.fb.stars); b.setAttribute("aria-checked",k+1===S.fb.stars); if(k<S.fb.stars){b.classList.remove("burst"); void b.offsetWidth; setTimeout(()=>b.classList.add("burst"),k*60);} }); $("#mood",scr).textContent=MOODS[S.fb.stars]; $('[data-a="fbsend"]',scr).removeAttribute("aria-disabled"); break; }
     case "fbsend": S.fbDone=true; go("feedback",false); confetti(); break;
     case "single": $$('[data-a="single"]',el.parentElement).forEach(b=>b.setAttribute("aria-pressed",b===el)); break;
-    case "eback": if(S.eobf&&S.eobf.step>1){ S.eobf.step--; dir="back"; render(); } else back(); break;
-    case "estep": { if(S.eobf.step===1&&+v===2){ const n=$("#e-n",scr), t=$("#e-tax",scr); let bad=null; const d=t.value.replace(/\D/g,"");
+    case "eback": { const e=S.eobf; if(e&&S.scr==="epost"&&e.step===3){ e.step=2; dir="back"; render(); } else if(e&&S.scr==="eob"&&e.step===4){ e.step=1; dir="back"; render(); } else back(); break; }
+    case "estep": { if(S.eobf.step===1&&(+v===2||+v===4)){ const n=$("#e-n",scr), t=$("#e-tax",scr); let bad=null; const d=t.value.replace(/\D/g,"");
         bad=setErr(n,$("#e-n-e",scr),n.value.trim()?"":"กรอกชื่อร้านตามที่จดทะเบียน")||bad; if(S.eobf.hasTax) bad=setErr(t,$("#e-tax-e",scr),d.length===13?"":`กรอกให้ครบ 13 หลัก ตอนนี้มี ${d.length} หลัก`)||bad;
         if(S.eobf.type==="other"){ const bo=$("#e-bto",scr); bad=setErr(bo,$("#e-bto-e",scr),bo.value.trim()?"":"บอกประเภทธุรกิจของร้าน เช่น ฟาร์มเกษตร")||bad; }
         const miss=EDOCS.filter(d=>d[3]&&!S.eobf.docs.has(d[0])), de=$("#e-doc-e",scr);
@@ -3090,14 +3121,17 @@ vp.addEventListener("click",e=>{
     case "btype": { S.eobf.type=v; $$('[data-a="btype"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); const o=$("#bt-other",scr), ob=$('[data-a="btype"][data-v="other"]',scr); if(o){ o.hidden=v!=="other"; ob.setAttribute("aria-expanded",v==="other"); if(v==="other") $("#e-bto",scr).focus(); } break; }
     case "echip": { const g=el.dataset.g, set=S.eobf[g]; set.has(v)?set.delete(v):set.add(v); el.setAttribute("aria-pressed",set.has(v)); break; }
     case "eunit": S.eobf.u=v; $$('[data-a="eunit"]',scr).forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===v)); break;
-    case "eobdone": { const was=S.emp.fresh; S.eobf.step=1; S.emp.fresh=false; S.hist=[]; go("ehome"); toast(was?"สร้างร้านและส่งประกาศแรกแล้ว · รอวิทยาลัยฯ ตรวจ":"ส่งประกาศแล้ว · รอวิทยาลัยฯ ตรวจ 1–2 วัน"); break; }
-    case "newpost": if(!S.emp.fresh){ if(!S.eobf) R.eob(); S.eobf.step=2; } else if(S.eobf) S.eobf.step=1; go("eob"); break;
+    case "eobdone": { S.eobf.step=2; S.hist=[]; const p=S.emp.shopSt==="pending"; go("ehome"); toast(p?"บันทึกประกาศแล้ว · จะขึ้นหลังร้านผ่านการตรวจ":"ส่งประกาศแล้ว · รอวิทยาลัยฯ ตรวจ 1–2 วัน"); break; }
+    case "eshopdone": { S.emp.shopSt="pending"; S.emp.fresh=false; S.eobf.step=1; S.hist=[]; go("ehome"); toast("ส่งข้อมูลร้านให้วิทยาลัยฯ ตรวจแล้ว"); break; }
+    case "eskip": S.emp.shopSt="none"; S.emp.fresh=false; S.hist=[]; go("ehome"); toast("ข้ามไปก่อนได้ · กรอกข้อมูลร้านได้จากหน้าแรก",false); break;
+    case "eshopgo": if(!S.eobf) R.eob(); S.eobf.step=1; go("eob"); break;
+    case "newpost": if(S.emp.shopSt==="none"){ if(!S.eobf) R.eob(); S.eobf.step=1; go("eob"); toast("กรอกข้อมูลร้านก่อน แล้วค่อยลงประกาศงาน",false); } else { if(!S.eobf) R.eob(); S.eobf.step=2; go("epost"); } break;
     case "esgo": { const n=$("#es-n",scr), m=$("#es-m",scr), c=$("#es-c",scr); let bad=null;
       bad=setErr(n,$("#es-n-e",scr),n.value.trim()?"":"กรอกชื่อผู้ติดต่อ")||bad;
       bad=setErr(m,$("#es-m-e",scr),/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(m.value.trim())?"":"กรอกอีเมลให้ถูกรูปแบบ เช่น name@example.com")||bad;
       const ce=$("#es-c-e",scr); if(!c.checked){ ce.hidden=false; ce.textContent="ติ๊กยอมรับเงื่อนไขก่อนสร้างบัญชี"; bad=bad||c; } else ce.hidden=true;
       if(bad){ bad.focus(); break; }
-      S.role="employer"; S.emp.fresh=true; S.eobf=null; S.hist=[]; go("ehome"); toast("สร้างบัญชีแล้ว · ยินดีต้อนรับ"); break; }
+      S.role="employer"; S.emp.fresh=true; S.emp.shopSt=undefined; S.eobf=null; S.hist=[]; go("eob"); toast("สร้างบัญชีแล้ว · ต่อด้วยข้อมูลร้าน"); break; }
     case "estu": S.stuId=v; go("estu"); break;
     case "accept": S.emp.accepted.add(v); rerenderKeep(); confetti(); toast("รับเข้าทำงานแล้ว · แจ้งนักศึกษาให้แล้ว"); break;
     case "decline": reasonSheet("dec",v); break;
@@ -3296,7 +3330,7 @@ function syncShell(){
   $("#devcap").textContent=(dev==="phone"?"จอ 390 × 844 (iPhone 15) · ":"")+SCREENS[S.scr].n+(admin?" · แอดมินใช้บนเดสก์ท็อป":"");
 }
 document.addEventListener("click",e=>{
-  const j=e.target.closest("[data-jump]"); if(j){ const k=j.dataset.jump; S.hist=[]; if(k==="ai") S.aiDone=false; if(k==="voc") S.vocDone=false; if(k==="feedback") S.fbDone=false; if(k==="ehome") S.emp.fresh=false; go(k,false); return; }
+  const j=e.target.closest("[data-jump]"); if(j){ const k=j.dataset.jump; S.hist=[]; if(k==="ai") S.aiDone=false; if(k==="voc") S.vocDone=false; if(k==="feedback") S.fbDone=false; if(k==="ehome"){ S.emp.fresh=false; S.emp.shopSt=undefined; } if(k==="eob") S.emp.fresh=true; go(k,false); return; }
   const d=e.target.closest("[data-dev]"); if(d){ S.dev=d.dataset.dev; syncShell(); return; }
 });
 function hashView(){ document.body.classList.toggle("full",location.hash==="#full"); }
