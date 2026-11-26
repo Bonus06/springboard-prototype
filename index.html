@@ -2265,6 +2265,18 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .emp-stats.solid-ic .es-ic .ic{width:18px;height:18px;stroke-width:2.2}
 .emp-stats.solid-ic .es-card:hover .es-ic{transform:rotate(-6deg) scale(1.05)}
 .emp-stats.solid-ic .es-ic{transition:transform .4s var(--spring)}
+/* v135 bottom nav: iOS-style flat + dot */
+.bnav .ind{display:none!important}
+.bnav button{color:#8A7F7A;gap:3px;padding:8px 0 6px}
+.bnav button .ic{transition:transform .35s var(--spring),color .2s}
+.bnav button[aria-current="page"]{color:#712319;font-weight:600}
+.bnav button[aria-current="page"] .ic{color:#F37449;transform:translateY(-1px) scale(1.08)}
+.bnav button::after{content:"";width:4px;height:4px;border-radius:50%;background:transparent;transition:background .2s,transform .35s var(--spring);transform:scale(0)}
+.bnav button[aria-current="page"]::after{background:#F37449;transform:scale(1)}
+.bnav button:hover:not([aria-current="page"]){color:#5E5551}
+.bnav.moved button[aria-current="page"]::after{animation:navDot .45s var(--spring)}
+@keyframes navDot{0%{transform:scale(0)}60%{transform:scale(1.6)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.bnav.moved button[aria-current="page"]::after{animation:none}}
 </style>
 
 <div class="studio">
