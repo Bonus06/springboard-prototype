@@ -2560,6 +2560,9 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 /* v187 profile skill sheet: required level + legend */
 .s4l-b{height:10px;margin-top:2px}
 .s4l-lg{justify-content:center;margin-top:2px}
+/* v188 skill bars in CI green */
+.bar .have{background:#88C887}
+.bar .need{background:repeating-linear-gradient(45deg,#E6F0DA 0 6px,#D4E6BD 6px 12px)}
 </style>
 
 <div class="studio">
@@ -2685,7 +2688,7 @@ const S4L_AVG=(S4L.reduce((a,x)=>a+x[2],0)/S4L.length).toFixed(1);
 function s4lSheet(){
  sheet(`<div class="sh-h"><div><h2 id="shh">ทักษะที่อาชีพนี้ต้องใช้</h2><p>${esc(S.ob.dream)} · จาก Skills4Life</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
  <div class="sh-b s4l-sh"><ul class="s4l-list">${NEED.map(([en,need,have,th])=>`<li><div class="s4l-r"><span><b>${th}</b></span><em>${have}<small>/100</small></em></div><div class="bar s4l-b" role="img" aria-label="${th} ${have} จาก 100 · ระดับที่ต้องมี ${need}"><i class="need" style="width:${need}%"></i><i class="have" style="width:${have}%"></i></div></li>`).join("")}</ul>
- <div class="legend s4l-lg"><span><i style="background:linear-gradient(90deg,var(--o),var(--pink))"></i>ระดับของคุณ</span><span><i style="background:#F2C6B4"></i>ระดับที่ต้องมี</span></div>
+ <div class="legend s4l-lg"><span><i style="background:#88C887"></i>ระดับของคุณ</span><span><i style="background:repeating-linear-gradient(45deg,#E6F0DA 0 3px,#D4E6BD 3px 6px)"></i>ระดับที่ต้องมี</span></div>
  </div>`); }
 const SK={comm:"การสื่อสาร",service:"บริการลูกค้า",team:"ทำงานเป็นทีม",canva:"Canva",caption:"เขียนแคปชัน",english:"ภาษาอังกฤษ",barista:"ชงกาแฟเบื้องต้น",stock:"จัดการสต็อก",rush:"รับมือช่วงเร่งด่วน",plan:"วางแผนคอนเทนต์",insight:"อ่านผล Insights",photo:"ถ่ายภาพสินค้า",patience:"ความอดทน",lesson:"ออกแบบกิจกรรมสอน",lead:"ภาวะผู้นำ",punct:"ตรงต่อเวลา",eventops:"จัดการหน้างาน",problem:"แก้ปัญหาเฉพาะหน้า",sheets:"Google Sheets",detail:"ละเอียดรอบคอบ",dash:"ทำ Dashboard",present:"การนำเสนอ",html:"HTML/CSS",js:"JavaScript",git:"Git",agile:"Agile",cam:"ถ่ายภาพ",light:"จัดแสง",edit:"แต่งภาพ",story:"เล่าเรื่องสินค้า",chinese:"ภาษาจีน",trans:"แปลเชิงธุรกิจ",figma:"Figma",brand:"สร้างแบรนด์"};
 const ME={name:"ปภาวรินทร์ ใจดี",nick:"แพรว",ini:"ป",age:21,fac:"บริหารธุรกิจ",major:"การตลาด",year:"ปี 3",sid:"650615xxx",skills:["comm","service","canva","english","team","caption"],dream:"นักการตลาดดิจิทัล"};
@@ -2906,7 +2909,7 @@ R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div cl
   <small>อาชีพในฝันของคุณ</small><h1 id="h1" tabindex="-1">${esc(S.ob.dream)}</h1><p>คุณมีพื้นฐานแล้ว ${NEED_OK} จาก ${NEED.length} ทักษะหลัก</p></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("bar")}ทักษะที่อาชีพนี้ต้องมี</h2></div><p class="s4l-sub">อ้างอิงผลทักษะจาก Skills4Life</p>
   <div class="card" style="padding:16px"><div class="bars">${NEED.map(([n,need,have,th])=>`<div class="bar-row"><p class="t"><span class="nm">${th}</span><span>${have} / 100</span></p><div class="bar"><i class="need" data-w="${need}"></i><i class="have" data-w="${have}"></i></div></div>`).join("")}</div>
-  <div class="legend"><span><i style="background:linear-gradient(90deg,var(--o),var(--pink))"></i>ระดับของคุณ</span><span><i style="background:#F2C6B4"></i>ระดับที่ต้องมี</span></div></div></section>
+  <div class="legend"><span><i style="background:#88C887"></i>ระดับของคุณ</span><span><i style="background:repeating-linear-gradient(45deg,#E6F0DA 0 3px,#D4E6BD 3px 6px)"></i>ระดับที่ต้องมี</span></div></div></section>
  <section class="sec pad"><div class="sw2"><div class="card st"><h3>${ic("trend")}จุดแข็งที่เหมาะ</h3><ul>${NEED.filter(r=>r[2]>=r[1]).map(r=>`<li>${ic("check")}${r[3]}</li>`).join("")}</ul></div>
   <div class="card wk"><h3>${ic("target")}ควรเสริม</h3><ul>${NEED.filter(r=>r[2]<r[1]).map(r=>`<li>${ic("plus")}${r[3]}</li>`).join("")}</ul></div></div></section>
  <section class="sec"><div class="sec-h"><h2>${ic("spark")}งานฟรีแลนซ์ที่ตอบโจทย์</h2></div><div class="rail-x">${fit.map(card).join("")}</div></section>
