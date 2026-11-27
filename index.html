@@ -2563,20 +2563,17 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 /* v188 skill bars in CI green */
 .bar .have{background:#88C887}
 .bar .need{background:repeating-linear-gradient(45deg,#E6F0DA 0 6px,#D4E6BD 6px 12px)}
-/* v189 dream card: bolder, job title is the focus */
-.dream{background:linear-gradient(155deg,#FA9746 0%,#F37449 48%,#D16F8A 100%);padding:28px 20px 24px;box-shadow:0 18px 32px -18px rgba(175,85,119,.75)}
-.dream::before{content:"";position:absolute;left:50%;top:54%;width:320px;height:180px;transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(255,255,255,.28),transparent);pointer-events:none}
-.dream::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.12);pointer-events:none}
-.dream>*{position:relative;z-index:1}
-.dream .burst{width:92px;height:92px;margin:0 auto 14px}
-.dream .burst .ic{width:34px;height:34px}
-.dream small{display:inline-block;font-size:0.75rem;font-weight:600;letter-spacing:.06em;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);padding:4px 12px;border-radius:999px;opacity:1}
-.dream h1{color:#fff!important;font-size:2rem;font-weight:700;line-height:1.15;margin:10px 0 0;text-shadow:0 2px 0 rgba(113,35,25,.25),0 8px 24px rgba(113,35,25,.25);letter-spacing:-.01em}
-.dream .dr-prog{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:8px 14px;border-radius:999px;background:rgba(113,35,25,.22);font-size:0.8125rem;opacity:1}
+/* v190 dream card: flat, crafted, title as focus */
+.dream{background:#F37449;padding:24px 20px 20px;box-shadow:none}
+.dream .burst{width:88px;height:88px;margin:0 auto 12px}
+.dream .burst .ic{width:32px;height:32px}
+.dream small{display:block;font-size:0.8125rem;font-weight:500;letter-spacing:0;opacity:.9}
+.dream h1{color:#fff!important;font-size:2rem;font-weight:700;line-height:1.15;margin:4px 0 0;letter-spacing:-.01em}
+.dream .dr-prog{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:18px 0 0;padding:12px 14px;border-radius:14px;background:#fff;color:#712319;font-size:0.8125rem;text-align:left;opacity:1}
 .dream .dr-prog b{font-weight:700}
-.dr-dots{display:inline-flex;gap:4px}
-.dr-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.35)}
-.dr-dots i.ok{background:#fff}
+.dr-dots{order:2;display:grid;grid-template-columns:repeat(5,18px);gap:4px;flex:none}
+.dr-dots i{height:6px;border-radius:3px;background:#F4E3DA}
+.dr-dots i.ok{background:#88C887}
 </style>
 
 <div class="studio">
@@ -2920,7 +2917,7 @@ R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div cl
  const fit=JOBS.filter(j=>j.match>=70).slice(0,4), facj=JOBS.filter(j=>j.fac).slice(0,4);
  return `${topbar("ผลวิเคราะห์",false,`<button type="button" class="ib" data-a="replayai" aria-label="วิเคราะห์ใหม่">${ic("spark")}</button>`)}
  <div class="dream"><div class="burst"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 2l9 17 18-7-2 19 19 4-13 14 13 14-19 4 2 19-18-7-9 17-9-17-18 7 2-19-19-4 13-14L3 35l19-4-2-19 18 7z"/></svg>${ic("target")}</div>
-  <small>อาชีพในฝันของคุณ</small><h1 id="h1" tabindex="-1">${esc(S.ob.dream)}</h1><p class="dr-prog"><span class="dr-dots" aria-hidden="true">${NEED.map(r=>`<i class="${r[2]>=r[1]?"ok":""}"></i>`).join("")}</span>มีพื้นฐานแล้ว <b>${NEED_OK} จาก ${NEED.length}</b> ทักษะหลัก</p></div>
+  <small>อาชีพในฝันของคุณ</small><h1 id="h1" tabindex="-1">${esc(S.ob.dream)}</h1><p class="dr-prog"><span class="dr-dots" aria-hidden="true">${NEED.map(r=>`<i class="${r[2]>=r[1]?"ok":""}"></i>`).join("")}</span><span>มีพื้นฐานแล้ว <b>${NEED_OK} จาก ${NEED.length}</b> ทักษะหลัก</span></p></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("bar")}ทักษะที่อาชีพนี้ต้องมี</h2></div><p class="s4l-sub">อ้างอิงผลทักษะจาก Skills4Life</p>
   <div class="card" style="padding:16px"><div class="bars">${NEED.map(([n,need,have,th])=>`<div class="bar-row"><p class="t"><span class="nm">${th}</span><span>${have} / 100</span></p><div class="bar"><i class="need" data-w="${need}"></i><i class="have" data-w="${have}"></i></div></div>`).join("")}</div>
   <div class="legend"><span><i style="background:#88C887"></i>ระดับของคุณ</span><span><i style="background:repeating-linear-gradient(45deg,#E6F0DA 0 3px,#D4E6BD 3px 6px)"></i>ระดับที่ต้องมี</span></div></div></section>
