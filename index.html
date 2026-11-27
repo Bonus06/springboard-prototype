@@ -2514,8 +2514,8 @@ const S4L=[["Critical Thinking","การคิดเชิงวิพาก�
 const S4L_AVG=(S4L.reduce((a,x)=>a+x[2],0)/S4L.length).toFixed(1);
 function s4lSheet(){
  sheet(`<div class="sh-h"><div><h2 id="shh">ทักษะที่อาชีพนี้ต้องใช้</h2><p>${esc(S.ob.dream)} · จาก Skills4Life</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
- <div class="sh-b s4l-sh"><ul class="s4l-list">${NEED.map(([en,need,have,th])=>{ const pass=have>=need; return `<li class="${pass?"pass":"gap"}"><div class="s4l-r"><span><b>${th}</b></span><em>${have}<small>/${need}</small></em></div><div class="s4l-bar" role="img" aria-label="${th} ได้ ${have} เกณฑ์ ${need}"><i style="width:${have}%"></i><u style="left:${need}%" title="เกณฑ์ ${need}"></u></div></li>`; }).join("")}</ul>
- <p class="s4l-note">เส้นขีดบนแถบคือระดับที่อาชีพนี้ต้องมี</p></div>`); }
+ <div class="sh-b s4l-sh"><ul class="s4l-list">${NEED.map(([en,need,have,th])=>`<li><div class="s4l-r"><span><b>${th}</b></span><em>${have}<small>/100</small></em></div><div class="s4l-bar" role="img" aria-label="${th} ${have} จาก 100"><i style="width:${have}%"></i></div></li>`).join("")}</ul>
+ </div>`); }
 const SK={comm:"การสื่อสาร",service:"บริการลูกค้า",team:"ทำงานเป็นทีม",canva:"Canva",caption:"เขียนแคปชัน",english:"ภาษาอังกฤษ",barista:"ชงกาแฟเบื้องต้น",stock:"จัดการสต็อก",rush:"รับมือช่วงเร่งด่วน",plan:"วางแผนคอนเทนต์",insight:"อ่านผล Insights",photo:"ถ่ายภาพสินค้า",patience:"ความอดทน",lesson:"ออกแบบกิจกรรมสอน",lead:"ภาวะผู้นำ",punct:"ตรงต่อเวลา",eventops:"จัดการหน้างาน",problem:"แก้ปัญหาเฉพาะหน้า",sheets:"Google Sheets",detail:"ละเอียดรอบคอบ",dash:"ทำ Dashboard",present:"การนำเสนอ",html:"HTML/CSS",js:"JavaScript",git:"Git",agile:"Agile",cam:"ถ่ายภาพ",light:"จัดแสง",edit:"แต่งภาพ",story:"เล่าเรื่องสินค้า",chinese:"ภาษาจีน",trans:"แปลเชิงธุรกิจ",figma:"Figma",brand:"สร้างแบรนด์"};
 const ME={name:"ปภาวรินทร์ ใจดี",nick:"แพรว",ini:"ป",age:21,fac:"บริหารธุรกิจ",major:"การตลาด",year:"ปี 3",sid:"650615xxx",skills:["comm","service","canva","english","team","caption"],dream:"นักการตลาดดิจิทัล"};
 const JOBS=[
