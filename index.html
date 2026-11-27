@@ -2576,6 +2576,8 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .dr-dots i.ok{background:#88C887}
 /* v191 title shadow */
 .dream h1{text-shadow:0 2px 0 rgba(113,35,25,.28),0 6px 14px rgba(113,35,25,.25)}
+/* v192 progress strip text only */
+.dream .dr-prog{justify-content:center;text-align:center}
 </style>
 
 <div class="studio">
@@ -2919,7 +2921,7 @@ R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div cl
  const fit=JOBS.filter(j=>j.match>=70).slice(0,4), facj=JOBS.filter(j=>j.fac).slice(0,4);
  return `${topbar("ผลวิเคราะห์",false,`<button type="button" class="ib" data-a="replayai" aria-label="วิเคราะห์ใหม่">${ic("spark")}</button>`)}
  <div class="dream"><div class="burst"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 2l9 17 18-7-2 19 19 4-13 14 13 14-19 4 2 19-18-7-9 17-9-17-18 7 2-19-19-4 13-14L3 35l19-4-2-19 18 7z"/></svg>${ic("target")}</div>
-  <small>อาชีพในฝันของคุณ</small><h1 id="h1" tabindex="-1">${esc(S.ob.dream)}</h1><p class="dr-prog"><span class="dr-dots" aria-hidden="true">${NEED.map(r=>`<i class="${r[2]>=r[1]?"ok":""}"></i>`).join("")}</span><span>มีพื้นฐานแล้ว <b>${NEED_OK} จาก ${NEED.length}</b> ทักษะหลัก</span></p></div>
+  <small>อาชีพในฝันของคุณ</small><h1 id="h1" tabindex="-1">${esc(S.ob.dream)}</h1><p class="dr-prog"><span>มีพื้นฐานแล้ว <b>${NEED_OK} จาก ${NEED.length}</b> ทักษะหลัก</span></p></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("bar")}ทักษะที่อาชีพนี้ต้องมี</h2></div><p class="s4l-sub">อ้างอิงผลทักษะจาก Skills4Life</p>
   <div class="card" style="padding:16px"><div class="bars">${NEED.map(([n,need,have,th])=>`<div class="bar-row"><p class="t"><span class="nm">${th}</span><span>${have} / 100</span></p><div class="bar"><i class="need" data-w="${need}"></i><i class="have" data-w="${have}"></i></div></div>`).join("")}</div>
   <div class="legend"><span><i style="background:#88C887"></i>ระดับของคุณ</span><span><i style="background:repeating-linear-gradient(45deg,#E6F0DA 0 3px,#D4E6BD 3px 6px)"></i>ระดับที่ต้องมี</span></div></div></section>
