@@ -2447,6 +2447,32 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 /* v163 stronger logout */
 .lo-out{background:#FEE9E1;border-color:#F2B39F;color:#712319}
 .lo-out:hover{background:#FCDCD0;border-color:#EA9C85}
+/* v168 e-Donation rate */
+.edr-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;margin-bottom:24px;align-items:start}
+@media (max-width:900px){.edr-grid{grid-template-columns:1fr}}
+.edr-now{background:linear-gradient(160deg,#FFF7F3,#FDE7DE);border:1px solid #F6DCD0;border-radius:20px;padding:20px;display:grid;gap:10px}
+.edr-k{display:flex;align-items:center;gap:8px;font-weight:600;color:#712319;font-size:0.9375rem}
+.edr-k .ic{width:28px;height:28px;padding:6px;border-radius:9px;background:#F37449;color:#fff;box-sizing:border-box}
+.edr-big{display:grid;gap:0}
+.edr-big small{font-size:0.875rem;color:var(--muted)}
+.edr-big b{font-family:"Poppins";font-size:2.75rem;font-weight:600;color:#712319;line-height:1.1}
+.edr-since{font-size:0.8125rem;color:var(--ink2)}
+.edr-next{display:flex;align-items:center;gap:6px;font-size:0.8125rem;color:#712319;background:#fff;border:1px dashed #F3B79F;border-radius:10px;padding:8px 10px}
+.edr-next .ic{width:15px;height:15px}
+.edr-ex{display:flex;justify-content:space-between;gap:8px;background:#fff;border-radius:12px;padding:10px 12px;font-size:0.875rem}
+.edr-ex b{font-weight:600;color:#712319}
+.edr-form{background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:14px}
+.edr-form h2{font-size:1.0625rem;font-weight:600}
+.edr-in{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line2);border-radius:12px;padding:0 14px;background:#fff;transition:border-color .2s}
+.edr-in:focus-within{border-color:#F37449;box-shadow:0 0 0 3px #FFE7DC}
+.edr-in span{color:var(--muted);font-weight:600}
+.edr-in input{border:0;outline:0;flex:1;min-width:0;font:inherit;font-size:1.125rem;min-height:46px;background:transparent}
+.edr-pv{font-size:0.8125rem;color:var(--ink2);background:#FAF6F4;border-radius:10px;padding:8px 12px}
+.edr-pv b{color:#712319}
+.edr-hint{display:flex;gap:6px;align-items:flex-start;font-size:0.75rem;color:var(--muted)}
+.edr-hint .ic{width:14px;height:14px;flex:none;margin-top:2px}
+.edr-hh{font-size:1.0625rem;font-weight:600;margin:0 0 10px}
+.opt{font-weight:400;color:var(--muted);font-size:0.75rem;margin-left:4px}
 </style>
 
 <div class="studio">
@@ -2635,7 +2661,7 @@ const SCREENS={
  voc:{g:"stu",n:"ช่วยเหลือ (หน้าหลัก)",role:"any",nav:"voc"}, vocform:{g:"stu",n:"ช่วยเหลือ · แจ้งปัญหา",role:"student",nav:"voc"}, vochist:{g:"stu",n:"ช่วยเหลือ · ประวัติเรื่อง",role:"student",nav:"voc"}, vocset:{g:"stu",n:"ช่วยเหลือ · ตั้งค่า",role:"student",nav:"voc"}, feedback:{g:"stu",n:"Feedback รายเดือน",role:"student",nav:"feedback"},
  esignup:{g:"emp",n:"สร้างบัญชีผู้ประกอบการ (ใหม่)",role:"guest"}, eob:{g:"emp",n:"สร้างโปรไฟล์ร้าน + แนบเอกสาร",role:"employer"}, epost:{g:"emp",n:"ลงประกาศงาน",role:"employer"}, ehome:{g:"emp",n:"Home ผู้ประกอบการ",role:"employer",nav:"home"}, eapps:{g:"emp",n:"ผู้สมัคร",role:"employer",nav:"home"},
  estu:{g:"emp",n:"Profile นศ. (มุมผู้ประกอบการ)",role:"employer",nav:"home"}, ework:{g:"emp",n:"Work · นศ. ที่ทำงาน",role:"employer",nav:"work"}, efeedback:{g:"emp",n:"Feedback ถึง Mentor",role:"employer",nav:"feedback"}, eprofile:{g:"emp",n:"โปรไฟล์ร้าน (ใหม่)",role:"employer",nav:"profile"},
- adash:{g:"adm",n:"Dashboard",role:"admin"}, ausers:{g:"adm",n:"User & Account",role:"admin"}, afin:{g:"adm",n:"Financial & Tax Receipt",role:"admin"}, ajobs:{g:"adm",n:"Job Post & Matching",role:"admin"}, ajob:{g:"adm",n:"รายละเอียดประกาศ (ใหม่)",role:"admin"}, avoc:{g:"adm",n:"VOC & Dispute",role:"admin"},
+ adash:{g:"adm",n:"Dashboard",role:"admin"}, ausers:{g:"adm",n:"User & Account",role:"admin"}, afin:{g:"adm",n:"Financial & Tax Receipt",role:"admin"}, aedr:{g:"adm",n:"e-Donation Rate (ใหม่)",role:"admin"}, ajobs:{g:"adm",n:"Job Post & Matching",role:"admin"}, ajob:{g:"adm",n:"รายละเอียดประกาศ (ใหม่)",role:"admin"}, avoc:{g:"adm",n:"VOC & Dispute",role:"admin"},
  mentor:{g:"men",n:"Mentor (เฟสถัดไป)",role:"mentor",off:true}};
 const GROUPS=[["start","เริ่มต้น","#F37449"],["stu","นักศึกษา","#D16F8A"],["emp","ผู้ประกอบการ","#88C887"],["adm","แอดมิน","#712319"],["men","Mentor","#B8A9A2"]];
 
@@ -3118,21 +3144,21 @@ function shopWeek(){ if(S.wkView==="m") return shopMonth(); const sel=S.wkSel==n
 /* admin */
 function admShell(key,body){const it=(k,i,l,c="")=>`<button type="button" data-a="go" data-to="${k}" ${key===k?'aria-current="page"':""}>${ic(i)}<span>${l}</span>${c}</button>`;
  return `<div class="adm"><nav class="side" aria-label="เมนูแอดมิน"><div class="brand"><img src="${MARK}" alt=""><div>Spring Board<small>Admin · วิทยาลัยการศึกษาตลอดชีวิต</small></div></div>
-  ${it("adash","grid","หน้าแรก")}${it("ausers","users","User & Account Management",`<span class="cnt">${7-S.adm.verified.size}</span>`)}${it("afin","receipt","Financial & Tax Receipt")}${it("ajobs","brief","Job Post & Matching")}${it("avoc","help","VOC & Dispute",`<span class="cnt">5</span>`)}</nav>
+  ${it("adash","grid","หน้าแรก")}${it("ausers","users","User & Account Management",`<span class="cnt">${7-S.adm.verified.size}</span>`)}${it("afin","receipt","Financial & Tax Receipt")}${it("aedr","gift","e-Donation Rate")}${it("ajobs","brief","Job Post & Matching")}${it("avoc","help","VOC & Dispute",`<span class="cnt">5</span>`)}</nav>
   <main class="adm-main">${body}</main></div>`;}
 function expSheet(){ const sg=(g,arr,on)=>`<div class="xseg" role="radiogroup" aria-labelledby="xl-${g}">${arr.map(([v,l,sm])=>`<button type="button" role="radio" aria-checked="${v===on}" data-a="xseg" data-g="${g}" data-v="${v}">${l}${sm?`<small>${sm}</small>`:""}</button>`).join("")}</div>`;
  sheet(`<div class="sh-h"><div><h2 id="shh">Export ข้อมูลภาพรวม</h2><p>ดาวน์โหลดเพื่อทำรายงานหรือเปิดใน Excel</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
  <div class="sh-b" style="display:grid;gap:16px"><div><p class="lbl" id="xl-rng">ช่วงเวลา</p>${sg("rng",[["เดือนนี้","เดือนนี้"],["ภาคการศึกษานี้","ภาคการศึกษานี้"],["ปีนี้","ปี 2569"]],"เดือนนี้")}</div>
   <div><p class="lbl" id="xl-fmt">รูปแบบไฟล์</p>${sg("fmt",[["CSV","CSV","เปิดใน Excel / Sheets"],["PDF","PDF","รายงานพร้อมกราฟ"]],"CSV")}</div>
-  <fieldset class="xinc"><legend class="lbl">ข้อมูลที่รวม</legend>${["ตัวเลขสรุป (KPI)","งานเปิดรับตามหมวด","ชั่วโมงงานและ กยศ.","Token และค่าตอบแทน","เรื่องที่แจ้ง (VOC)"].map((l,i)=>`<label class="chk-line"><input type="checkbox" value="${l}" ${i<4?"checked":""}>${l}</label>`).join("")}<p class="ferr" id="x-e" hidden>เลือกอย่างน้อย 1 หัวข้อ</p></fieldset>
+  <fieldset class="xinc"><legend class="lbl">ข้อมูลที่รวม</legend>${["ตัวเลขสรุป (KPI)","งานเปิดรับตามหมวด","ชั่วโมงงานและ กยศ.","e-Donation และค่าตอบแทน","เรื่องที่แจ้ง (VOC)"].map((l,i)=>`<label class="chk-line"><input type="checkbox" value="${l}" ${i<4?"checked":""}>${l}</label>`).join("")}<p class="ferr" id="x-e" hidden>เลือกอย่างน้อย 1 หัวข้อ</p></fieldset>
   <p class="priv">${ic("lock")}ไฟล์ไม่มีชื่อ-นามสกุลหรือเลขบัตรของผู้ใช้ เป็นตัวเลขรวมเท่านั้น</p>
   <button type="button" class="btn btn-g btn-blk" data-a="xgo">${ic("download")}ดาวน์โหลด</button></div>`); }
 R.adash=()=>admShell("adash",`<div class="adm-h"><div><h1 id="h1" tabindex="-1">ภาพรวมระบบ</h1><p>อัปเดตแบบเรียลไทม์ · 10 พ.ย. 2569</p></div><div class="adm-acts"><span class="sample">ข้อมูลตัวอย่าง</span><button type="button" class="btn btn-o btn-sm" data-a="expsheet">${ic("download")}Export CSV / PDF</button></div></div>
- <div class="kpis">${[["users","นักศึกษา",1284,"+38 สัปดาห์นี้",""],["building","ผู้ประกอบการ",86,"รออนุมัติ "+(7-S.adm.verified.size),"w"],["brief","งานเปิดรับ",142,"+12 สัปดาห์นี้",""],["clock","ชม. งานเดือนนี้",3920,"กยศ. 1,140 ชม.",""],["gift","Token สะสม",128500,"+6,000 เดือนนี้",""],["help","VOC ใหม่",5,"ต้องตอบภายใน 2 วัน","w"]].map(([i,l,v,s,w])=>`<div class="kpi"><span>${ic(i)}${l}</span><b data-count="${v}">0</b><small class="${w}">${s}</small></div>`).join("")}</div>
+ <div class="kpis">${[["users","นักศึกษา",1284,"+38 สัปดาห์นี้",""],["building","ผู้ประกอบการ",86,"รออนุมัติ "+(7-S.adm.verified.size),"w"],["brief","งานเปิดรับ",142,"+12 สัปดาห์นี้",""],["clock","ชม. งานเดือนนี้",3920,"กยศ. 1,140 ชม.",""],["gift","e-Donation สะสม",128500,"+6,000 เดือนนี้",""],["help","VOC ใหม่",5,"ต้องตอบภายใน 2 วัน","w"]].map(([i,l,v,s,w])=>`<div class="kpi"><span>${ic(i)}${l}</span><b data-count="${v}">0</b><small class="${w}">${s}</small></div>`).join("")}</div>
  <div class="panels"><div class="panel"><h2>งานเปิดรับตามหมวด</h2><div class="vbars">${[["คาเฟ่",34],["สอน",22],["ดีไซน์",18],["ตลาด",27],["อีเวนต์",15],["IT",12],["ภาษา",6],["ภาพ",8]].map(([n,v])=>`<div><b>${v}</b><i data-h="${v/34*100}"></i></div>`).join("")}</div><div class="vlabels">${["คาเฟ่","สอน","ดีไซน์","ตลาด","อีเวนต์","IT","ภาษา","ภาพ"].map(n=>`<span>${n}</span>`).join("")}</div></div>
   <div class="panel"><h2>ความเคลื่อนไหวล่าสุด</h2><ul class="feed">
    <li><span class="fi" style="background:var(--warn-soft);color:var(--warn-ink)">${ic("building")}</span><div>ร้าน «ผ้าทอบ้านต้นแก้ว» ขอตรวจสอบ<small>12 นาทีที่แล้ว</small></div></li>
-   <li><span class="fi" style="background:var(--g-soft);color:var(--g-ink)">${ic("gift")}</span><div>ล้านนาคราฟต์ เติม 1,000 Token<small>1 ชม. ที่แล้ว</small></div></li>
+   <li><span class="fi" style="background:var(--g-soft);color:var(--g-ink)">${ic("gift")}</span><div>ล้านนาคราฟต์ เติม 1,000 e-Donation<small>1 ชม. ที่แล้ว</small></div></li>
    <li><span class="fi" style="background:#FDECEA;color:#712319">${ic("help")}</span><div>VOC ใหม่: ค่าตอบแทน (นักศึกษา)<small>3 ชม. ที่แล้ว</small></div></li>
    <li><span class="fi" style="background:var(--blue-soft);color:var(--blue-ink)">${ic("check")}</span><div>อนุมัติชั่วโมง 48 รายการ<small>วันนี้ 09:10</small></div></li></ul></div></div>`);
 const ASTU=[["ปภาวรินทร์ ใจดี","ป","บริหารธุรกิจ","ทำงาน · ล้านนาคราฟต์",42,4860,"650615023","ปี 3",[["ล้านนาคราฟต์ สตูดิโอ","ผู้ช่วยทำคอนเทนต์","กำลังทำ"],["ดอยดิน คอฟฟี่ โรสเตอร์","พนักงานร้านกาแฟ","จบแล้ว ต.ค."]],1],["ธนกฤต วงศ์ใหญ่","ธ","การสื่อสารมวลชน","รอผลสมัคร",12,780,"660410118","ปี 2",[["ดอยดิน คอฟฟี่ โรสเตอร์","พนักงานร้านกาแฟ","รอผลสมัคร"]],0],["กมลชนก ปัญญา","ก","มนุษยศาสตร์","ทำงาน · ล้านนาคราฟต์",18,2100,"650210334","ปี 3",[["ล้านนาคราฟต์ สตูดิโอ","ผู้ช่วยทำคอนเทนต์","กำลังทำ"]],0],["ศุภวิชญ์ ทองดี","ศ","วิจิตรศิลป์","ทำงาน · ล้านนาคราฟต์",26,3900,"640810077","ปี 4",[["ล้านนาคราฟต์ สตูดิโอ","ช่างภาพสินค้า","กำลังทำ"]],0]];
@@ -3163,11 +3189,37 @@ R.ausers=()=>{const tab=S.adm.tab; const emp=[["ผ้าทอบ้านต�
  <div class="tabs" role="tablist"><button type="button" role="tab" aria-selected="${tab==="emp"}" data-a="atab" data-v="emp">Entrepreneur <span class="cnt">${2-[0,1].filter(i=>S.adm.verified.has(i)).length}</span></button><button type="button" role="tab" aria-selected="${tab==="stu"}" data-a="atab" data-v="stu">Student</button></div>
  <div class="toolbar"><label class="sfield">${ic("search")}<span class="sr">ค้นหาผู้ใช้</span><input id="usrq" type="search" placeholder="${tab==="emp"?"ค้นหาชื่อร้านหรือประเภทธุรกิจ":"ค้นหาชื่อนักศึกษา คณะ หรือร้าน"}"></label></div>
  ${tab==="stu"&&ASTU.some((_,i)=>!menOf(i))?`<p class="adm-note">${ic("users")}นักศึกษา ${ASTU.filter((_,i)=>!menOf(i)).length} คนยังไม่มี Mentor · กด «มอบหมาย» ในตารางเพื่อเลือก</p>`:""}<div class="tbl">${tab==="emp"?t1:t2}<p class="q-empty" id="q-empty" hidden>${ic("search")}ไม่พบชื่อที่ค้นหา ลองพิมพ์คำอื่น</p></div>`);};
-R.afin=()=>admShell("afin",`<div class="adm-h"><div><h1 id="h1" tabindex="-1">Financial & Tax Receipt Control</h1><p>ตรวจยอด SpringBoard Token และสถานะจ่ายค่าตอบแทนนักศึกษา</p></div><span class="sample">ข้อมูลตัวอย่าง</span></div>
- <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"><div class="kpi"><span>${tok(18)}Token ทั้งหมด</span><b data-count="128500">0</b><small>32 บริษัท · 1 Token = ฿1</small></div><div class="kpi"><span>${ic("wallet")}ค่าตอบแทนรอจ่าย</span><b class="tkv">${tok(20,"tki")}<span data-count="18240">0</span></b><small class="w">14 รายการ</small></div><div class="kpi"><span>${ic("receipt")}ใบเสร็จออกแล้ว</span><b data-count="61">0</b><small>เดือนนี้</small></div></div>
+R.afin=()=>admShell("afin",`<div class="adm-h"><div><h1 id="h1" tabindex="-1">Financial & Tax Receipt Control</h1><p>ตรวจยอด e-Donation และสถานะจ่ายค่าตอบแทนนักศึกษา</p></div><span class="sample">ข้อมูลตัวอย่าง</span></div>
+ <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"><div class="kpi"><span>${tok(18)}e-Donation ทั้งหมด</span><b data-count="128500">0</b><small>32 บริษัท · 1 e-Donation = ฿${edrFmt(edrNow().r)} · <button type="button" class="linkb" data-a="go" data-to="aedr">ตั้งเรท</button></small></div><div class="kpi"><span>${ic("wallet")}ค่าตอบแทนรอจ่าย</span><b class="tkv">${tok(20,"tki")}<span data-count="18240">0</span></b><small class="w">14 รายการ</small></div><div class="kpi"><span>${ic("receipt")}ใบเสร็จออกแล้ว</span><b data-count="61">0</b><small>เดือนนี้</small></div></div>
  <div class="toolbar"><label class="sfield">${ic("search")}<span class="sr">ค้นหาบริษัท</span><input id="finq" placeholder="ค้นหาชื่อบริษัทหรือประเภท"></label><span class="tag t-warn">ช่องทางชำระและการออกใบเสร็จรอ LE ยืนยัน</span></div>
- <div class="tbl"><table><thead><tr><th>เวลา</th><th>บริษัท</th><th>ประเภท</th><th class="num">จำนวน Token</th><th></th></tr></thead><tbody>${[["10 พ.ย. 10:42","ล้านนาคราฟต์ สตูดิโอ","หัตถกรรม",1000],["9 พ.ย. 16:05","นอร์ทเทิร์น อีเวนต์ แล็บ","อีเวนต์",5000],["8 พ.ย. 11:20","ดอยดิน คอฟฟี่ โรสเตอร์","ร้านอาหาร",2000],["6 พ.ย. 09:15","ก้าวเหนือ เทคโนโลยี","ซอฟต์แวร์",3000]].map(([t,n,ty,a])=>`<tr><td>${t}</td><td>${n}</td><td>${ty}</td><td class="num">${tok(16,"tki")}${fmt(a)}</td><td><button type="button" class="btn btn-o btn-sm" data-a="toast" data-m="สร้างใบเสร็จรับเงิน (PDF) แล้ว">${ic("receipt")}ออกใบเสร็จ</button></td></tr>`).join("")}</tbody></table></div>`);
+ <div class="tbl"><table><thead><tr><th>เวลา</th><th>บริษัท</th><th>ประเภท</th><th class="num">จำนวน e-Donation</th><th></th></tr></thead><tbody>${[["10 พ.ย. 10:42","ล้านนาคราฟต์ สตูดิโอ","หัตถกรรม",1000],["9 พ.ย. 16:05","นอร์ทเทิร์น อีเวนต์ แล็บ","อีเวนต์",5000],["8 พ.ย. 11:20","ดอยดิน คอฟฟี่ โรสเตอร์","ร้านอาหาร",2000],["6 พ.ย. 09:15","ก้าวเหนือ เทคโนโลยี","ซอฟต์แวร์",3000]].map(([t,n,ty,a])=>`<tr><td>${t}</td><td>${n}</td><td>${ty}</td><td class="num">${tok(16,"tki")}${fmt(a)}</td><td><button type="button" class="btn btn-o btn-sm" data-a="toast" data-m="สร้างใบเสร็จรับเงิน (PDF) แล้ว">${ic("receipt")}ออกใบเสร็จ</button></td></tr>`).join("")}</tbody></table></div>`);
 
+const EDR_TODAY="2026-11-10", TMS=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+const thd=iso=>{ const [y,m,d]=iso.split("-").map(Number); return `${d} ${TMS[m-1]} ${y+543}`; };
+const edrFmt=r=>Number(r).toLocaleString("th-TH",{minimumFractionDigits:2,maximumFractionDigits:2});
+const EDR=[{d:"2025-08-01",r:1.2,n:"ช่วงทดลองระบบ",by:"LE Admin"},{d:"2026-01-01",r:1,n:"อัตราเริ่มต้นของโครงการ",by:"LE Admin"}];
+const edrNow=()=>[...EDR].filter(x=>x.d<=EDR_TODAY).sort((a,b)=>b.d.localeCompare(a.d))[0];
+const edrNext=()=>[...EDR].filter(x=>x.d>EDR_TODAY).sort((a,b)=>a.d.localeCompare(b.d))[0];
+R.aedr=()=>{ const now=edrNow(), nx=edrNext(), rows=[...EDR].sort((a,b)=>b.d.localeCompare(a.d));
+ const st=x=>x===now?'<span class="tag t-ok">ใช้อยู่</span>':x.d>EDR_TODAY?'<span class="tag t-blue">รอมีผล</span>':'<span class="tag t-grey">สิ้นสุดแล้ว</span>';
+ return admShell("aedr",`<div class="adm-h"><div><h1 id="h1" tabindex="-1">e-Donation Rate</h1><p>กำหนดมูลค่าของ 1 e-Donation เป็นบาท ใช้คำนวณยอดที่ร้านเติมและค่าตอบแทนนักศึกษา</p></div><span class="sample">ข้อมูลตัวอย่าง</span></div>
+ <div class="edr-grid">
+  <section class="edr-now" aria-labelledby="edr-now-h"><p id="edr-now-h" class="edr-k">${ic("gift")}เรทที่ใช้อยู่</p>
+   <p class="edr-big"><small>1 e-Donation =</small><b>฿${edrFmt(now.r)}</b></p>
+   <p class="edr-since">มีผลตั้งแต่ ${thd(now.d)} · ${esc(now.n||"—")}</p>
+   ${nx?`<p class="edr-next">${ic("clock")}เรทใหม่ ฿${edrFmt(nx.r)} จะมีผล ${thd(nx.d)}</p>`:""}
+   <div class="edr-ex"><span>ร้านเติม 1,000 e-Donation</span><b>= ฿${edrFmt(1000*now.r)}</b></div></section>
+  <section class="edr-form" aria-labelledby="edr-f-h"><h2 id="edr-f-h">เพิ่มเรทใหม่</h2>
+   <div><label class="lbl" for="edr-r">มูลค่า 1 e-Donation (บาท)</label><div class="edr-in"><span aria-hidden="true">฿</span><input id="edr-r" type="number" inputmode="decimal" min="0.01" max="100" step="0.01" placeholder="1.00" aria-describedby="edr-pv edr-e"></div></div>
+   <div><label class="lbl" for="edr-d">วันที่เริ่มมีผล</label><input class="inp" id="edr-d" type="date" min="${EDR_TODAY}" value="2026-12-01"></div>
+   <div><label class="lbl" for="edr-n">เหตุผล / หมายเหตุ <span class="opt">ไม่บังคับ</span></label><input class="inp" id="edr-n" maxlength="80" placeholder="เช่น ปรับตามมติคณะกรรมการ"></div>
+   <p class="edr-pv" id="edr-pv" aria-live="polite">ใส่มูลค่าเพื่อดูตัวอย่างการคำนวณ</p>
+   <p class="ferr" id="edr-e" hidden></p>
+   <button type="button" class="btn btn-g" data-a="edrsave">${ic("check")}บันทึกเรท</button>
+   <p class="edr-hint">${ic("info")}เรทใหม่ใช้กับการเติมและการจ่ายที่เกิดตั้งแต่วันที่มีผล รายการก่อนหน้าคงเรทเดิม</p></section>
+ </div>
+ <h2 class="edr-hh">ประวัติเรท</h2>
+ <div class="tbl"><table><thead><tr><th>วันที่มีผล</th><th class="num">฿ ต่อ 1 e-Donation</th><th>หมายเหตุ</th><th>บันทึกโดย</th><th>สถานะ</th><th></th></tr></thead><tbody>${rows.map(x=>`<tr><td>${thd(x.d)}</td><td class="num"><b style="font-weight:600">฿${edrFmt(x.r)}</b></td><td>${esc(x.n||"—")}</td><td>${esc(x.by)}</td><td>${st(x)}</td><td>${x.d>EDR_TODAY?`<button type="button" class="linkb" data-a="edrdel" data-v="${x.d}">ยกเลิก</button>`:""}</td></tr>`).join("")}</tbody></table></div>`); };
 /* ── admin: per-post detail ── */
 const STU_POOL=[
  ["กมลชนก ปัญญา","ก","บริหารธุรกิจ · การตลาด ปี 4"],["ศุภวิชญ์ ทองดี","ศ","วิจิตรศิลป์ ปี 3"],["ปภาวรินทร์ ใจดี","ป","บริหารธุรกิจ · การตลาด ปี 3"],["ธนกฤต วงศ์ใหญ่","ธ","การสื่อสารมวลชน ปี 2"],
@@ -3194,7 +3246,7 @@ function AJ(id){ if(AJC[id]) return AJC[id]; const j=JOB(id), m=AJ_META[id]||{st
 function stuSheet(id,k){ const a=AJ(+id).apps[+k], j=JOB(+id), st=AJ_ST[a.st];
   sheet(`<div class="sh-h"><div class="aj-sh"><span class="av" style="background:${AVC[a.c]}">${a.ini}</span><div><h2 id="shh">${esc(a.n)}</h2><p>${esc(a.fac)}</p></div></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
   <div class="sh-b"><div class="share"><div><span>ประกาศ</span><b style="font-weight:500;text-align:right">${esc(j.t)}</b></div><div><span>สถานะ</span><span class="tag ${st[1]}">${st[0]}</span></div><div><span>ทักษะตรง</span><b style="font-weight:500">${a.match}%</b></div><div><span>สมัครเมื่อ</span><b style="font-weight:500">${a.ago}</b></div>
-   ${a.h?`<div><span>ชั่วโมงทำงาน</span><b style="font-weight:500">${a.h} / ${a.hmax} ชม.</b></div><div><span>Token ที่ได้รับ</span><b class="tkv" style="font-weight:500">${tok(16,"tki")}${fmt(a.tok)}</b></div>`:""}
+   ${a.h?`<div><span>ชั่วโมงทำงาน</span><b style="font-weight:500">${a.h} / ${a.hmax} ชม.</b></div><div><span>e-Donation ที่ได้รับ</span><b class="tkv" style="font-weight:500">${tok(16,"tki")}${fmt(a.tok)}</b></div>`:""}
    <div><span>รหัสนักศึกษา</span><b style="font-weight:500">6${(64+a.k)%100}1${String(10203+a.k*37).slice(-5)}</b></div><div><span>อีเมล มช.</span><b style="font-weight:500">${["kamon","supa","papa","thana","nat","phum","arisa","wora","pim","chaya","supat","kitti","napat","jet","rin","thiti"][a.k]}_${["p","t","j","w","k","s","k","c","s","m","i","b","t","p","j","s"][a.k]}@cmu.ac.th</b></div></div>
    <div><p class="lbl">ทักษะ</p><div class="aj-sk">${j.req.slice(0,3).map((x,i)=>`<span class="tag ${i<2||a.match>75?"t-ok":"t-grey"}">${esc(SK[x]||x)}</span>`).join("")}</div></div>
    ${a.rate?`<div><p class="lbl">คะแนนจากร้าน</p><p class="aj-rate">${"★".repeat(a.rate)}${"☆".repeat(5-a.rate)} <span>${a.rate}.0</span></p></div>`:""}
@@ -3207,7 +3259,7 @@ R.ajob=()=>{ const id=S.adm.job, j=JOB(id), sh=SHOPS[j.shop], a=AJ(id), tb=S.adm
   if(tb==="apps") panel=a.apps.length?`<div class="tbl"><table><thead><tr><th>นักศึกษา</th><th>คณะ / ชั้นปี</th><th class="num">ทักษะตรง</th><th>สมัครเมื่อ</th><th>สถานะ</th><th><span class="sr">ดูข้อมูล</span></th></tr></thead><tbody>${a.apps.map(stuRow).join("")}</tbody></table></div>`:`<div class="empty"><h2>ยังไม่มีผู้สมัคร</h2></div>`;
   if(tb==="match") panel=a.matched.length?`<div class="aj-cards">${a.matched.map(x=>`<button type="button" class="aj-card" data-a="ajstu" data-id="${id}" data-k="${a.apps.indexOf(x)}"><span class="aj-who"><span class="av" style="background:${AVC[x.c]}">${x.ini}</span><span><b>${esc(x.n)}</b><small>${esc(x.fac)}</small></span></span>
      <span class="aj-row"><span>ชั่วโมงทำงาน</span><b>${x.h} / ${x.hmax} ชม.</b></span><span class="aj-bar"><i style="width:${Math.round(x.h/x.hmax*100)}%"></i></span>
-     <span class="aj-row"><span>Token ที่ได้รับ</span><b class="tkv">${tok(16,"tki")}${fmt(x.tok)}</b></span><span class="aj-row"><span>สถานะ</span><span class="tag ${AJ_ST[x.st][1]}">${AJ_ST[x.st][0]}</span></span></button>`).join("")}</div>`:`<div class="empty"><h2>ยังไม่มีนักศึกษาที่จับคู่</h2><p>ประกาศนี้ยังอยู่ระหว่างรับสมัคร</p></div>`;
+     <span class="aj-row"><span>e-Donation ที่ได้รับ</span><b class="tkv">${tok(16,"tki")}${fmt(x.tok)}</b></span><span class="aj-row"><span>สถานะ</span><span class="tag ${AJ_ST[x.st][1]}">${AJ_ST[x.st][0]}</span></span></button>`).join("")}</div>`:`<div class="empty"><h2>ยังไม่มีนักศึกษาที่จับคู่</h2><p>ประกาศนี้ยังอยู่ระหว่างรับสมัคร</p></div>`;
   if(tb==="info") panel=`<div class="aj-info"><section class="share"><h3>รายละเอียดงาน</h3><div><span>หมวด</span><b>${esc(c.n)}</b></div><div><span>ค่าตอบแทน</span><b class="tkv">${tok(16,"tki")}${fmt(j.pay)} / ${j.u}</b></div><div><span>สถานที่</span><b>${esc(j.place)}</b></div><div><span>เวลา</span><b>${esc(j.time)}</b></div><div><span>ปริมาณงาน</span><b>${esc(j.hrs)}</b></div><div><span>เริ่มงาน</span><b>${j.start}</b></div><div><span>คุณสมบัติ</span><b>${esc(j.q)}</b></div>
      <div class="col"><span>ลักษณะงาน</span><p>${esc(j.more||"")}</p></div><div class="col"><span>ทักษะที่ต้องใช้</span><p class="aj-sk">${j.req.map(x=>`<span class="tag t-peach">${esc(SK[x]||x)}</span>`).join("")}</p></div><div class="col"><span>ทักษะที่จะได้พัฒนา</span><p class="aj-sk">${j.dev.map(x=>`<span class="tag t-ok">${esc(SK[x]||x)}</span>`).join("")}</p></div></section>
      <section class="share"><h3>ร้าน</h3><div><span>ชื่อร้าน</span><b>${esc(sh.n)}</b></div><div><span>ประเภท</span><b>${esc(sh.type)}</b></div><div><span>ที่อยู่</span><b>${esc(sh.addr)}</b></div><div><span>เบอร์</span><b>${sh.tel}</b></div><div><span>การยืนยัน</span><span class="tag t-ok">${ic("shield")}ตรวจสอบแล้ว</span></div></section></div>`;
@@ -3402,6 +3454,12 @@ vp.addEventListener("click",e=>{
     case "ajstu": stuSheet(el.dataset.id, el.dataset.k); break;
     case "taxcopy": { try{ navigator.clipboard&&navigator.clipboard.writeText(v).catch(()=>{}); }catch(_){} toast(el.tagName==="A"?"คัดลอกเลขผู้เสียภาษีแล้ว · วางในช่องค้นหาของเว็บไซต์":"คัดลอกเลขผู้เสียภาษีแล้ว"); break; }
     case "vocd": vocSheet(el.dataset.n, el.dataset.k, el.dataset.s, !!el.dataset.e); break;
+    case "edrsave": { const r=+$("#edr-r",scr).value, d=$("#edr-d",scr).value, n=$("#edr-n",scr).value.trim(), e=$("#edr-e",scr);
+      const err=!(r>0)?"ใส่มูลค่าที่มากกว่า 0":r>100?"มูลค่าสูงสุด ฿100 ต่อ 1 e-Donation":Math.round(r*100)!==r*100?"ใส่ทศนิยมได้ไม่เกิน 2 ตำแหน่ง":!d?"เลือกวันที่เริ่มมีผล":d<EDR_TODAY?"เลือกวันนี้หรือวันถัดไป":EDR.some(x=>x.d===d)?"วันนี้มีเรทอยู่แล้ว เลือกวันอื่นหรือยกเลิกเรทเดิมก่อน":"";
+      if(err){ e.textContent=err; e.hidden=false; (err.includes("วัน")?$("#edr-d",scr):$("#edr-r",scr)).focus(); break; }
+      const item={d,r,n,by:"คุณ (แอดมิน)"}; EDR.push(item); go("aedr",false);
+      toastUndo(`บันทึกเรท ฿${edrFmt(r)} · มีผล ${thd(d)}`,()=>{ EDR.splice(EDR.indexOf(item),1); go("aedr",false); }); break; }
+    case "edrdel": { const i=EDR.findIndex(x=>x.d===v); if(i<0) break; const [it]=EDR.splice(i,1); go("aedr",false); toastUndo(`ยกเลิกเรทที่จะมีผล ${thd(v)} แล้ว`,()=>{ EDR.push(it); go("aedr",false); }); break; }
     case "mpick": mentorSheet(+v, el.dataset.from); break;
     case "mset": { const i=+el.dataset.i, k=+v, fr=el.dataset.from; if(k<0) delete S.adm.men[i]; else S.adm.men[i]=k; closeSheet(); go(S.scr,false);
       if(fr==="astu") astuSheet(i); else if(fr==="voc"&&S.adm.lastVoc) vocSheet(...S.adm.lastVoc);
@@ -3440,7 +3498,7 @@ vp.addEventListener("click",e=>{
     case "xgo": { const fm=$('[data-a="xseg"][data-g="fmt"][aria-checked="true"]',ov).dataset.v, rg=$('[data-a="xseg"][data-g="rng"][aria-checked="true"]',ov).dataset.v, inc=$$('.xinc input:checked',ov).map(c=>c.value);
       if(!inc.length){ $("#x-e",ov).hidden=false; break; }
       const fn=`springboard-overview-${rg==="ภาคการศึกษานี้"?"term":rg==="ปีนี้"?"2569":"2569-11"}.${fm.toLowerCase()}`;
-      if(fm==="CSV"){ try{ const rows=[["หัวข้อ","ค่า","หมายเหตุ"],["นักศึกษา",1284,"+38 สัปดาห์นี้"],["ผู้ประกอบการ",86,"รออนุมัติ "+(7-S.adm.verified.size)],["งานเปิดรับ",142,"+12 สัปดาห์นี้"],["ชม. งานเดือนนี้",3920,"กยศ. 1,140 ชม."],["Token สะสม",128500,"+6,000 เดือนนี้"],["VOC ใหม่",5,"ต้องตอบภายใน 2 วัน"]];
+      if(fm==="CSV"){ try{ const rows=[["หัวข้อ","ค่า","หมายเหตุ"],["นักศึกษา",1284,"+38 สัปดาห์นี้"],["ผู้ประกอบการ",86,"รออนุมัติ "+(7-S.adm.verified.size)],["งานเปิดรับ",142,"+12 สัปดาห์นี้"],["ชม. งานเดือนนี้",3920,"กยศ. 1,140 ชม."],["e-Donation สะสม",128500,"+6,000 เดือนนี้"],["VOC ใหม่",5,"ต้องตอบภายใน 2 วัน"]];
         const b=new Blob(["\ufeff"+rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(",")).join("\n")],{type:"text/csv"}); const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download=fn; document.body.appendChild(a); a.click(); a.remove(); }catch(_){} }
       closeSheet(); toast(`สร้างไฟล์ ${fn} แล้ว · ${inc.length} หัวข้อ`); break; }
     case "pcopen": pcSheet(); break;
@@ -3531,6 +3589,8 @@ vp.addEventListener("input",e=>{
   if(t.id==="hq"){ const q=t.value.trim().toLowerCase(); let any=false; $$(".bh-g",scr).forEach(g=>{ let hit=0; $$(".bh-q",g).forEach(d=>{ const m=!q||d.textContent.toLowerCase().includes(q); d.hidden=!m; if(m) hit++; if(q&&m) d.open=true; }); g.hidden=!!q&&!hit; const qs=$(".bh-qs",g); if(q&&hit){ qs.hidden=false; g.classList.add("open"); } else if(!q){ const on=S.efaq===$(".bh-gh",g).dataset.v; qs.hidden=!on; g.classList.toggle("open",on); } if(hit) any=true; }); const e=$("#hq-e",scr); if(e) e.hidden=!q||any; }
   if((t.id==="w-from"||t.id==="w-to")&&S.work){ S.work[t.id==="w-from"?"from":"to"]=t.value; const c=$("#wt-calc",scr); if(c){ const h=wHrs(S.work.from,S.work.to); c.innerHTML=`รวม <b>${h} ชม.</b>${h!==4?` <span class="wt-diff">${h>4?"+":"−"}${Math.abs(h-4)} ชม. จากกะ</span>`:""}`; } }
   if(t.id==="ap-m") S.draft[S.apId]=t.value;
+  if(t.id==="edr-r"||t.id==="edr-d"){ const e=$("#edr-e",scr); if(e) e.hidden=true; }
+  if(t.id==="edr-r"){ const r=+t.value, p=$("#edr-pv",scr); if(p) p.innerHTML=r>0?`ตัวอย่าง: ร้านเติม 1,000 e-Donation = <b>฿${edrFmt(1000*r)}</b> · เดิม ฿${edrFmt(1000*edrNow().r)}`:"ใส่มูลค่าเพื่อดูตัวอย่างการคำนวณ"; }
   if(t.id==="stuq"){ const q=t.value.trim().toLowerCase(); let any=0; $$(".stu-g",ov).forEach(g=>{ let hit=0; $$(".stu-o",g).forEach(o=>{ const m=!q||o.dataset.q.includes(q); o.hidden=!m; if(m) hit++; }); g.hidden=!hit; any+=hit; }); const n=$(".stu-o.none",ov); if(n) n.hidden=!!q; const em=$("#stu-empty",ov); if(em) em.hidden=!!any; }
   if(t.id==="finq"||t.id==="usrq"){ const q=t.value.trim().toLowerCase(); const rows=$$("tbody tr",scr); rows.forEach(tr=>{ tr.hidden=!!q&&!tr.textContent.toLowerCase().includes(q); }); const em=$("#q-empty",scr); if(em) em.hidden=rows.some(r=>!r.hidden); }
 });
@@ -3666,7 +3726,7 @@ function verifySheet(i,n,t){
 function vocSheet(n,k,s,emp){ S.adm.lastVoc=[n,k,s,emp]; const si=stuIdx(n), m=si<0?null:menOf(si);
   const menRow=`<div><span>Mentor</span>${m?mtag(m,true):si<0?`<b style="font-weight:500">ยังไม่มี Mentor</b>`:`<button type="button" class="btn btn-o btn-sm" data-a="mpick" data-v="${si}" data-from="voc">${ic("plus")}มอบหมาย Mentor</button>`}</div>`;
   sheet(`<div class="sh-h"><div><h2 id="shh">${esc(k)} · ${esc(n)}</h2><p>${emp?`รายงานจาก ${esc(s)} · VOC-2569-0141 · 1 ชม. ที่แล้ว`:"VOC-2569-0139 · 3 ชม. ที่แล้ว"}</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
-  <div class="sh-b"><div class="share"><div><span>สถานประกอบการ</span><b style="font-weight:500">${esc(s)}</b></div><div><span>สถานะการทำงาน</span><b style="font-weight:500">ทำงานอยู่ · สัปดาห์ที่ 3</b></div><div><span>ชั่วโมงการทำงาน</span><b style="font-weight:500">18 ชม.</b></div><div><span>Token</span><b class="tkv" style="font-weight:500">${tok(16,"tki")}2,100 (รอจ่าย 350)</b></div>${menRow}</div>
+  <div class="sh-b"><div class="share"><div><span>สถานประกอบการ</span><b style="font-weight:500">${esc(s)}</b></div><div><span>สถานะการทำงาน</span><b style="font-weight:500">ทำงานอยู่ · สัปดาห์ที่ 3</b></div><div><span>ชั่วโมงการทำงาน</span><b style="font-weight:500">18 ชม.</b></div><div><span>e-Donation</span><b class="tkv" style="font-weight:500">${tok(16,"tki")}2,100 (รอจ่าย 350)</b></div>${menRow}</div>
    ${emp&&m?`<div class="men-call"><span class="av">${m.ini}</span><div><b>ติดต่อ ${m.n}</b><small>Mentor ผู้รับผิดชอบ · แอดมินแจ้งเรื่องนี้ให้ Mentor ช่วยดูแลนักศึกษา</small></div><button type="button" class="btn btn-p btn-sm" data-a="toast" data-m="เปิดช่องทางติดต่อ ${m.n} (ต้นแบบ)">${ic("mail")}ติดต่อ</button></div>`:""}
    <div><p class="lbl">รายละเอียดคำร้องเรียน</p><p class="quote">${emp?"นักศึกษาไม่ได้มาตามกะ 2 ครั้งในสัปดาห์นี้ และติดต่อไม่ได้ อยากให้วิทยาลัยฯ ช่วยพูดคุยกับนักศึกษา":"ทำงานครบ 3 สัปดาห์แล้ว แต่ค่าตอบแทนสัปดาห์ที่ 3 ยังไม่ได้รับ ร้านบอกว่ารอระบบ"}</p></div>
    <div><label class="lbl" for="vr2">ตอบกลับผู้แจ้ง</label><textarea class="inp" id="vr2" placeholder="เช่น ตรวจสอบกับร้านแล้ว จะโอนภายในวันศุกร์นี้"></textarea></div></div>
