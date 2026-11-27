@@ -2429,6 +2429,21 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .pfm-msg:hover{background:#E6F3DB}
 .pfm-msg:active{transform:translateY(2px);box-shadow:0 0 0 #D4E6BD}
 .pfm-msg:focus-visible{outline:2px solid #88C887;outline-offset:2px}
+/* v161 logout card */
+.lo-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;display:grid;gap:14px;box-shadow:0 6px 18px -12px rgba(113,35,25,.25)}
+.lo-me{display:flex;align-items:center;gap:12px}
+.lo-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#FA9746,#F37449);color:#fff;display:grid;place-items:center;font-weight:600;font-size:1.0625rem;flex:none;box-shadow:0 0 0 3px #FFF1EB}
+.lo-who{flex:1;min-width:0;display:grid;gap:1px}
+.lo-who small{font-size:0.75rem;color:var(--muted)}
+.lo-who b{font-weight:600;font-size:1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lo-role{display:inline-flex;align-items:center;gap:4px;font-size:0.75rem;font-weight:500;color:#712319;background:#FFF1EB;border-radius:999px;padding:4px 10px;flex:none}
+.lo-role .ic{width:14px;height:14px}
+.lo-out{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:48px;border-radius:14px;border:1.5px solid #F2C4BA;background:#FFF6F3;color:#712319;font:inherit;font-weight:600;font-size:0.9375rem;cursor:pointer;transition:background .2s,border-color .2s,transform .2s var(--spring)}
+.lo-out .ic{width:18px;height:18px}
+.lo-out:hover{background:#FDE8E1;border-color:#E9A898}
+.lo-out:active{transform:scale(.98)}
+.lo-out:focus-visible{outline:2px solid #F37449;outline-offset:2px}
+.lo-ver{text-align:center}
 </style>
 
 <div class="studio">
@@ -2866,7 +2881,7 @@ R.profile=()=>wrapApp(`<div class="pf-head"><div style="display:flex;justify-con
  <section class="sec pad"><div class="menu-rows"><button type="button" data-a="go" data-to="sapps">${ic("file")}<span>ใบสมัครของฉัน<small>${3+S.applied.size} ใบ · ร้านรับคุณแล้ว 1 ที่</small></span>${ic("chev-r")}</button></div></section>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("trend")}ทักษะ</h2><button type="button" data-a="s4l" aria-haspopup="dialog">ทักษะอาชีพ ${ic("chev-r")}</button></div><p class="s4l-sub">Skills4Life · คะแนนรวม <b>${S4L_AVG}%</b></p><div class="skrings">${[["การสื่อสาร",93,"#F37449"],["การคิดเชิงวิพากษ์",85,"#D16F8A"],["การทำงานเป็นทีม",100,"#88C887"]].map(([n,p,c])=>`<div class="skr"><span class="pring" data-p="${p}" data-l="${p}" style="--c:${c}"></span>${n}</div>`).join("")}</div></section>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("cap")}Course</h2><button type="button" data-a="go" data-to="courses">ทั้งหมด ${ic("chev-r")}</button></div><div class="pcrs">${(()=>{const L=COURSES.slice(0,3), d=L.filter(c=>c.st==="done").length; return `<p class="pcrs-sum"><b>${d}</b> จาก ${L.length} คอร์สเรียนจบแล้ว<span class="pcrs-bar"><i data-w="${Math.round(d/L.length*100)}"></i></span></p>`+L.map(c=>{const cc=CAT(c.c), done=c.st==="done"; return `<div class="pcr${done?" done":""}"><span class="th" style="${cover(cc)}">${ic(c.ic)}${done?`<span class="ok">${ic("check")}</span>`:""}</span><div class="m"><b>${c.n}</b>${done?`<small class="g">${ic("award")}ได้ Certificate แล้ว</small>`:`<small>เรียนไป ${c.p}%</small><span class="pb"><i data-w="${c.p}"></i></span>`}</div>${done?`<button type="button" class="pcr-b o" data-a="toast" data-m="เปิด Certificate (จำลอง)">ดูใบรับรอง</button>`:`<button type="button" class="pcr-b" data-a="go" data-to="courses">เรียนต่อ</button>`}</div>`}).join("")})()}</div></section>
- <section class="sec pad lo-wrap"><button type="button" class="lo-btn" data-a="logout"><span class="lo-ic">${ic("logout")}</span><span class="lo-t"><b>ออกจากระบบ</b><small>เข้าสู่ระบบอยู่ในชื่อ ${esc(ME.name)}</small></span>${ic("chev-r")}</button><p class="lo-ver">SpringBoard v0.2 · วิทยาลัยการศึกษาตลอดชีวิต มช.</p></section>`);
+ <section class="sec pad lo-wrap"><div class="lo-card"><div class="lo-me"><span class="lo-av" aria-hidden="true">${ME.ini}</span><span class="lo-who"><small>เข้าสู่ระบบอยู่ในชื่อ</small><b>${esc(ME.name)}</b></span><span class="lo-role">${ic("cap")}นักศึกษา</span></div><button type="button" class="lo-out" data-a="logout">${ic("logout")}ออกจากระบบ</button></div><p class="lo-ver">SpringBoard v0.2 · วิทยาลัยการศึกษาตลอดชีวิต มช.</p></section>`);
 const TOPIC={pay:"ค่าตอบแทน",safe:"ความปลอดภัย",mis:"งานไม่ตรงประกาศ",other:"อื่น ๆ",btk:"Token / ใบเสร็จ",bpost:"ประกาศงาน / การตรวจสอบ",bstu:"นักศึกษา / การทำงาน",bacc:"บัญชีร้าน",bother:"อื่น ๆ"};
 const EFAQ=[["bpost","brief","ประกาศงาน",[["ทำไมประกาศยังไม่ขึ้นให้นักศึกษาเห็น","วิทยาลัยฯ ตรวจประกาศภายใน 1–2 วันทำการ ระหว่างนี้แก้ไขหรือยกเลิกได้จากหน้าแรก"],["แก้ไขประกาศที่เปิดรับแล้วได้ไหม","ได้ แต่ถ้าแก้ค่าตอบแทนหรือเวลา ประกาศจะกลับไปรอตรวจอีกครั้ง"]]],
  ["users","users","ผู้สมัครและการคัดเลือก",[["ปฏิเสธผู้สมัครต้องบอกเหตุผลไหม","ต้องเลือกเหตุผล 1 ข้อ นักศึกษาจะเห็นเหตุผลแบบสุภาพ ไม่เห็นข้อความที่พิมพ์เพิ่ม"],["ผู้สมัครเวลาชนกับงานอื่นทำอย่างไร","ระบบเตือนเท่านั้น ร้านคุยกับนักศึกษาเพื่อตกลงเวลาเองได้"]]],
