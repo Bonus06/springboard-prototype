@@ -2548,7 +2548,13 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 #tk-pw{display:grid;gap:16px}
 #tk-pw .tk-pay{margin:0}
 /* v173 tier tiles dark -> light */
-.tk-tiers li:not(.on){background:rgba(255,255,255,calc(.05 + var(--k,0) * .2))}
+/* v174 even tier shades + button beside total */
+.tk-tiers li,.tk-tiers li.on{background:rgba(255,255,255,calc(.06 + var(--k,0) * .22));color:#fff;border:2px solid transparent}
+.tk-tiers li.on{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.18)}
+.tk-tiers li.on span{opacity:.9}
+.tk-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.tk-row .tk-pay{flex:1;min-width:0}
+.tk-row .btn{flex:none;align-self:center;margin:0}
 </style>
 
 <div class="studio">
@@ -3148,7 +3154,7 @@ function tkPriceHTML(){ const set=edrNow(), ok=tkOk(), q=S.emp.amt, base=set.tie
  let line="เลือกจำนวนเพื่อดูยอดที่ต้องชำระ";
  if(ok){ const t=edrTier(set,q), tot=q*t.r, save=q*base-tot; line=`<span>ยอดชำระ</span><b>฿${edrFmt(tot)}</b><small>฿${edrFmt(t.r)} ต่อ Token${save>0?` · ประหยัด ฿${edrFmt(save)}`:""}</small>`; }
  const nx=edrNext();
- return `<div class="tk-tiers"><p>ราคาตามจำนวนที่เติม <span>(฿ ต่อ 1 Token)</span></p><ul>${tiers}</ul>${nx?`<p class="tk-nx">${ic("clock")}ราคาใหม่มีผล ${thd(nx.d)} · ${nx.tiers.map((t,i)=>`${edrRange(nx.tiers,i)} ฿${edrFmt(t.r)}`).join(" · ")}</p>`:""}</div><p class="tk-pay" id="tk-pay" aria-live="polite">${line}</p>`; }
+ return `<div class="tk-tiers"><p>ราคาตามจำนวนที่เติม <span>(฿ ต่อ 1 Token)</span></p><ul>${tiers}</ul>${nx?`<p class="tk-nx">${ic("clock")}ราคาใหม่มีผล ${thd(nx.d)} · ${nx.tiers.map((t,i)=>`${edrRange(nx.tiers,i)} ฿${edrFmt(t.r)}`).join(" · ")}</p>`:""}</div><div class="tk-row"><p class="tk-pay" id="tk-pay" aria-live="polite">${line}</p><button type="button" class="btn btn-sm" data-a="donate" ${ok?"":"disabled"}>${ok?`เติม ${fmt(q)} Token`:"ระบุจำนวน Token"}</button></div>`; }
 function syncDonate(){ const pw=$("#tk-pw",scr); if(pw) pw.innerHTML=tkPriceHTML();
   const b=$('[data-a="donate"]',scr); if(!b) return; const ok=tkOk(); b.disabled=!ok; b.textContent=ok?`เติม ${fmt(S.emp.amt)} Token`:"ระบุจำนวน Token";
   const h=$("#tk-help",scr), i=$("#tk-amt",scr); if(!h||!i) return; const a=S.emp.amt, typed=S.emp.camt!=="";
@@ -3172,8 +3178,7 @@ R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a
  <section class="sec pad"><div class="donate tkcard"><h3>${tok(32,"spin")}SpringBoard Token</h3><p>เติม Token เพื่อมอบทุนและรางวัลให้นักศึกษาในโครงการ</p><p class="tk-bal"><span>Token สะสมของร้าน</span><b>${tok(20)}<span data-count="${12000+e.donated}">0</span></b></p>
   <div class="amts" role="group" aria-label="จำนวน Token">${[300,500,1000,2000].map(a=>`<button type="button" data-a="amt" data-v="${a}" aria-pressed="${!e.custom&&e.amt===a}">${tok(16)}${fmt(a)}</button>`).join("")}<button type="button" class="amt-o" data-a="amt" data-v="other" aria-pressed="${e.custom}" aria-expanded="${e.custom}" aria-controls="tk-custom">${ic("edit")}อื่นๆ</button></div>
   <div class="tk-custom" id="tk-custom" ${e.custom?"":"hidden"}><label for="tk-amt">ระบุจำนวน Token ที่ต้องการ</label><div class="tk-in">${tok(20)}<input id="tk-amt" type="text" inputmode="numeric" autocomplete="off" placeholder="เช่น 1,500" value="${e.camt?fmt(+e.camt):""}" aria-describedby="tk-help"><span>Token</span></div><p class="tk-help" id="tk-help">ขั้นต่ำ 100 · สูงสุด 100,000 Token</p></div>
-  <div id="tk-pw">${tkPriceHTML()}</div>
-  <button type="button" class="btn btn-sm" data-a="donate" ${tkOk()?"":"disabled"}>${tkOk()?`เติม ${fmt(e.amt)} Token`:"ระบุจำนวน Token"}</button></div>
+  <div id="tk-pw">${tkPriceHTML()}</div></div>
   <p class="fhint">${ic("info")}ยิ่งเติมมาก ราคาต่อ Token ยิ่งถูก · ราคากำหนดโดยวิทยาลัยฯ · ชำระผ่าน QR Payment (รอ LE ยืนยัน)</p></section>`);};
 R.eapps=()=>wrapApp(`${topbar("ผู้สมัคร · ผู้ช่วยทำคอนเทนต์",true)}<p class="pad" style="color:var(--muted);font-size:0.875rem;margin-bottom:12px">เรียงตามทักษะที่ตรงกับประกาศ · เห็นเฉพาะข้อมูลที่จำเป็นต่อการคัดเลือก</p>
  <div class="pad" style="display:grid;gap:12px">${APPLICANTS.map(a=>{const st=a.wd?`<span class="tag t-grey">${ic("x")}ยกเลิกใบสมัคร</span>`:S.emp.accepted.has(a.id)?`<span class="tag t-ok">${ic("check")}รับแล้ว</span>`:S.emp.declined.has(a.id)?`<span class="tag t-grey">ไม่ผ่าน</span>`:`<span class="match" title="ทักษะตรงกับประกาศ ${a.match}%"><span class="ring" style="--m:${a.match}"></span>${a.match}%</span>`;
