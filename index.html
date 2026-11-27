@@ -2411,6 +2411,11 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .men-card{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 16px}
 .men-card.none .av{background:#F4ECE8;color:#8A3B2C}
 .men-card .av .ic{width:20px;height:20px}
+/* v158 mentor inside profile card */
+.pf-men .pfm-r{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.pf-men .pfm-r>span{display:grid;gap:2px;min-width:0}
+.pf-men .ib{flex:none}
+.pf-grid.one .stat+.stat{border-left:0;padding-left:0;border-top:1px solid var(--line)}
 </style>
 
 <div class="studio">
@@ -2839,12 +2844,12 @@ R.profile=()=>wrapApp(`<div class="pf-head"><div style="display:flex;justify-con
  <div class="pf-card"><div class="pf-top"><span class="av">${ME.ini}</span><div><h2 style="font-size:1.25rem">${ME.name}</h2><p>อายุ ${ME.age} · ${ME.fac} · ${ME.major} ${ME.year}</p></div></div>
   <div class="pf-grid one">
    <div class="stat work"><small>${ic("brief")}สถานะทำงาน</small><b>ผู้ช่วยทำคอนเทนต์ · ${esc(SHOPS.lc.n)}</b><small style="font-weight:400">ทำมาแล้ว 3 สัปดาห์</small></div>
+   ${(()=>{ const m=menOf(0); return `<div class="stat work pf-men"><small>${ic("users")}Mentor ของคุณ</small>${m?`<div class="pfm-r"><span><b>${m.n}</b><small style="font-weight:400">${m.r}</small></span><button type="button" class="ib" data-a="toast" data-m="เปิดแชตกับ ${m.n} (ต้นแบบ)" aria-label="ส่งข้อความถึง ${m.n}">${ic("mail")}</button></div>`:`<b>ยังไม่มี Mentor</b><small style="font-weight:400">วิทยาลัยฯ จะจัด Mentor ให้เร็ว ๆ นี้</small>`}</div>`; })()}
   </div>
   ${hoursCal()}
   <div class="stat" style="background:transparent;flex-direction:row;align-items:center;justify-content:space-between"><div><small style="color:var(--muted)">${ic("wallet")}ค่าตอบแทนเดือนนี้</small><b class="tkv" style="font-family:Poppins;font-size:1.5rem">${tok(24,"tki")}<span data-count="4860">0</span></b></div><button type="button" class="btn btn-g btn-sm" data-a="payout">ถอน Token</button></div>
   <button type="button" class="cvbtn ${S.cv==="gen"?"gen":S.cv==="ok"?"ok":""}" data-a="cv"><span class="fi">${S.cv==="gen"?'<span class="spin" style="color:var(--act-ink)"></span>':ic(S.cv==="ok"?"check":"file")}</span><span><b>${S.cv==="ok"?"CV.pdf พร้อมแล้ว":S.cv==="gen"?"AI กำลังเขียน CV…":"สร้าง CV.pdf ด้วย AI"}</b><small>${S.cv==="ok"?"ดึงจากงาน ชั่วโมง และคอร์สที่เรียน · กดเพื่อดาวน์โหลด":"รวมประสบการณ์ทำงานและทักษะเป็น CV ให้อัตโนมัติ"}</small></span></button>
  </div>
- <section class="sec pad">${(()=>{ const m=menOf(0); return m?`<div class="men-card"><span class="av">${m.ini}</span><div><small>Mentor ของคุณ</small><b>${m.n}</b><small>${m.r}</small></div><button type="button" class="ib" data-a="toast" data-m="เปิดแชตกับ ${m.n} (ต้นแบบ)" aria-label="ส่งข้อความถึง ${m.n}">${ic("mail")}</button></div>`:`<div class="men-card none"><span class="av">${ic("users")}</span><div><small>Mentor ของคุณ</small><b>ยังไม่มี Mentor</b><small>วิทยาลัยฯ จะจัด Mentor ให้เร็ว ๆ นี้</small></div></div>`; })()}</section>
  <section class="sec pad"><div class="menu-rows"><button type="button" data-a="go" data-to="sapps">${ic("file")}<span>ใบสมัครของฉัน<small>${3+S.applied.size} ใบ · ร้านรับคุณแล้ว 1 ที่</small></span>${ic("chev-r")}</button></div></section>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("trend")}ทักษะ</h2><button type="button" data-a="s4l" aria-haspopup="dialog">ทักษะอาชีพ ${ic("chev-r")}</button></div><p class="s4l-sub">Skills4Life · คะแนนรวม <b>${S4L_AVG}%</b></p><div class="skrings">${[["การสื่อสาร",93,"#F37449"],["การคิดเชิงวิพากษ์",85,"#D16F8A"],["การทำงานเป็นทีม",100,"#88C887"]].map(([n,p,c])=>`<div class="skr"><span class="pring" data-p="${p}" data-l="${p}" style="--c:${c}"></span>${n}</div>`).join("")}</div></section>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("cap")}Course</h2><button type="button" data-a="go" data-to="courses">ทั้งหมด ${ic("chev-r")}</button></div><div class="pcrs">${(()=>{const L=COURSES.slice(0,3), d=L.filter(c=>c.st==="done").length; return `<p class="pcrs-sum"><b>${d}</b> จาก ${L.length} คอร์สเรียนจบแล้ว<span class="pcrs-bar"><i data-w="${Math.round(d/L.length*100)}"></i></span></p>`+L.map(c=>{const cc=CAT(c.c), done=c.st==="done"; return `<div class="pcr${done?" done":""}"><span class="th" style="${cover(cc)}">${ic(c.ic)}${done?`<span class="ok">${ic("check")}</span>`:""}</span><div class="m"><b>${c.n}</b>${done?`<small class="g">${ic("award")}ได้ Certificate แล้ว</small>`:`<small>เรียนไป ${c.p}%</small><span class="pb"><i data-w="${c.p}"></i></span>`}</div>${done?`<button type="button" class="pcr-b o" data-a="toast" data-m="เปิด Certificate (จำลอง)">ดูใบรับรอง</button>`:`<button type="button" class="pcr-b" data-a="go" data-to="courses">เรียนต่อ</button>`}</div>`}).join("")})()}</div></section>
