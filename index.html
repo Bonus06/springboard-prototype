@@ -2366,6 +2366,11 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .s4l-r em{font-style:normal;font-family:"Poppins";font-weight:600;font-size:0.9375rem;color:#712319}
 .s4l-bar{height:8px;border-radius:99px;background:#F4EDE9;overflow:hidden}
 .s4l-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#FA9746,#F37449)}
+/* v151 dream career bars use Skills4Life */
+.bar-row .t .nm{display:grid;gap:1px;min-width:0}
+.bar-row .t .nm small{font-size:0.75rem;color:var(--muted);font-weight:400}
+.bar-row .t{align-items:flex-end}
+.bar-row .t span.nm{color:var(--ink);font-size:0.875rem}
 </style>
 
 <div class="studio">
@@ -2700,18 +2705,19 @@ function hoursCal(){ const first=6, days=30, today=10, cells=[], sel=S.hcSel||9;
    <div class="h2-cal"><div class="h2-mh"><button type="button" class="ib" data-a="toast" data-m="ดูเดือนก่อนหน้า (ต้นแบบ)" aria-label="เดือนก่อนหน้า">${ic("chev-l")}</button><div><b>พฤศจิกายน 2569</b><small><span class="k ok"></span>อนุมัติ ${ok} ชม. <span class="k wait"></span>รอร้าน ${mo-ok} ชม.</small></div><button type="button" class="ib" disabled aria-label="เดือนถัดไป">${ic("chev-r")}</button></div>
     <div class="hc-g" role="grid" aria-label="ชั่วโมงทำงานเดือนพฤศจิกายน 2569">${["จ","อ","พ","พฤ","ศ","ส","อา"].map(x=>`<span class="hc-w">${x}</span>`).join("")}${cells.join("")}</div>
     <div class="hc-det" id="hc-det" aria-live="polite">${hcDet(sel)}</div></div></section>`; }
-const NEED=[["สร้างคอนเทนต์",90,72],["วิเคราะห์ข้อมูล",80,35],["การสื่อสาร",75,82],["สร้างแบรนด์",65,40],["SEO & โฆษณา",60,15]];
+const NEED=[["Communication",85],["Critical Thinking",90],["Planning and Ways of Working",85],["Mental Flexibility",85],["Entrepreneurship",80]].map(([n,need])=>{ const x=S4L.find(r=>r[0]===n); return [n,need,x[2],x[1]]; });
+const NEED_OK=NEED.filter(r=>r[2]>=r[1]).length;
 R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div class="orb-w"><div class="orb"></div><img src="${MARK}" alt=""></div><h1 id="h1" tabindex="-1" style="font-size:1.25rem">กำลังวิเคราะห์โปรไฟล์ของคุณ</h1>
   <ol class="ai-steps" id="aisteps">${["อ่านทักษะและความสนใจ","รวมผล Personality Test","เทียบกับอาชีพในฝัน","จับคู่งานและคอร์ส"].map(s=>`<li><i>${ic("check")}</i>${s}</li>`).join("")}</ol></div>`;
  const fit=JOBS.filter(j=>j.match>=70).slice(0,4), facj=JOBS.filter(j=>j.fac).slice(0,4);
  return `${topbar("ผลวิเคราะห์",false,`<button type="button" class="ib" data-a="replayai" aria-label="วิเคราะห์ใหม่">${ic("spark")}</button>`)}
  <div class="dream"><div class="burst"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 2l9 17 18-7-2 19 19 4-13 14 13 14-19 4 2 19-18-7-9 17-9-17-18 7 2-19-19-4 13-14L3 35l19-4-2-19 18 7z"/></svg>${ic("target")}</div>
-  <small>อาชีพในฝันของคุณ</small><h1 id="h1" tabindex="-1">${esc(S.ob.dream)}</h1><p>คุณมีพื้นฐานแล้ว 3 จาก 5 ทักษะหลัก</p></div>
- <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("bar")}ทักษะที่อาชีพนี้ต้องมี</h2></div>
-  <div class="card" style="padding:16px"><div class="bars">${NEED.map(([n,need,have])=>`<div class="bar-row"><p class="t">${n}<span>${have} / ${need}</span></p><div class="bar"><i class="need" data-w="${need}"></i><i class="have" data-w="${have}"></i></div></div>`).join("")}</div>
+  <small>อาชีพในฝันของคุณ</small><h1 id="h1" tabindex="-1">${esc(S.ob.dream)}</h1><p>คุณมีพื้นฐานแล้ว ${NEED_OK} จาก ${NEED.length} Soft Skills หลัก</p></div>
+ <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("bar")}ทักษะที่อาชีพนี้ต้องมี</h2></div><p class="s4l-sub">Soft Skills จาก Skills4Life</p>
+  <div class="card" style="padding:16px"><div class="bars">${NEED.map(([n,need,have,th])=>`<div class="bar-row"><p class="t"><span class="nm">${n}<small>${th}</small></span><span>${have} / ${need}</span></p><div class="bar"><i class="need" data-w="${need}"></i><i class="have" data-w="${have}"></i></div></div>`).join("")}</div>
   <div class="legend"><span><i style="background:linear-gradient(90deg,var(--o),var(--pink))"></i>ระดับของคุณ</span><span><i style="background:#F2C6B4"></i>ระดับที่ต้องมี</span></div></div></section>
- <section class="sec pad"><div class="sw2"><div class="card st"><h3>${ic("trend")}จุดแข็งที่เหมาะ</h3><ul><li>${ic("check")}การสื่อสาร</li><li>${ic("check")}การคิดเชิงวิพากษ์</li><li>${ic("check")}การทำงานเป็นทีม</li></ul></div>
-  <div class="card wk"><h3>${ic("target")}ควรเสริม</h3><ul><li>${ic("plus")}วิเคราะห์ข้อมูล</li><li>${ic("plus")}SEO & โฆษณา</li><li>${ic("plus")}สร้างแบรนด์</li></ul></div></div></section>
+ <section class="sec pad"><div class="sw2"><div class="card st"><h3>${ic("trend")}จุดแข็งที่เหมาะ</h3><ul>${NEED.filter(r=>r[2]>=r[1]).map(r=>`<li>${ic("check")}${r[3]}</li>`).join("")}</ul></div>
+  <div class="card wk"><h3>${ic("target")}ควรเสริม</h3><ul>${NEED.filter(r=>r[2]<r[1]).map(r=>`<li>${ic("plus")}${r[3]}</li>`).join("")}</ul></div></div></section>
  <section class="sec"><div class="sec-h"><h2>${ic("spark")}งานฟรีแลนซ์ที่ตอบโจทย์</h2></div><div class="rail-x">${fit.map(card).join("")}</div></section>
  <section class="sec"><div class="sec-h"><h2>${ic("cap")}งานที่เหมาะกับสาขา</h2></div><div class="rail-x">${facj.map(card).join("")}</div></section>
  <div class="foot-act"><button type="button" class="btn btn-g" data-a="go" data-to="courses">ดูคอร์สที่ช่วยปิดช่องว่าง ${ic("chev-r")}</button></div>`;};
@@ -2733,7 +2739,7 @@ R.home=()=>{const newj=[...JOBS].sort((a,b)=>a.post-b.post).slice(0,6), fit=[...
   <section class="sec"><div class="banner-w"><div class="banner" id="banner">
     <button type="button" class="bn" data-a="toast" data-m="เปิดหน้ากิจกรรม Career Seminar"><img src="${HERO}" alt="" style="object-position:70% 35%"><small>กิจกรรม · 28 พ.ย.</small><b>Student Part-Time Career Seminar</b><span>พบกิจการที่เปิดรับนักศึกษา</span></button>
     <button type="button" class="bn g1" data-a="go" data-to="feedback"><span class="big">${ic("smile")}</span><small>ทุกสิ้นเดือน</small><b>เล่าประสบการณ์เดือนนี้ ใช้เวลา 2 นาที</b><span>ทำ Feedback และ Reflection</span></button>
-    <button type="button" class="bn g2" data-a="go" data-to="courses"><span class="big">${ic("cap")}</span><small>Skills4life</small><b>อีก 2 คอร์สก็ปิดช่องว่าง «วิเคราะห์ข้อมูล»</b><span>เรียนต่อบนเว็บ LE</span></button>
+    <button type="button" class="bn g2" data-a="go" data-to="courses"><span class="big">${ic("cap")}</span><small>Skills4life</small><b>อีก 2 คอร์สก็ปิดช่องว่าง «Critical Thinking»</b><span>เรียนต่อบนเว็บ LE</span></button>
   </div><div class="dots" id="bdots" aria-hidden="true"><i class="on"></i><i></i><i></i></div></div></section>
   <section class="sec"><div class="sec-h"><h2>${ic("target")}งานที่เหมาะกับฉัน</h2><button type="button" data-a="viewall" data-v="fit">ดูทั้งหมด ${ic("chev-r")}</button></div><div class="rail-x">${fit.map(card).join("")}</div></section>
   <section class="sec"><div class="sec-h"><h2>${ic("cap")}งานที่ตรงกับคณะ/สาขา</h2><button type="button" data-a="viewall" data-v="fac">ดูทั้งหมด ${ic("chev-r")}</button></div><div class="rail-x">${fac.map(card).join("")}</div></section>`);};
