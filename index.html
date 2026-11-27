@@ -2547,6 +2547,8 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .tkcard>[data-a="donate"]{margin-top:4px}
 #tk-pw{display:grid;gap:16px}
 #tk-pw .tk-pay{margin:0}
+/* v173 tier tiles dark -> light */
+.tk-tiers li:not(.on){background:rgba(255,255,255,calc(.05 + var(--k,0) * .2))}
 </style>
 
 <div class="studio">
@@ -3142,7 +3144,7 @@ const ehead=()=>{ const st=S.emp.shopSt; return `<div class="hhead" style="paddi
 const TK_MIN=100, TK_MAX=100000;
 function tkOk(){ const a=S.emp.amt; return a>=TK_MIN&&a<=TK_MAX; }
 function tkPriceHTML(){ const set=edrNow(), ok=tkOk(), q=S.emp.amt, base=set.tiers[0].r;
- const tiers=set.tiers.map((t,i)=>`<li class="${ok&&edrTier(set,q)===t?"on":""}"><span>${edrRange(set.tiers,i)}</span><b>฿${edrFmt(t.r)}</b></li>`).join("");
+ const tiers=set.tiers.map((t,i)=>`<li class="${ok&&edrTier(set,q)===t?"on":""}" style="--k:${set.tiers.length>1?(i/(set.tiers.length-1)).toFixed(2):0}"><span>${edrRange(set.tiers,i)}</span><b>฿${edrFmt(t.r)}</b></li>`).join("");
  let line="เลือกจำนวนเพื่อดูยอดที่ต้องชำระ";
  if(ok){ const t=edrTier(set,q), tot=q*t.r, save=q*base-tot; line=`<span>ยอดชำระ</span><b>฿${edrFmt(tot)}</b><small>฿${edrFmt(t.r)} ต่อ Token${save>0?` · ประหยัด ฿${edrFmt(save)}`:""}</small>`; }
  const nx=edrNext();
