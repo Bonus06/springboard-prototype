@@ -2371,6 +2371,25 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .bar-row .t .nm small{font-size:0.75rem;color:var(--muted);font-weight:400}
 .bar-row .t{align-items:flex-end}
 .bar-row .t span.nm{color:var(--ink);font-size:0.875rem}
+/* v153 career-only skill sheet */
+.s4l-tot{align-items:center}
+.s4l-tot>div:first-child{display:grid;gap:2px}
+.s4l-tot b span{font-size:1rem;color:var(--muted);font-weight:500}
+.s4l-dots{display:flex;gap:6px}
+.s4l-dots i{width:12px;height:12px;border-radius:50%;background:#F4E3DA}
+.s4l-dots i.ok{background:#88C887}
+.s4l-list li{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:#fff}
+.s4l-list li.gap{border-color:#F2C9D6;background:#FFF8FA}
+.s4l-r small{display:inline-flex;align-items:center;gap:4px;font-size:0.75rem;margin-top:2px}
+.s4l-r small .ic{width:13px;height:13px}
+.s4l-list li.pass .s4l-r small{color:#2F6B2E}
+.s4l-list li.gap .s4l-r small{color:#AF5577}
+.s4l-r em small{font-size:0.75rem;color:var(--muted);font-weight:500;margin-left:1px}
+.s4l-bar{position:relative;overflow:visible}
+.s4l-bar i{border-radius:99px}
+.s4l-list li.gap .s4l-bar i{background:linear-gradient(90deg,#D16F8A,#AF5577)}
+.s4l-bar u{position:absolute;top:-3px;width:2px;height:14px;border-radius:2px;background:#712319;transform:translateX(-1px)}
+.s4l-note{font-size:0.75rem;color:var(--muted);text-align:center;margin:2px 0 0}
 </style>
 
 <div class="studio">
@@ -2493,9 +2512,11 @@ const SHOPS={
  ms:{n:"ข้าวซอยแม่ศรีจันทร์",ini:"MS",type:"ร้านอาหาร",addr:"วัวลาย เชียงใหม่",tel:"053-xxx-905",hired:3,about:"ร้านข้าวซอยเก่าแก่ย่านวัวลาย"}};
 const S4L=[["Critical Thinking","การคิดเชิงวิพากษ์",85],["Planning and Ways of Working","การวางแผนและวิธีทำงาน",90],["Communication","การสื่อสาร",93],["Mental Flexibility","ความยืดหยุ่นทางความคิด",79],["Mobilizing Systems","การขับเคลื่อนระบบ",95],["Developing Relationships","การสร้างความสัมพันธ์",100],["Teamwork Effectiveness","การทำงานเป็นทีม",100],["Self-awareness and Self-management","การรู้จักและจัดการตนเอง",100],["Entrepreneurship","การเป็นผู้ประกอบการ",100],["Goals Achievement","การบรรลุเป้าหมาย",100]];
 const S4L_AVG=(S4L.reduce((a,x)=>a+x[2],0)/S4L.length).toFixed(1);
-function s4lSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">ผลคะแนนทักษะ</h2><p>จาก Skills4Life · 10 ทักษะ</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
- <div class="sh-b s4l-sh"><div class="s4l-tot"><small>คะแนนรวม</small><b>${S4L_AVG}%</b></div>
- <ul class="s4l-list">${S4L.map(([en,th,p])=>`<li><div class="s4l-r"><span><b>${th}</b></span><em>${p}</em></div><div class="s4l-bar" role="img" aria-label="${th} ${p} จาก 100"><i style="width:${p}%"></i></div></li>`).join("")}</ul></div>`); }
+function s4lSheet(){ const ok=NEED.filter(r=>r[2]>=r[1]).length;
+ sheet(`<div class="sh-h"><div><h2 id="shh">ทักษะที่อาชีพนี้ต้องใช้</h2><p>${esc(S.ob.dream)} · จาก Skills4Life</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
+ <div class="sh-b s4l-sh"><div class="s4l-tot"><div><small>ถึงเกณฑ์แล้ว</small><b>${ok}<span>/${NEED.length}</span></b></div><div class="s4l-dots" aria-hidden="true">${NEED.map(r=>`<i class="${r[2]>=r[1]?"ok":""}"></i>`).join("")}</div></div>
+ <ul class="s4l-list">${NEED.map(([en,need,have,th])=>{ const pass=have>=need; return `<li class="${pass?"pass":"gap"}"><div class="s4l-r"><span><b>${th}</b><small>${pass?`${ic("check")}ถึงเกณฑ์`:`${ic("trend")}ขาดอีก ${need-have} คะแนน`}</small></span><em>${have}<small>/${need}</small></em></div><div class="s4l-bar" role="img" aria-label="${th} ได้ ${have} เกณฑ์ ${need}"><i style="width:${have}%"></i><u style="left:${need}%" title="เกณฑ์ ${need}"></u></div></li>`; }).join("")}</ul>
+ <p class="s4l-note">เส้นขีดบนแถบคือระดับที่อาชีพนี้ต้องมี</p></div>`); }
 const SK={comm:"การสื่อสาร",service:"บริการลูกค้า",team:"ทำงานเป็นทีม",canva:"Canva",caption:"เขียนแคปชัน",english:"ภาษาอังกฤษ",barista:"ชงกาแฟเบื้องต้น",stock:"จัดการสต็อก",rush:"รับมือช่วงเร่งด่วน",plan:"วางแผนคอนเทนต์",insight:"อ่านผล Insights",photo:"ถ่ายภาพสินค้า",patience:"ความอดทน",lesson:"ออกแบบกิจกรรมสอน",lead:"ภาวะผู้นำ",punct:"ตรงต่อเวลา",eventops:"จัดการหน้างาน",problem:"แก้ปัญหาเฉพาะหน้า",sheets:"Google Sheets",detail:"ละเอียดรอบคอบ",dash:"ทำ Dashboard",present:"การนำเสนอ",html:"HTML/CSS",js:"JavaScript",git:"Git",agile:"Agile",cam:"ถ่ายภาพ",light:"จัดแสง",edit:"แต่งภาพ",story:"เล่าเรื่องสินค้า",chinese:"ภาษาจีน",trans:"แปลเชิงธุรกิจ",figma:"Figma",brand:"สร้างแบรนด์"};
 const ME={name:"ปภาวรินทร์ ใจดี",nick:"แพรว",ini:"ป",age:21,fac:"บริหารธุรกิจ",major:"การตลาด",year:"ปี 3",sid:"650615xxx",skills:["comm","service","canva","english","team","caption"],dream:"นักการตลาดดิจิทัล"};
 const JOBS=[
@@ -2804,7 +2825,7 @@ R.profile=()=>wrapApp(`<div class="pf-head"><div style="display:flex;justify-con
   <button type="button" class="cvbtn ${S.cv==="gen"?"gen":S.cv==="ok"?"ok":""}" data-a="cv"><span class="fi">${S.cv==="gen"?'<span class="spin" style="color:var(--act-ink)"></span>':ic(S.cv==="ok"?"check":"file")}</span><span><b>${S.cv==="ok"?"CV.pdf พร้อมแล้ว":S.cv==="gen"?"AI กำลังเขียน CV…":"สร้าง CV.pdf ด้วย AI"}</b><small>${S.cv==="ok"?"ดึงจากงาน ชั่วโมง และคอร์สที่เรียน · กดเพื่อดาวน์โหลด":"รวมประสบการณ์ทำงานและทักษะเป็น CV ให้อัตโนมัติ"}</small></span></button>
  </div>
  <section class="sec pad"><div class="menu-rows"><button type="button" data-a="go" data-to="sapps">${ic("file")}<span>ใบสมัครของฉัน<small>${3+S.applied.size} ใบ · ร้านรับคุณแล้ว 1 ที่</small></span>${ic("chev-r")}</button></div></section>
- <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("trend")}ทักษะ</h2><button type="button" data-a="s4l" aria-haspopup="dialog">ทั้งหมด 10 ${ic("chev-r")}</button></div><p class="s4l-sub">Skills4Life · คะแนนรวม <b>${S4L_AVG}%</b></p><div class="skrings">${[["การสื่อสาร",93,"#F37449"],["การคิดเชิงวิพากษ์",85,"#D16F8A"],["การทำงานเป็นทีม",100,"#88C887"]].map(([n,p,c])=>`<div class="skr"><span class="pring" data-p="${p}" data-l="${p}" style="--c:${c}"></span>${n}</div>`).join("")}</div></section>
+ <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("trend")}ทักษะ</h2><button type="button" data-a="s4l" aria-haspopup="dialog">ทักษะอาชีพ ${ic("chev-r")}</button></div><p class="s4l-sub">Skills4Life · คะแนนรวม <b>${S4L_AVG}%</b></p><div class="skrings">${[["การสื่อสาร",93,"#F37449"],["การคิดเชิงวิพากษ์",85,"#D16F8A"],["การทำงานเป็นทีม",100,"#88C887"]].map(([n,p,c])=>`<div class="skr"><span class="pring" data-p="${p}" data-l="${p}" style="--c:${c}"></span>${n}</div>`).join("")}</div></section>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("cap")}Course</h2><button type="button" data-a="go" data-to="courses">ทั้งหมด ${ic("chev-r")}</button></div><div class="pcrs">${(()=>{const L=COURSES.slice(0,3), d=L.filter(c=>c.st==="done").length; return `<p class="pcrs-sum"><b>${d}</b> จาก ${L.length} คอร์สเรียนจบแล้ว<span class="pcrs-bar"><i data-w="${Math.round(d/L.length*100)}"></i></span></p>`+L.map(c=>{const cc=CAT(c.c), done=c.st==="done"; return `<div class="pcr${done?" done":""}"><span class="th" style="${cover(cc)}">${ic(c.ic)}${done?`<span class="ok">${ic("check")}</span>`:""}</span><div class="m"><b>${c.n}</b>${done?`<small class="g">${ic("award")}ได้ Certificate แล้ว</small>`:`<small>เรียนไป ${c.p}%</small><span class="pb"><i data-w="${c.p}"></i></span>`}</div>${done?`<button type="button" class="pcr-b o" data-a="toast" data-m="เปิด Certificate (จำลอง)">ดูใบรับรอง</button>`:`<button type="button" class="pcr-b" data-a="go" data-to="courses">เรียนต่อ</button>`}</div>`}).join("")})()}</div></section>
  <section class="sec pad lo-wrap"><button type="button" class="lo-btn" data-a="logout"><span class="lo-ic">${ic("logout")}</span><span class="lo-t"><b>ออกจากระบบ</b><small>เข้าสู่ระบบอยู่ในชื่อ ${esc(ME.name)}</small></span>${ic("chev-r")}</button><p class="lo-ver">SpringBoard v0.2 · วิทยาลัยการศึกษาตลอดชีวิต มช.</p></section>`);
 const TOPIC={pay:"ค่าตอบแทน",safe:"ความปลอดภัย",mis:"งานไม่ตรงประกาศ",other:"อื่น ๆ",btk:"Token / ใบเสร็จ",bpost:"ประกาศงาน / การตรวจสอบ",bstu:"นักศึกษา / การทำงาน",bacc:"บัญชีร้าน",bother:"อื่น ๆ"};
