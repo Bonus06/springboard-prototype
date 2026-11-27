@@ -2445,8 +2445,8 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .lo-out:focus-visible{outline:2px solid #F37449;outline-offset:2px}
 .lo-ver{text-align:center}
 /* v163 stronger logout */
-.lo-out{background:#FEE9E1;border-color:#F2B39F;color:#712319}
-.lo-out:hover{background:#FCDCD0;border-color:#EA9C85}
+.lo-out{background:#FFF4EF;border-color:#F9C3AE;color:#F37449}
+.lo-out:hover{background:#FEE7DD;border-color:#F5A586}
 /* v168 e-Donation rate */
 .edr-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;margin-bottom:24px;align-items:start}
 @media (max-width:900px){.edr-grid{grid-template-columns:1fr}}
@@ -3795,7 +3795,7 @@ R.eprofile=()=>wrapApp(`${ehead()}<h1 class="sr" id="h1" tabindex="-1">โปร
    <div class="r"><span>ที่อยู่</span><b>${esc(SHOPS.lc.addr)}</b></div><div class="r"><span>โลเคชั่น</span><b><a class="linkb maplink" href="https://www.google.com/maps?q=18.7786,98.9986" target="_blank" rel="noopener noreferrer">${ic("pin")}เปิดแผนที่</a></b></div><div class="r"><span>เบอร์</span><b>${SHOPS.lc.tel}</b></div><div class="r"><span>ประเภทธุรกิจ</span><b>${esc(SHOPS.lc.type)}</b></div><div class="r"><span>เลขผู้เสียภาษี</span><b>0505565•••347</b></div><div class="r"><span>ผู้ประสานงาน</span><b>คุณอรุณี · เจ้าของแบรนด์</b></div></div>
   <div class="win">${ic("shield")}<div><b>ตรวจสอบโดยวิทยาลัยฯ แล้ว</b><small>เมื่อ 20 ก.ย. 2569 · นักศึกษาเห็นป้าย «ตรวจสอบแล้ว» บนประกาศของร้าน</small></div></div>
   <div class="kv"><div><b>${SHOPS.lc.hired}</b><span>จ้างนักศึกษาแล้ว</span></div><div><b>2</b><span>ประกาศที่เปิด</span></div><div><b class="tk-v">${tok(18)}${fmt(12000+S.emp.donated)}</b><span>Token สะสม</span></div></div>
-  <div class="lo-wrap"><button type="button" class="lo-btn" data-a="logout"><span class="lo-ic">${ic("logout")}</span><span class="lo-t"><b>ออกจากระบบ</b><small>บัญชีร้าน · เข้าสู่ระบบอยู่</small></span>${ic("chev-r")}</button><p class="lo-ver">SpringBoard v0.2 · วิทยาลัยการศึกษาตลอดชีวิต มช.</p></div></div>`);
+  <div class="lo-wrap"><button type="button" class="lo-out" data-a="logout">${ic("logout")}ออกจากระบบ</button><p class="lo-ver">SpringBoard v0.2 · วิทยาลัยการศึกษาตลอดชีวิต มช.</p></div></div>`);
 function notifSheet(){ const it=(cls,bg,fg,i,t,sm,why,attrs)=>`<button type="button" class="nitem ${cls}" data-a="ngo" ${attrs}><span class="ni" style="background:${bg};color:${fg}">${ic(i)}</span><span><b>${t}</b><small>${sm}</small>${why?`<em>${why}</em>`:""}</span></button>`;
   sheet(`<div class="sh-h"><div><h2 id="shh">การแจ้งเตือน</h2><p>ใหม่ 3 รายการ</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
   <div class="sh-b"><div class="nlist">
