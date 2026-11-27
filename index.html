@@ -2539,6 +2539,14 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 /* v171 softer maroon cards (CI #712319 -> #AF5577) */
 .tkcard{background:linear-gradient(135deg,#712319 0%,#AF5577 100%)!important}
 .hh-safe{background:linear-gradient(135deg,#712319 0%,#AF5577 100%)}
+/* v172 payment total spacing */
+.tk-pay{display:grid!important;grid-template-columns:1fr;gap:2px!important;margin:2px 0 4px}
+.tk-pay span{font-size:0.8125rem;line-height:1.3}
+.tk-pay b{font-size:1.75rem;line-height:1.15}
+.tk-pay small{line-height:1.4}
+.tkcard>[data-a="donate"]{margin-top:4px}
+#tk-pw{display:grid;gap:16px}
+#tk-pw .tk-pay{margin:0}
 </style>
 
 <div class="studio">
