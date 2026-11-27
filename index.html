@@ -2676,7 +2676,7 @@ function hoursCal(){ const first=6, days=30, today=10, cells=[], sel=S.hcSel||9;
     <div class="hc-g" role="grid" aria-label="ชั่วโมงทำงานเดือนพฤศจิกายน 2569">${["จ","อ","พ","พฤ","ศ","ส","อา"].map(x=>`<span class="hc-w">${x}</span>`).join("")}${cells.join("")}</div>
     <div class="hc-det" id="hc-det" aria-live="polite">${hcDet(sel)}</div></div></section>`; }
 const NEED=[["สร้างคอนเทนต์",90,72],["วิเคราะห์ข้อมูล",80,35],["การสื่อสาร",75,82],["สร้างแบรนด์",65,40],["SEO & โฆษณา",60,15]];
-R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div class="orb-w"><div class="orb"></div><img src="${MARK}" alt=""></div><h1 id="h1" tabindex="-1" style="font-size:1.25rem">AI กำลังวิเคราะห์โปรไฟล์ของคุณ</h1>
+R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div class="orb-w"><div class="orb"></div><img src="${MARK}" alt=""></div><h1 id="h1" tabindex="-1" style="font-size:1.25rem">กำลังวิเคราะห์โปรไฟล์ของคุณ</h1>
   <ol class="ai-steps" id="aisteps">${["อ่านทักษะและความสนใจ","รวมผล Personality Test","เทียบกับอาชีพในฝัน","จับคู่งานและคอร์ส"].map(s=>`<li><i>${ic("check")}</i>${s}</li>`).join("")}</ol></div>`;
  const fit=JOBS.filter(j=>j.match>=70).slice(0,4), facj=JOBS.filter(j=>j.fac).slice(0,4);
  return `${topbar("ผลวิเคราะห์",false,`<button type="button" class="ib" data-a="replayai" aria-label="วิเคราะห์ใหม่">${ic("spark")}</button>`)}
