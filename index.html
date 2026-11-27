@@ -2517,6 +2517,25 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .adm .edr-cur{min-width:0;width:100%;table-layout:auto}
 .edr-calc .edr-in input{width:0;flex:1;min-width:0}
 .edr-calc .edr-in span{white-space:nowrap;font-weight:500;font-size:0.8125rem}
+/* v170 employer sees tiered Token price */
+.tk-tiers{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:10px 12px;display:grid;gap:8px;opacity:1}
+.tk-tiers>p{font-size:0.8125rem!important;font-weight:600;opacity:1!important}
+.tk-tiers>p span{font-weight:400;opacity:.75}
+.tk-tiers ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px}
+.tk-tiers li{display:grid;gap:1px;border-radius:10px;padding:7px 9px;background:rgba(255,255,255,.08);border:1px solid transparent;transition:background .2s,border-color .2s}
+.tk-tiers li span{font-size:0.6875rem;opacity:.8}
+.tk-tiers li b{font-family:"Poppins";font-size:0.9375rem}
+.tk-tiers li.on{background:#FAD0C2;color:#712319;border-color:#fff}
+.tk-tiers li.on span{opacity:1}
+.tk-nx{display:flex;gap:6px;align-items:flex-start;font-size:0.75rem!important;opacity:.95!important;color:#FAD0C2}
+.tk-nx .ic{width:14px;height:14px;flex:none;margin-top:2px}
+.tk-pay{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 8px;opacity:1!important}
+.tk-pay span{font-size:0.8125rem;opacity:.85}
+.tk-pay b{font-family:"Poppins";font-size:1.375rem;font-weight:600}
+.tk-pay small{font-size:0.75rem;color:#D4E6BD;width:100%}
+.tk-eq b{color:#712319;font-weight:600}
+.tk-save{display:inline-flex;align-items:center;gap:6px;font-size:0.8125rem;color:#2F5A2E;background:#EEF6E6;border-radius:99px;padding:4px 12px}
+.tk-save .ic{width:14px;height:14px}
 </style>
 
 <div class="studio">
@@ -3111,7 +3130,14 @@ function locCard(pin){ return pin?`<div class="lmap on"><span class="lpin">${ic(
 const ehead=()=>{ const st=S.emp.shopSt; return `<div class="hhead" style="padding-bottom:72px"><div class="hh-top emp-top"><span class="av">${st==="none"?"อร":"LC"}</span><div style="min-width:0"><p class="emp-meta"><span>${st==="none"?"บัญชีผู้ประกอบการ":esc(SHOPS.lc.type)}</span>${st==="none"?`<span class="vpill np">${ic("info")}ยังไม่มีข้อมูลร้าน</span>`:st==="pending"?`<span class="vpill np">${ic("clock")}รอตรวจสอบ</span>`:`<span class="vpill">${ic("shield")}ตรวจสอบแล้ว</span>`}</p><b>${st==="none"?"คุณอรุณี":esc(SHOPS.lc.n)}</b></div><button type="button" class="ib" data-a="toast" data-m="มีผู้สมัครใหม่ 4 คน" aria-label="การแจ้งเตือน">${ic("bell")}<span class="dot"></span></button></div></div>`; };
 const TK_MIN=100, TK_MAX=100000;
 function tkOk(){ const a=S.emp.amt; return a>=TK_MIN&&a<=TK_MAX; }
-function syncDonate(){ const b=$('[data-a="donate"]',scr); if(!b) return; const ok=tkOk(); b.disabled=!ok; b.textContent=ok?`เติม ${fmt(S.emp.amt)} Token`:"ระบุจำนวน Token";
+function tkPriceHTML(){ const set=edrNow(), ok=tkOk(), q=S.emp.amt, base=set.tiers[0].r;
+ const tiers=set.tiers.map((t,i)=>`<li class="${ok&&edrTier(set,q)===t?"on":""}"><span>${edrRange(set.tiers,i)}</span><b>฿${edrFmt(t.r)}</b></li>`).join("");
+ let line="เลือกจำนวนเพื่อดูยอดที่ต้องชำระ";
+ if(ok){ const t=edrTier(set,q), tot=q*t.r, save=q*base-tot; line=`<span>ยอดชำระ</span><b>฿${edrFmt(tot)}</b><small>฿${edrFmt(t.r)} ต่อ Token${save>0?` · ประหยัด ฿${edrFmt(save)}`:""}</small>`; }
+ const nx=edrNext();
+ return `<div class="tk-tiers"><p>ราคาตามจำนวนที่เติม <span>(฿ ต่อ 1 Token)</span></p><ul>${tiers}</ul>${nx?`<p class="tk-nx">${ic("clock")}ราคาใหม่มีผล ${thd(nx.d)} · ${nx.tiers.map((t,i)=>`${edrRange(nx.tiers,i)} ฿${edrFmt(t.r)}`).join(" · ")}</p>`:""}</div><p class="tk-pay" id="tk-pay" aria-live="polite">${line}</p>`; }
+function syncDonate(){ const pw=$("#tk-pw",scr); if(pw) pw.innerHTML=tkPriceHTML();
+  const b=$('[data-a="donate"]',scr); if(!b) return; const ok=tkOk(); b.disabled=!ok; b.textContent=ok?`เติม ${fmt(S.emp.amt)} Token`:"ระบุจำนวน Token";
   const h=$("#tk-help",scr), i=$("#tk-amt",scr); if(!h||!i) return; const a=S.emp.amt, typed=S.emp.camt!=="";
   const bad=S.emp.custom&&typed&&!ok; h.textContent=bad?(a<TK_MIN?`ขั้นต่ำ ${fmt(TK_MIN)} Token`:`สูงสุด ${fmt(TK_MAX)} Token ต่อครั้ง`):`ขั้นต่ำ ${fmt(TK_MIN)} · สูงสุด ${fmt(TK_MAX)} Token`;
   h.classList.toggle("err",bad); i.setAttribute("aria-invalid",bad); }
@@ -3133,8 +3159,9 @@ R.ehome=()=>{const e=S.emp; const newApps=APPLICANTS.filter(a=>!e.accepted.has(a
  <section class="sec pad"><div class="donate tkcard"><h3>${tok(32,"spin")}SpringBoard Token</h3><p>เติม Token เพื่อมอบทุนและรางวัลให้นักศึกษาในโครงการ</p><p class="tk-bal"><span>Token สะสมของร้าน</span><b>${tok(20)}<span data-count="${12000+e.donated}">0</span></b></p>
   <div class="amts" role="group" aria-label="จำนวน Token">${[300,500,1000,2000].map(a=>`<button type="button" data-a="amt" data-v="${a}" aria-pressed="${!e.custom&&e.amt===a}">${tok(16)}${fmt(a)}</button>`).join("")}<button type="button" class="amt-o" data-a="amt" data-v="other" aria-pressed="${e.custom}" aria-expanded="${e.custom}" aria-controls="tk-custom">${ic("edit")}อื่นๆ</button></div>
   <div class="tk-custom" id="tk-custom" ${e.custom?"":"hidden"}><label for="tk-amt">ระบุจำนวน Token ที่ต้องการ</label><div class="tk-in">${tok(20)}<input id="tk-amt" type="text" inputmode="numeric" autocomplete="off" placeholder="เช่น 1,500" value="${e.camt?fmt(+e.camt):""}" aria-describedby="tk-help"><span>Token</span></div><p class="tk-help" id="tk-help">ขั้นต่ำ 100 · สูงสุด 100,000 Token</p></div>
+  <div id="tk-pw">${tkPriceHTML()}</div>
   <button type="button" class="btn btn-sm" data-a="donate" ${tkOk()?"":"disabled"}>${tkOk()?`เติม ${fmt(e.amt)} Token`:"ระบุจำนวน Token"}</button></div>
-  <p class="fhint">${ic("info")}1 Token = ฿1 · ชำระผ่าน QR Payment (รอ LE ยืนยัน)</p></section>`);};
+  <p class="fhint">${ic("info")}ยิ่งเติมมาก ราคาต่อ Token ยิ่งถูก · ราคากำหนดโดยวิทยาลัยฯ · ชำระผ่าน QR Payment (รอ LE ยืนยัน)</p></section>`);};
 R.eapps=()=>wrapApp(`${topbar("ผู้สมัคร · ผู้ช่วยทำคอนเทนต์",true)}<p class="pad" style="color:var(--muted);font-size:0.875rem;margin-bottom:12px">เรียงตามทักษะที่ตรงกับประกาศ · เห็นเฉพาะข้อมูลที่จำเป็นต่อการคัดเลือก</p>
  <div class="pad" style="display:grid;gap:12px">${APPLICANTS.map(a=>{const st=a.wd?`<span class="tag t-grey">${ic("x")}ยกเลิกใบสมัคร</span>`:S.emp.accepted.has(a.id)?`<span class="tag t-ok">${ic("check")}รับแล้ว</span>`:S.emp.declined.has(a.id)?`<span class="tag t-grey">ไม่ผ่าน</span>`:`<span class="match" title="ทักษะตรงกับประกาศ ${a.match}%"><span class="ring" style="--m:${a.match}"></span>${a.match}%</span>`;
   const sub=a.wd?`<small class="wd-r">${ic("info")}เหตุผล: ${esc(a.wd.r)}</small>`:`<small class="fh">${fitTag(a)}</small>`;
@@ -3817,7 +3844,7 @@ function payoutSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">ค่าต�
   <p class="priv">${ic("info")}แลก Token เป็นเงินเข้าบัญชีนักศึกษา (1 Token = ฿1) รอ LE สรุป ต้นแบบนี้แสดงเฉพาะสถานะ</p></div>
   <div class="sh-f"><button type="button" class="btn btn-o btn-blk" data-a="close">ปิด</button></div>`);}
 function donateSheet(){ sheet(`<div class="sh-h"><div><h2 id="shh">ยืนยันการเติม Token</h2><p>${esc(SHOPS.lc.n)}</p></div><button type="button" class="ib" data-a="close" aria-label="ปิด">${ic("x")}</button></div>
-  <div class="sh-b tk-sh">${tok(72,"pop")}<span class="price">${fmt(S.emp.amt)} <small>Token</small></span><p class="tk-eq">≈ ฿${fmt(S.emp.amt)}</p><p style="color:var(--ink2)">เข้ากองทุน SpringBoard เพื่อมอบเป็นทุนและรางวัลให้นักศึกษา · ออกใบเสร็จลดหย่อนภาษีให้อัตโนมัติ</p><p class="priv">${ic("info")}ช่องทางชำระจริง (QR ธนาคาร) รอ LE ยืนยัน</p></div>
+  <div class="sh-b tk-sh">${tok(72,"pop")}<span class="price">${fmt(S.emp.amt)} <small>Token</small></span>${(()=>{ const set=edrNow(), t=edrTier(set,S.emp.amt), tot=S.emp.amt*t.r, save=S.emp.amt*set.tiers[0].r-tot; return `<p class="tk-eq">ยอดชำระ <b>฿${edrFmt(tot)}</b> · ฿${edrFmt(t.r)} ต่อ Token</p>${save>0?`<p class="tk-save">${ic("check")}ได้ราคาช่วงเติม ${edrRange(set.tiers,set.tiers.indexOf(t))} · ประหยัด ฿${edrFmt(save)}</p>`:""}`; })()}<p style="color:var(--ink2)">เข้ากองทุน SpringBoard เพื่อมอบเป็นทุนและรางวัลให้นักศึกษา · ออกใบเสร็จลดหย่อนภาษีให้อัตโนมัติ</p><p class="priv">${ic("info")}ช่องทางชำระจริง (QR ธนาคาร) รอ LE ยืนยัน</p></div>
   <div class="sh-f"><button type="button" class="btn btn-p btn-blk" data-a="donok">ยืนยันเติม Token</button></div>`);}
 
 /* ── shell ── */
