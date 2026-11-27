@@ -2473,6 +2473,50 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .edr-hint .ic{width:14px;height:14px;flex:none;margin-top:2px}
 .edr-hh{font-size:1.0625rem;font-weight:600;margin:0 0 10px}
 .opt{font-weight:400;color:var(--muted);font-size:0.75rem;margin-left:4px}
+/* v169 tiered e-Donation pricing */
+.edr-cur{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;font-size:0.875rem}
+.edr-cur th{font-size:0.75rem;font-weight:500;color:var(--muted);text-align:left;padding:8px 12px;background:#FFF7F3}
+.edr-cur td{padding:10px 12px;border-top:1px solid #F6E7E0}
+.edr-cur .num{text-align:right;white-space:nowrap}
+.edr-cur b{font-weight:600;color:#712319;font-size:1rem}
+.edr-cur small{display:inline-block;margin-left:6px;font-size:0.6875rem;font-weight:600;color:#2F5A2E;background:#E8F4DD;border-radius:99px;padding:2px 7px}
+.edr-calc{background:#fff;border-radius:12px;padding:12px;display:grid;gap:8px}
+.edr-calc label{font-size:0.8125rem;color:var(--ink2)}
+.edr-in.sm input{font-size:1rem;min-height:40px}
+.edr-calc p{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:0.8125rem;color:var(--muted)}
+.edr-calc p b{color:#712319;font-weight:600;font-size:0.9375rem}
+.edr-fh{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.edr-fh small{font-size:0.75rem;color:var(--muted)}
+.edr-th,.edr-tr{display:grid;grid-template-columns:28px minmax(0,1fr) minmax(0,0.9fr) minmax(0,1fr) 40px;gap:8px;align-items:center}
+.edr-th{font-size:0.75rem;color:var(--muted);padding:0 0 2px}
+.edr-tiers{display:grid;gap:8px}
+.edr-tr{background:#FFFBF9;border:1px solid #F4E6DF;border-radius:14px;padding:8px}
+.edr-no{width:24px;height:24px;border-radius:50%;background:#F37449;color:#fff;display:grid;place-items:center;font-size:0.75rem;font-weight:600}
+.edr-f{display:flex;align-items:center;gap:6px;border:1.5px solid var(--line2);border-radius:10px;padding:0 10px;background:#fff;min-width:0}
+.edr-f:focus-within{border-color:#F37449;box-shadow:0 0 0 3px #FFE7DC}
+.edr-f:has(input[aria-invalid="true"]){border-color:#D16F8A;box-shadow:0 0 0 3px #FBE3EA}
+.edr-f input{border:0;outline:0;background:transparent;font:inherit;font-size:0.9375rem;min-height:40px;width:100%;min-width:0}
+.edr-f input:disabled{color:var(--muted)}
+.edr-f>span[aria-hidden]{color:var(--muted);font-weight:600}
+.edr-to{font-size:0.8125rem;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.edr-x{width:40px;height:40px;color:var(--muted)}
+.edr-x:hover{color:#AF5577;background:#FBE7EE}
+.edr-add{display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border:1.5px dashed #F3B79F;border-radius:12px;background:#fff;color:#712319;font:inherit;font-weight:600;font-size:0.875rem;cursor:pointer;transition:background .2s}
+.edr-add:hover{background:#FFF4EF}
+.edr-add .ic{width:16px;height:16px}
+.edr-pv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#FAF6F4;border-radius:12px;padding:10px}
+.edr-pv span{display:grid;gap:1px;text-align:center}
+.edr-pv small{font-size:0.6875rem;color:var(--muted)}
+.edr-pv b{color:#712319;font-weight:600}
+.edr-pv em{font-style:normal;font-size:0.6875rem;color:var(--muted);text-decoration:line-through}
+.edr-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:640px){.edr-2{grid-template-columns:1fr}}
+.edr-chips{display:flex;flex-wrap:wrap;gap:6px}
+.edr-chips span{font-size:0.75rem;background:#FFF4EF;border:1px solid #F6DCD0;border-radius:99px;padding:3px 9px;white-space:nowrap}
+.edr-chips b{color:#712319;font-weight:600}
+.adm .edr-cur{min-width:0;width:100%;table-layout:auto}
+.edr-calc .edr-in input{width:0;flex:1;min-width:0}
+.edr-calc .edr-in span{white-space:nowrap;font-weight:500;font-size:0.8125rem}
 </style>
 
 <div class="studio">
@@ -3190,36 +3234,56 @@ R.ausers=()=>{const tab=S.adm.tab; const emp=[["ผ้าทอบ้านต�
  <div class="toolbar"><label class="sfield">${ic("search")}<span class="sr">ค้นหาผู้ใช้</span><input id="usrq" type="search" placeholder="${tab==="emp"?"ค้นหาชื่อร้านหรือประเภทธุรกิจ":"ค้นหาชื่อนักศึกษา คณะ หรือร้าน"}"></label></div>
  ${tab==="stu"&&ASTU.some((_,i)=>!menOf(i))?`<p class="adm-note">${ic("users")}นักศึกษา ${ASTU.filter((_,i)=>!menOf(i)).length} คนยังไม่มี Mentor · กด «มอบหมาย» ในตารางเพื่อเลือก</p>`:""}<div class="tbl">${tab==="emp"?t1:t2}<p class="q-empty" id="q-empty" hidden>${ic("search")}ไม่พบชื่อที่ค้นหา ลองพิมพ์คำอื่น</p></div>`);};
 R.afin=()=>admShell("afin",`<div class="adm-h"><div><h1 id="h1" tabindex="-1">Financial & Tax Receipt Control</h1><p>ตรวจยอด e-Donation และสถานะจ่ายค่าตอบแทนนักศึกษา</p></div><span class="sample">ข้อมูลตัวอย่าง</span></div>
- <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"><div class="kpi"><span>${tok(18)}e-Donation ทั้งหมด</span><b data-count="128500">0</b><small>32 บริษัท · 1 e-Donation = ฿${edrFmt(edrNow().r)} · <button type="button" class="linkb" data-a="go" data-to="aedr">ตั้งเรท</button></small></div><div class="kpi"><span>${ic("wallet")}ค่าตอบแทนรอจ่าย</span><b class="tkv">${tok(20,"tki")}<span data-count="18240">0</span></b><small class="w">14 รายการ</small></div><div class="kpi"><span>${ic("receipt")}ใบเสร็จออกแล้ว</span><b data-count="61">0</b><small>เดือนนี้</small></div></div>
+ <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr))"><div class="kpi"><span>${tok(18)}e-Donation ทั้งหมด</span><b data-count="128500">0</b><small>32 บริษัท · เริ่ม ฿${edrFmt(edrNow().tiers[0].r)}/หน่วย · <button type="button" class="linkb" data-a="go" data-to="aedr">ตั้งเรท</button></small></div><div class="kpi"><span>${ic("wallet")}ค่าตอบแทนรอจ่าย</span><b class="tkv">${tok(20,"tki")}<span data-count="18240">0</span></b><small class="w">14 รายการ</small></div><div class="kpi"><span>${ic("receipt")}ใบเสร็จออกแล้ว</span><b data-count="61">0</b><small>เดือนนี้</small></div></div>
  <div class="toolbar"><label class="sfield">${ic("search")}<span class="sr">ค้นหาบริษัท</span><input id="finq" placeholder="ค้นหาชื่อบริษัทหรือประเภท"></label><span class="tag t-warn">ช่องทางชำระและการออกใบเสร็จรอ LE ยืนยัน</span></div>
  <div class="tbl"><table><thead><tr><th>เวลา</th><th>บริษัท</th><th>ประเภท</th><th class="num">จำนวน e-Donation</th><th></th></tr></thead><tbody>${[["10 พ.ย. 10:42","ล้านนาคราฟต์ สตูดิโอ","หัตถกรรม",1000],["9 พ.ย. 16:05","นอร์ทเทิร์น อีเวนต์ แล็บ","อีเวนต์",5000],["8 พ.ย. 11:20","ดอยดิน คอฟฟี่ โรสเตอร์","ร้านอาหาร",2000],["6 พ.ย. 09:15","ก้าวเหนือ เทคโนโลยี","ซอฟต์แวร์",3000]].map(([t,n,ty,a])=>`<tr><td>${t}</td><td>${n}</td><td>${ty}</td><td class="num">${tok(16,"tki")}${fmt(a)}</td><td><button type="button" class="btn btn-o btn-sm" data-a="toast" data-m="สร้างใบเสร็จรับเงิน (PDF) แล้ว">${ic("receipt")}ออกใบเสร็จ</button></td></tr>`).join("")}</tbody></table></div>`);
 
 const EDR_TODAY="2026-11-10", TMS=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
 const thd=iso=>{ const [y,m,d]=iso.split("-").map(Number); return `${d} ${TMS[m-1]} ${y+543}`; };
 const edrFmt=r=>Number(r).toLocaleString("th-TH",{minimumFractionDigits:2,maximumFractionDigits:2});
-const EDR=[{d:"2025-08-01",r:1.2,n:"ช่วงทดลองระบบ",by:"LE Admin"},{d:"2026-01-01",r:1,n:"อัตราเริ่มต้นของโครงการ",by:"LE Admin"}];
+const EDR=[{d:"2025-08-01",tiers:[{min:1,r:1.2}],n:"ช่วงทดลองระบบ",by:"LE Admin"},{d:"2026-01-01",tiers:[{min:1,r:1},{min:1000,r:0.95},{min:5000,r:0.9}],n:"อัตราเริ่มต้นของโครงการ",by:"LE Admin"}];
 const edrNow=()=>[...EDR].filter(x=>x.d<=EDR_TODAY).sort((a,b)=>b.d.localeCompare(a.d))[0];
 const edrNext=()=>[...EDR].filter(x=>x.d>EDR_TODAY).sort((a,b)=>a.d.localeCompare(b.d))[0];
+const edrTier=(set,q)=>{ let t=set.tiers[0]; set.tiers.forEach(x=>{ if(q>=x.min) t=x; }); return t; };
+const edrRange=(ts,i)=>{ const a=ts[i].min, nx=ts[i+1]; return nx&&+nx.min>a?`${fmt(a)}–${fmt(nx.min-1)}`:`${fmt(a)} ขึ้นไป`; };
+const edrSum=x=>x.tiers.length>1?`${x.tiers.length} ช่วง · ฿${edrFmt(x.tiers[0].r)}–${edrFmt(x.tiers[x.tiers.length-1].r)}`:`ราคาเดียว · ฿${edrFmt(x.tiers[0].r)}`;
+const edrDraft=()=>S.adm.edrT||(S.adm.edrT=edrNow().tiers.map(t=>({min:t.min,r:t.r})));
+function edrRowsHTML(){ const ts=edrDraft();
+ return ts.map((t,i)=>`<div class="edr-tr" data-i="${i}"><span class="edr-no">${i+1}</span>
+  <label class="edr-f"><span class="sr">ช่วงที่ ${i+1} ตั้งแต่จำนวน</span>${i===0?`<input value="1" disabled aria-describedby="edr-first">`:`<input class="edr-min" data-i="${i}" type="number" inputmode="numeric" min="2" step="1" value="${t.min}">`}</label>
+  <span class="edr-to" id="edr-to-${i}">${edrToText(ts,i)}</span>
+  <label class="edr-f edr-p"><span class="sr">ราคาต่อ 1 e-Donation ช่วงที่ ${i+1}</span><span aria-hidden="true">฿</span><input class="edr-rate" data-i="${i}" type="number" inputmode="decimal" min="0.01" max="100" step="0.01" value="${t.r}" placeholder="0.00"></label>
+  ${i===0?`<span class="edr-x0"></span>`:`<button type="button" class="ib edr-x" data-a="edrtdel" data-v="${i}" aria-label="ลบช่วงที่ ${i+1}">${ic("trash")}</button>`}</div>`).join(""); }
+const edrToText=(ts,i)=>{ const nx=ts[i+1]; return nx&&+nx.min>+ts[i].min?`ถึง ${fmt(nx.min-1)}`:"ขึ้นไป"; };
+function edrRefresh(){ const w=$("#edr-tiers",scr); if(w) w.innerHTML=edrRowsHTML(); const ts=edrDraft(); ts.forEach((_,i)=>{ const o=$("#edr-to-"+i,scr); if(o) o.textContent=edrToText(ts,i); }); const p=$("#edr-pv",scr); if(p) p.innerHTML=edrPreview(); }
+function edrPreview(){ const ts=edrDraft(), ok=ts.every(t=>+t.r>0); if(!ok) return "ใส่ราคาให้ครบทุกช่วงเพื่อดูตัวอย่าง";
+ const set={tiers:ts.map(t=>({min:+t.min,r:+t.r}))}, cur=edrNow();
+ return [500,1000,5000].map(q=>{ const a=q*edrTier(set,q).r, b=q*edrTier(cur,q).r; return `<span><small>${fmt(q)} e-Donation</small><b>฿${edrFmt(a)}</b>${a!==b?`<em>เดิม ฿${edrFmt(b)}</em>`:""}</span>`; }).join(""); }
+function edrCalc(q){ const set=edrNow(), i=set.tiers.indexOf(edrTier(set,q)), t=set.tiers[i];
+ return q>0?`<span>ใช้ราคาช่วง ${edrRange(set.tiers,i)} · ฿${edrFmt(t.r)}/หน่วย</span><b>รวม ฿${edrFmt(q*t.r)}</b>`:`<span>ใส่จำนวนเพื่อคำนวณ</span><b>—</b>`; }
 R.aedr=()=>{ const now=edrNow(), nx=edrNext(), rows=[...EDR].sort((a,b)=>b.d.localeCompare(a.d));
  const st=x=>x===now?'<span class="tag t-ok">ใช้อยู่</span>':x.d>EDR_TODAY?'<span class="tag t-blue">รอมีผล</span>':'<span class="tag t-grey">สิ้นสุดแล้ว</span>';
- return admShell("aedr",`<div class="adm-h"><div><h1 id="h1" tabindex="-1">e-Donation Rate</h1><p>กำหนดมูลค่าของ 1 e-Donation เป็นบาท ใช้คำนวณยอดที่ร้านเติมและค่าตอบแทนนักศึกษา</p></div><span class="sample">ข้อมูลตัวอย่าง</span></div>
+ return admShell("aedr",`<div class="adm-h"><div><h1 id="h1" tabindex="-1">e-Donation Rate</h1><p>ตั้งราคาต่อ 1 e-Donation ได้หลายช่วงตามจำนวนที่ร้านเติม ยิ่งเติมมาก ราคาต่อหน่วยยิ่งถูก</p></div><span class="sample">ข้อมูลตัวอย่าง</span></div>
  <div class="edr-grid">
-  <section class="edr-now" aria-labelledby="edr-now-h"><p id="edr-now-h" class="edr-k">${ic("gift")}เรทที่ใช้อยู่</p>
-   <p class="edr-big"><small>1 e-Donation =</small><b>฿${edrFmt(now.r)}</b></p>
+  <section class="edr-now" aria-labelledby="edr-now-h"><p id="edr-now-h" class="edr-k">${ic("gift")}ตารางราคาที่ใช้อยู่</p>
    <p class="edr-since">มีผลตั้งแต่ ${thd(now.d)} · ${esc(now.n||"—")}</p>
-   ${nx?`<p class="edr-next">${ic("clock")}เรทใหม่ ฿${edrFmt(nx.r)} จะมีผล ${thd(nx.d)}</p>`:""}
-   <div class="edr-ex"><span>ร้านเติม 1,000 e-Donation</span><b>= ฿${edrFmt(1000*now.r)}</b></div></section>
-  <section class="edr-form" aria-labelledby="edr-f-h"><h2 id="edr-f-h">เพิ่มเรทใหม่</h2>
-   <div><label class="lbl" for="edr-r">มูลค่า 1 e-Donation (บาท)</label><div class="edr-in"><span aria-hidden="true">฿</span><input id="edr-r" type="number" inputmode="decimal" min="0.01" max="100" step="0.01" placeholder="1.00" aria-describedby="edr-pv edr-e"></div></div>
-   <div><label class="lbl" for="edr-d">วันที่เริ่มมีผล</label><input class="inp" id="edr-d" type="date" min="${EDR_TODAY}" value="2026-12-01"></div>
-   <div><label class="lbl" for="edr-n">เหตุผล / หมายเหตุ <span class="opt">ไม่บังคับ</span></label><input class="inp" id="edr-n" maxlength="80" placeholder="เช่น ปรับตามมติคณะกรรมการ"></div>
-   <p class="edr-pv" id="edr-pv" aria-live="polite">ใส่มูลค่าเพื่อดูตัวอย่างการคำนวณ</p>
+   <table class="edr-cur"><thead><tr><th>จำนวนที่เติม</th><th class="num">฿ ต่อ 1 e-Donation</th></tr></thead><tbody>${now.tiers.map((t,i)=>`<tr><td>${edrRange(now.tiers,i)}</td><td class="num"><b>฿${edrFmt(t.r)}</b>${i&&t.r<now.tiers[0].r?`<small>ลด ${Math.round((1-t.r/now.tiers[0].r)*100)}%</small>`:""}</td></tr>`).join("")}</tbody></table>
+   ${nx?`<p class="edr-next">${ic("clock")}ตารางราคาใหม่ (${edrSum(nx)}) จะมีผล ${thd(nx.d)}</p>`:""}
+   <div class="edr-calc"><label for="edr-q">ลองคำนวณ: ร้านเติม</label><div class="edr-in sm"><input id="edr-q" type="number" inputmode="numeric" min="1" step="1" value="1000"><span>e-Donation</span></div><p id="edr-qo" aria-live="polite">${edrCalc(1000)}</p></div></section>
+  <section class="edr-form" aria-labelledby="edr-f-h"><div class="edr-fh"><h2 id="edr-f-h">ตั้งตารางราคาใหม่</h2><small>เริ่มจากตารางที่ใช้อยู่ แก้ได้เลย</small></div>
+   <div class="edr-th" aria-hidden="true"><span></span><span>ตั้งแต่ (หน่วย)</span><span>ถึง</span><span>฿ ต่อหน่วย</span><span></span></div>
+   <div id="edr-tiers" class="edr-tiers">${edrRowsHTML()}</div>
+   <p class="sr" id="edr-first">ช่วงแรกเริ่มที่ 1 เสมอ</p>
+   <button type="button" class="edr-add" data-a="edrtadd">${ic("plus")}เพิ่มช่วงราคา</button>
+   <div class="edr-pv" id="edr-pv" aria-live="polite">${edrPreview()}</div>
+   <div class="edr-2"><div><label class="lbl" for="edr-d">วันที่เริ่มมีผล</label><input class="inp" id="edr-d" type="date" min="${EDR_TODAY}" value="2026-12-01"></div>
+   <div><label class="lbl" for="edr-n">หมายเหตุ <span class="opt">ไม่บังคับ</span></label><input class="inp" id="edr-n" maxlength="80" placeholder="เช่น ปรับตามมติคณะกรรมการ"></div></div>
    <p class="ferr" id="edr-e" hidden></p>
-   <button type="button" class="btn btn-g" data-a="edrsave">${ic("check")}บันทึกเรท</button>
-   <p class="edr-hint">${ic("info")}เรทใหม่ใช้กับการเติมและการจ่ายที่เกิดตั้งแต่วันที่มีผล รายการก่อนหน้าคงเรทเดิม</p></section>
+   <button type="button" class="btn btn-g" data-a="edrsave">${ic("check")}บันทึกตารางราคา</button>
+   <p class="edr-hint">${ic("info")}ราคาทั้งรายการคิดตามช่วงที่จำนวนตกอยู่ เช่น เติม 1,000 หน่วย ใช้ราคาช่วง 1,000 ขึ้นไปทั้ง 1,000 หน่วย · ใช้กับรายการที่เกิดตั้งแต่วันที่มีผล</p></section>
  </div>
- <h2 class="edr-hh">ประวัติเรท</h2>
- <div class="tbl"><table><thead><tr><th>วันที่มีผล</th><th class="num">฿ ต่อ 1 e-Donation</th><th>หมายเหตุ</th><th>บันทึกโดย</th><th>สถานะ</th><th></th></tr></thead><tbody>${rows.map(x=>`<tr><td>${thd(x.d)}</td><td class="num"><b style="font-weight:600">฿${edrFmt(x.r)}</b></td><td>${esc(x.n||"—")}</td><td>${esc(x.by)}</td><td>${st(x)}</td><td>${x.d>EDR_TODAY?`<button type="button" class="linkb" data-a="edrdel" data-v="${x.d}">ยกเลิก</button>`:""}</td></tr>`).join("")}</tbody></table></div>`); };
+ <h2 class="edr-hh">ประวัติตารางราคา</h2>
+ <div class="tbl"><table><thead><tr><th>วันที่มีผล</th><th>ช่วงราคา</th><th>หมายเหตุ</th><th>บันทึกโดย</th><th>สถานะ</th><th></th></tr></thead><tbody>${rows.map(x=>`<tr><td>${thd(x.d)}</td><td><div class="edr-chips">${x.tiers.map((t,i)=>`<span>${edrRange(x.tiers,i)} · <b>฿${edrFmt(t.r)}</b></span>`).join("")}</div></td><td>${esc(x.n||"—")}</td><td>${esc(x.by)}</td><td>${st(x)}</td><td>${x.d>EDR_TODAY?`<button type="button" class="linkb" data-a="edrdel" data-v="${x.d}">ยกเลิก</button>`:""}</td></tr>`).join("")}</tbody></table></div>`); };
 /* ── admin: per-post detail ── */
 const STU_POOL=[
  ["กมลชนก ปัญญา","ก","บริหารธุรกิจ · การตลาด ปี 4"],["ศุภวิชญ์ ทองดี","ศ","วิจิตรศิลป์ ปี 3"],["ปภาวรินทร์ ใจดี","ป","บริหารธุรกิจ · การตลาด ปี 3"],["ธนกฤต วงศ์ใหญ่","ธ","การสื่อสารมวลชน ปี 2"],
@@ -3454,11 +3518,21 @@ vp.addEventListener("click",e=>{
     case "ajstu": stuSheet(el.dataset.id, el.dataset.k); break;
     case "taxcopy": { try{ navigator.clipboard&&navigator.clipboard.writeText(v).catch(()=>{}); }catch(_){} toast(el.tagName==="A"?"คัดลอกเลขผู้เสียภาษีแล้ว · วางในช่องค้นหาของเว็บไซต์":"คัดลอกเลขผู้เสียภาษีแล้ว"); break; }
     case "vocd": vocSheet(el.dataset.n, el.dataset.k, el.dataset.s, !!el.dataset.e); break;
-    case "edrsave": { const r=+$("#edr-r",scr).value, d=$("#edr-d",scr).value, n=$("#edr-n",scr).value.trim(), e=$("#edr-e",scr);
-      const err=!(r>0)?"ใส่มูลค่าที่มากกว่า 0":r>100?"มูลค่าสูงสุด ฿100 ต่อ 1 e-Donation":Math.round(r*100)!==r*100?"ใส่ทศนิยมได้ไม่เกิน 2 ตำแหน่ง":!d?"เลือกวันที่เริ่มมีผล":d<EDR_TODAY?"เลือกวันนี้หรือวันถัดไป":EDR.some(x=>x.d===d)?"วันนี้มีเรทอยู่แล้ว เลือกวันอื่นหรือยกเลิกเรทเดิมก่อน":"";
-      if(err){ e.textContent=err; e.hidden=false; (err.includes("วัน")?$("#edr-d",scr):$("#edr-r",scr)).focus(); break; }
-      const item={d,r,n,by:"คุณ (แอดมิน)"}; EDR.push(item); go("aedr",false);
-      toastUndo(`บันทึกเรท ฿${edrFmt(r)} · มีผล ${thd(d)}`,()=>{ EDR.splice(EDR.indexOf(item),1); go("aedr",false); }); break; }
+    case "edrtadd": { const ts=edrDraft(), last=ts[ts.length-1]; if(ts.length>=6){ toast("ตั้งได้สูงสุด 6 ช่วง",false); break; } ts.push({min:Math.max(+last.min+1, last.min<1000?1000:+last.min*2),r:""}); edrRefresh(); $$(".edr-min",scr).pop()?.focus(); break; }
+    case "edrtdel": { edrDraft().splice(+v,1); edrRefresh(); break; }
+    case "edrsave": { const ts=edrDraft(), d=$("#edr-d",scr).value, n=$("#edr-n",scr).value.trim(), e=$("#edr-e",scr);
+      let err="", bad=null;
+      ts.forEach((t,i)=>{ if(err) return; const r=+t.r, m=+t.min;
+        if(i>0&&!(m>+ts[i-1].min)){ err=`ช่วงที่ ${i+1} ต้องเริ่มมากกว่าช่วงที่ ${i} (${fmt(ts[i-1].min)})`; bad=$(`.edr-min[data-i="${i}"]`,scr); }
+        else if(i>0&&Math.round(m)!==m){ err=`ช่วงที่ ${i+1} ใส่จำนวนเต็ม`; bad=$(`.edr-min[data-i="${i}"]`,scr); }
+        else if(!(r>0)){ err=`ใส่ราคาช่วงที่ ${i+1} ให้มากกว่า 0`; bad=$(`.edr-rate[data-i="${i}"]`,scr); }
+        else if(r>100){ err=`ราคาช่วงที่ ${i+1} สูงสุด ฿100`; bad=$(`.edr-rate[data-i="${i}"]`,scr); }
+        else if(Math.round(r*100)!==Math.round(r*1000)/10){ err=`ราคาช่วงที่ ${i+1} ใส่ทศนิยมได้ไม่เกิน 2 ตำแหน่ง`; bad=$(`.edr-rate[data-i="${i}"]`,scr); } });
+      if(!err){ if(!d){ err="เลือกวันที่เริ่มมีผล"; bad=$("#edr-d",scr); } else if(d<EDR_TODAY){ err="เลือกวันนี้หรือวันถัดไป"; bad=$("#edr-d",scr); } else if(EDR.some(x=>x.d===d)){ err="วันนี้มีตารางราคาอยู่แล้ว เลือกวันอื่นหรือยกเลิกตารางเดิมก่อน"; bad=$("#edr-d",scr); } }
+      $$(".edr-tr input,#edr-d",scr).forEach(x=>x.removeAttribute("aria-invalid"));
+      if(err){ e.textContent=err; e.hidden=false; if(bad){ bad.setAttribute("aria-invalid","true"); bad.focus(); } break; }
+      const item={d,tiers:ts.map(t=>({min:+t.min,r:+t.r})),n,by:"คุณ (แอดมิน)"}; EDR.push(item); S.adm.edrT=null; go("aedr",false);
+      toastUndo(`บันทึกตารางราคา ${item.tiers.length} ช่วง · มีผล ${thd(d)}`,()=>{ EDR.splice(EDR.indexOf(item),1); go("aedr",false); }); break; }
     case "edrdel": { const i=EDR.findIndex(x=>x.d===v); if(i<0) break; const [it]=EDR.splice(i,1); go("aedr",false); toastUndo(`ยกเลิกเรทที่จะมีผล ${thd(v)} แล้ว`,()=>{ EDR.push(it); go("aedr",false); }); break; }
     case "mpick": mentorSheet(+v, el.dataset.from); break;
     case "mset": { const i=+el.dataset.i, k=+v, fr=el.dataset.from; if(k<0) delete S.adm.men[i]; else S.adm.men[i]=k; closeSheet(); go(S.scr,false);
@@ -3589,8 +3663,9 @@ vp.addEventListener("input",e=>{
   if(t.id==="hq"){ const q=t.value.trim().toLowerCase(); let any=false; $$(".bh-g",scr).forEach(g=>{ let hit=0; $$(".bh-q",g).forEach(d=>{ const m=!q||d.textContent.toLowerCase().includes(q); d.hidden=!m; if(m) hit++; if(q&&m) d.open=true; }); g.hidden=!!q&&!hit; const qs=$(".bh-qs",g); if(q&&hit){ qs.hidden=false; g.classList.add("open"); } else if(!q){ const on=S.efaq===$(".bh-gh",g).dataset.v; qs.hidden=!on; g.classList.toggle("open",on); } if(hit) any=true; }); const e=$("#hq-e",scr); if(e) e.hidden=!q||any; }
   if((t.id==="w-from"||t.id==="w-to")&&S.work){ S.work[t.id==="w-from"?"from":"to"]=t.value; const c=$("#wt-calc",scr); if(c){ const h=wHrs(S.work.from,S.work.to); c.innerHTML=`รวม <b>${h} ชม.</b>${h!==4?` <span class="wt-diff">${h>4?"+":"−"}${Math.abs(h-4)} ชม. จากกะ</span>`:""}`; } }
   if(t.id==="ap-m") S.draft[S.apId]=t.value;
-  if(t.id==="edr-r"||t.id==="edr-d"){ const e=$("#edr-e",scr); if(e) e.hidden=true; }
-  if(t.id==="edr-r"){ const r=+t.value, p=$("#edr-pv",scr); if(p) p.innerHTML=r>0?`ตัวอย่าง: ร้านเติม 1,000 e-Donation = <b>฿${edrFmt(1000*r)}</b> · เดิม ฿${edrFmt(1000*edrNow().r)}`:"ใส่มูลค่าเพื่อดูตัวอย่างการคำนวณ"; }
+  if(t.closest&&t.closest("#edr-tiers")||t.id==="edr-d"){ const e=$("#edr-e",scr); if(e) e.hidden=true; t.removeAttribute("aria-invalid"); }
+  if(t.classList&&(t.classList.contains("edr-min")||t.classList.contains("edr-rate"))){ const ts=edrDraft(), k=+t.dataset.i; ts[k][t.classList.contains("edr-min")?"min":"r"]=t.value; ts.forEach((_,i)=>{ const o=$("#edr-to-"+i,scr); if(o) o.textContent=edrToText(ts,i); }); const p=$("#edr-pv",scr); if(p) p.innerHTML=edrPreview(); }
+  if(t.id==="edr-q"){ const o=$("#edr-qo",scr); if(o) o.innerHTML=edrCalc(Math.floor(+t.value)); }
   if(t.id==="stuq"){ const q=t.value.trim().toLowerCase(); let any=0; $$(".stu-g",ov).forEach(g=>{ let hit=0; $$(".stu-o",g).forEach(o=>{ const m=!q||o.dataset.q.includes(q); o.hidden=!m; if(m) hit++; }); g.hidden=!hit; any+=hit; }); const n=$(".stu-o.none",ov); if(n) n.hidden=!!q; const em=$("#stu-empty",ov); if(em) em.hidden=!!any; }
   if(t.id==="finq"||t.id==="usrq"){ const q=t.value.trim().toLowerCase(); const rows=$$("tbody tr",scr); rows.forEach(tr=>{ tr.hidden=!!q&&!tr.textContent.toLowerCase().includes(q); }); const em=$("#q-empty",scr); if(em) em.hidden=rows.some(r=>!r.hidden); }
 });
