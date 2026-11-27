@@ -2423,6 +2423,12 @@ tr.clk:focus-visible{outline:2px solid #F37449;outline-offset:-2px}
 .pf-grid .stat.work:not(.pf-men)>small:first-child .ic{background:#FFE7DC;color:#F37449}
 .pf-grid .stat.pf-men>small:first-child{color:#2F5A2E}
 .pf-grid .stat.pf-men>small:first-child .ic{background:#E3F2DA;color:#4E8F4D}
+/* v160 mentor message button */
+.pfm-msg{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:999px;border:1px solid #CFE5C0;background:#F1F8EA;color:#2F5A2E;font:inherit;font-size:0.8125rem;font-weight:600;cursor:pointer;box-shadow:0 2px 0 #D4E6BD;transition:background .2s,transform .15s,box-shadow .15s}
+.pfm-msg .ic{width:16px;height:16px}
+.pfm-msg:hover{background:#E6F3DB}
+.pfm-msg:active{transform:translateY(2px);box-shadow:0 0 0 #D4E6BD}
+.pfm-msg:focus-visible{outline:2px solid #88C887;outline-offset:2px}
 </style>
 
 <div class="studio">
@@ -2851,7 +2857,7 @@ R.profile=()=>wrapApp(`<div class="pf-head"><div style="display:flex;justify-con
  <div class="pf-card"><div class="pf-top"><span class="av">${ME.ini}</span><div><h2 style="font-size:1.25rem">${ME.name}</h2><p>อายุ ${ME.age} · ${ME.fac} · ${ME.major} ${ME.year}</p></div></div>
   <div class="pf-grid one">
    <div class="stat work"><small>${ic("brief")}สถานะทำงาน</small><b>ผู้ช่วยทำคอนเทนต์ · ${esc(SHOPS.lc.n)}</b><small style="font-weight:400">ทำมาแล้ว 3 สัปดาห์</small></div>
-   ${(()=>{ const m=menOf(0); return `<div class="stat work pf-men"><small>${ic("users")}Mentor ของคุณ</small>${m?`<div class="pfm-r"><span><b>${m.n}</b><small style="font-weight:400">${m.r}</small></span><button type="button" class="ib" data-a="toast" data-m="เปิดแชตกับ ${m.n} (ต้นแบบ)" aria-label="ส่งข้อความถึง ${m.n}">${ic("mail")}</button></div>`:`<b>ยังไม่มี Mentor</b><small style="font-weight:400">วิทยาลัยฯ จะจัด Mentor ให้เร็ว ๆ นี้</small>`}</div>`; })()}
+   ${(()=>{ const m=menOf(0); return `<div class="stat work pf-men"><small>${ic("users")}Mentor ของคุณ</small>${m?`<div class="pfm-r"><span><b>${m.n}</b><small style="font-weight:400">${m.r}</small></span><button type="button" class="pfm-msg" data-a="toast" data-m="เปิดแชตกับ ${m.n} (ต้นแบบ)" aria-label="ส่งข้อความถึง ${m.n}">${ic("mail")}<span>ทักแชต</span></button></div>`:`<b>ยังไม่มี Mentor</b><small style="font-weight:400">วิทยาลัยฯ จะจัด Mentor ให้เร็ว ๆ นี้</small>`}</div>`; })()}
   </div>
   ${hoursCal()}
   <div class="stat" style="background:transparent;flex-direction:row;align-items:center;justify-content:space-between"><div><small style="color:var(--muted)">${ic("wallet")}ค่าตอบแทนเดือนนี้</small><b class="tkv" style="font-family:Poppins;font-size:1.5rem">${tok(24,"tki")}<span data-count="4860">0</span></b></div><button type="button" class="btn btn-g btn-sm" data-a="payout">ถอน Token</button></div>
