@@ -2680,7 +2680,7 @@ R.ai=()=>{ if(!S.aiDone) return `<div class="ai-load" aria-live="polite"><div cl
   <ol class="ai-steps" id="aisteps">${["อ่านทักษะและความสนใจ","รวมผล Personality Test","เทียบกับอาชีพในฝัน","จับคู่งานและคอร์ส"].map(s=>`<li><i>${ic("check")}</i>${s}</li>`).join("")}</ol></div>`;
  const fit=JOBS.filter(j=>j.match>=70).slice(0,4), facj=JOBS.filter(j=>j.fac).slice(0,4);
  return `${topbar("ผลวิเคราะห์",false,`<button type="button" class="ib" data-a="replayai" aria-label="วิเคราะห์ใหม่">${ic("spark")}</button>`)}
- <div class="dream"><span class="ai">${ic("spark")}AI render</span><div class="burst"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 2l9 17 18-7-2 19 19 4-13 14 13 14-19 4 2 19-18-7-9 17-9-17-18 7 2-19-19-4 13-14L3 35l19-4-2-19 18 7z"/></svg>${ic("target")}</div>
+ <div class="dream"><div class="burst"><svg viewBox="0 0 100 100" aria-hidden="true"><path fill="#fff" d="M50 2l9 17 18-7-2 19 19 4-13 14 13 14-19 4 2 19-18-7-9 17-9-17-18 7 2-19-19-4 13-14L3 35l19-4-2-19 18 7z"/></svg>${ic("target")}</div>
   <small>อาชีพในฝันของคุณ</small><h1 id="h1" tabindex="-1">${esc(S.ob.dream)}</h1><p>คุณมีพื้นฐานแล้ว 3 จาก 5 ทักษะหลัก</p></div>
  <section class="sec pad"><div class="sec-h" style="padding:0"><h2>${ic("bar")}ทักษะที่อาชีพนี้ต้องมี</h2></div>
   <div class="card" style="padding:16px"><div class="bars">${NEED.map(([n,need,have])=>`<div class="bar-row"><p class="t">${n}<span>${have} / ${need}</span></p><div class="bar"><i class="need" data-w="${need}"></i><i class="have" data-w="${have}"></i></div></div>`).join("")}</div>
